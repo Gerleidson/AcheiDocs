@@ -56,8 +56,6 @@ body {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-
-
 /* Formulários */
 form {
   max-width: 1000px;
@@ -104,13 +102,17 @@ form button:hover {
   background-color: #00B6FF;
 }
 
-
-/* Tabela */
-table {
+/* Contêiner para tabela */
+.table-container {
   width: 80%;
   max-width: 800px;
   margin: 0 auto; /* Centraliza a tabela */
   margin-top: 20px;
+  overflow-x: auto; /* Adiciona barra de rolagem horizontal */
+}
+
+table {
+  width: 100%;
   border-collapse: collapse;
 }
 
@@ -120,7 +122,7 @@ thead {
   background-color: white;
 }
 
-table th,  table td {
+table th, table td {
   border: 1px solid #333;
   padding: 8px;
   text-align: center;
@@ -131,8 +133,6 @@ table th {
   font-weight: bold;
   text-align: left;
 }
-
-
 
 /* Footer */
 .footer {
@@ -212,7 +212,7 @@ table th {
   }
 
   table th,
-  table td { /* Corrigido o seletor para table th e table td */
+  table td {
     padding: 8px;
   }
 }
@@ -225,7 +225,11 @@ p {
 }
 
 @media screen and (max-width: 600px) {
-  form, table {
+  form {
+    width: 100%;
+  }
+
+  .table-container {
     width: 100%;
   }
 }
