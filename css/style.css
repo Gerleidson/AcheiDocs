@@ -1,0 +1,231 @@
+/* Reset de estilos padrão */
+body, h1, h2, h3, p, ul, li, form, button {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f7f7f7;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Menu Horizontal */
+.menu-horizontal {
+  background-color: #007BB5;
+  padding: 15px 0;
+  text-align: center;
+}
+
+.menu-horizontal ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-horizontal li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.menu-horizontal a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  transition: color 0.3s ease-in-out;
+}
+
+.menu-horizontal a:hover {
+  color: #00B6FF;
+}
+
+/* Header com imagem */
+#foto {
+  text-align: center;
+  margin: 20px 0;
+}
+
+#foto img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+
+
+/* Formulários */
+form {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+form h3 {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  color: #000000;
+  text-align: center;
+}
+
+form input,
+form textarea,
+form button {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s ease-in-out;
+}
+
+form input:focus,
+form textarea:focus {
+  border-color: #007BB5;
+}
+
+form button {
+  background-color: #007BB5;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+form button:hover {
+  background-color: #00B6FF;
+}
+
+
+/* Tabela */
+table {
+  width: 80%;
+  max-width: 800px;
+  margin: 0 auto; /* Centraliza a tabela */
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+thead {
+  position: sticky;
+  top: 0;
+  background-color: white;
+}
+
+table th,  table td {
+  border: 1px solid #333;
+  padding: 8px;
+  text-align: center;
+}
+
+table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  text-align: left;
+}
+
+
+
+/* Footer */
+.footer {
+  background-color: #007BB5;
+  color: #fff;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.footer a {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Links no Footer */
+.footer .links {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer .links a {
+  display: block;
+  line-height: 33px;
+  text-decoration: none;
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  transition: 0.3s;
+  margin-bottom: 10px;
+}
+
+.footer .links a:hover {
+  color: #2fcacf;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.footer .left,
+.footer .right {
+  width: 48%; 
+  box-sizing: border-box;
+}
+
+.footer .left {
+  padding-right: 1%; /* Espaçamento entre os blocos */
+}
+
+.footer .right {
+  padding-left: 1%; /* Espaçamento entre os blocos */
+}
+
+.footer form {
+  width: 100%;
+}
+
+.footer form input,
+.footer form textarea,
+.footer form .btn {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .menu-horizontal li {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  form {
+    padding: 15px;
+  }
+
+  table th,
+  table td { /* Corrigido o seletor para table th e table td */
+    padding: 8px;
+  }
+}
+
+form h2,
+form p,
+h2,
+p {
+  text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+  form, table {
+    width: 100%;
+  }
+}

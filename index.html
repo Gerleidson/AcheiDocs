@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achei - Achados e Perdidos</title>
+    <link rel="shortcut icon" href="img/logo.png"><!-- Conteúdo referente ao icone da pagina -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    
+    <!-- No cabeçalho do seu HTML -->
+    <script src="script.js" async></script>
+
+</head>
+
+<body>
+    <nav class="menu-horizontal">
+        <ul>
+            <li><a href="#form-achado" onclick="toggleFormulario('achado')">Achei Documento</a></li>
+            <li><a href="#form-perdido" onclick="toggleFormulario('perdido')">Perdi Documento</a></li>
+            <li><a href="#localizar-documento">Localizar Documento</a></li>
+            <li><a href="#contato">Fale Conosco</a></li> 
+        </ul>
+    </nav>
+
+    <div class="foto" id="foto">
+        <!-- <img src="img/banner.png" alt="imagem" width="100%"> -->
+    </div>
+
+    <form id="form-achado" action="#form-achado" method="post">
+        <h3>Cadastrar documento achado</h3>
+        <label for="nome-achado">Nome:</label>
+        <input type="text" id="nome-achado" name="nome-achado" placeholder="Nome completo da pessoa que você encontrou os documentos" required>
+        <label for="documento-achado">Documento:</label>
+        <input type="text" id="documento-achado" name="documento-achado" placeholder="Identifique o documento achado: Exemplo: RG, CPF..." required>
+        <label for="cidade-achado">Cidade:</label>
+        <input type="text" id="cidade-achado" name="cidade-achado" placeholder="Digite sua Cidade" required>
+        <label for="estado-achado">Estado:</label>
+        <input type="text" id="estado-achado" name="estado-achado" placeholder="Digite seu Estado" required>
+        <label for="telefone-achado">Telefone:</label>
+        <input type="tel" id="telefone-achado" name="telefone-achado" placeholder="Digite seu telefone com DDD para contato" required>
+        <button type="submit">Cadastrar</button>
+    </form>
+
+    <form id="form-perdido" action="#form-perdido" method="post" style="display: none;">
+        <h3>Cadastrar documento perdido</h3>
+        <label for="nome-perdido">Nome:</label>
+        <input type="text" id="nome-perdido" name="nome-perdido" placeholder="Nome completo da pessoa que perdeu os documentos" required>
+        <label for="documento-perdido">Documento:</label>
+        <input type="text" id="documento-perdido" name="documento-perdido" placeholder="Identifique o documento perdido: Exemplo: RG, CPF..." required>
+        <label for="cidade-perdido">Cidade:</label>
+        <input type="text" id="cidade-perdido" name="cidade-perdido" placeholder="Digite sua Cidade" required>
+        <label for="estado-perdido">Estado:</label>
+        <input type="text" id="estado-perdido" name="estado-perdido" placeholder="Digite seu Estado" required>
+        <label for="telefone-perdido">Telefone:</label>
+        <input type="tel" id="telefone-perdido" name="telefone-perdido" placeholder="Digite seu telefone com DDD para contato" required>
+        <button type="submit">Cadastrar</button>
+    </form>
+
+    <form action="/encontrar" method="get">
+        <h2 id="localizar-documento">Encontrar documento pelo nome</h2>
+        <p>Use o campo de pesquisa para localizar seu documento.</p>
+        <input type="text" id="nome-busca" name="nome-busca" placeholder="Digite nome completo" required>
+        <button type="button" onclick="buscarCadastroPorNome()">Buscar</button>
+    </form>        
+
+    <br>
+    <h2>Itens cadastrados</h2>
+    <table id="tabela">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Nome</th>
+                <th>Documento</th>
+                <th>Cidade</th>
+                <th>Estado</th>
+                <th>Telefone</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    
+    <br>    
+
+    <link rel="stylesheet" href="https://cdn.positus.global/production/resources/robbu/whatsapp-button/whatsapp-button.css">
+    <a id="robbu-whatsapp-button" target="_blank" href="https://api.whatsapp.com/send?phone=5571992777540&text=Ol%C3%A1,%20Seja%20bem%20vindo!%20Como%20posso%20te%20ajudar?">
+        <div class="rwb-tooltip">Fale comigo!</div>
+        <img src="https://cdn.positus.global/production/resources/robbu/whatsapp-button/whatsapp-icon.svg">
+    </a>
+
+    <footer class="footer">
+        <div class="left">
+            <h4 class="title-footer">AcheiDocs</h4>
+            <p class="links">
+                <a href="#" title="Home">Home</a>
+                <a href="#form-achado" onclick="toggleFormulario('achado')">Achei Documento</a>
+                <a href="#form-perdido" onclick="toggleFormulario('perdido')">Perdi Documento</a>
+                <a href="#localizar-documento">Localizar Documento</a>
+            </p>
+            <!-- <div class="footer-icons">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+            </div> -->
+            <br><br>
+            <p class="Copyright">Copyright &copy; 2024 AcheiDocs - Todos os Direitos Reservados.</p>
+        </div><!--Left-->
+
+        <div class="right" id="contato">
+            <h4 class="title-footer">Contato</h4>
+            <form action="https://formspree.io/f/mwkgpgzo" method="post">
+                <input type="text" name="nome" placeholder="Nome" required=""/>
+                <input type="email" name="email" placeholder="E-mail" required=""/>
+                <input type="text" name="assunto" placeholder="Assunto" required=""/>
+                <textarea name="mensagem" placeholder="Mensagem" required=""></textarea>
+                <button class="btn">Enviar</button>
+            </form>
+        </div><!--Right-->
+    </footer>
+</body>
+</html>
