@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Achei - Achados e Perdidos</title>
+    <title>AcheiDocs - Achados e Perdidos</title>
     <link rel="shortcut icon" href="img/logo.png"><!-- Conteúdo referente ao icone da pagina -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
@@ -17,6 +17,7 @@
 <body>
     <nav class="menu-horizontal">
         <ul>
+            <li><a href="index.html">Home</a></li>
             <li><a href="#form-achado" onclick="toggleFormulario('achado')">Achei Documento</a></li>
             <li><a href="#form-perdido" onclick="toggleFormulario('perdido')">Perdi Documento</a></li>
             <li><a href="#localizar-documento">Localizar Documento</a></li>
@@ -59,7 +60,7 @@
     </form>
 
     <form action="/encontrar" method="get">
-        <h2 id="localizar-documento">Encontrar documento pelo nome</h2>
+        <h2 id="localizar-documento">Encontrar pelo nome</h2>
         <p>Use o campo de pesquisa para localizar seu documento.</p>
         <input type="text" id="nome-busca" name="nome-busca" placeholder="Digite nome completo" required>
         <button type="button" onclick="buscarCadastroPorNome()">Buscar</button>

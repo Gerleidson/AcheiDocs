@@ -62,6 +62,20 @@ function exibirDocumentos() {
 document.getElementById("form-achado").addEventListener("submit", salvarDocumentoAchado);
 document.getElementById("form-perdido").addEventListener("submit", salvarDocumentoPerdido);
 
+document.addEventListener("DOMContentLoaded", function() {
+    const telefoneAchado = document.getElementById('telefone-achado');
+    const telefonePerdido = document.getElementById('telefone-perdido');
+
+    telefoneAchado.addEventListener('input', function() {
+        this.value = this.value.replace(/\D/g, '');
+    });
+
+    telefonePerdido.addEventListener('input', function() {
+        this.value = this.value.replace(/\D/g, '');
+    });
+});
+
+
 
 // Função para alternar entre os formulários
 function toggleFormulario(formulario) {
