@@ -10,6 +10,12 @@ body {
   background-color: #f7f7f7;
   color: #333;
   line-height: 1.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 10px;
 }
 
 /* Menu Horizontal */
@@ -17,6 +23,7 @@ body {
   background-color: #007BB5;
   padding: 15px 0;
   text-align: center;
+  width: 100%;
 }
 
 .menu-horizontal ul {
@@ -46,6 +53,7 @@ body {
 #foto {
   text-align: center;
   margin: 20px 0;
+  width: 100%;
 }
 
 #foto img {
@@ -59,7 +67,8 @@ body {
 /* Formulários */
 form {
   max-width: 1000px;
-  margin: 0 auto;
+  width: 100%;
+  margin: 20px 0;
   padding: 20px;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -106,8 +115,7 @@ form button:hover {
 .table-container {
   width: 80%;
   max-width: 800px;
-  margin: 0 auto; /* Centraliza a tabela */
-  margin-top: 20px;
+  margin: 20px auto; /* Centraliza a tabela */
   overflow-x: auto; /* Adiciona barra de rolagem horizontal */
 }
 
@@ -141,6 +149,7 @@ table th {
   color: #fff;
   padding: 50px 20px;
   text-align: center;
+  width: 100%;
 }
 
 .footer a {
@@ -233,5 +242,16 @@ p {
 
   .table-container {
     width: 100%;
+  }
+
+  .footer .left,
+  .footer .right {
+    width: 100%;
+    padding: 0;
+  }
+
+  .footer {
+    text-align: center;
+    flex-direction: column;
   }
 }
