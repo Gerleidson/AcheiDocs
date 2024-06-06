@@ -37,7 +37,7 @@ function exibirDocumentos() {
     // Criação dos títulos
     let titulos = tabela.createTHead();
     let tituloRow = titulos.insertRow();
-    tituloRow.insertCell(0).textContent = "Número";
+    //tituloRow.insertCell(0).textContent = "Número";
     tituloRow.insertCell(1).textContent = "Nome";
     tituloRow.insertCell(2).textContent = "Documento";
     tituloRow.insertCell(3).textContent = "Cidade";
@@ -48,7 +48,7 @@ function exibirDocumentos() {
     // Preenchimento da tabela com os dados
     documentos.forEach((documento, index) => {
         let row = tabela.insertRow(); // Insere uma nova linha na tabela
-        row.insertCell(0).textContent = index + 1; // Número do documento
+      //  row.insertCell(0).textContent = index + 1; // Número do documento
         row.insertCell(1).textContent = documento.nome; // Nome
         row.insertCell(2).textContent = documento.documento; // Documento
         row.insertCell(3).textContent = documento.cidade; // Cidade
@@ -103,7 +103,7 @@ function buscarCadastroPorNome() {
         var rowNome = rowData[1].textContent.trim().toLowerCase();
         if (rowNome === nome) {
             encontrou = true;
-            dadosEncontrados += 'Código: ' + rowData[0].textContent + '\n';
+          //  dadosEncontrados += 'Código: ' + rowData[0].textContent + '\n';
             dadosEncontrados += 'Nome: ' + rowData[1].textContent + '\n';
             dadosEncontrados += 'Documento: ' + rowData[2].textContent + '\n';
             dadosEncontrados += 'Cidade: ' + rowData[3].textContent + '\n';

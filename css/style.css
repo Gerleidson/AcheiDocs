@@ -114,7 +114,7 @@ form button:hover {
 /* Contêiner para tabela */
 .table-container {
   width: 80%;
-  max-width: 800px;
+  max-width: 600px; /* Diminuir comprimento máximo da tabela */
   margin: 20px auto; /* Centraliza a tabela */
   overflow-x: auto; /* Adiciona barra de rolagem horizontal */
 }
