@@ -133,14 +133,13 @@ thead {
 table th, table td {
   border: 1px solid #333;
   padding: 8px;
-  text-align: center;
+  text-align: center; /* Centraliza o texto */
   font-size: 0.9em; /* Diminuir o tamanho da fonte */
 }
 
 table th {
   background-color: #f2f2f2;
   font-weight: bold;
-  text-align: left;
 }
 
 /* Footer */
