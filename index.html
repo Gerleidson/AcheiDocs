@@ -17,18 +17,21 @@
 <body>
     <nav class="menu-horizontal">
         <ul>
-            <li><a href="index.html">Home</a></li>
             <li><a href="#form-achado" onclick="toggleFormulario('achado')">Achei Documento</a></li>
             <li><a href="#form-perdido" onclick="toggleFormulario('perdido')">Perdi Documento</a></li>
             <li><a href="#localizar-documento">Localizar Documento</a></li>
-            <li><a href="#contato">Fale Conosco</a></li> 
         </ul>
     </nav>
 
-    <div class="foto" id="foto">
-        <!-- <img src="img/img.png" alt="imagem">   -->
+    <div class="foto text-center" id="foto">
+        <img src="img/icon.png" alt="imagem" class="img-fluid" style="max-width: 100px;">
+        <div class="alert alert-info text-center" role="alert">
+            <h4 class="alert-heading">Bem-vindo ao AcheiDocs!</h4>
+            <p>Uma plataforma simples e eficaz para cadastrar documentos e objetos encontrados e perdidos.</p>
+            <p>É muito fácil: Basta preencher o formulário abaixo e ajudar alguém a reencontrar o que perdeu!</p>
+        </div>        
     </div>
-
+    
     <form id="form-achado" action="#form-achado" method="post">
         <h3>Cadastrar documento achado</h3>
         <label for="nome-achado">Nome:</label>
@@ -60,30 +63,32 @@
     </form>
 
     <form action="/encontrar" method="get">
-        <h2 id="localizar-documento">Encontrar pelo nome</h2>
-        <p>Use o campo de pesquisa para localizar seu documento.</p>
+        <h2 id="localizar-documento">Encontre seu documento pelo nome</h2>
         <input type="text" id="nome-busca" name="nome-busca" placeholder="Digite nome completo" required>
         <button type="button" onclick="buscarCadastroPorNome()">Buscar</button>
     </form>        
 
     <br>
     <h2>Itens cadastrados</h2>
-    <table id="tabela">
-        <thead>
-            <tr>
-                <!-- <th>Cod</th> -->
-                <th>Nome</th>
-                <th>Documento</th>
-                <th>Cidade</th>
-                <th>UF</th>
-                <th>Contato</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered" id="tabela">
+            <thead class="thead-light">
+                <tr>
+                    <th>Nome</th>
+                    <th>Documento</th>
+                    <th>Cidade</th>
+                    <th>UF</th>
+                    <th>Contato</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Os dados serão inseridos aqui dinamicamente -->
+            </tbody>
+        </table>
+    </div>
+    
+    
     
     <br>    
 
@@ -93,33 +98,11 @@
         <img src="https://cdn.positus.global/production/resources/robbu/whatsapp-button/whatsapp-icon.svg">
     </a>
 
-    <footer class="footer">
-        <div class="left">
-            <h4 class="title-footer">AcheiDocs</h4>
-            <p class="links">
-                <a href="#" title="Home">Home</a>
-                <a href="#form-achado" onclick="toggleFormulario('achado')">Achei Documento</a>
-                <a href="#form-perdido" onclick="toggleFormulario('perdido')">Perdi Documento</a>
-                <a href="#localizar-documento">Localizar Documento</a>
-            </p>
-            <!-- <div class="footer-icons">
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-instagram"></i></a>
-            </div> -->
-            <br><br>
+    <footer class="bg-light text-center py-4">
+        <div class="center">
             <p class="Copyright">Copyright &copy; 2024 AcheiDocs - Todos os Direitos Reservados.</p>
-        </div><!--Left-->
-
-        <div class="right" id="contato">
-            <h4 class="title-footer">Contato</h4>
-            <form action="https://formspree.io/f/mwkgpgzo" method="post">
-                <input type="text" name="nome" placeholder="Nome" required=""/>
-                <input type="email" name="email" placeholder="E-mail" required=""/>
-                <input type="text" name="assunto" placeholder="Assunto" required=""/>
-                <textarea name="mensagem" placeholder="Mensagem" required=""></textarea>
-                <button class="btn">Enviar</button>
-            </form>
-        </div><!--Right-->
+            <p class="DevelopedBy">Desenvolvido por <a href="https://gerleidson-bomfim.vercel.app" target="_blank">Gerleidson Bomfim</a></p>
+        </div>
     </footer>
 </body>
 </html>
