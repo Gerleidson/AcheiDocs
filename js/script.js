@@ -82,7 +82,7 @@ function exibirPopup(dados) {
         `);
     } else {
         // Caso contrário, mostra uma mensagem dizendo que não foi encontrado
-        alert("Documento não encontrado ou não há registros.");
+        alert("Não há registro.");
     }
 }
 
