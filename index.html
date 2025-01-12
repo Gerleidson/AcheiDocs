@@ -32,59 +32,68 @@
         
         <!-- Carregamento assíncrono do jQuery e do script -->
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-        <script src="script.js" async></script>
+        <script src="js/script.js" async></script>
         
     </head>
     
-
 <body>
-    <nav class="menu-horizontal">
-        <ul>
-            <li><a href="#form-achado" onclick="toggleFormulario('achado')">Achei Documento</a></li>
-            <li><a href="#form-perdido" onclick="toggleFormulario('perdido')">Perdi Documento</a></li>
-            <li><a href="#localizar-documento">Localizar Documento</a></li>
-        </ul>
-    </nav>
-
-    <div class="foto text-center" id="foto">
+      <div class="foto text-center" id="foto">
         <img src="img/icon.png" alt="imagem" class="img-fluid" style="max-width: 100px;">
         <div class="alert alert-info text-center" role="alert">
-            <h4 class="alert-heading">Bem-vindo ao AcheiDocs!</h4>
+            <h4 class="alert-heading">AcheiDocs</h4>
             <p>Uma plataforma simples e eficaz para cadastrar documentos e objetos encontrados e perdidos.</p>
             <p>É muito fácil: Basta preencher o formulário abaixo e ajudar alguém a reencontrar o que perdeu!</p>
         </div>        
     </div>
     
-    <form id="form-achado" action="#form-achado" method="post">
-        <h3>Cadastrar documento achado</h3>
-        <label for="nome-achado">Nome:</label>
-        <input type="text" id="nome-achado" name="nome-achado" placeholder="Nome completo da pessoa que você encontrou os documentos" required>
-        <label for="documento-achado">Documento:</label>
-        <input type="text" id="documento-achado" name="documento-achado" placeholder="Identifique o documento achado: Exemplo: RG, CPF..." required>
-        <label for="cidade-achado">Cidade:</label>
-        <input type="text" id="cidade-achado" name="cidade-achado" placeholder="Digite sua Cidade" required>
-        <label for="estado-achado">Estado:</label>
-        <input type="text" id="estado-achado" name="estado-achado" placeholder="Digite seu Estado" required>
-        <label for="telefone-achado">Telefone:</label>
-        <input type="tel" id="telefone-achado" name="telefone-achado" placeholder="Digite seu telefone com DDD para contato" required>
+    <form id="form-cadastro" action="#form-cadastro" method="post">
+        <h3>Cadastrar documento</h3>
+    
+        <!-- Checkbox para escolha de tipo -->
+        <div class="checkbox-group">
+            <label for="achado">
+                <input type="checkbox" id="achado" name="tipo" value="achado" onclick="toggleForm('achado')">
+                Documento Achado
+            </label>
+            <label for="perdido">
+                <input type="checkbox" id="perdido" name="tipo" value="perdido" onclick="toggleForm('perdido')">
+                Documento Perdido
+            </label>
+        </div>
+    
+        <!-- Campo Nome -->
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" placeholder="Nome completo" required>
+    
+        <!-- Campos Documento e Telefone lado a lado -->
+        <div class="form-row">
+            <div>
+                <label for="documento">Documento:</label>
+                <input type="text" id="documento" name="documento" placeholder="Ex: RG, CPF..." required>
+            </div>
+            <div>
+                <label for="telefone">Telefone:</label>
+                <input type="tel" id="telefone" name="telefone" placeholder="Telefone com DDD" required>
+            </div>
+        </div>
+    
+        <!-- Campos Cidade e Estado lado a lado -->
+        <div class="form-row">
+            <div>
+                <label for="cidade">Cidade:</label>
+                <input type="text" id="cidade" name="cidade" placeholder="Digite sua cidade" required>
+            </div>
+            <div>
+                <label for="estado">Estado:</label>
+                <input type="text" id="estado" name="estado" placeholder="Digite seu estado" required>
+            </div>
+        </div>
+    
+        <!-- Botão de Submit -->
         <button type="submit">Cadastrar</button>
     </form>
-
-    <form id="form-perdido" action="#form-perdido" method="post" style="display: none;">
-        <h3>Cadastrar documento perdido</h3>
-        <label for="nome-perdido">Nome:</label>
-        <input type="text" id="nome-perdido" name="nome-perdido" placeholder="Nome completo da pessoa que perdeu os documentos" required>
-        <label for="documento-perdido">Documento:</label>
-        <input type="text" id="documento-perdido" name="documento-perdido" placeholder="Identifique o documento perdido: Exemplo: RG, CPF..." required>
-        <label for="cidade-perdido">Cidade:</label>
-        <input type="text" id="cidade-perdido" name="cidade-perdido" placeholder="Digite sua Cidade" required>
-        <label for="estado-perdido">Estado:</label>
-        <input type="text" id="estado-perdido" name="estado-perdido" placeholder="Digite seu Estado" required>
-        <label for="telefone-perdido">Telefone:</label>
-        <input type="tel" id="telefone-perdido" name="telefone-perdido" placeholder="Digite seu telefone com DDD para contato" required>
-        <button type="submit">Cadastrar</button>
-    </form>
-
+        
+    
     <form action="/encontrar" method="get">
         <h2 id="localizar-documento">Encontre seu documento pelo nome</h2>
         <input type="text" id="nome-busca" name="nome-busca" placeholder="Digite nome completo" required>
@@ -111,21 +120,12 @@
         </table>
     </div>
     
-    
-    
     <br>    
 
-    <link rel="stylesheet" href="https://cdn.positus.global/production/resources/robbu/whatsapp-button/whatsapp-button.css">
-    <a id="robbu-whatsapp-button" target="_blank" href="https://api.whatsapp.com/send?phone=5571992777540&text=Ol%C3%A1,%20Seja%20bem%20vindo!%20Como%20posso%20te%20ajudar?">
-        <div class="rwb-tooltip">Fale comigo!</div>
-        <img src="https://cdn.positus.global/production/resources/robbu/whatsapp-button/whatsapp-icon.svg" alt="whatsapp">
-    </a> 
-
-    <footer class="bg-light text-center py-4">
-        <div class="center">
-            <p class="Copyright">Copyright &copy; 2024 AcheiDocs - Todos os Direitos Reservados.</p>
-            <p class="DevelopedBy">Desenvolvido por <a href="https://gerleidson-bomfim.vercel.app" target="_blank">Gerleidson Bomfim</a></p>
-        </div>
+    <footer>     
+        <p>&copy; 2024 AcheiDocs - Todos os Direitos Reservados.</p>
     </footer>
+    
 </body>
+
 </html>
