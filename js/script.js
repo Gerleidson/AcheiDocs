@@ -3,7 +3,7 @@ import { salvarDados } from './firebase.js'; // Caminho correto no seu projeto
 import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js"; // Importando também a inicialização do Firebase
 
-// Configuração do Firebase (garantir que esta configuração esteja correta no seu arquivo)
+// Configuração do Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyCmcDHVj8vdMZeLsnygh0jMjCfZ0Hyh8bY",
     authDomain: "acheidocs-c7b8f.firebaseapp.com",
@@ -15,10 +15,8 @@ const firebaseConfig = {
     measurementId: "G-S829CSFXDM"
 };
 
-// Inicializando o Firebase (evita a inicialização duplicada)
-if (!initializeApp()) {
-    initializeApp(firebaseConfig);
-}
+// Inicializando o Firebase
+const app = initializeApp(firebaseConfig); // Esta linha inicializa o Firebase com as configurações fornecidas
 
 // Função para salvar os dados do formulário no Firebase
 document.getElementById('form-cadastro').addEventListener('submit', function (event) {
@@ -44,7 +42,7 @@ document.getElementById('form-cadastro').addEventListener('submit', function (ev
 
 // Função para buscar e exibir os dados na tabela
 function exibirDocumentos() {
-    const db = getDatabase(); // Obtendo a referência do banco de dados
+    const db = getDatabase(app); // Passando a instância do app para getDatabase
     const referencia = ref(db, 'documentos/'); // Referência ao nó 'documentos'
 
     get(referencia).then((snapshot) => {
