@@ -36,7 +36,7 @@ body {
   gap: 8px;
 }
 
-.checkbox-group input[type="checkbox"] {
+.checkbox-group input[type="radio"] {
   width: 18px;
   height: 18px;
   margin: 0;
@@ -232,7 +232,6 @@ table tr:hover td {
   background-color: #f7f7f7;
 }
 
-
 /* Estilos para o Footer */
 footer {
   background-color: #007BB5; 
@@ -242,13 +241,11 @@ footer {
   font-size: 14px; 
   width: 100%; 
   bottom: 0;
-
 }
 
 footer p {
   margin: 0; 
 }
-
 
 
 /* Responsivo */
@@ -262,6 +259,15 @@ footer p {
     margin-bottom: 10px;
   }
 
+  .checkbox-group {
+    flex-direction: column;  /* Alinha os checkboxes verticalmente */
+    gap: 15px;  /* Espaço entre os checkboxes */
+  }
+
+  .checkbox-group label {
+    font-size: 14px;  /* Ajuste no tamanho da fonte para telas menores */
+  }
+
   form {
     padding: 25px;
   }
@@ -272,7 +278,6 @@ footer p {
     font-size: 0.85em;
   }
 
-  /* Ajustes na disposição dos campos de formulário */
   .form-row {
     flex-direction: column;
   }
@@ -288,7 +293,15 @@ footer p {
     width: 100%;
   }
 
-  /* Ajuste dos campos de formulário */
+  .checkbox-group {
+    flex-direction: column;  /* Alinha os checkboxes verticalmente */
+    gap: 10px;  /* Espaço entre os checkboxes */
+  }
+
+  .checkbox-group label {
+    font-size: 14px;  /* Ajuste da fonte */
+  }
+
   .form-row {
     flex-direction: column;
     gap: 15px;
@@ -299,17 +312,11 @@ footer p {
     padding: 10px;
   }
 
-  /* Ajustes adicionais na tabela */
-  .table-container {
-    overflow-x: auto;
-  }
-
   table th, table td {
     font-size: 12px; /* Menor tamanho de fonte em telas pequenas */
     padding: 8px; /* Menos padding para caber melhor */
   }
 
-  /* Ajuste de largura para a tabela em dispositivos móveis */
   table {
     width: 90%; /* Ajuste da tabela para 90% da largura */
   }
