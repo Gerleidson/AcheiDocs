@@ -3,38 +3,43 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-        <!-- Melhorando o título para SEO -->
         <title>Achei - Achados e Perdidos: Encontre seus itens perdidos facilmente</title>
-    
-        <!-- Descrição da página para melhorar a indexação -->
         <meta name="description" content="Achei é o site ideal para quem perdeu ou encontrou itens. Encontre objetos perdidos e ajude a devolver o que foi encontrado. Simples, rápido e eficiente.">
-        
-        <!-- Palavras-chave para ajudar no SEO -->
         <meta name="keywords" content="achados e perdidos, itens perdidos, devolução de objetos, site achados, encontrar objetos, perdas e achados">
-        
-        <!-- Tag para definir a autor e melhorar a relevância do conteúdo -->
         <meta name="Gerleidson Bomfim" content="Achei - Achados e Perdidos">
-    
-        <!-- Open Graph tags para compartilhamento social -->
         <meta property="og:title" content="Achei - Achados e Perdidos: Encontre seus itens perdidos facilmente">
         <meta property="og:description" content="Achei é o site ideal para quem perdeu ou encontrou itens. Encontre objetos perdidos e ajude a devolver o que foi encontrado.">
-        <meta property="og:image" content="img/icon.png"> <!-- Coloque a URL da imagem usada para a visualização social -->
+        <meta property="og:image" content="img/icon.png">
         <meta property="og:url" content="https://www.seusite.com">
         <meta property="og:type" content="website">
-    
-        <!-- Favicon -->
         <link rel="shortcut icon" href="img/icon.png">
-        
-        <!-- Adicionando fontes e bibliotecas -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="css/style.css">
         
         <!-- Carregamento assíncrono do jQuery e do script -->
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-        <script src="js/script.js" async></script>
         
+        <!-- SDK do Firebase (adicione este trecho de código) -->
+        <script type="module">
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+            import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
+            import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
+    
+            const firebaseConfig = {
+                apiKey: "AIzaSyCmcDHVj8vdMZeLsnygh0jMjCfZ0Hyh8bY",
+                authDomain: "acheidocs-c7b8f.firebaseapp.com",
+                projectId: "acheidocs-c7b8f",
+                storageBucket: "acheidocs-c7b8f.firebasestorage.app",
+                messagingSenderId: "390960971384",
+                appId: "1:390960971384:web:85ab3b905743a33930778d",
+                measurementId: "G-S829CSFXDM"
+            };
+    
+            const app = initializeApp(firebaseConfig);
+            const analytics = getAnalytics(app);
+        </script>
     </head>
+    
     
 <body>
       <div class="foto text-center" id="foto">
@@ -128,28 +133,80 @@
     </footer>
     
     <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
-      
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        const firebaseConfig = {
-          apiKey: "AIzaSyCmcDHVj8vdMZeLsnygh0jMjCfZ0Hyh8bY",
-          authDomain: "acheidocs-c7b8f.firebaseapp.com",
-          projectId: "acheidocs-c7b8f",
-          storageBucket: "acheidocs-c7b8f.firebasestorage.app",
-          messagingSenderId: "390960971384",
-          appId: "1:390960971384:web:85ab3b905743a33930778d",
-          measurementId: "G-S829CSFXDM"
-        };
-      
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-      </script>
+        // Função para salvar os dados do formulário no Firebase Database
+        function salvarNoFirebase(dados) {
+            const db = getDatabase();
+            const referencia = ref(db, 'documentos/' + dados.nome);  // Usando 'nome' como chave única
+
+            set(referencia, dados)
+                .then(() => {
+                    alert("Documento cadastrado com sucesso!");
+                    document.getElementById("form-cadastro").reset(); // Limpar o formulário
+                })
+                .catch((error) => {
+                    alert("Erro ao cadastrar: " + error.message);
+                });
+        }
+
+        // Função para lidar com o envio do formulário
+        document.getElementById("form-cadastro").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const tipo = document.querySelector('input[name="tipo"]:checked').value;
+            const nome = document.getElementById("nome").value;
+            const documento = document.getElementById("documento").value;
+            const telefone = document.getElementById("telefone").value;
+            const cidade = document.getElementById("cidade").value;
+            const estado = document.getElementById("estado").value;
+
+            const dados = {
+                tipo: tipo,
+                nome: nome,
+                documento: documento,
+                telefone: telefone,
+                cidade: cidade,
+                estado: estado,
+                status: tipo === "achado" ? "Disponível para devolução" : "Perdido"
+            };
+
+            salvarNoFirebase(dados);
+        });
+
+        // Função para buscar dados do Firebase
+        function buscarDadosDoFirebase() {
+            const db = getDatabase();
+            const referencia = ref(db, 'documentos/');
+
+            get(referencia).then((snapshot) => {
+                if (snapshot.exists()) {
+                    const dados = snapshot.val();
+                    const tabela = document.querySelector('#tabela tbody');
+                    tabela.innerHTML = ''; // Limpa a tabela antes de preencher com novos dados
+
+                    for (const chave in dados) {
+                        const documento = dados[chave];
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${documento.nome}</td>
+                            <td>${documento.documento}</td>
+                            <td>${documento.cidade}</td>
+                            <td>${documento.estado}</td>
+                            <td>${documento.telefone}</td>
+                            <td>${documento.status}</td>
+                        `;
+                        tabela.appendChild(row);
+                    }
+                } else {
+                    alert("Nenhum dado encontrado.");
+                }
+            }).catch((error) => {
+                console.error("Erro ao buscar dados:", error);
+            });
+        }
+
+        // Chamar a função para exibir os dados ao carregar a página
+        window.onload = buscarDadosDoFirebase;
+    </script>
 
 </body>
 
