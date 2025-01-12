@@ -28,7 +28,7 @@ document.getElementById('form-cadastro').addEventListener('submit', function (ev
 
 // Função para buscar e exibir os dados na tabela
 function exibirDocumentos() {
-    const referencia = ref(db, 'documentos/');
+    const referencia = ref(db, 'documentos/');  // Referência ao nó 'documentos'
 
     get(referencia).then((snapshot) => {
         if (snapshot.exists()) {
