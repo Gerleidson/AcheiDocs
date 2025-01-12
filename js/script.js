@@ -1,3 +1,4 @@
+// Importando o Firebase e a função salvarDados apenas uma vez
 import { salvarDados } from './firebase.js'; 
 import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js"; 
 
@@ -105,8 +106,6 @@ document.getElementById('next').addEventListener('click', () => {
 
 // Chama a função ao carregar a página para exibir os documentos da primeira página
 window.onload = () => exibirDocumentosPaginados(paginaAtual);
-
-// script.js
 
 // Função para buscar o cadastro por nome
 function buscarCadastroPorNome() {
