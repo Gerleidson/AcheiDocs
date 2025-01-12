@@ -1,59 +1,37 @@
 <?php
-// Configurações de cabeçalhos para retorno em JSON
-header('Content-Type: application/json');
+// Conectar ao banco de dados
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "acheidocs";
 
-// Configurações de conexão com o banco de dados
-$servername = "localhost"; // Nome do servidor
-$username = "root"; // Usuário do banco de dados
-$password = ""; // Senha do banco de dados
-$dbname = "documentos"; // Nome do banco de dados
-
-// Conexão com o banco de dados
+// Criando a conexão
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Verifica se a conexão falhou
+// Verificando a conexão
 if ($conn->connect_error) {
-    echo json_encode(["success" => false, "message" => "Falha na conexão com o banco de dados: " . $conn->connect_error]);
-    exit;
+    die("Falha na conexão: " . $conn->connect_error);
 }
 
-// Verifica se os dados foram enviados via POST
-if (isset($_POST['nome'], $_POST['documento'], $_POST['cidade'], $_POST['estado'], $_POST['telefone'], $_POST['tipo'])) {
-    // Obtém os valores enviados pelo formulário
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Receber dados do formulário
     $nome = $_POST['nome'];
+    $tipo = $_POST['tipo'];
     $documento = $_POST['documento'];
+    $telefone = $_POST['telefone'];
     $cidade = $_POST['cidade'];
     $estado = $_POST['estado'];
-    $telefone = $_POST['telefone'];
-    $tipo = $_POST['tipo'];
 
-    // Prepara a consulta SQL para inserir os dados
-    $sql = "INSERT INTO itens (nome, documento, telefone, cidade, estado, tipo) VALUES (?, ?, ?, ?, ?, ?)";
+    // Inserir dados na tabela
+    $sql = "INSERT INTO documentos (nome, tipo, documento, telefone, cidade, estado)
+            VALUES ('$nome', '$tipo', '$documento', '$telefone', '$cidade', '$estado')";
 
-    // Prepara e vincula os parâmetros para evitar SQL Injection
-    if ($stmt = $conn->prepare($sql)) {
-        $stmt->bind_param("ssssss", $nome, $documento, $telefone, $cidade, $estado, $tipo);
-
-        // Tenta executar a consulta
-        if ($stmt->execute()) {
-            // Resposta de sucesso
-            echo json_encode(["success" => true, "message" => "Documento cadastrado com sucesso!"]);
-        } else {
-            // Erro ao executar a consulta
-            echo json_encode(["success" => false, "message" => "Erro ao salvar o documento: " . $stmt->error]);
-        }
-
-        // Fecha o statement
-        $stmt->close();
+    if ($conn->query($sql) === TRUE) {
+        echo "Cadastro realizado com sucesso!";
     } else {
-        // Erro ao preparar a consulta
-        echo json_encode(["success" => false, "message" => "Erro ao preparar a consulta: " . $conn->error]);
+        echo "Erro: " . $sql . "<br>" . $conn->error;
     }
-} else {
-    // Dados incompletos
-    echo json_encode(["success" => false, "message" => "Por favor, preencha todos os campos."]);
 }
 
-// Fecha a conexão com o banco
 $conn->close();
 ?>
