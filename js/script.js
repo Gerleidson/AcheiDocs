@@ -116,12 +116,12 @@ function buscarCadastroPorNome() {
     }
 
     // Referência ao banco de dados do Firebase
-    const dbRef = ref(db, "documentos/");  // Supondo que você tenha um nó chamado "documentos" no Firebase
+    const dbRef = ref(db, "cadastros/"); // Supondo que você tenha um nó chamado "cadastros" no Firebase
 
     get(dbRef).then((snapshot) => {
         if (snapshot.exists()) {
             let encontrado = false;
-            const dados = snapshot.val();  // Obtendo os dados do banco
+            const dados = snapshot.val(); // Obter os dados do banco
 
             // Verificando se algum item corresponde ao nome
             for (const id in dados) {
@@ -144,12 +144,10 @@ function buscarCadastroPorNome() {
     });
 }
 
-
-// Função para exibir o resultado da busca
 // Função para exibir o resultado da busca
 function exibirResultado(dados) {
     const resultadoDiv = document.getElementById('resultado-busca');
-    resultadoDiv.innerHTML = `  
+    resultadoDiv.innerHTML = `
         <div>
             <h3>Resultado Encontrado:</h3>
             <p><strong>Nome:</strong> ${dados.nome}</p>
@@ -165,26 +163,9 @@ function exibirResultado(dados) {
 // Função para exibir uma mensagem de erro ou não encontrado
 function exibirMensagem(mensagem) {
     const resultadoDiv = document.getElementById('resultado-busca');
-    resultadoDiv.innerHTML = `  
+    resultadoDiv.innerHTML = `
         <div style="color: red; font-weight: bold;">
             ${mensagem}
         </div>
     `;
-}
-
-
-// Função para exibir uma mensagem de erro ou não encontrado
-function exibirMensagem(mensagem) {
-    const resultadoDiv = document.getElementById('resultado-busca');
-    resultadoDiv.innerHTML = `  <!-- Resetando qualquer conteúdo anterior -->
-        <div style="color: red; font-weight: bold;">
-            ${mensagem}
-        </div>
-    `;
-}
-
-// Adicionando o evento de busca ao botão de busca (verificando se o botão existe no DOM)
-const buscarButton = document.getElementById('buscar-btn');
-if (buscarButton) {
-    buscarButton.addEventListener('click', buscarCadastroPorNome);
 }
