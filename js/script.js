@@ -1,5 +1,24 @@
+// Importando as funções necessárias do Firebase
 import { salvarDados } from './firebase.js'; // Caminho correto no seu projeto
 import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js"; // Importando também a inicialização do Firebase
+
+// Configuração do Firebase (garantir que esta configuração esteja correta no seu arquivo)
+const firebaseConfig = {
+    apiKey: "AIzaSyCmcDHVj8vdMZeLsnygh0jMjCfZ0Hyh8bY",
+    authDomain: "acheidocs-c7b8f.firebaseapp.com",
+    databaseURL: "https://acheidocs-c7b8f-default-rtdb.firebaseio.com/",
+    projectId: "acheidocs-c7b8f",
+    storageBucket: "acheidocs-c7b8f.appspot.com",
+    messagingSenderId: "390960971384",
+    appId: "1:390960971384:web:85ab3b905743a33930778d",
+    measurementId: "G-S829CSFXDM"
+};
+
+// Inicializando o Firebase (evita a inicialização duplicada)
+if (!initializeApp()) {
+    initializeApp(firebaseConfig);
+}
 
 // Função para salvar os dados do formulário no Firebase
 document.getElementById('form-cadastro').addEventListener('submit', function (event) {
@@ -25,8 +44,8 @@ document.getElementById('form-cadastro').addEventListener('submit', function (ev
 
 // Função para buscar e exibir os dados na tabela
 function exibirDocumentos() {
-    const db = getDatabase();
-    const referencia = ref(db, 'documentos/');
+    const db = getDatabase(); // Obtendo a referência do banco de dados
+    const referencia = ref(db, 'documentos/'); // Referência ao nó 'documentos'
 
     get(referencia).then((snapshot) => {
         if (snapshot.exists()) {
