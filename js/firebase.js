@@ -1,6 +1,6 @@
 // Importando as funções necessárias do Firebase
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
-import { getDatabase, ref, set, push } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
+import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+import { getDatabase, ref, set, push, get } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
 
 // Configuração do Firebase
 const firebaseConfig = {
@@ -15,17 +15,15 @@ const firebaseConfig = {
 };
 
 // Inicializando o Firebase, se ainda não foi inicializado
-import { getApps, getApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
-
 if (!getApps().length) {
     initializeApp(firebaseConfig);
 } else {
-    getApp();  // Evitar duplicação
+    getApp();  // Evitar duplicação de inicialização
 }
 
 // Função para salvar dados no banco (Firebase Realtime Database)
 export function salvarDados(nome, documento, cidade, estado, telefone, tipo) {
-    const db = getDatabase();
+    const db = getDatabase(); // Obtém o banco de dados
     const referencia = ref(db, 'documentos');  // 'documentos' como o nó principal
     const dados = {
         nome,
@@ -51,8 +49,8 @@ export function salvarDados(nome, documento, cidade, estado, telefone, tipo) {
 
 // Função para buscar dados do Firebase
 export function buscarDadosDoFirebase() {
-    const db = getDatabase();
-    const referencia = ref(db, 'documentos/');
+    const db = getDatabase(); // Obtém o banco de dados
+    const referencia = ref(db, 'documentos/');  // Refere-se ao nó onde os documentos estão armazenados
     get(referencia)
         .then((snapshot) => {
             if (snapshot.exists()) {
