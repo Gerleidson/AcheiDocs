@@ -1,6 +1,6 @@
 // Importa o Firebase
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set } from "firebase/database";
+import { getDatabase, ref, push, set } from "firebase/database";
 
 // Configuração do Firebase
 const firebaseConfig = {
@@ -18,30 +18,30 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
 // Função para salvar dados no banco (Firebase Realtime Database)
-import { salvarDados } from './firebase.js';
+export function salvarDados(nome, documento, cidade, estado, telefone, tipo) {
+    const db = getDatabase();
+    const referencia = ref(db, 'documentos/');  // Usando referência para "documentos"
+    
+    // Gerar uma nova chave única automaticamente com push
+    const novaReferencia = push(referencia);
 
-document.getElementById('form-cadastro').addEventListener('submit', function(event) {
-    event.preventDefault();
+    const dados = {
+        nome,
+        documento,
+        cidade,
+        estado,
+        telefone,
+        tipo,
+        status: tipo === 'achado' ? 'Disponível para devolução' : 'Perdido'
+    };
 
-    // Coleta os dados do formulário
-    const uid = Date.now(); // Gerando um UID único para o usuário
-    const nome = document.getElementById('nome').value;
-    const documento = document.getElementById('documento').value;
-    const cidade = document.getElementById('cidade').value;
-    const estado = document.getElementById('estado').value;
-    const telefone = document.getElementById('telefone').value;
-    const tipo = document.querySelector('input[name="tipo"]:checked') ? document.querySelector('input[name="tipo"]:checked').value : '';
-
-    // Verifica se todos os campos obrigatórios foram preenchidos
-    if (!nome || !documento || !cidade || !estado || !telefone || !tipo) {
-        alert("Por favor, preencha todos os campos.");
-        return;
-    }
-
-    // Salva os dados no Firebase
-    salvarDados(uid, nome, documento, cidade, estado, telefone, tipo);
-});
-
-
-export { salvarDados };
-
+    // Salvando os dados no Firebase com uma chave gerada automaticamente
+    set(novaReferencia, dados)
+        .then(() => {
+            alert("Documento cadastrado com sucesso!");
+        })
+        .catch((error) => {
+            console.error("Erro ao salvar os dados:", error);
+            alert("Erro ao salvar os dados. Tente novamente mais tarde.");
+        });
+}
