@@ -1,43 +1,51 @@
 <?php
 // Configurações do banco de dados
-$servername = "localhost";  // Nome do servidor
-$username = "root";         // Nome de usuário do banco de dados
-$password = "";             // Senha do banco de dados
-$dbname = "achados_perdidos"; // Nome do banco de dados
+$host = "localhost"; // Altere para o host do seu banco
+$dbname = "achados"; // Nome do banco de dados
+$username = "root"; // Seu nome de usuário do MySQL
+$password = ""; // Sua senha do MySQL
 
-// Criar conexão com o banco de dados
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Verificar a conexão
-if ($conn->connect_error) {
-    die("Falha na conexão: " . $conn->connect_error);
+// Conexão com o banco de dados
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    echo "Erro de conexão: " . $e->getMessage();
+    exit();
 }
 
-// Ler os dados JSON enviados
-$data = json_decode(file_get_contents("php://input"), true);
+// Verifica se os dados foram recebidos
+$data = json_decode(file_get_contents('php://input'), true);
 
-// Verificar se os dados foram recebidos corretamente
-if (isset($data['nome'], $data['documento'], $data['cidade'], $data['estado'], $data['telefone'], $data['tipo'])) {
+// Verifica se os dados foram corretamente decodificados
+if ($data) {
     $nome = $data['nome'];
     $documento = $data['documento'];
-    $telefone = $data['telefone'];
     $cidade = $data['cidade'];
     $estado = $data['estado'];
+    $telefone = $data['telefone'];
     $tipo = $data['tipo'];
 
-    // Preparar a consulta SQL de inserção
-    $sql = "INSERT INTO itens (nome, documento, telefone, cidade, estado, tipo) 
-            VALUES ('$nome', '$documento', '$telefone', '$cidade', '$estado', '$tipo')";
+    // Preparando o SQL para inserção
+    $sql = "INSERT INTO documentos (nome, documento, cidade, estado, telefone, tipo) 
+            VALUES (:nome, :documento, :cidade, :estado, :telefone, :tipo)";
+    
+    // Executando a query
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':nome', $nome);
+    $stmt->bindParam(':documento', $documento);
+    $stmt->bindParam(':cidade', $cidade);
+    $stmt->bindParam(':estado', $estado);
+    $stmt->bindParam(':telefone', $telefone);
+    $stmt->bindParam(':tipo', $tipo);
 
-    if ($conn->query($sql) === TRUE) {
+    if ($stmt->execute()) {
+        // Se tudo der certo, retornamos um JSON com sucesso
         echo json_encode(['success' => true]);
     } else {
-        echo json_encode(['success' => false, 'error' => $conn->error]);
+        echo json_encode(['success' => false, 'message' => 'Erro ao salvar o documento.']);
     }
-
-    // Fechar a conexão
-    $conn->close();
 } else {
-    echo json_encode(['success' => false, 'error' => 'Dados incompletos']);
+    echo json_encode(['success' => false, 'message' => 'Dados inválidos ou ausentes.']);
 }
 ?>

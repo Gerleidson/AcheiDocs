@@ -38,13 +38,15 @@ function salvarDocumento(event) {
     })
     .then(response => response.json()) // Espera a resposta do PHP
     .then(data => {
+        console.log(data); // Adicionando log para depuração
+
         if (data.success) {
             alert('Documento cadastrado com sucesso!');
             // Limpa os campos do formulário
             document.getElementById("form-cadastro").reset();
             exibirDocumentos(); // Atualiza a tabela com os dados cadastrados
         } else {
-            alert('Erro ao cadastrar documento!');
+            alert('Erro ao cadastrar documento: ' + data.message);
         }
     })
     .catch(error => {
@@ -52,6 +54,7 @@ function salvarDocumento(event) {
         alert('Erro ao enviar os dados!');
     });
 }
+
 
 // Função para exibir os documentos na tabela
 function exibirDocumentos() {
