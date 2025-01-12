@@ -1,6 +1,6 @@
 // Importando o Firebase com a abordagem modular
-import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set, get } from "firebase/database"; // Importar corretamente a função getDatabase
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
 
 // Configuração do Firebase
 const firebaseConfig = {
@@ -18,10 +18,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 // Função para salvar dados no banco (Firebase Realtime Database)
-// Função para salvar dados no banco (Firebase Realtime Database)
 export function salvarDados(nome, documento, cidade, estado, telefone, tipo) {
-    const db = getDatabase(); // Aqui a função getDatabase() é corretamente chamada
-    const referencia = ref(db, 'documentos');  // 'documentos' como o nó principal
+    const db = getDatabase();
+    const referencia = ref(db, 'documentos'); // Referência ao nó "documentos"
     const dados = {
         nome,
         documento,
@@ -32,8 +31,8 @@ export function salvarDados(nome, documento, cidade, estado, telefone, tipo) {
         status: tipo === 'achado' ? 'Disponível para devolução' : 'Perdido'
     };
 
-    // Usando push() ao invés de set() para adicionar dados sem sobrescrever
-    const novaReferencia = ref(db, 'documentos/' + Date.now()); // Adiciona um novo documento único
+    // Usando push() para criar um novo identificador único para cada entrada
+    const novaReferencia = push(referencia); // Push cria um ID único
     set(novaReferencia, dados)
         .then(() => {
             alert("Documento cadastrado com sucesso!");
@@ -43,6 +42,7 @@ export function salvarDados(nome, documento, cidade, estado, telefone, tipo) {
             alert("Erro ao salvar os dados. Tente novamente mais tarde.");
         });
 }
+
 
 
 // Função para buscar dados do Firebase

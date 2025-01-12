@@ -21,28 +21,27 @@
 
     <!-- SDK do Firebase -->
     <script type="module">
+        // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
-        import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
-    
-        // Configuração do Firebase
+        import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
+
+
         const firebaseConfig = {
-            apiKey: "AIzaSyCmcDHVj8vdMZeLsnygh0jMjCfZ0Hyh8bY",
-            authDomain: "acheidocs-c7b8f.firebaseapp.com",
-            databaseURL: "https://acheidocs-c7b8f-default-rtdb.firebaseio.com/",
-            projectId: "acheidocs-c7b8f",
-            storageBucket: "acheidocs-c7b8f.appspot.com",
-            messagingSenderId: "390960971384",
-            appId: "1:390960971384:web:85ab3b905743a33930778d",
-            measurementId: "G-S829CSFXDM"
+          apiKey: "AIzaSyCmcDHVj8vdMZeLsnygh0jMjCfZ0Hyh8bY",
+          authDomain: "acheidocs-c7b8f.firebaseapp.com",
+          databaseURL: "https://acheidocs-c7b8f-default-rtdb.firebaseio.com",
+          projectId: "acheidocs-c7b8f",
+          storageBucket: "acheidocs-c7b8f.firebasestorage.app",
+          messagingSenderId: "390960971384",
+          appId: "1:390960971384:web:85ab3b905743a33930778d",
+          measurementId: "G-S829CSFXDM"
         };
-    
-        // Inicializa o Firebase com a configuração fornecida
+      
+        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
-        const db = getDatabase(app);
-    
-        // Aqui você pode usar o Firebase para salvar ou buscar dados
-    </script>
+        const analytics = getAnalytics(app);
+      </script>
     
     
     
@@ -118,7 +117,7 @@
                     <th>Contato</th>
                     <th>Status</th>
                 </tr>
-            </thead>
+            </thead>    
             <tbody>
                 <!-- Os dados serão inseridos aqui dinamicamente -->
             </tbody>
@@ -133,7 +132,7 @@
 
     <!-- Incluindo os scripts -->
     <script type="module" src="js/script.js"></script>
-    <script type="module" src="js/firebase.js"></script>
+    <script type="module" src="js/firebase.js"></script>    
 
 </body>
 </html>

@@ -1,4 +1,6 @@
-import { salvarDados } from './firebase.js'; // Função para salvar no Firebase
+import { salvarDados } from './firebase.js'; // Caminho correto no seu projeto
+
+
 
 // Função para salvar os dados do formulário no Firebase
 document.getElementById('form-cadastro').addEventListener('submit', function (event) {
