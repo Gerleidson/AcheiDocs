@@ -105,3 +105,68 @@ document.getElementById('next').addEventListener('click', () => {
 
 // Chama a função ao carregar a página para exibir os documentos da primeira página
 window.onload = () => exibirDocumentosPaginados(paginaAtual);
+
+// script.js
+
+// Função para buscar o cadastro por nome
+function buscarCadastroPorNome() {
+    const nomeBusca = document.getElementById('nome-busca').value.trim();
+    if (nomeBusca === "") {
+        alert("Por favor, insira um nome para buscar.");
+        return;
+    }
+
+    // Referência ao banco de dados do Firebase
+    const dbRef = ref(db, "cadastros/"); // Supondo que você tenha um nó chamado "cadastros" no Firebase
+
+    get(dbRef).then((snapshot) => {
+        if (snapshot.exists()) {
+            let encontrado = false;
+            const dados = snapshot.val(); // Obter os dados do banco
+
+            // Verificando se algum item corresponde ao nome
+            for (const id in dados) {
+                if (dados[id].nome.toLowerCase() === nomeBusca.toLowerCase()) {
+                    encontrado = true;
+                    exibirResultado(dados[id]); // Exibe as informações do cadastro
+                    break;
+                }
+            }
+
+            if (!encontrado) {
+                exibirMensagem("Documento não encontrado.");
+            }
+        } else {
+            exibirMensagem("Não há registros de documentos.");
+        }
+    }).catch((error) => {
+        console.error("Erro ao buscar os dados:", error);
+        exibirMensagem("Erro ao buscar os dados. Tente novamente.");
+    });
+}
+
+// Função para exibir o resultado da busca
+function exibirResultado(dados) {
+    const resultadoDiv = document.getElementById('resultado-busca');
+    resultadoDiv.innerHTML = `
+        <div>
+            <h3>Resultado Encontrado:</h3>
+            <p><strong>Nome:</strong> ${dados.nome}</p>
+            <p><strong>Documento:</strong> ${dados.documento}</p>
+            <p><strong>Telefone:</strong> ${dados.telefone}</p>
+            <p><strong>Cidade:</strong> ${dados.cidade}</p>
+            <p><strong>Estado:</strong> ${dados.estado}</p>
+            <p><strong>Status:</strong> ${dados.tipo}</p>
+        </div>
+    `;
+}
+
+// Função para exibir uma mensagem de erro ou não encontrado
+function exibirMensagem(mensagem) {
+    const resultadoDiv = document.getElementById('resultado-busca');
+    resultadoDiv.innerHTML = `
+        <div style="color: red; font-weight: bold;">
+            ${mensagem}
+        </div>
+    `;
+}
