@@ -39,7 +39,7 @@ function buscarCadastroPorNome() {
     }
 
     // Referência ao banco de dados do Firebase
-    const dbRef = ref(db, "cadastros/"); // Supondo que você tenha um nó chamado "cadastros" no Firebase
+    const dbRef = ref(db, "documentos/nome"); // Supondo que você tenha um nó chamado "cadastros" no Firebase
 
     get(dbRef).then((snapshot) => {
         if (snapshot.exists()) {
@@ -88,7 +88,7 @@ function exibirPopup(dados) {
 
 // Função para exibir documentos com paginação
 function exibirDocumentosPaginados(pagina) {
-    const referencia = ref(db, 'documentos/');
+    const referencia = ref(db, 'documentos/nome');
     get(referencia).then((snapshot) => {
         if (snapshot.exists()) {
             const documentos = snapshot.val();
