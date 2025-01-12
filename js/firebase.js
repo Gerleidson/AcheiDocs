@@ -1,26 +1,32 @@
-// Importando o Firebase com a abordagem modular
+// Importando as funções necessárias do Firebase
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
-import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
+import { getDatabase, ref, set, push } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
 
 // Configuração do Firebase
 const firebaseConfig = {
-    apiKey: "AIzaSyCmcDHVj8vdMZeLsnygh0jMjCfZ0Hyh8bY",  // sua chave da API
-    authDomain: "acheidocs-c7b8f.firebaseapp.com",  // domínio para autenticação
-    databaseURL: "https://acheidocs-c7b8f-default-rtdb.firebaseio.com/",  // URL do seu Firebase Realtime Database
-    projectId: "acheidocs-c7b8f",  // ID do seu projeto no Firebase
-    storageBucket: "acheidocs-c7b8f.appspot.com",  // bucket de armazenamento
-    messagingSenderId: "390960971384",  // ID do remetente
-    appId: "1:390960971384:web:85ab3b905743a33930778d",  // ID do aplicativo
-    measurementId: "G-S829CSFXDM"  // ID de medição do Firebase Analytics
+    apiKey: "AIzaSyCmcDHVj8vdMZeLsnygh0jMjCfZ0Hyh8bY",
+    authDomain: "acheidocs-c7b8f.firebaseapp.com",
+    databaseURL: "https://acheidocs-c7b8f-default-rtdb.firebaseio.com/",
+    projectId: "acheidocs-c7b8f",
+    storageBucket: "acheidocs-c7b8f.appspot.com",
+    messagingSenderId: "390960971384",
+    appId: "1:390960971384:web:85ab3b905743a33930778d",
+    measurementId: "G-S829CSFXDM"
 };
 
-// Inicializando o Firebase
-const app = initializeApp(firebaseConfig);
+// Inicializando o Firebase, se ainda não foi inicializado
+import { getApps, getApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+
+if (!getApps().length) {
+    initializeApp(firebaseConfig);
+} else {
+    getApp();  // Evitar duplicação
+}
 
 // Função para salvar dados no banco (Firebase Realtime Database)
 export function salvarDados(nome, documento, cidade, estado, telefone, tipo) {
     const db = getDatabase();
-    const referencia = ref(db, 'documentos'); // Referência ao nó "documentos"
+    const referencia = ref(db, 'documentos');  // 'documentos' como o nó principal
     const dados = {
         nome,
         documento,
@@ -31,8 +37,8 @@ export function salvarDados(nome, documento, cidade, estado, telefone, tipo) {
         status: tipo === 'achado' ? 'Disponível para devolução' : 'Perdido'
     };
 
-    // Usando push() para criar um novo identificador único para cada entrada
-    const novaReferencia = push(referencia); // Push cria um ID único
+    // Usando push() ao invés de set() para adicionar dados sem sobrescrever
+    const novaReferencia = push(referencia); // 'push' cria uma chave única
     set(novaReferencia, dados)
         .then(() => {
             alert("Documento cadastrado com sucesso!");
@@ -43,12 +49,10 @@ export function salvarDados(nome, documento, cidade, estado, telefone, tipo) {
         });
 }
 
-
-
 // Função para buscar dados do Firebase
 export function buscarDadosDoFirebase() {
-    const db = getDatabase(); // Aqui a função getDatabase() é corretamente chamada
-    const referencia = ref(db, 'documentos/');  // Refere-se ao nó onde os documentos estão armazenados
+    const db = getDatabase();
+    const referencia = ref(db, 'documentos/');
     get(referencia)
         .then((snapshot) => {
             if (snapshot.exists()) {

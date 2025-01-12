@@ -1,6 +1,5 @@
 import { salvarDados } from './firebase.js'; // Caminho correto no seu projeto
-
-
+import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
 
 // Função para salvar os dados do formulário no Firebase
 document.getElementById('form-cadastro').addEventListener('submit', function (event) {
