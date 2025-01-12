@@ -1,30 +1,26 @@
-// Importa o Firebase
+// Importando o Firebase com a abordagem modular
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, push, set } from "firebase/database";
+import { getDatabase, ref, set, get } from "firebase/database"; // Importar corretamente a função getDatabase
 
 // Configuração do Firebase
 const firebaseConfig = {
-    apiKey: "AIzaSyCmcDHVj8vdMZeLsnygh0jMjCfZ0Hyh8bY",
-    authDomain: "acheidocs-c7b8f.firebaseapp.com",
-    projectId: "acheidocs-c7b8f",
-    storageBucket: "acheidocs-c7b8f.firebasestorage.app",
-    messagingSenderId: "390960971384",
-    appId: "1:390960971384:web:85ab3b905743a33930778d",
-    measurementId: "G-S829CSFXDM"
+    apiKey: "AIzaSyCmcDHVj8vdMZeLsnygh0jMjCfZ0Hyh8bY",  // sua chave da API
+    authDomain: "acheidocs-c7b8f.firebaseapp.com",  // domínio para autenticação
+    databaseURL: "https://acheidocs-c7b8f-default-rtdb.firebaseio.com/",  // URL do seu Firebase Realtime Database
+    projectId: "acheidocs-c7b8f",  // ID do seu projeto no Firebase
+    storageBucket: "acheidocs-c7b8f.appspot.com",  // bucket de armazenamento
+    messagingSenderId: "390960971384",  // ID do remetente
+    appId: "1:390960971384:web:85ab3b905743a33930778d",  // ID do aplicativo
+    measurementId: "G-S829CSFXDM"  // ID de medição do Firebase Analytics
 };
 
-// Inicializa o Firebase
+// Inicializando o Firebase
 const app = initializeApp(firebaseConfig);
-const database = getDatabase(app);
 
 // Função para salvar dados no banco (Firebase Realtime Database)
 export function salvarDados(nome, documento, cidade, estado, telefone, tipo) {
-    const db = getDatabase();
-    const referencia = ref(db, 'documentos/');  // Usando referência para "documentos"
-    
-    // Gerar uma nova chave única automaticamente com push
-    const novaReferencia = push(referencia);
-
+    const db = getDatabase(); // Aqui a função getDatabase() é corretamente chamada
+    const referencia = ref(db, 'documentos');  // 'documentos' como o nó principal
     const dados = {
         nome,
         documento,
@@ -35,13 +31,31 @@ export function salvarDados(nome, documento, cidade, estado, telefone, tipo) {
         status: tipo === 'achado' ? 'Disponível para devolução' : 'Perdido'
     };
 
-    // Salvando os dados no Firebase com uma chave gerada automaticamente
-    set(novaReferencia, dados)
+    // Salvando os dados no Firebase
+    set(referencia, dados)
         .then(() => {
             alert("Documento cadastrado com sucesso!");
         })
         .catch((error) => {
             console.error("Erro ao salvar os dados:", error);
             alert("Erro ao salvar os dados. Tente novamente mais tarde.");
+        });
+}
+
+// Função para buscar dados do Firebase
+export function buscarDadosDoFirebase() {
+    const db = getDatabase(); // Aqui a função getDatabase() é corretamente chamada
+    const referencia = ref(db, 'documentos/');  // Refere-se ao nó onde os documentos estão armazenados
+    get(referencia)
+        .then((snapshot) => {
+            if (snapshot.exists()) {
+                const documentos = snapshot.val();
+                console.log("Documentos:", documentos);
+            } else {
+                console.log("Nenhum dado encontrado.");
+            }
+        })
+        .catch((error) => {
+            console.error("Erro ao buscar dados:", error);
         });
 }

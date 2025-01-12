@@ -26,17 +26,21 @@
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
 
         const firebaseConfig = {
-            apiKey: "AIzaSyCmcDHVj8vdMZeLsnygh0jMjCfZ0Hyh8bY",
-            authDomain: "acheidocs-c7b8f.firebaseapp.com",
-            projectId: "acheidocs-c7b8f",
-            storageBucket: "acheidocs-c7b8f.firebasestorage.app",
-            messagingSenderId: "390960971384",
-            appId: "1:390960971384:web:85ab3b905743a33930778d",
-            measurementId: "G-S829CSFXDM"
+            apiKey: "AIzaSyCmcDHVj8vdMZeLsnygh0jMjCfZ0Hyh8bY",  // sua chave da API
+            authDomain: "acheidocs-c7b8f.firebaseapp.com",  // domínio para autenticação
+            databaseURL: "https://acheidocs-c7b8f-default-rtdb.firebaseio.com/",  // URL do seu Firebase Realtime Database
+            projectId: "acheidocs-c7b8f",  // ID do seu projeto no Firebase
+            storageBucket: "acheidocs-c7b8f.appspot.com",  // bucket de armazenamento
+            messagingSenderId: "390960971384",  // ID do remetente
+            appId: "1:390960971384:web:85ab3b905743a33930778d",  // ID do aplicativo
+            measurementId: "G-S829CSFXDM"  // ID de medição do Firebase Analytics
         };
+        
 
+        // Inicializa o Firebase com as credenciais corretas
         const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
+        const db = getDatabase(app);  // Agora, o Firebase Realtime Database é configurado corretamente
+
     </script>
 </head>
 
@@ -125,6 +129,7 @@
 
     <!-- Incluindo os scripts -->
     <script type="module" src="script.js"></script>
+    <script type="module" src="firebase.js"></script>
 
 </body>
 </html>
