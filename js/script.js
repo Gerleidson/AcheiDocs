@@ -107,7 +107,7 @@ document.getElementById('next').addEventListener('click', () => {
 // Chama a função ao carregar a página para exibir os documentos da primeira página
 window.onload = () => exibirDocumentosPaginados(paginaAtual);
 
-// Função para buscar o cadastro por nome no Firebase
+// Função para buscar o cadastro por nome
 function buscarCadastroPorNome() {
     const nomeBusca = document.getElementById('nome-busca').value.trim();
     if (nomeBusca === "") {
@@ -115,14 +115,15 @@ function buscarCadastroPorNome() {
         return;
     }
 
+    // Referência ao banco de dados do Firebase
     const dbRef = ref(db, "cadastros/"); // Supondo que você tenha um nó chamado "cadastros" no Firebase
 
     get(dbRef).then((snapshot) => {
         if (snapshot.exists()) {
-            const dados = snapshot.val();
             let encontrado = false;
+            const dados = snapshot.val(); // Obter os dados do banco
 
-            // Verificando se algum item corresponde ao nome informado
+            // Verificando se algum item corresponde ao nome
             for (const id in dados) {
                 if (dados[id].nome.toLowerCase() === nomeBusca.toLowerCase()) {
                     encontrado = true;
@@ -146,7 +147,7 @@ function buscarCadastroPorNome() {
 // Função para exibir o resultado da busca
 function exibirResultado(dados) {
     const resultadoDiv = document.getElementById('resultado-busca');
-    resultadoDiv.innerHTML = `
+    resultadoDiv.innerHTML = `  <!-- Resetando qualquer conteúdo anterior -->
         <div>
             <h3>Resultado Encontrado:</h3>
             <p><strong>Nome:</strong> ${dados.nome}</p>
@@ -162,14 +163,14 @@ function exibirResultado(dados) {
 // Função para exibir uma mensagem de erro ou não encontrado
 function exibirMensagem(mensagem) {
     const resultadoDiv = document.getElementById('resultado-busca');
-    resultadoDiv.innerHTML = `
+    resultadoDiv.innerHTML = `  <!-- Resetando qualquer conteúdo anterior -->
         <div style="color: red; font-weight: bold;">
             ${mensagem}
         </div>
     `;
 }
 
-// Adicionando o evento de busca ao botão (se o elemento existir no HTML)
+// Adicionando o evento de busca ao botão de busca (verificando se o botão existe no DOM)
 const buscarButton = document.getElementById('buscar-btn');
 if (buscarButton) {
     buscarButton.addEventListener('click', buscarCadastroPorNome);

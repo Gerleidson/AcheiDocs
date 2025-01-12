@@ -95,16 +95,13 @@
         <button type="submit">Cadastrar</button>
     </form>
 
-    <!-- Formulário de Busca -->
-    <div>
-        <label for="nome-busca">Nome:</label>
-        <input type="text" id="nome-busca" placeholder="Digite o nome para buscar">
-        <button id="buscar-btn">Buscar</button>
-    </div>
+    <form action="/encontrar" method="get">
+        <h2 id="localizar-documento">Encontre seu documento pelo nome</h2>
+        <input type="text" id="nome-busca" name="nome-busca" placeholder="Digite nome completo" required>
+        <button onclick="buscarCadastroPorNome()">Buscar</button>
 
-    <!-- Local para exibir os resultados ou mensagens de erro -->
+    </form>
     <div id="resultado-busca"></div>
-
            
 
     <br>
