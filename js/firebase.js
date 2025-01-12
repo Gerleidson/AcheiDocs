@@ -14,6 +14,8 @@ const firebaseConfig = {
     measurementId: "G-S829CSFXDM"  // ID de medição do Firebase Analytics
 };
 
+// Inicializando o Firebase
+const app = initializeApp(firebaseConfig);
 
 // Função para salvar dados no banco (Firebase Realtime Database)
 export function salvarDados(nome, documento, cidade, estado, telefone, tipo) {
