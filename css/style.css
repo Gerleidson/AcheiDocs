@@ -305,4 +305,9 @@ footer p {
     font-size: 12px; /* Menor tamanho de fonte em telas pequenas */
     padding: 8px; /* Menos padding para caber melhor */
   }
+
+  /* Ajuste de largura para a tabela em dispositivos móveis */
+  table {
+    width: 90%; /* Ajuste da tabela para 90% da largura */
+  }
 }
