@@ -295,4 +295,14 @@ footer p {
   form button {
     padding: 10px;
   }
+
+  /* Ajustes adicionais na tabela */
+  .table-container {
+    overflow-x: auto;
+  }
+
+  table th, table td {
+    font-size: 12px; /* Menor tamanho de fonte em telas pequenas */
+    padding: 8px; /* Menos padding para caber melhor */
+  }
 }

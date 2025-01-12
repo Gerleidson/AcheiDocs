@@ -73,6 +73,7 @@ function exibirPopup(dados) {
         // Se os dados forem encontrados, mostra um pop-up com as informações
         alert(`
             Resultado Encontrado:
+            
             Nome: ${dados.nome}
             Documento: ${dados.documento}
             Telefone: ${dados.telefone}
