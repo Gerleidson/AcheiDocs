@@ -24,7 +24,7 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
         import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
-
+    
         const firebaseConfig = {
             apiKey: "AIzaSyCmcDHVj8vdMZeLsnygh0jMjCfZ0Hyh8bY",  // sua chave da API
             authDomain: "acheidocs-c7b8f.firebaseapp.com",  // domínio para autenticação
@@ -35,13 +35,11 @@
             appId: "1:390960971384:web:85ab3b905743a33930778d",  // ID do aplicativo
             measurementId: "G-S829CSFXDM"  // ID de medição do Firebase Analytics
         };
-        
-
-        // Inicializa o Firebase com as credenciais corretas
+    
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);  // Agora, o Firebase Realtime Database é configurado corretamente
-
     </script>
+    
 </head>
 
 <body>
