@@ -1,34 +1,33 @@
 <?php
-// Configurações de cabeçalhos para permitir requisições AJAX
+// Configurações de cabeçalhos para retorno em JSON
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *'); // Permite requisição de qualquer origem
 
-// Conexão com o banco de dados
-$servername = "localhost"; // Alterar para seu servidor
-$username = "root"; // Seu usuário do banco de dados
-$password = ""; // Sua senha do banco de dados
+// Configurações de conexão com o banco de dados
+$servername = "localhost"; // Nome do servidor
+$username = "root"; // Usuário do banco de dados
+$password = ""; // Senha do banco de dados
 $dbname = "documentos"; // Nome do banco de dados
 
+// Conexão com o banco de dados
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Verifica se a conexão falhou
 if ($conn->connect_error) {
-    die(json_encode(["success" => false, "message" => "Falha na conexão com o banco de dados"]));
+    echo json_encode(["success" => false, "message" => "Falha na conexão com o banco de dados: " . $conn->connect_error]);
+    exit;
 }
 
-// Recebe os dados em formato JSON
-$data = json_decode(file_get_contents('php://input'), true);
+// Verifica se os dados foram enviados via POST
+if (isset($_POST['nome'], $_POST['documento'], $_POST['cidade'], $_POST['estado'], $_POST['telefone'], $_POST['tipo'])) {
+    // Obtém os valores enviados pelo formulário
+    $nome = $_POST['nome'];
+    $documento = $_POST['documento'];
+    $cidade = $_POST['cidade'];
+    $estado = $_POST['estado'];
+    $telefone = $_POST['telefone'];
+    $tipo = $_POST['tipo'];
 
-// Verifica se os dados foram recebidos corretamente
-if (isset($data['nome']) && isset($data['documento']) && isset($data['cidade']) && isset($data['estado']) && isset($data['telefone']) && isset($data['tipo'])) {
-    $nome = $data['nome'];
-    $documento = $data['documento'];
-    $cidade = $data['cidade'];
-    $estado = $data['estado'];
-    $telefone = $data['telefone'];
-    $tipo = $data['tipo'];
-
-    // Prepara a consulta SQL para inserir os dados no banco
+    // Prepara a consulta SQL para inserir os dados
     $sql = "INSERT INTO itens (nome, documento, telefone, cidade, estado, tipo) VALUES (?, ?, ?, ?, ?, ?)";
 
     // Prepara e vincula os parâmetros para evitar SQL Injection
@@ -40,14 +39,15 @@ if (isset($data['nome']) && isset($data['documento']) && isset($data['cidade']) 
             // Resposta de sucesso
             echo json_encode(["success" => true, "message" => "Documento cadastrado com sucesso!"]);
         } else {
-            // Resposta de erro
-            echo json_encode(["success" => false, "message" => "Erro ao salvar o documento."]);
+            // Erro ao executar a consulta
+            echo json_encode(["success" => false, "message" => "Erro ao salvar o documento: " . $stmt->error]);
         }
 
         // Fecha o statement
         $stmt->close();
     } else {
-        echo json_encode(["success" => false, "message" => "Erro ao preparar a consulta."]);
+        // Erro ao preparar a consulta
+        echo json_encode(["success" => false, "message" => "Erro ao preparar a consulta: " . $conn->error]);
     }
 } else {
     // Dados incompletos
