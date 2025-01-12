@@ -46,7 +46,7 @@
         </div>        
     </div>
     
-    <form id="form-cadastro" action="salvar.php" method="POST">
+    <form id="form-cadastro" method="POST">
 
         <h3>Cadastrar documento</h3>
     
@@ -127,6 +127,29 @@
         <p>&copy; 2024 AcheiDocs - Todos os Direitos Reservados.</p>
     </footer>
     
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyCmcDHVj8vdMZeLsnygh0jMjCfZ0Hyh8bY",
+          authDomain: "acheidocs-c7b8f.firebaseapp.com",
+          projectId: "acheidocs-c7b8f",
+          storageBucket: "acheidocs-c7b8f.firebasestorage.app",
+          messagingSenderId: "390960971384",
+          appId: "1:390960971384:web:85ab3b905743a33930778d",
+          measurementId: "G-S829CSFXDM"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+      </script>
 
 </body>
 
