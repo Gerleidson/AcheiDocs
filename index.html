@@ -40,8 +40,6 @@
       
       </script>
     
-    
-    
 </head>
 
 <body>
@@ -53,6 +51,12 @@
             <p>É muito fácil: Basta preencher o formulário abaixo e ajudar alguém a reencontrar o que perdeu!</p>
         </div>        
     </div>
+
+    <form action="/encontrar" method="get">
+        <h2 id="localizar-documento">Encontre seu documento pelo nome</h2>
+        <input type="text" id="nome-busca" name="nome-busca" placeholder="Digite nome completo" required>
+        <button type="button" onclick="buscarCadastroPorNome()">Buscar</button>
+    </form>
 
     <form id="form-cadastro" method="POST">
         <h3>Cadastrar documento</h3>
@@ -93,12 +97,6 @@
         </div>
 
         <button type="submit">Cadastrar</button>
-    </form>
-
-    <form action="/encontrar" method="get">
-        <h2 id="localizar-documento">Encontre seu documento pelo nome</h2>
-        <input type="text" id="nome-busca" name="nome-busca" placeholder="Digite nome completo" required>
-        <button type="button" onclick="buscarCadastroPorNome()">Buscar</button>
     </form>        
 
     <br>
