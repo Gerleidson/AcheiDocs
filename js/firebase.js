@@ -1,3 +1,6 @@
+// Importando o Firebase com a abordagem modular
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
 
 // Configuração do Firebase
 const firebaseConfig = {
@@ -11,8 +14,6 @@ const firebaseConfig = {
     measurementId: "G-S829CSFXDM"  // ID de medição do Firebase Analytics
 };
 
-// Inicializando o Firebase
-const app = initializeApp(firebaseConfig);
 
 // Função para salvar dados no banco (Firebase Realtime Database)
 export function salvarDados(nome, documento, cidade, estado, telefone, tipo) {
