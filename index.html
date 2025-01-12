@@ -70,21 +70,29 @@
                 Documento Perdido
             </label>
         </div>        
-
+    
         <label for="nome">Nome:</label>
         <input type="text" id="nome" name="nome" placeholder="Preencha conforme documento" required>
-
+    
         <div class="form-row">
             <div>
                 <label for="documento">Documento:</label>
-                <input type="text" id="documento" name="documento" placeholder="Ex: RG, CPF..." required>
+                <!-- Caixa de seleção (Select) para o tipo de documento -->
+                <select id="documento" name="documento" required>
+                    <option value="">Selecione um documento</option>
+                    <option value="RG">RG</option>
+                    <option value="CPF">CPF</option>
+                    <option value="CTPS">CTPS</option>
+                    <option value="PASSAPORTE">PASSAPORTE</option>
+                    <option value="OUTROS">OUTROS</option>
+                </select>
             </div>
             <div>
                 <label for="telefone">Telefone:</label>
                 <input type="tel" id="telefone" name="telefone" placeholder="Telefone com DDD" required>
             </div>
         </div>
-
+    
         <div class="form-row">
             <div>
                 <label for="cidade">Cidade:</label>
@@ -95,9 +103,10 @@
                 <input type="text" id="estado" name="estado" placeholder="Digite seu estado" required>
             </div>
         </div>
-
+    
         <button type="submit">Cadastrar</button>
-    </form>        
+    </form>
+            
 
     <br>
     <h2>Itens cadastrados</h2>

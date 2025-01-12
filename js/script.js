@@ -14,7 +14,7 @@ document.getElementById('form-cadastro').addEventListener('submit', function (ev
 
     // Coleta os dados do formulário
     const nome = document.getElementById('nome').value;
-    const documento = document.getElementById('documento').value;
+    const documento = document.getElementById('documento').value; // Agora é um select
     const cidade = document.getElementById('cidade').value;
     const estado = document.getElementById('estado').value;
     const telefone = document.getElementById('telefone').value;
@@ -48,7 +48,7 @@ function buscarCadastroPorNome() {
 
             // Verificando se algum item corresponde ao nome
             for (const id in dados) {
-                if (dados[id].nome.toLowerCase() === nomeBusca.toLowerCase()) {
+                if (dados[id].nome.toUpperCase() === nomeBusca.toUpperCase()) { // Comparação em maiúsculas
                     encontrado = true;
                     exibirPopup(dados[id]); // Exibe o pop-up com as informações do cadastro
                     break;
@@ -85,7 +85,6 @@ function exibirPopup(dados) {
         alert("Não há registro.");
     }
 }
-
 
 // Função para exibir documentos com paginação
 function exibirDocumentosPaginados(pagina) {
@@ -127,7 +126,7 @@ function exibirDocumentosNaTabela(documentos) {
             <td>${doc.cidade}</td>
             <td>${doc.estado}</td>
             <td>${doc.telefone}</td>
-            <td>${doc.status}</td>
+            <td>${doc.tipo}</td> <!-- Corrigido para 'tipo' -->
         `;
         tabela.appendChild(row);
     });

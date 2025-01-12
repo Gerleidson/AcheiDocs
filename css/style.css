@@ -1,5 +1,5 @@
 /* Reset de estilos padrão */
-body, h1, h2, h3, p, ul, li, form, button, input {
+body, h1, h2, h3, p, ul, li, form, button, input, select {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -129,7 +129,8 @@ form label {
 
 form input,
 form textarea,
-form button {
+form button,
+form select {
   width: 100%;
   margin-bottom: 15px;
   padding: 12px;
@@ -140,8 +141,21 @@ form button {
   transition: border-color 0.3s ease-in-out;
 }
 
+/* Estilo para o select (caixa de seleção) */
+form select {
+  width: 100%; /* Para garantir que o select ocupe o mesmo tamanho que os inputs */
+  margin-bottom: 15px;
+  padding: 12px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.3s ease-in-out;
+}
+
 form input:focus,
-form textarea:focus {
+form textarea:focus,
+form select:focus {
   border-color: #007BB5;
   outline: none;
 }
@@ -172,7 +186,8 @@ form button:hover {
   flex: 1; /* Ambos os campos vão ter o mesmo tamanho */
 }
 
-.form-row input {
+.form-row input,
+.form-row select {
   width: 100%; /* Preenche o espaço dentro do div */
 }
 
