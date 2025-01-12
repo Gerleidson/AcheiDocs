@@ -1,6 +1,3 @@
-// Importando o Firebase com a abordagem modular
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
-import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
 
 // Configuração do Firebase
 const firebaseConfig = {
