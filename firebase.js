@@ -18,6 +18,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 // Função para salvar dados no banco (Firebase Realtime Database)
+// Função para salvar dados no banco (Firebase Realtime Database)
 export function salvarDados(nome, documento, cidade, estado, telefone, tipo) {
     const db = getDatabase(); // Aqui a função getDatabase() é corretamente chamada
     const referencia = ref(db, 'documentos');  // 'documentos' como o nó principal
@@ -31,8 +32,9 @@ export function salvarDados(nome, documento, cidade, estado, telefone, tipo) {
         status: tipo === 'achado' ? 'Disponível para devolução' : 'Perdido'
     };
 
-    // Salvando os dados no Firebase
-    set(referencia, dados)
+    // Usando push() ao invés de set() para adicionar dados sem sobrescrever
+    const novaReferencia = ref(db, 'documentos/' + Date.now()); // Adiciona um novo documento único
+    set(novaReferencia, dados)
         .then(() => {
             alert("Documento cadastrado com sucesso!");
         })
@@ -41,6 +43,7 @@ export function salvarDados(nome, documento, cidade, estado, telefone, tipo) {
             alert("Erro ao salvar os dados. Tente novamente mais tarde.");
         });
 }
+
 
 // Função para buscar dados do Firebase
 export function buscarDadosDoFirebase() {
