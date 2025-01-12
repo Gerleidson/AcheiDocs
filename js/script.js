@@ -162,3 +162,5 @@ document.getElementById('next').addEventListener('click', () => {
 // Chama a função ao carregar a página para exibir os documentos da primeira página
 window.onload = () => exibirDocumentosPaginados(paginaAtual);
 
+// Tornar a função globalmente acessível
+window.buscarCadastroPorNome = buscarCadastroPorNome;
