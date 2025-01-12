@@ -115,7 +115,7 @@ form:hover {
 }
 
 form h3 {
-  font-size: 1.8em;
+  font-size: 1.4em;
   margin-bottom: 20px;
   color: #333;
   text-align: center;
@@ -232,6 +232,7 @@ table tr:hover td {
   background-color: #f7f7f7;
 }
 
+
 /* Estilos para o Footer */
 footer {
   background-color: #007BB5; 
@@ -240,13 +241,15 @@ footer {
   padding: 20px 0; 
   font-size: 14px; 
   width: 100%; 
-  position: relative;
   bottom: 0;
+
 }
 
 footer p {
   margin: 0; 
 }
+
+
 
 /* Responsivo */
 @media (max-width: 768px) {
