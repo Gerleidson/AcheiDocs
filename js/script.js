@@ -1,4 +1,4 @@
-import { salvarDados } from './firebase.js'; 
+import { salvarDados } from './firebase.js';
 import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js"; 
 
 // Inicializando o Firebase corretamente com o db importado
@@ -31,7 +31,7 @@ document.getElementById('form-cadastro').addEventListener('submit', function (ev
 });
 
 // Função para buscar e exibir documentos com paginação
-function exibirDocumentosPaginados(pagina) {
+function exibirDocumentosPaginados(pagina, filtroNome = '') {
     const referencia = ref(db, 'documentos/');
     get(referencia).then((snapshot) => {
         if (snapshot.exists()) {
@@ -39,12 +39,17 @@ function exibirDocumentosPaginados(pagina) {
             const totalDocumentos = Object.keys(documentos).length; // Total de documentos cadastrados
             const totalPaginas = Math.ceil(totalDocumentos / registrosPorPagina); // Calcula o número total de páginas
 
+            // Filtrar documentos com base no nome
+            const documentosFiltrados = Object.values(documentos).filter(doc =>
+                doc.nome.toLowerCase().includes(filtroNome.toLowerCase())
+            );
+
             // Calcular a faixa de registros a exibir
             const inicio = (pagina - 1) * registrosPorPagina;
             const fim = inicio + registrosPorPagina;
 
             // Filtrando os documentos para a página atual
-            const documentosPagina = Object.values(documentos).slice(inicio, fim);
+            const documentosPagina = documentosFiltrados.slice(inicio, fim);
             exibirDocumentosNaTabela(documentosPagina);
 
             // Atualizar a navegação de página
@@ -101,6 +106,13 @@ document.getElementById('prev').addEventListener('click', () => {
 document.getElementById('next').addEventListener('click', () => {
     paginaAtual++;
     exibirDocumentosPaginados(paginaAtual);
+});
+
+// Função de busca
+document.getElementById('btn-buscar').addEventListener('click', function() {
+    const filtroNome = document.getElementById('buscar-nome').value;
+    paginaAtual = 1;  // Volta para a primeira página ao realizar uma nova busca
+    exibirDocumentosPaginados(paginaAtual, filtroNome);
 });
 
 // Chama a função ao carregar a página para exibir os documentos da primeira página
