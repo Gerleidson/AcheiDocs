@@ -1,8 +1,12 @@
 import { salvarDados } from './firebase.js'; 
-import { getDatabase, ref, get, query, orderByChild, equalTo } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js"; 
+import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js"; 
 
 // Inicializando o Firebase corretamente com o db importado
 const db = getDatabase();
+
+// Variáveis de controle de paginação
+const registrosPorPagina = 10; // Exibir 10 registros por vez
+let paginaAtual = 1; // Página inicial
 
 // Função para salvar os dados do formulário no Firebase
 document.getElementById('form-cadastro').addEventListener('submit', function (event) {
@@ -26,25 +30,27 @@ document.getElementById('form-cadastro').addEventListener('submit', function (ev
     salvarDados(nome, documento, cidade, estado, telefone, tipo);
 });
 
-// Função para buscar documentos por nome
-function buscarDocumentosPorNome() {
-    const nomeBusca = document.getElementById('nome-busca').value.trim().toLowerCase();
-
-    // Verifica se o campo de busca está preenchido
-    if (!nomeBusca) {
-        alert("Por favor, insira um nome para buscar.");
-        return;
-    }
-
-    const referencia = ref(db, 'documentos');
-    const q = query(referencia, orderByChild('nome'), equalTo(nomeBusca)); // Faz a busca pelo nome
-
-    get(q).then((snapshot) => {
+// Função para buscar e exibir documentos com paginação
+function exibirDocumentosPaginados(pagina) {
+    const referencia = ref(db, 'documentos/');
+    get(referencia).then((snapshot) => {
         if (snapshot.exists()) {
             const documentos = snapshot.val();
-            exibirDocumentosNaTabela(documentos);  // Exibe os documentos encontrados na tabela
+            const totalDocumentos = Object.keys(documentos).length; // Total de documentos cadastrados
+            const totalPaginas = Math.ceil(totalDocumentos / registrosPorPagina); // Calcula o número total de páginas
+
+            // Calcular a faixa de registros a exibir
+            const inicio = (pagina - 1) * registrosPorPagina;
+            const fim = inicio + registrosPorPagina;
+
+            // Filtrando os documentos para a página atual
+            const documentosPagina = Object.values(documentos).slice(inicio, fim);
+            exibirDocumentosNaTabela(documentosPagina);
+
+            // Atualizar a navegação de página
+            atualizarNavegacao(pagina, totalPaginas);
         } else {
-            alert("Nenhum documento encontrado com esse nome.");
+            console.log("Nenhum dado encontrado.");
         }
     }).catch((error) => {
         console.error("Erro ao buscar dados:", error);
@@ -56,8 +62,7 @@ function exibirDocumentosNaTabela(documentos) {
     const tabela = document.querySelector('#tabela tbody');
     tabela.innerHTML = '';  // Limpar tabela antes de adicionar novos dados
 
-    for (const chave in documentos) {
-        const doc = documentos[chave];
+    documentos.forEach(doc => {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>${doc.nome}</td>
@@ -68,26 +73,35 @@ function exibirDocumentosNaTabela(documentos) {
             <td>${doc.status}</td>
         `;
         tabela.appendChild(row);
-    }
-}
-
-// Função para exibir todos os documentos cadastrados
-function exibirTodosDocumentos() {
-    const referencia = ref(db, 'documentos/');
-    get(referencia).then((snapshot) => {
-        if (snapshot.exists()) {
-            const documentos = snapshot.val();
-            exibirDocumentosNaTabela(documentos);
-        } else {
-            console.log("Nenhum dado encontrado.");
-        }
-    }).catch((error) => {
-        console.error("Erro ao buscar dados:", error);
     });
 }
 
-// Evento de busca (chama a função ao clicar no botão de buscar)
-document.querySelector('button[type="button"]').addEventListener('click', buscarDocumentosPorNome);
+// Função para atualizar a navegação entre as páginas
+function atualizarNavegacao(pagina, totalPaginas) {
+    const prevButton = document.getElementById('prev');
+    const nextButton = document.getElementById('next');
+    
+    // Habilitar/desabilitar os botões de navegação
+    prevButton.disabled = pagina === 1;
+    nextButton.disabled = pagina === totalPaginas;
 
-// Chama a função ao carregar a página para exibir todos os documentos
-window.onload = exibirTodosDocumentos;
+    // Atualizar número da página exibida
+    document.getElementById('pagina-atual').textContent = `Página ${pagina} de ${totalPaginas}`;
+}
+
+// Função para ir para a página anterior
+document.getElementById('prev').addEventListener('click', () => {
+    if (paginaAtual > 1) {
+        paginaAtual--;
+        exibirDocumentosPaginados(paginaAtual);
+    }
+});
+
+// Função para ir para a próxima página
+document.getElementById('next').addEventListener('click', () => {
+    paginaAtual++;
+    exibirDocumentosPaginados(paginaAtual);
+});
+
+// Chama a função ao carregar a página para exibir os documentos da primeira página
+window.onload = () => exibirDocumentosPaginados(paginaAtual);
