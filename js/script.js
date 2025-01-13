@@ -1,5 +1,5 @@
 import { salvarDados } from './firebase.js'; 
-import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js"; 
+import { getDatabase, ref, get, remove, child } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js"; 
 
 // Inicializando o Firebase corretamente com o db importado
 const db = getDatabase();
@@ -26,8 +26,11 @@ document.getElementById('form-cadastro').addEventListener('submit', function (ev
         return;
     }
 
-    // Chama a função para salvar no Firebase
-    salvarDados(nome, documento, cidade, estado, telefone, tipo);
+    // Adiciona a data de cadastro (timestamp) no momento do cadastro
+    const dataCadastro = Date.now(); // Obtém o timestamp atual (em milissegundos)
+
+    // Chama a função para salvar no Firebase, incluindo a data de cadastro
+    salvarDados(nome, documento, cidade, estado, telefone, tipo, dataCadastro);
 });
 
 // Função para buscar o cadastro por nome
@@ -39,7 +42,7 @@ function buscarCadastroPorNome() {
     }
 
     // Referência ao banco de dados do Firebase
-    const dbRef = ref(db, "documentos/"); 
+    const dbRef = ref(db, "documentos/");
 
     get(dbRef).then((snapshot) => {
         if (snapshot.exists()) {
@@ -73,7 +76,7 @@ function exibirPopup(dados) {
         // Se os dados forem encontrados, mostra um pop-up com as informações
         alert(`
             Resultado Encontrado:
-            
+
             Nome: ${dados.nome}
             Documento: ${dados.documento}
             Telefone: ${dados.telefone}
@@ -106,12 +109,32 @@ function exibirDocumentosPaginados(pagina) {
 
             // Atualizar a navegação de página
             atualizarNavegacao(pagina, totalPaginas);
+
+            // Verificar e excluir documentos expirados
+            excluirDocumentosExpirados(documentos);
         } else {
             console.log("Nenhum dado encontrado.");
         }
     }).catch((error) => {
         console.error("Erro ao buscar dados:", error);
     });
+}
+
+// Função para verificar e excluir documentos expirados
+function excluirDocumentosExpirados(documentos) {
+    const dataLimite = Date.now() - (120 * 24 * 60 * 60 * 1000); // 120 dias em milissegundos
+    for (const id in documentos) {
+        const dataCadastro = documentos[id].dataCadastro;
+        if (dataCadastro && dataCadastro < dataLimite) {
+            // Se o documento tiver mais de 120 dias, removê-lo
+            const docRef = ref(db, `documentos/${id}`);
+            remove(docRef).then(() => {
+                console.log(`Documento com id ${id} removido devido ao tempo expirado.`);
+            }).catch((error) => {
+                console.error(`Erro ao remover documento com id ${id}:`, error);
+            });
+        }
+    }
 }
 
 // Função para exibir os documentos na tabela
