@@ -87,8 +87,7 @@ function exibirPopup(dados) {
     }
 }
 
-
-// Função para exibir documentos com paginação e verificar a expiração dos cadastros
+// Função para exibir documentos com paginação
 function exibirDocumentosPaginados(pagina) {
     const referencia = ref(db, 'documentos/');
     get(referencia).then((snapshot) => {
@@ -97,28 +96,15 @@ function exibirDocumentosPaginados(pagina) {
             const totalDocumentos = Object.keys(documentos).length; // Total de documentos cadastrados
             const totalPaginas = Math.ceil(totalDocumentos / registrosPorPagina); // Calcula o número total de páginas
 
-            // Filtra e verifica se algum documento tem mais de 120 dias
-            for (const id in documentos) {
-                const documento = documentos[id];
-                const dataCadastro = documento.dataCadastro;
-                const hoje = new Date().getTime();
-                const diferencaDias = (hoje - dataCadastro) / (1000 * 3600 * 24); // Diferença em dias
+            // Calcular a faixa de registros a exibir
+            const inicio = (pagina - 1) * registrosPorPagina;
+            const fim = inicio + registrosPorPagina;
 
-                if (diferencaDias > 120) {
-                    // Se o documento tiver mais de 120 dias, remove do banco de dados
-                    remove(ref(db, 'documentos/' + id)).then(() => {
-                        console.log(`Cadastro de ${documento.nome} removido por ultrapassar o limite de 120 dias.`);
-                    }).catch((error) => {
-                        console.error("Erro ao remover o cadastro:", error);
-                    });
-                }
-            }
-
-            // Exibe os documentos na tabela após a remoção
-            const documentosPagina = Object.values(documentos).slice((pagina - 1) * registrosPorPagina, pagina * registrosPorPagina);
+            // Filtrando os documentos para a página atual
+            const documentosPagina = Object.values(documentos).slice(inicio, fim);
             exibirDocumentosNaTabela(documentosPagina);
 
-            // Atualiza a navegação entre as páginas
+            // Atualizar a navegação de página
             atualizarNavegacao(pagina, totalPaginas);
         } else {
             console.log("Nenhum dado encontrado.");
@@ -127,7 +113,6 @@ function exibirDocumentosPaginados(pagina) {
         console.error("Erro ao buscar dados:", error);
     });
 }
-
 
 // Função para exibir os documentos na tabela
 function exibirDocumentosNaTabela(documentos) {
