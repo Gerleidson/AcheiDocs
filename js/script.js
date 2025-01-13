@@ -1,5 +1,5 @@
 import { salvarDados } from './firebase.js'; 
-import { getDatabase, ref, get, remove, child } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js"; 
+import { getDatabase, ref, get, onChildAdded, remove, child } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js"; 
 
 // Inicializando o Firebase corretamente com o db importado
 const db = getDatabase();
@@ -183,8 +183,32 @@ document.getElementById('next').addEventListener('click', () => {
     exibirDocumentosPaginados(paginaAtual);
 });
 
+// Função para observar novos documentos no Firebase e atualizar a tabela automaticamente
+function ouvirNovosDocumentos() {
+    const referencia = ref(db, 'documentos/');
+    
+    // Adiciona um listener para quando um novo dado é adicionado
+    onChildAdded(referencia, (snapshot) => {
+        const novoDocumento = snapshot.val();
+        const tabela = document.querySelector('#tabela tbody');
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${novoDocumento.nome}</td>
+            <td>${novoDocumento.documento}</td>
+            <td>${novoDocumento.cidade}</td>
+            <td>${novoDocumento.estado}</td>
+            <td>${novoDocumento.telefone}</td>
+            <td>${novoDocumento.tipo}</td>
+        `;
+        tabela.appendChild(row);
+    });
+}
+
 // Chama a função ao carregar a página para exibir os documentos da primeira página
-window.onload = () => exibirDocumentosPaginados(paginaAtual);
+window.onload = () => {
+    exibirDocumentosPaginados(paginaAtual);
+    ouvirNovosDocumentos(); // Chama a função para ouvir os novos documentos
+};
 
 // Tornar a função globalmente acessível
 window.buscarCadastroPorNome = buscarCadastroPorNome;
