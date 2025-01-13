@@ -97,8 +97,8 @@ body {
 
 /* Estilo para formulários */
 form {
-  max-width: 800px;
   width: 100%;
+  max-width: 800px; /* Largura máxima igual ao card */
   margin: 20px 0;
   padding: 20px;
   background-color: #fff;
@@ -250,14 +250,12 @@ footer.footer {
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  width: 90%;
-  max-width: 800px;
+  width: 100%; /* Card ocupará 100% da largura do form */
+  max-width: 800px; /* Largura máxima igual ao formulário */
   margin: 20px auto;
   padding: 20px;
   transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
-
-
 
 /* Cabeçalho do card */
 .card-header {
@@ -318,10 +316,13 @@ footer.footer {
 /* Responsividade */
 @media (max-width: 768px) {
   .info-card {
-    width: 100%;
-    max-width: 100%; /* Garante que o card não ultrapasse 100% da largura da tela */
+    width: 100%; /* Para telas menores, o card ocupará toda a largura */
+    max-width: 100%; /* Sem limite de largura máximo */
     padding: 15px;
-    margin: 20px auto; /* Centraliza o card */
+  }
+
+  form {
+    padding: 15px;
   }
 
   .card-header h4 {
@@ -339,14 +340,6 @@ footer.footer {
   .btn-action {
     font-size: 0.9em;
     padding: 10px 20px;
-  }
-
-  form {
-    padding: 15px;
-  }
-
-  .table-container {
-    width: 100%;
   }
 
   table th,
@@ -381,6 +374,12 @@ footer.footer {
 }
 
 @media (max-width: 600px) {
+  .info-card {
+    width: 100%;
+    max-width: 100%;
+    padding: 10px;
+  }
+
   form {
     width: 100%;
     padding: 10px;
@@ -388,25 +387,6 @@ footer.footer {
 
   .table-container {
     width: 100%;
-  }
-
-  .checkbox-group {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .checkbox-group label {
-    font-size: 14px;
-  }
-
-  .form-row {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  form input,
-  form button {
-    padding: 8px;
   }
 
   table th,
@@ -417,12 +397,5 @@ footer.footer {
 
   table {
     width: 90%;
-  }
-
-  /* Garantindo que o card continue centralizado em telas muito pequenas */
-  .info-card {
-    width: 95%;
-    padding: 15px;
-    margin: 20px auto; /* Centraliza o card */
   }
 }
