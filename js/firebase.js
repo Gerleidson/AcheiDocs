@@ -32,7 +32,8 @@ export function salvarDados(nome, documento, cidade, estado, telefone, tipo) {
         estado,
         telefone,
         tipo,
-        status: tipo === 'achado' ? 'Disponível para devolução' : 'Perdido'
+        status: tipo === 'achado' ? 'Disponível para devolução' : 'Perdido',
+        dataCadastro
     };
 
     // Usando push() ao invés de set() para adicionar dados sem sobrescrever
