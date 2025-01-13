@@ -322,7 +322,9 @@ footer.footer {
 @media (max-width: 768px) {
   .info-card {
     width: 100%;
+    max-width: 100%; /* Garante que o card não ultrapasse 100% da largura da tela */
     padding: 15px;
+    margin: 20px auto; /* Centraliza o card */
   }
 
   .card-header h4 {
@@ -418,5 +420,12 @@ footer.footer {
 
   table {
     width: 90%;
+  }
+
+  /* Garantindo que o card continue centralizado em telas muito pequenas */
+  .info-card {
+    width: 95%;
+    padding: 15px;
+    margin: 20px auto; /* Centraliza o card */
   }
 }
