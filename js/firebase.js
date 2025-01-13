@@ -32,7 +32,7 @@ export function salvarDados(nome, documento, cidade, estado, telefone, tipo) {
         estado,
         telefone,
         tipo,
-        status: tipo === 'achado' ? 'Disponível para devolução' : 'Perdido',
+        status: tipo === 'Achado' ? 'Disponível para devolução' : 'Perdido',
         
     };
 

@@ -113,31 +113,12 @@ function exibirDocumentosPaginados(pagina) {
             // Atualizar a navegação de página
             atualizarNavegacao(pagina, totalPaginas);
 
-            // Verificar e excluir documentos expirados
-            excluirDocumentosExpirados(documentos);
         } else {
             console.log("Nenhum dado encontrado.");
         }
     }).catch((error) => {
         console.error("Erro ao buscar dados:", error);
     });
-}
-
-// Função para verificar e excluir documentos expirados
-function excluirDocumentosExpirados(documentos) {
-    const dataLimite = Date.now() - (120 * 24 * 60 * 60 * 1000); // 120 dias em milissegundos
-    for (const id in documentos) {
-        const dataCadastro = documentos[id].dataCadastro;
-        if (dataCadastro && dataCadastro < dataLimite) {
-            // Se o documento tiver mais de 120 dias, removê-lo
-            const docRef = ref(db, `documentos/${id}`);
-            remove(docRef).then(() => {
-                console.log(`Documento com id ${id} removido devido ao tempo expirado.`);
-            }).catch((error) => {
-                console.error(`Erro ao remover documento com id ${id}:`, error);
-            });
-        }
-    }
 }
 
 // Função para exibir os documentos na tabela
@@ -193,17 +174,15 @@ function ouvirNovosDocumentos() {
     // Adiciona um listener para quando um novo dado é adicionado
     onChildAdded(referencia, (snapshot) => {
         const novoDocumento = snapshot.val();
-        const tabela = document.querySelector('#tabela tbody');
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${novoDocumento.nome}</td>
-            <td>${novoDocumento.documento}</td>
-            <td>${novoDocumento.cidade}</td>
-            <td>${novoDocumento.estado}</td>
-            <td>${novoDocumento.telefone}</td>
-            <td>${novoDocumento.tipo}</td>
-        `;
-        tabela.appendChild(row);
+
+        // Verificar se o novo documento precisa ser exibido na página atual
+        const totalDocumentos = Object.keys(snapshot.val()).length;
+        const totalPaginas = Math.ceil(totalDocumentos / registrosPorPagina);
+
+        // Atualizar a tabela automaticamente
+        if (paginaAtual <= totalPaginas) {
+            exibirDocumentosPaginados(paginaAtual);
+        }
     });
 }
 
