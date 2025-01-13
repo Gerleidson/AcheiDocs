@@ -250,7 +250,7 @@ footer.footer {
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  width: 98%; /* Card ocupará 100% da largura do form */
+  width: 95%; /* Card ocupará 100% da largura do form */
   max-width: 800px; /* Largura máxima igual ao formulário */
   margin: 20px auto;
   padding: 10px;
@@ -316,7 +316,7 @@ footer.footer {
 /* Responsividade */
 @media (max-width: 768px) {
   .info-card {
-    width: 100%; /* Para telas menores, o card ocupará toda a largura */
+    width: 95%; /* Para telas menores, o card ocupará toda a largura */
     max-width: 100%; /* Sem limite de largura máximo */
     padding: 15px;
   }
@@ -375,7 +375,7 @@ footer.footer {
 
 @media (max-width: 600px) {
   .info-card {
-    width: 100%;
+    width: 95%;
     max-width: 100%;
     padding: 10px;
   }
