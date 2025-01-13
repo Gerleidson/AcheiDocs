@@ -19,35 +19,10 @@ body {
   padding: 20px;
 }
 
-/* Estilo para os checkboxes */
-.checkbox-group {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  align-items: center;
-}
-
-.checkbox-group label {
-  font-size: 16px;
-  color: #333;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.checkbox-group input[type="radio"] {
-  width: 18px;
-  height: 18px;
-  margin: 0;
-  cursor: pointer;
-  accent-color: #007BB5; /* Cor personalizada do checkbox */
-}
-
-/* Menu Horizontal */
+/* Estilo para o menu horizontal */
 .menu-horizontal {
   background-color: #007BB5;
-  padding: 15px 0;
+  padding: 10px 0;
   width: 100%;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
@@ -61,19 +36,44 @@ body {
 }
 
 .menu-horizontal li {
-  margin-right: 20px;
+  margin-right: 15px;
 }
 
 .menu-horizontal a {
   text-decoration: none;
   color: #fff;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   transition: color 0.3s ease-in-out;
 }
 
 .menu-horizontal a:hover {
   color: #00B6FF;
+}
+
+/* Estilo para os checkboxes */
+.checkbox-group {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+}
+
+.checkbox-group label {
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.checkbox-group input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  cursor: pointer;
+  accent-color: #007BB5;
 }
 
 /* Header com imagem */
@@ -97,33 +97,28 @@ body {
 
 /* Estilo para formulários */
 form {
-  max-width: 1000px;
+  max-width: 800px;
   width: 100%;
   margin: 20px 0;
-  padding: 30px;
+  padding: 20px;
   background-color: #fff;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  transition: box-shadow 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
-  gap: 20px; /* Espaçamento entre os campos */
-}
-
-form:hover {
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  gap: 15px;
 }
 
 form h3 {
-  font-size: 1.4em;
-  margin-bottom: 20px;
+  font-size: 1.2em;
+  margin-bottom: 15px;
   color: #333;
   text-align: center;
   font-weight: bold;
 }
 
 form label {
-  font-size: 16px;
+  font-size: 14px;
   color: #333;
 }
 
@@ -132,20 +127,8 @@ form textarea,
 form button,
 form select {
   width: 100%;
-  margin-bottom: 15px;
-  padding: 12px;
-  box-sizing: border-box;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 14px;
-  transition: border-color 0.3s ease-in-out;
-}
-
-/* Estilo para o select (caixa de seleção) */
-form select {
-  width: 100%; /* Para garantir que o select ocupe o mesmo tamanho que os inputs */
-  margin-bottom: 15px;
-  padding: 12px;
+  margin-bottom: 12px;
+  padding: 10px;
   box-sizing: border-box;
   border: 1px solid #ccc;
   border-radius: 6px;
@@ -165,10 +148,10 @@ form button {
   color: #fff;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-  padding: 12px;
+  padding: 10px;
   border-radius: 6px;
   border: none;
+  transition: background-color 0.3s ease-in-out;
 }
 
 form button:hover {
@@ -178,20 +161,20 @@ form button:hover {
 /* Ajuste para cidade e estado ficarem lado a lado */
 .form-row {
   display: flex;
-  gap: 20px;
+  gap: 15px;
   justify-content: space-between;
 }
 
 .form-row div {
-  flex: 1; /* Ambos os campos vão ter o mesmo tamanho */
+  flex: 1;
 }
 
 .form-row input,
 .form-row select {
-  width: 100%; /* Preenche o espaço dentro do div */
+  width: 100%;
 }
 
-/* Estilos para tabela */
+/* Estilo para tabela */
 .table-container {
   width: 80%;
   max-width: 800px;
@@ -232,16 +215,17 @@ table tr:hover td {
   background-color: #f7f7f7;
 }
 
+/* Navegação */
 #navegacao {
-  display: flex; /* Usando Flexbox */
-  justify-content: center; /* Centraliza horizontalmente */
-  align-items: center; /* Centraliza verticalmente */
-  gap: 10px; /* Espaçamento entre os itens */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
 button {
-  padding: 5px 15px; /* Espaçamento interno dos botões */
-  font-size: 16px; /* Tamanho da fonte */
+  padding: 5px 15px;
+  font-size: 16px;
 }
 
 #pagina-atual {
@@ -250,58 +234,157 @@ button {
 
 /* Estilo personalizado para o rodapé */
 footer.footer {
-  background-color: #007BB5; /* Cor de fundo preta */
-  color: #fff; /* Cor do texto em branco */
-  text-align: center; /* Centraliza o texto */
-  padding: 10px 0; /* Padding vertical (topo e fundo) */
-  font-size: 14px; /* Tamanho da fonte */
-  position: fixed; /* Fixa o rodapé no fundo da página */
-  bottom: 0; /* Fixa na parte inferior */
-  width: 100%; /* Largura total da tela */
-  z-index: 10; /* Garante que o rodapé fique acima de outros elementos */
+  background-color: #007BB5;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 14px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 10;
 }
 
+/* Estilos gerais do card */
+.info-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
 
+.info-card:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+}
 
-/* Responsivo */
+/* Cabeçalho do card */
+.card-header {
+  text-align: center;
+  background-color: #007BB5;
+  padding: 15px;
+  color: #fff;
+  border-radius: 10px 10px 0 0;
+}
+
+.card-header h4 {
+  font-size: 1.8em;
+  font-weight: bold;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+/* Corpo do card */
+.card-body {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.card-body h5 {
+  font-size: 1.4em;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.card-body p {
+  font-size: 1em;
+  color: #555;
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+/* Rodapé do card com o botão */
+.card-footer {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.btn-action {
+  background-color: #00B6FF;
+  color: white;
+  font-size: 1em;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-action:hover {
+  background-color: #007BB5;
+}
+
+/* Responsividade */
 @media (max-width: 768px) {
-  .menu-horizontal ul {
-    flex-direction: column;
-    align-items: center;
+  .info-card {
+    width: 100%;
+    padding: 15px;
   }
 
-  .menu-horizontal li {
-    margin-bottom: 10px;
+  .card-header h4 {
+    font-size: 1.6em;
   }
 
-  .checkbox-group {
-    flex-direction: column;  /* Alinha os checkboxes verticalmente */
-    gap: 15px;  /* Espaço entre os checkboxes */
+  .card-body h5 {
+    font-size: 1.2em;
   }
 
-  .checkbox-group label {
-    font-size: 14px;  /* Ajuste no tamanho da fonte para telas menores */
+  .card-body p {
+    font-size: 0.9em;
+  }
+
+  .btn-action {
+    font-size: 0.9em;
+    padding: 10px 20px;
   }
 
   form {
-    padding: 25px;
+    padding: 15px;
+  }
+
+  .table-container {
+    width: 100%;
   }
 
   table th,
   table td {
-    padding: 10px;
-    font-size: 0.85em;
+    padding: 8px;
+    font-size: 12px;
   }
 
   .form-row {
     flex-direction: column;
+    gap: 10px;
+  }
+
+  form input,
+  form button {
+    padding: 8px;
+  }
+
+  .menu-horizontal ul {
+    flex-direction: column;
+  }
+
+  .checkbox-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  form input,
+  form select {
+    padding: 8px;
   }
 }
 
 @media (max-width: 600px) {
   form {
     width: 100%;
-    padding: 20px;
+    padding: 10px;
   }
 
   .table-container {
@@ -309,30 +392,31 @@ footer.footer {
   }
 
   .checkbox-group {
-    flex-direction: column;  /* Alinha os checkboxes verticalmente */
-    gap: 10px;  /* Espaço entre os checkboxes */
+    flex-direction: column;
+    gap: 10px;
   }
 
   .checkbox-group label {
-    font-size: 14px;  /* Ajuste da fonte */
+    font-size: 14px;
   }
 
   .form-row {
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
   }
 
   form input,
   form button {
-    padding: 10px;
+    padding: 8px;
   }
 
-  table th, table td {
-    font-size: 12px; /* Menor tamanho de fonte em telas pequenas */
-    padding: 8px; /* Menos padding para caber melhor */
+  table th,
+  table td {
+    font-size: 12px;
+    padding: 8px;
   }
 
   table {
-    width: 90%; /* Ajuste da tabela para 90% da largura */
+    width: 90%;
   }
 }

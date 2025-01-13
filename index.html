@@ -44,12 +44,17 @@
 
 <body>
     <div class="foto text-center" id="foto">
-        <img src="img/icon.png" alt="imagem" class="img-fluid" style="max-width: 100px;">
-        <div class="alert alert-info text-center" role="alert">
-            <h4 class="alert-heading">AcheiDocs</h4>
-            <p>Uma plataforma simples e eficaz para cadastrar documentos e objetos encontrados e perdidos.</p>
-            <p>É muito fácil: Basta preencher o formulário abaixo e ajudar alguém a reencontrar o que perdeu!</p>
-        </div>        
+        <div class="info-card">
+            <div class="card-header">
+                <img src="img/icon.png" alt="imagem" class="img-fluid" style="max-width: 100px;">
+                <h4>AcheiDocs</h4>
+            </div>
+            <div class="card-body">
+                <h5>Uma plataforma simples e eficaz para cadastrar documentos e objetos encontrados e perdidos.</h5>
+                <p>Verifique primeiramente se seu nome consta na relação de achados e perdidos.</p>
+                <p>Se constar, entre em contato pelo telefone cadastrado. Os dados cadastrados são mantidos por 120 dias contados a partir da data em que deram entrada.</p>
+            </div>
+        </div>
     </div>
 
     <form action="/encontrar" method="get">
@@ -160,7 +165,6 @@
             <button id="next">Próxima</button>
         </div>
     </div>
-
     <br>    
 
     <footer class="footer bg-primary text-white text-center py-1" style="position: fixed; bottom: 0; width: 100%; z-index: 10;">
