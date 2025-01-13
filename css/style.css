@@ -232,20 +232,35 @@ table tr:hover td {
   background-color: #f7f7f7;
 }
 
-/* Estilos para o Footer */
-footer {
-  background-color: #007BB5; 
-  color: #fff; 
-  text-align: center;
-  padding: 20px 0; 
-  font-size: 14px; 
-  width: 100%; 
-  bottom: 0;
+#navegacao {
+  display: flex; /* Usando Flexbox */
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  gap: 10px; /* Espaçamento entre os itens */
 }
 
-footer p {
-  margin: 0; 
+button {
+  padding: 5px 15px; /* Espaçamento interno dos botões */
+  font-size: 16px; /* Tamanho da fonte */
 }
+
+#pagina-atual {
+  font-size: 16px;
+}
+
+/* Estilo personalizado para o rodapé */
+footer.footer {
+  background-color: #007BB5; /* Cor de fundo preta */
+  color: #fff; /* Cor do texto em branco */
+  text-align: center; /* Centraliza o texto */
+  padding: 10px 0; /* Padding vertical (topo e fundo) */
+  font-size: 14px; /* Tamanho da fonte */
+  position: fixed; /* Fixa o rodapé no fundo da página */
+  bottom: 0; /* Fixa na parte inferior */
+  width: 100%; /* Largura total da tela */
+  z-index: 10; /* Garante que o rodapé fique acima de outros elementos */
+}
+
 
 
 /* Responsivo */
