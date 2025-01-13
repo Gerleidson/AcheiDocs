@@ -32,18 +32,8 @@ document.getElementById('form-cadastro').addEventListener('submit', function (ev
     // Chama a função para salvar no Firebase, incluindo a data de cadastro
     salvarDados(nome, documento, cidade, estado, telefone, tipo, dataCadastro);
 
-    // Adiciona o novo documento diretamente na tabela sem precisar atualizar a página
-    const tabela = document.querySelector('#tabela tbody');
-    const row = document.createElement('tr');
-    row.innerHTML = `
-        <td>${nome}</td>
-        <td>${documento}</td>
-        <td>${cidade}</td>
-        <td>${estado}</td>
-        <td>${telefone}</td>
-        <td>${tipo}</td>
-    `;
-    tabela.appendChild(row);
+    // Limpa o formulário após o cadastro ser realizado
+    document.getElementById('form-cadastro').reset();
 });
 
 // Função para buscar o cadastro por nome
