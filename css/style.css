@@ -8,7 +8,9 @@ body, h1, h2, h3, p, ul, li, form, button, input, select {
 /* Estilos globais */
 body {
   font-family: 'Arial', sans-serif;
-  background-color: #f7f7f7;
+  position: relative; /* Necessário para o posicionamento absoluto do overlay */
+  background: url('/img/bg.jpg') no-repeat center center fixed; /* Substitua 'sua-imagem.jpg' pelo nome da sua imagem */
+  background-size: cover;
   color: #333;
   line-height: 1.6;
   display: flex;
@@ -18,6 +20,21 @@ body {
   min-height: 100vh;
   padding: 20px;
 }
+
+/* Adicionando uma camada de cor branca com opacidade sobre a imagem de fundo */
+body::before {
+  content: ''; /* Cria o pseudo-elemento */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.9); /* Cor branca com 50% de opacidade */
+  z-index: -1; /* Coloca a sobreposição abaixo do conteúdo da página */
+}
+
+/* O resto do código permanece igual... */
+
 
 /* Estilo para o menu horizontal */
 .menu-horizontal {
@@ -234,7 +251,7 @@ button {
 
 /* Estilo personalizado para o rodapé */
 footer.footer {
-  background-color: #007BB5;
+  background-color: #000000;
   color: #fff;
   text-align: center;
   padding: 10px 0;
@@ -250,7 +267,7 @@ footer.footer {
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  width: 95%; /* Card ocupará 100% da largura do form */
+  width: 90%; /* Card ocupará 100% da largura do form */
   max-width: 800px; /* Largura máxima igual ao formulário */
   margin: 20px auto;
   padding: 10px;
