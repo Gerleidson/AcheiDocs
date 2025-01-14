@@ -384,7 +384,7 @@ body, h1, h2, h3, p, ul, li, form, button, input, select {
   
   .navbar {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
   }
   
