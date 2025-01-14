@@ -210,6 +210,7 @@ hamburger.addEventListener('click', () => {
 const doacaoLink = document.getElementById("doacao-link");
 const popup = document.getElementById("popup");
 const closeBtn = document.getElementById("close-btn");
+const pixCopy = document.getElementById("pix-copy");
 
 doacaoLink.addEventListener("click", (event) => {
     event.preventDefault();  // Impede que o link faça a navegação normal
@@ -217,7 +218,7 @@ doacaoLink.addEventListener("click", (event) => {
     // Exibe o popup
     popup.style.display = "flex";
     
-    // Gerar o QR Code para o PIX (substitua com sua chave PIX real)
+    // Gerar o QR Code para o PIX
     const pix = "27.201.781.0001/39"; // Substitua com sua chave PIX
     QRCode.toCanvas(document.getElementById("qrcode"), pix, (error) => {
         if (error) console.error(error);
@@ -228,3 +229,16 @@ doacaoLink.addEventListener("click", (event) => {
 closeBtn.addEventListener("click", () => {
     popup.style.display = "none";
 });
+
+// Tornar o PIX clicável e copiar para a área de transferência
+pixCopy.addEventListener("click", () => {
+    const pix = "27.201.781.0001/39"; // Substitua com sua chave PIX
+    
+    // Copiar o valor do PIX para a área de transferência
+    navigator.clipboard.writeText(pix).then(() => {
+        alert("Chave PIX copiada para a área de transferência!");
+    }).catch((err) => {
+        console.error("Erro ao copiar para a área de transferência", err);
+    });
+});
+

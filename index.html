@@ -19,6 +19,9 @@
     <!-- Carregamento assíncrono do jQuery e do script -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
+    <!-- Carregamento Qr code -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+
     <!-- SDK do Firebase -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
@@ -64,11 +67,13 @@
             <p><strong>Conta Bancária:</strong> Banco Nubank </p>
             <p><strong>Ag:</strong> 0001</p>
             <p><strong>C/C:</strong> 86034216-6</p>
-            <p><strong>PIX:</strong> 27.201.781.0001/39</p>
+            <p><strong>PIX:</strong> 
+                <span id="pix-copy" style="color: blue; cursor: pointer;">27.201.781.0001/39</span> <!-- PIX clicável -->
+            </p>
             <div id="qrcode"></div> <!-- Este div exibirá o QR Code -->
             <button class="close-btn" id="close-btn">Fechar</button>
         </div>
-    </div>     
+    </div>
     
 
     <div class="foto text-center" id="foto">
