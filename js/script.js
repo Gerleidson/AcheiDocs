@@ -196,14 +196,16 @@ window.onload = () => {
 window.buscarCadastroPorNome = buscarCadastroPorNome;
 
 
-// Seleciona o ícone do hamburger e o menu
-const hamburger = document.getElementById('hamburger-icon');
-const navLinks = document.querySelector('.nav-links');
+// Seleciona os elementos necessários
+const hamburger = document.getElementById("hamburger-icon");
+const navLinks = document.querySelector(".nav-links");
 
-// Adiciona o evento de clique no ícone do hamburger
-hamburger.addEventListener('click', () => {
-  navLinks.classList.toggle('active'); // Alterna a classe 'active' que exibe ou esconde o menu
+// Adiciona o evento de clique no ícone do hambúrguer
+hamburger.addEventListener("click", () => {
+  // Alterna a classe 'active' para mostrar/ocultar o menu
+  navLinks.classList.toggle("active");
 });
+
 
 // Mostrar o popup quando o link de doação for clicado
 const doacaoLink = document.getElementById("doacao-link");
@@ -240,4 +242,8 @@ pixCopy.addEventListener("click", () => {
         console.error("Erro ao copiar para a área de transferência", err);
     });
 });
+
+
+
+
 
