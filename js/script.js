@@ -209,7 +209,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-
+function toggleMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    navLinks.classList.toggle('active');  // Alterna a classe 'active' no menu
+  }
+  
 
 // Mostrar o popup quando o link de doação for clicado
 const doacaoLink = document.getElementById("doacao-link");
