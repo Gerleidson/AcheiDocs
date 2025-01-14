@@ -617,3 +617,19 @@ body, h1, h2, h3, p, ul, li, form, button, input, select {
   
   
   
+
+  .btn-download {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+  }
+  
+  .btn-download:hover {
+    background-color: #0056b3;
+  }
+  
