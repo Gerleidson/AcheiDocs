@@ -5,14 +5,32 @@
     text-align: center;
     padding: 20px;
   }
+
   main {
-    padding: 50px;
+    padding: 30px;
     max-width: 900px;
     margin: 0 auto;
     background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+    margin-top: 80px; /* Para garantir que o conteúdo não fique escondido atrás do cabeçalho fixo */
   }
+  
+  main h1, main h2 {
+    color: #007BB5;
+  }
+  
+  main .section-title {
+    font-size: 1.2em;
+    margin-top: 20px;
+    color: #007BB5;
+  }
+  
+  main .content {
+    margin-bottom: 20px;
+  }
+  
+
   h1, h2 {
     color: #007BB5;
   }
