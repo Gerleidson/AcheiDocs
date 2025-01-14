@@ -205,7 +205,6 @@ hamburger.addEventListener('click', () => {
   navLinks.classList.toggle('active'); // Alterna a classe 'active' que exibe ou esconde o menu
 });
 
-
 // Mostrar o popup quando o link de doação for clicado
 const doacaoLink = document.getElementById("doacao-link");
 const popup = document.getElementById("popup");

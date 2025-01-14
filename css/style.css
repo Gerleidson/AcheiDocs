@@ -1,15 +1,15 @@
-/* Reset de estilos padrão */
+/* === Reset de estilos padrão === */
 body, h1, h2, h3, p, ul, li, form, button, input, select {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Estilos globais */
+/* === Estilos globais === */
 body {
   font-family: 'Arial', sans-serif;
   position: relative; /* Necessário para o posicionamento absoluto do overlay */
-  background: url('/img/bg.jpg') no-repeat center center fixed; /* Substitua 'sua-imagem.jpg' pelo nome da sua imagem */
+  background: url('/img/bg.jpg') no-repeat center center fixed;
   background-size: cover;
   color: #333;
   line-height: 1.6;
@@ -23,17 +23,17 @@ body {
 
 /* Adicionando uma camada de cor branca com opacidade sobre a imagem de fundo */
 body::before {
-  content: ''; /* Cria o pseudo-elemento */
+  content: ''; 
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.9); /* Cor branca com 50% de opacidade */
-  z-index: -1; /* Coloca a sobreposição abaixo do conteúdo da página */
+  background-color: rgba(255, 255, 255, 0.9); 
+  z-index: -1; 
 }
 
-/* Estilo para o menu horizontal */
+/* === Estilo para o menu horizontal === */
 .menu-horizontal {
   background-color: #007BB5;
   padding: 10px 0;
@@ -65,7 +65,7 @@ body::before {
   color: #00B6FF;
 }
 
-/* Estilo para os checkboxes */
+/* === Estilo para os checkboxes === */
 .checkbox-group {
   display: flex;
   gap: 15px;
@@ -90,7 +90,7 @@ body::before {
   accent-color: #007BB5;
 }
 
-/* Header com imagem */
+/* === Header com imagem === */
 #foto {
   text-align: center;
   margin: 20px 0;
@@ -109,7 +109,7 @@ body::before {
   transform: scale(1.1);
 }
 
-/* Estilo para formulários */
+/* === Estilo para formulários === */
 form {
   width: 100%;
   max-width: 800px;
@@ -188,7 +188,7 @@ form button:hover {
   width: 100%;
 }
 
-/* Estilo para tabela */
+/* === Estilo para tabela === */
 .table-container {
   width: 80%;
   max-width: 800px;
@@ -229,7 +229,7 @@ table tr:hover td {
   background-color: #f7f7f7;
 }
 
-/* Navegação */
+/* === Navegação === */
 #navegacao {
   display: flex;
   justify-content: center;
@@ -246,7 +246,7 @@ button {
   font-size: 16px;
 }
 
-/* Estilo personalizado para o rodapé */
+/* === Estilo personalizado para o rodapé === */
 footer.footer {
   background-color: #000000;
   color: #fff;
@@ -259,13 +259,13 @@ footer.footer {
   z-index: 10;
 }
 
-/* Estilos gerais do card */
+/* === Estilos gerais do card === */
 .info-card {
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  width: 90%; /* Card ocupará 100% da largura do form */
-  max-width: 800px; /* Largura máxima igual ao formulário */
+  width: 90%;
+  max-width: 800px;
   margin: 20px auto;
   padding: 10px;
   transition: box-shadow 0.3s ease, transform 0.3s ease;
@@ -327,7 +327,7 @@ footer.footer {
   background-color: #007BB5;
 }
 
-/* Estilos para o topo */
+/* === Estilos para o topo === */
 header {
   background-color: #000000;
   padding: 10px 20px;
@@ -379,99 +379,29 @@ header {
   margin-left: 20px;
 }
 
-/* Responsividade: Quando a tela for pequena, o menu se torna um botão hamburguer */
+/* === Responsividade === */
 @media (max-width: 768px) {
   .nav-links {
-      display: none;
-      flex-direction: column;
-      position: absolute;
-      top: 50px;
-      right: 20px;
-      background-color: #007bff;
-      padding: 10px;
-      width: 200px;
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    background-color: #007bff;
+    padding: 10px;
+    width: 200px;
   }
   .nav-links.active {
-      display: flex;
+    display: flex;
   }
   .hamburger {
-      display: block;
+    display: block;
   }
-}
 
-
-/* Estilos do link de doação */
-#doacao-link {
-    color: #007BB5;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-#doacao-link:hover {
-    color: #00B6FF;
-}
-
-/* Estilo do popup */
-.popup {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-.popup-content {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-    width: 80%;
-    max-width: 400px;
-}
-
-.popup-content h2 {
-    margin-bottom: 20px;
-    font-size: 22px;
-    color: #007BB5;
-}
-
-.popup-content p {
-    font-size: 16px;
-    color: #333;
-    margin: 10px 0;
-}
-
-.close-btn {
-    background-color: #FF0000;
-    color: white;
-    padding: 8px 16px;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    margin-top: 20px;
-    font-size: 16px;
-}
-
-.close-btn:hover {
-    background-color: #FF4D4D;
-}
-
-/* QR Code */
-#qrcode {
-    margin-top: 20px;
-}
-
-
-/* Responsividade */
-@media (max-width: 768px) {
+  /* Outros ajustes para responsividade */
   .info-card {
-    width: 95%; /* Para telas menores, o card ocupará toda a largura */
-    max-width: 100%; /* Sem limite de largura máximo */
+    width: 95%;
+    max-width: 100%;
     padding: 15px;
   }
 
@@ -554,4 +484,68 @@ header {
   }
 }
 
+/* === Estilos do link de doação === */
+#doacao-link {
+  color: #007BB5;
+  text-decoration: none;
+  font-weight: bold;
+}
 
+#doacao-link:hover {
+  color: #00B6FF;
+}
+
+/* === Estilo do popup === */
+.popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  width: 80%;
+  max-width: 400px;
+}
+
+.popup-content h2 {
+  margin-bottom: 20px;
+  font-size: 22px;
+  color: #007BB5;
+}
+
+.popup-content p {
+  font-size: 16px;
+  color: #333;
+  margin: 10px 0;
+}
+
+.close-btn {
+  background-color: #FF0000;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+.close-btn:hover {
+  background-color: #FF4D4D;
+}
+
+/* === QR Code === */
+#qrcode {
+  margin-top: 20px;
+}
