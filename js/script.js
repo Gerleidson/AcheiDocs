@@ -9,32 +9,41 @@ const registrosPorPagina = 10; // Exibir 10 registros por vez
 let paginaAtual = 1; // Página inicial
 
 // Função para salvar os dados do formulário no Firebase
-document.getElementById('form-cadastro').addEventListener('submit', function (event) {
-    event.preventDefault(); // Impede o envio do formulário tradicional
+document.addEventListener('DOMContentLoaded', function () {
+    const formCadastro = document.getElementById('form-cadastro');
+    
+    if (formCadastro) {
+        formCadastro.addEventListener('submit', function (event) {
+            event.preventDefault(); // Impede o envio do formulário tradicional
 
-    // Coleta os dados do formulário
-    const nome = document.getElementById('nome').value;
-    const documento = document.getElementById('documento').value; // Agora é um select
-    const cidade = document.getElementById('cidade').value;
-    const estado = document.getElementById('estado').value; // Estado como sigla
-    const telefone = document.getElementById('telefone').value;
-    const tipo = document.querySelector('input[name="tipo"]:checked') ? document.querySelector('input[name="tipo"]:checked').value : '';
+            // Coleta os dados do formulário
+            const nome = document.getElementById('nome').value;
+            const documento = document.getElementById('documento').value; // Agora é um select
+            const cidade = document.getElementById('cidade').value;
+            const estado = document.getElementById('estado').value; // Estado como sigla
+            const telefone = document.getElementById('telefone').value;
+            const tipo = document.querySelector('input[name="tipo"]:checked') ? document.querySelector('input[name="tipo"]:checked').value : '';
 
-    // Verifica se todos os campos obrigatórios foram preenchidos
-    if (!nome || !documento || !cidade || !estado || !telefone || !tipo) {
-        alert("Por favor, preencha todos os campos.");
-        return;
+            // Verifica se todos os campos obrigatórios foram preenchidos
+            if (!nome || !documento || !cidade || !estado || !telefone || !tipo) {
+                alert("Por favor, preencha todos os campos.");
+                return;
+            }
+
+            // Adiciona a data de cadastro (timestamp) no momento do cadastro
+            const dataCadastro = Date.now(); // Obtém o timestamp atual (em milissegundos)
+
+            // Chama a função para salvar no Firebase, incluindo a data de cadastro
+            salvarDados(nome, documento, cidade, estado, telefone, tipo, dataCadastro);
+
+            // Limpa o formulário após o cadastro ser realizado
+            formCadastro.reset();
+        });
+    } else {
+        console.error('Elemento #form-cadastro não encontrado!');
     }
-
-    // Adiciona a data de cadastro (timestamp) no momento do cadastro
-    const dataCadastro = Date.now(); // Obtém o timestamp atual (em milissegundos)
-
-    // Chama a função para salvar no Firebase, incluindo a data de cadastro
-    salvarDados(nome, documento, cidade, estado, telefone, tipo, dataCadastro);
-
-    // Limpa o formulário após o cadastro ser realizado
-    document.getElementById('form-cadastro').reset();
 });
+
 
 // Função para buscar o cadastro por nome
 function buscarCadastroPorNome() {
