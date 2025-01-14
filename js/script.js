@@ -199,21 +199,18 @@ window.buscarCadastroPorNome = buscarCadastroPorNome;
 // Aguarde o DOM estar carregado
 document.addEventListener('DOMContentLoaded', function () {
     const hamburger = document.getElementById('hamburger-icon');
-    const navLinks = document.querySelector('.nav-links');
-
+    const navLinks = document.getElementById('nav-links'); // Referência ao menu
+  
     // Verifica se o hambúrguer e o menu existem antes de adicionar o evento
     if (hamburger && navLinks) {
-        hamburger.addEventListener('click', function () {
-            navLinks.classList.toggle('active'); // Alterna a classe 'active' que exibe ou esconde o menu
-        });
+      hamburger.addEventListener('click', function () {
+        c
+        navLinks.classList.toggle('active'); // Alterna a classe 'active' que exibe ou esconde o menu
+      });
     }
-});
-
-function toggleMenu() {
-    const navLinks = document.querySelector('.nav-links');
-    navLinks.classList.toggle('active');  // Alterna a classe 'active' no menu
-  }
+  });
   
+ 
 
 // Mostrar o popup quando o link de doação for clicado
 const doacaoLink = document.getElementById("doacao-link");
