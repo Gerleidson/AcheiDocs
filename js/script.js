@@ -194,3 +194,37 @@ window.onload = () => {
 
 // Tornar a função globalmente acessível
 window.buscarCadastroPorNome = buscarCadastroPorNome;
+
+
+// Seleciona o ícone do hamburger e o menu
+const hamburger = document.getElementById('hamburger-icon');
+const navLinks = document.querySelector('.nav-links');
+
+// Adiciona o evento de clique no ícone do hamburger
+hamburger.addEventListener('click', () => {
+  navLinks.classList.toggle('active'); // Alterna a classe 'active' que exibe ou esconde o menu
+});
+
+
+// Mostrar o popup quando o link de doação for clicado
+const doacaoLink = document.getElementById("doacao-link");
+const popup = document.getElementById("popup");
+const closeBtn = document.getElementById("close-btn");
+
+doacaoLink.addEventListener("click", (event) => {
+    event.preventDefault();  // Impede que o link faça a navegação normal
+
+    // Exibe o popup
+    popup.style.display = "flex";
+    
+    // Gerar o QR Code para o PIX (substitua com sua chave PIX real)
+    const pix = "27.201.781.0001/39"; // Substitua com sua chave PIX
+    QRCode.toCanvas(document.getElementById("qrcode"), pix, (error) => {
+        if (error) console.error(error);
+    });
+});
+
+// Fechar o popup
+closeBtn.addEventListener("click", () => {
+    popup.style.display = "none";
+});

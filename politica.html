@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de Privacidade</title>
+  <link rel="stylesheet" href="css/politica.css">
+
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+          <div class="logo">
+            <span>AcheiDocs</span>
+          </div>
+          <div class="menu">
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="politica.html">Política de Privacidade</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger-icon">
+              &#9776; <!-- Isso representa o ícone de menu hamburguer -->
+            </div>
+          </div>
+        </div>
+    </header>
+
+  <main>
+    <h2>Política de Privacidade e LGPD</h2>
+
+    <div class="content">
+      <p>A sua privacidade é importante para nós. Esta Política de Privacidade explica como coletamos, usamos, protegemos e compartilhamos seus dados pessoais, em conformidade com a Lei Geral de Proteção de Dados (LGPD) - Lei nº 13.709/2018.</p>
+    </div>
+
+    <div class="section-title">1. Quem Somos</div>
+    <div class="content">
+        <p>A Computech Camaçari é a responsável pelo site AcheiDocs. Nosso compromisso é garantir a segurança e a privacidade dos dados dos nossos usuários. Para dúvidas ou solicitações sobre privacidade, entre em contato conosco através do e-mail: <a href="mailto:computech.camacari@gmail.com">computech.camacari@gmail.com</a>.</p>
+    </div>
+
+    <div class="section-title">2. Quais Dados Coletamos?</div>
+    <div class="content">
+      <p>Coletamos os seguintes dados pessoais:</p>
+      <ul>
+        <li><strong>Dados fornecidos diretamente por você</strong>: Nome, documento, telefone, cidade e Estado etc. ao preencher formulários no site.</li>
+      </ul>
+    </div>
+
+    <div class="section-title">3. Como Usamos seus Dados?</div>
+    <div class="content">
+      <p>Os dados coletados são usados para as seguintes finalidades:</p>
+      <ul>
+        <li>Para processar e responder a solicitações e formulários.</li>
+        <li>Para melhorar a experiência do usuário no site.</li>
+        <li>Para cumprir obrigações legais e regulatórias.</li>
+      </ul>
+    </div>
+
+    <div class="section-title">4. Base Legal para o Processamento dos Dados</div>
+    <div class="content">
+      <p>Nosso processamento de dados pessoais é baseado nas seguintes bases legais:</p>
+      <ul>
+        <li><strong>Consentimento</strong>: Quando você nos fornece dados voluntariamente, como ao preencher um formulário.</li>
+        <li><strong>Cumprimento de obrigação legal</strong>: Quando o processamento é necessário para cumprir obrigações legais e regulatórias.</li>
+      </ul>
+    </div>
+
+    <div class="section-title">5. Compartilhamento de Dados</div>
+    <div class="content">
+      <p>Não compartilhamos seus dados pessoais com terceiros, exceto nas seguintes situações:</p>
+      <ul>
+        <li>Quando necessário para cumprir uma obrigação legal ou regulatória.</li>
+        <li>Para empresas parceiras que ajudam na operação do nosso site (ex: serviços de hospedagem, análise de dados).</li>
+        <li>Quando você consentir explicitamente.</li>
+      </ul>
+    </div>
+
+    <div class="section-title">6. Segurança dos Dados</div>
+    <div class="content">
+      <p>Implementamos medidas de segurança técnicas e organizacionais para proteger seus dados pessoais contra acessos não autorizados, alterações ou divulgação.</p>
+    </div>
+
+    <div class="section-title">7. Seus Direitos sob a LGPD</div>
+    <div class="content">
+      <p>De acordo com a Lei Geral de Proteção de Dados, você tem os seguintes direitos:</p>
+      <ul>
+        <li><strong>Direito de Acesso</strong>: Você pode solicitar o acesso aos seus dados pessoais que mantemos.</li>
+        <li><strong>Direito de Retificação</strong>: Você pode solicitar a correção de dados pessoais incompletos ou imprecisos.</li>
+        <li><strong>Direito de Exclusão</strong>: Você pode solicitar a exclusão dos seus dados pessoais, caso não haja necessidade de mantê-los.</li>
+        <li><strong>Direito de Portabilidade</strong>: Você pode solicitar a transferência dos seus dados pessoais a outro fornecedor de serviço.</li>
+        <li><strong>Direito de Revogação do Consentimento</strong>: Você pode revogar seu consentimento para o processamento de seus dados a qualquer momento.</li>
+      </ul>
+      <p>Para exercer seus direitos, entre em contato conosco através do e-mail: [email de contato].</p>
+    </div>
+
+    
+    <div class="section-title">8. Alterações nesta Política</div>
+    <div class="content">
+      <p>Podemos atualizar esta Política de Privacidade periodicamente. Quaisquer alterações serão publicadas nesta página com a respectiva data de atualização.</p>
+    </div>
+
+    <div class="section-title">9. Contato</div>
+    <div class="content">
+      <p>Se você tiver dúvidas sobre esta Política de Privacidade ou sobre o uso dos seus dados, entre em contato conosco através do e-mail: <a href="mailto:computech.camacari@gmail.com">computech.camacari@gmail.com</a>.</p>
+    </div>
+
+    <button id="download">Baixar em PDF</button>
+
+  </main>
+
+  <footer class="footer bg-primary text-white text-center py-1" style="position: fixed; bottom: 0; width: 100%; z-index: 10;">
+    <p class="mb-0">&copy; 2024 AcheiDocs - Todos os Direitos Reservados.</p>
+</footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    const { jsPDF } = window.jspdf;
+
+    document.getElementById('download').addEventListener('click', () => {
+      const doc = new jsPDF();
+      
+      doc.text("Política de Privacidade", 20, 30);
+      doc.text("[Conteúdo da política de privacidade]", 20, 40);
+      
+      doc.save("politica-de-privacidade.pdf");
+    });
+  </script>
+
+</body>
+</html>

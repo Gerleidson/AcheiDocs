@@ -21,11 +21,9 @@
 
     <!-- SDK do Firebase -->
     <script type="module">
-        // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
         import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
-
 
         const firebaseConfig = {
           apiKey: "AIzaSyCmcDHVj8vdMZeLsnygh0jMjCfZ0Hyh8bY",
@@ -37,12 +35,42 @@
           appId: "1:390960971384:web:85ab3b905743a33930778d",
           measurementId: "G-S829CSFXDM"
         };
-      
       </script>
-    
 </head>
 
 <body>
+
+    <header>
+        <div class="navbar">
+          <div class="logo">
+            <span>AcheiDocs</span>
+          </div>
+          <div class="menu">
+            <ul class="nav-links">
+              <li><a href="#" id="doacao-link">Faça uma Doação</a></li>
+              <li><a href="politica.html">Política de Privacidade</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger-icon">
+              &#9776; <!-- Isso representa o ícone de menu hamburguer -->
+            </div>
+          </div>
+        </div>
+    </header>
+    
+    <!-- Popup de Doação -->
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <h2>Ajude-nos a manter o site</h2>
+            <p><strong>Conta Bancária:</strong> Banco Nubank </p>
+            <p><strong>Ag:</strong> 0001</p>
+            <p><strong>C/C:</strong> 86034216-6</p>
+            <p><strong>PIX:</strong> 27.201.781.0001/39</p>
+            <div id="qrcode"></div> <!-- Este div exibirá o QR Code -->
+            <button class="close-btn" id="close-btn">Fechar</button>
+        </div>
+    </div>     
+    
+
     <div class="foto text-center" id="foto">
         <div class="info-card">
             <div class="card-header">
@@ -180,6 +208,6 @@
     <!-- Incluindo os scripts -->
     <script type="module" src="js/script.js"></script>
     <script type="module" src="js/firebase.js"></script>    
-
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
 </body>
 </html>

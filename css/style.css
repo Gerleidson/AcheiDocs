@@ -33,9 +33,6 @@ body::before {
   z-index: -1; /* Coloca a sobreposição abaixo do conteúdo da página */
 }
 
-/* O resto do código permanece igual... */
-
-
 /* Estilo para o menu horizontal */
 .menu-horizontal {
   background-color: #007BB5;
@@ -330,6 +327,146 @@ footer.footer {
   background-color: #007BB5;
 }
 
+/* Estilos para o topo */
+header {
+  background-color: #000000;
+  padding: 10px 20px;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.navbar .logo span {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.navbar .menu {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  margin-left: 20px;
+}
+
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.hamburger {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+/* Responsividade: Quando a tela for pequena, o menu se torna um botão hamburguer */
+@media (max-width: 768px) {
+  .nav-links {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 50px;
+      right: 20px;
+      background-color: #007bff;
+      padding: 10px;
+      width: 200px;
+  }
+  .nav-links.active {
+      display: flex;
+  }
+  .hamburger {
+      display: block;
+  }
+}
+
+
+/* Estilos do link de doação */
+#doacao-link {
+    color: #007BB5;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#doacao-link:hover {
+    color: #00B6FF;
+}
+
+/* Estilo do popup */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 80%;
+    max-width: 400px;
+}
+
+.popup-content h2 {
+    margin-bottom: 20px;
+    font-size: 22px;
+    color: #007BB5;
+}
+
+.popup-content p {
+    font-size: 16px;
+    color: #333;
+    margin: 10px 0;
+}
+
+.close-btn {
+    background-color: #FF0000;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.close-btn:hover {
+    background-color: #FF4D4D;
+}
+
+/* QR Code */
+#qrcode {
+    margin-top: 20px;
+}
+
+
 /* Responsividade */
 @media (max-width: 768px) {
   .info-card {
@@ -416,3 +553,5 @@ footer.footer {
     width: 90%;
   }
 }
+
+
