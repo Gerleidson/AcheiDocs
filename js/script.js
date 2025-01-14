@@ -242,3 +242,20 @@ pixCopy.addEventListener("click", () => {
     });
 });
 
+const { jsPDF } = window.jspdf;
+
+document.getElementById('download').addEventListener('click', () => {
+  const doc = new jsPDF();
+
+  // Título
+  doc.text("Política de Privacidade", 20, 30);
+
+  // Captura o conteúdo do main (toda a política de privacidade)
+  const content = document.querySelector('main').innerText;
+
+  // Adiciona o conteúdo ao PDF
+  doc.text(content, 20, 40);
+
+  // Salva o PDF
+  doc.save("politica-de-privacidade.pdf");
+});

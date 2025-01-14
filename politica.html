@@ -113,18 +113,8 @@
 </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script>
-    const { jsPDF } = window.jspdf;
 
-    document.getElementById('download').addEventListener('click', () => {
-      const doc = new jsPDF();
-      
-      doc.text("Política de Privacidade", 20, 30);
-      doc.text("[Conteúdo da política de privacidade]", 20, 40);
-      
-      doc.save("politica-de-privacidade.pdf");
-    });
-  </script>
+  
 
   <script type="module" src="js/script.js"></script>
 
