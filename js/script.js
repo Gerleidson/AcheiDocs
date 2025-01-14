@@ -219,10 +219,19 @@ doacaoLink.addEventListener("click", (event) => {
     
     // Gerar o QR Code para o PIX
     const pix = "27.201.781.0001/39"; // Substitua com sua chave PIX
+
+    // Verifique se a chave PIX está no formato correto
+    console.log("Gerando QR Code para:", pix);
+
     QRCode.toCanvas(document.getElementById("qrcode"), pix, (error) => {
-        if (error) console.error(error);
+        if (error) {
+            console.error("Erro ao gerar QR Code:", error);
+        } else {
+            console.log("QR Code gerado com sucesso!");
+        }
     });
 });
+
 
 // Fechar o popup
 closeBtn.addEventListener("click", () => {
