@@ -197,11 +197,13 @@ window.buscarCadastroPorNome = buscarCadastroPorNome;
 
 
 // Seleciona o ícone do hamburger e o menu
-document.addEventListener('DOMContentLoaded', function () {
 
+document.addEventListener('DOMContentLoaded', function () {
+    // Verifica se o elemento #hamburger-icon existe na página
     const hamburger = document.getElementById('hamburger-icon');
     const navLinks = document.querySelector('.nav-links');
 
+    // Verifica se o elemento #hamburger-icon existe antes de tentar adicionar o evento
     if (hamburger) {
         hamburger.addEventListener('click', () => {
             navLinks.classList.toggle('active'); // Alterna a classe 'active' para exibir ou esconder o menu
