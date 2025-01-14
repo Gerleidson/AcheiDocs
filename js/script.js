@@ -214,10 +214,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-// Adiciona o evento de clique no ícone do hamburger
-hamburger.addEventListener('click', () => {
-  navLinks.classList.toggle('active'); // Alterna a classe 'active' que exibe ou esconde o menu
-});
+
 
 // Mostrar o popup quando o link de doação for clicado
 const doacaoLink = document.getElementById("doacao-link");
