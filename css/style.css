@@ -33,6 +33,46 @@ body::before {
   z-index: -1; 
 }
 
+
+main {
+  padding: 30px;
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin-top: 80px; /* Para garantir que o conteúdo não fique escondido atrás do cabeçalho fixo */
+}
+
+main h1, main h2 {
+  color: #007BB5;
+}
+
+main .section-title {
+  font-size: 1.2em;
+  margin-top: 20px;
+  color: #007BB5;
+}
+
+main .content {
+  margin-bottom: 20px;
+}
+
+.btn-download {
+  display: inline-block;
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.btn-download:hover {
+  background-color: #0056b3;
+}
+
 /* === Estilo para o menu horizontal === */
 .menu-horizontal {
   background-color: #007BB5;
@@ -486,7 +526,7 @@ header {
 
 /* === Estilos do link de doação === */
 #doacao-link {
-  color: #007BB5;
+  color: #000000;
   text-decoration: none;
   font-weight: bold;
 }
