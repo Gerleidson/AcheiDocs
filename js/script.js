@@ -196,22 +196,19 @@ window.onload = () => {
 window.buscarCadastroPorNome = buscarCadastroPorNome;
 
 
-// Seleciona o ícone do hamburger e o menu
-
+// Aguarde o DOM estar carregado
 document.addEventListener('DOMContentLoaded', function () {
     const hamburger = document.getElementById('hamburger-icon');
     const navLinks = document.querySelector('.nav-links');
 
-
-    // Verifique se o elemento realmente existe
-    if (hamburger) {
-        hamburger.addEventListener('click', () => {
+    // Verifica se o hambúrguer e o menu existem antes de adicionar o evento
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', function () {
             navLinks.classList.toggle('active'); // Alterna a classe 'active' que exibe ou esconde o menu
         });
-    } else {
-        console.error('Elemento #hamburger-icon não encontrado!');
     }
 });
+
 
 
 // Mostrar o popup quando o link de doação for clicado

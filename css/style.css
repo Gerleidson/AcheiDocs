@@ -33,6 +33,40 @@ body::before {
   z-index: -1; 
 }
 
+/* CSS do Menu Hambúrguer */
+.nav-links {
+  display: none;
+}
+
+.nav-links.active {
+  display: block;
+}
+
+.hamburger {
+  display: block;
+  cursor: pointer;
+}
+
+/* Adicionando o estilo para o menu hambúrguer em telas pequenas */
+@media (max-width: 768px) {
+  .nav-links {
+      display: none;
+  }
+
+  .nav-links.active {
+      display: block;
+  }
+
+  .hamburger {
+      display: block;
+  }
+}
+
+
+
+
+
+
 
 main {
   padding: 30px;
