@@ -173,32 +173,73 @@ const closeBtn = document.getElementById("close-btn");
 const pixCopy = document.getElementById("pix-copy");
 
 doacaoLink.addEventListener("click", (event) => {
-    event.preventDefault();  // Impede que o link faça a navegação normal
+    event.preventDefault(); // Impede a navegação padrão do link
 
     // Exibe o popup
     popup.style.display = "flex";
-    
-    // Gerar o QR Code para o PIX
-    const chavePix = "27.201.781/0001-39"; // Substitua com sua chave PIX
-    const valor = "10.00"; // Exemplo de valor
+
+    // Dados do PIX
+    const chavePix = "27.201.781/0001-39"; // Substitua pela sua chave PIX
+    const valor = "10.00"; // Valor da doação
     const nomeRecebedor = "Gerleidson Bomfim";
     const cidadeRecebedor = "Camaçari";
-    const txid = "1234567890"; // Se necessário, adicione um TXID
+    const txid = "1234567890"; // Opcional: Identificador único da transação
 
-    // Montando o formato padrão para o código QR PIX
-    const pix = `00020126500014BR.GOV.BCB.PIX011427.201.781/0001-39520400005303986540010005802BR5913Gerleidson Bomfim6009Camaçari6207050312345678906304`;
+    // Função para calcular o CRC16
+    function calculaCRC16(payload) {
+        let polinomio = 0x1021; // Polinômio usado no cálculo do CRC16
+        let resultado = 0xFFFF; // Valor inicial do CRC16
 
-    // Exibir o código gerado no console (você pode gerar o QR Code depois disso)
-    console.log(pix);
+        for (let i = 0; i < payload.length; i++) {
+            resultado ^= payload.charCodeAt(i) << 8;
+            for (let j = 0; j < 8; j++) {
+                if ((resultado & 0x8000) !== 0) {
+                    resultado = (resultado << 1) ^ polinomio;
+                } else {
+                    resultado <<= 1;
+                }
+            }
+        }
 
-    QRCode.toCanvas(document.getElementById("qrcode"), pix, (error) => {
+        return (resultado & 0xFFFF).toString(16).toUpperCase().padStart(4, "0");
+    }
+
+    // Formatação do valor em centavos
+    const valorCentavos = valor ? (parseFloat(valor) * 100).toFixed(0).padStart(10, "0") : "";
+
+    // Montagem do payload
+    let payload = `000201` + // Payload Format Indicator
+                  `26${26 + chavePix.length}0014BR.GOV.BCB.PIX0114${chavePix}` + // Merchant Account Information
+                  `52040000` + // Merchant Category Code
+                  `5303986` + // Currency (BRL)
+                  `54${valorCentavos.length}${valorCentavos}` + // Transaction Amount
+                  `5802BR` + // Country Code
+                  `59${nomeRecebedor.length}${nomeRecebedor}` + // Merchant Name
+                  `60${cidadeRecebedor.length}${cidadeRecebedor}`; // Merchant City
+
+    // Adiciona o campo TXID, se fornecido
+    if (txid) {
+        payload += `62${txid.length + 4}05${txid.length}${txid}`;
+    }
+
+    // Adiciona o campo CRC16
+    payload += `6304`;
+    const crc16 = calculaCRC16(payload);
+    payload += crc16;
+
+    console.log("Código PIX gerado:", payload);
+
+    // Gerar o QR Code no elemento <canvas>
+    QRCode.toCanvas(document.getElementById("qrcode"), payload, (error) => {
         if (error) {
             console.error("Erro ao gerar QR Code:", error);
+            alert("Erro ao gerar QR Code. Tente novamente.");
         } else {
             console.log("QR Code gerado com sucesso!");
         }
     });
 });
+
 
 // Fechar o popup
 closeBtn.addEventListener("click", () => {

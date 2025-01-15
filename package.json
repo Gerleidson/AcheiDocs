@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "firebase": "^11.1.0"
+    "firebase": "^11.1.0",
+    "qrcode": "^1.5.4"
   }
 }

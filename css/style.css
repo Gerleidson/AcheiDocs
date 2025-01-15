@@ -9,7 +9,7 @@ body, h1, h2, h3, p, ul, li, form, button, input, select {
 body {
   font-family: 'Arial', sans-serif;
   position: relative;
-  background: url('/img/bg.jpg') no-repeat center center fixed;
+  background: url('/img/bg.jpga') no-repeat center center fixed; /* === img BG apague a ultima letra da extensao da img === */
   background-size: cover;
   color: #333;
   line-height: 1.6;
