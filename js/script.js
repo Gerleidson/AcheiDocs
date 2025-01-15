@@ -210,3 +210,13 @@ pixCopy.addEventListener("click", () => {
         console.error("Erro ao copiar para a área de transferência", err);
     });
 });
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Código do hamburguer: Adiciona o evento de clique no ícone
+    document.getElementById('hamburger-icon').addEventListener('click', function() {
+        const navLinks = document.getElementById('nav-links');
+        navLinks.classList.toggle('active'); // Alterna a classe 'active' para exibir/ocultar o menu
+    });
+});
+
