@@ -212,6 +212,18 @@
         <p class="mb-0">&copy; 2024 AcheiDocs - Todos os Direitos Reservados.</p>
     </footer>
 
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const hamburger = document.querySelector('.hamburger');
+          const navLinks = document.querySelector('.nav-links');
+      
+          hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+          });
+        });
+      </script>
+      
     <!-- Incluindo os scripts -->
     <script type="module" src="js/script.js"></script>
     <script type="module" src="js/firebase.js"></script>    

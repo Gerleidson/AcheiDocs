@@ -1,17 +1,14 @@
 import { salvarDados } from './firebase.js'; 
-import { getDatabase, ref, get, onChildAdded } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js"; 
+import { getDatabase, ref, get, onChildAdded, remove, child } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js"; 
 
-// Inicializando o Firebase
+// Inicializando o Firebase corretamente com o db importado
 const db = getDatabase();
 
 // Variáveis de controle de paginação
 const registrosPorPagina = 10; // Exibir 10 registros por vez
 let paginaAtual = 1; // Página inicial
 
-// ============================================
-// Funções de Cadastro
-// ============================================
-
+// Função para salvar os dados do formulário no Firebase
 document.getElementById('form-cadastro').addEventListener('submit', function (event) {
     event.preventDefault(); // Impede o envio do formulário tradicional
 
@@ -39,10 +36,7 @@ document.getElementById('form-cadastro').addEventListener('submit', function (ev
     document.getElementById('form-cadastro').reset();
 });
 
-// ============================================
-// Funções de Busca
-// ============================================
-
+// Função para buscar o cadastro por nome
 function buscarCadastroPorNome() {
     const nomeBusca = document.getElementById('nome-busca').value.trim();
     if (nomeBusca === "") {
@@ -99,10 +93,7 @@ function exibirPopup(dados) {
     }
 }
 
-// ============================================
-// Funções de Exibição de Documentos
-// ============================================
-
+// Função para exibir documentos com paginação
 function exibirDocumentosPaginados(pagina) {
     const referencia = ref(db, 'documentos/');
     get(referencia).then((snapshot) => {
@@ -162,10 +153,7 @@ function atualizarNavegacao(pagina, totalPaginas) {
     document.getElementById('pagina-atual').textContent = `Página ${pagina} de ${totalPaginas}`;
 }
 
-// ============================================
-// Funções de Navegação
-// ============================================
-
+// Função para ir para a página anterior
 document.getElementById('prev').addEventListener('click', () => {
     if (paginaAtual > 1) {
         paginaAtual--;
@@ -173,6 +161,7 @@ document.getElementById('prev').addEventListener('click', () => {
     }
 });
 
+// Função para ir para a próxima página
 document.getElementById('next').addEventListener('click', () => {
     paginaAtual++;
     exibirDocumentosPaginados(paginaAtual);
@@ -197,10 +186,32 @@ function ouvirNovosDocumentos() {
     });
 }
 
-// ============================================
-// Funções de Doação
-// ============================================
+// Chama a função ao carregar a página para exibir os documentos da primeira página
+window.onload = () => {
+    exibirDocumentosPaginados(paginaAtual);
+    ouvirNovosDocumentos(); // Chama a função para ouvir os novos documentos
+};
 
+// Tornar a função globalmente acessível
+window.buscarCadastroPorNome = buscarCadastroPorNome;
+
+
+// Aguarde o DOM estar carregado
+  document.addEventListener('DOMContentLoaded', function() {
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  });
+
+
+
+  
+ 
+
+// Mostrar o popup quando o link de doação for clicado
 const doacaoLink = document.getElementById("doacao-link");
 const popup = document.getElementById("popup");
 const closeBtn = document.getElementById("close-btn");
@@ -227,6 +238,7 @@ doacaoLink.addEventListener("click", (event) => {
     });
 });
 
+
 // Fechar o popup
 closeBtn.addEventListener("click", () => {
     popup.style.display = "none";
@@ -243,38 +255,3 @@ pixCopy.addEventListener("click", () => {
         console.error("Erro ao copiar para a área de transferência", err);
     });
 });
-
-// ============================================
-// Funções de Menu Hambúrguer
-// ============================================
-
-document.addEventListener('DOMContentLoaded', function () {
-    const hamburger = document.getElementById('hamburger-icon');
-    const navLinks = document.getElementById('nav-links');
-  
-    if (hamburger && navLinks) {
-        hamburger.addEventListener('click', function () {
-            navLinks.classList.toggle('active'); // Alterna a visibilidade do menu
-        });
-    }
-});
-
-$(document).ready(function() {
-    // Quando o hambúrguer for clicado
-    $('#hamburger-icon').click(function() {
-      // Alternar a classe 'active' para mostrar/ocultar o menu
-      $('#nav-links').toggleClass('active');
-    });
-});
-  
-// ============================================
-// Inicialização
-// ============================================
-
-window.onload = () => {
-    exibirDocumentosPaginados(paginaAtual);
-    ouvirNovosDocumentos(); // Chama a função para ouvir os novos documentos
-};
-
-// Tornar a função globalmente acessível
-window.buscarCadastroPorNome = buscarCadastroPorNome;
