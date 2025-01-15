@@ -33,40 +33,6 @@ body::before {
   z-index: -1; 
 }
 
-
-
-
-/* Estilo do menu */
-.nav-links {
-  display: none; /* Inicialmente escondido */
-  list-style: none;
-  padding: 0;
-}
-
-.nav-links.active {
-  display: flex; /* Exibe o menu quando 'active' é adicionado */
-  flex-direction: column; /* Exibe os itens de forma vertical */
-}
-
-/* Estilo do hambúrguer */
-.hamburger {
-  cursor: pointer;
-  font-size: 30px; /* Ajusta o tamanho do ícone */
-  display: none; /* Esconde o hambúrguer por padrão em telas grandes */
-}
-
-/* Exibe o hambúrguer em telas pequenas */
-@media screen and (max-width: 768px) {
-  .hamburger {
-      display: block;
-  }
-}
-
-
-
-
-
-
 main {
   padding: 30px;
   max-width: 900px;
@@ -452,25 +418,98 @@ header {
   margin-left: 20px;
 }
 
+.nav-links {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 50px;
+  right: 20px;
+  background-color: #007bff;
+  padding: 10px;
+  width: 200px;
+}
+
+.nav-links.active {
+  display: flex;
+}
+
+/* === Estilos do link de doação === */
+#doacao-link {
+  color: #007BB5;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#doacao-link:hover {
+  color: #00B6FF;
+}
+
+/* === Estilo do popup === */
+.popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  width: 80%;
+  max-width: 400px;
+}
+
+.popup-content h2 {
+  margin-bottom: 20px;
+  font-size: 22px;
+  color: #007BB5;
+}
+
+.popup-content p {
+  font-size: 16px;
+  color: #333;
+  margin: 10px 0;
+}
+
+.close-btn {
+  background-color: #FF0000;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+.close-btn:hover {
+  background-color: #FF4D4D;
+}
+
+/* === QR Code === */
+#qrcode {
+  margin-top: 20px;
+}
+
 /* === Responsividade === */
 @media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
   .nav-links {
     display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 50px;
-    right: 20px;
-    background-color: #007bff;
-    padding: 10px;
-    width: 200px;
   }
   .nav-links.active {
     display: flex;
   }
-  .hamburger {
-    display: block;
-  }
-
   /* Outros ajustes para responsividade */
   .info-card {
     width: 95%;
@@ -557,68 +596,4 @@ header {
   }
 }
 
-/* === Estilos do link de doação === */
-#doacao-link {
-  color: #007BB5;
-  text-decoration: none;
-  font-weight: bold;
-}
 
-#doacao-link:hover {
-  color: #00B6FF;
-}
-
-/* === Estilo do popup === */
-.popup {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.popup-content {
-  background: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  text-align: center;
-  width: 80%;
-  max-width: 400px;
-}
-
-.popup-content h2 {
-  margin-bottom: 20px;
-  font-size: 22px;
-  color: #007BB5;
-}
-
-.popup-content p {
-  font-size: 16px;
-  color: #333;
-  margin: 10px 0;
-}
-
-.close-btn {
-  background-color: #FF0000;
-  color: white;
-  padding: 8px 16px;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  margin-top: 20px;
-  font-size: 16px;
-}
-
-.close-btn:hover {
-  background-color: #FF4D4D;
-}
-
-/* === QR Code === */
-#qrcode {
-  margin-top: 20px;
-}

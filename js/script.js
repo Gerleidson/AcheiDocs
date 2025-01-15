@@ -167,22 +167,6 @@ window.onload = () => exibirDocumentosPaginados(paginaAtual);
 window.buscarCadastroPorNome = buscarCadastroPorNome;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // Mostrar o popup quando o link de doação for clicado
 const doacaoLink = document.getElementById("doacao-link");
 const popup = document.getElementById("popup");
