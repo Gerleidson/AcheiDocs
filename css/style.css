@@ -33,374 +33,7 @@ body::before {
   z-index: -1; 
 }
 
-
-
-
-/* Estilo do menu */
-.nav-links {
-  display: none; /* Inicialmente escondido */
-  list-style: none;
-  padding: 0;
-}
-
-.nav-links.active {
-  display: flex; /* Exibe o menu quando 'active' é adicionado */
-  flex-direction: column; /* Exibe os itens de forma vertical */
-}
-
-/* Estilo do hambúrguer */
-.hamburger {
-  cursor: pointer;
-  font-size: 30px; /* Ajusta o tamanho do ícone */
-  display: none; /* Esconde o hambúrguer por padrão em telas grandes */
-}
-
-/* Exibe o hambúrguer em telas pequenas */
-@media screen and (max-width: 768px) {
-  .hamburger {
-      display: block;
-  }
-}
-
-
-
-
-
-
-main {
-  padding: 30px;
-  max-width: 900px;
-  margin: 0 auto;
-  background-color: white;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  margin-top: 80px; /* Para garantir que o conteúdo não fique escondido atrás do cabeçalho fixo */
-}
-
-main h1, main h2 {
-  color: #007BB5;
-}
-
-main .section-title {
-  font-size: 1.2em;
-  margin-top: 20px;
-  color: #007BB5;
-}
-
-main .content {
-  margin-bottom: 20px;
-}
-
-.btn-download {
-  display: inline-block;
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px 20px;
-  text-decoration: none;
-  border-radius: 5px;
-  font-size: 16px;
-  text-align: center;
-}
-
-.btn-download:hover {
-  background-color: #0056b3;
-}
-
-/* === Estilo para o menu horizontal === */
-.menu-horizontal {
-  background-color: #007BB5;
-  padding: 10px 0;
-  width: 100%;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.menu-horizontal ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-}
-
-.menu-horizontal li {
-  margin-right: 15px;
-}
-
-.menu-horizontal a {
-  text-decoration: none;
-  color: #fff;
-  font-size: 14px;
-  font-weight: bold;
-  transition: color 0.3s ease-in-out;
-}
-
-.menu-horizontal a:hover {
-  color: #00B6FF;
-}
-
-/* === Estilo para os checkboxes === */
-.checkbox-group {
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-  align-items: center;
-}
-
-.checkbox-group label {
-  font-size: 14px;
-  color: #333;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.checkbox-group input[type="radio"] {
-  width: 18px;
-  height: 18px;
-  margin: 0;
-  cursor: pointer;
-  accent-color: #007BB5;
-}
-
-/* === Header com imagem === */
-#foto {
-  text-align: center;
-  margin: 20px 0;
-  width: 100%;
-}
-
-#foto img {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease-in-out;
-}
-
-#foto img:hover {
-  transform: scale(1.1);
-}
-
-/* === Estilo para formulários === */
-form {
-  width: 100%;
-  max-width: 800px;
-  margin: 20px 0;
-  padding: 20px;
-  background-color: #fff;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-form h3 {
-  font-size: 1.2em;
-  margin-bottom: 15px;
-  color: #333;
-  text-align: center;
-  font-weight: bold;
-}
-
-form label {
-  font-size: 14px;
-  color: #333;
-}
-
-form input,
-form textarea,
-form button,
-form select {
-  width: 100%;
-  margin-bottom: 12px;
-  padding: 10px;
-  box-sizing: border-box;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 14px;
-  transition: border-color 0.3s ease-in-out;
-}
-
-form input:focus,
-form textarea:focus,
-form select:focus {
-  border-color: #007BB5;
-  outline: none;
-}
-
-form button {
-  background-color: #007BB5;
-  color: #fff;
-  font-weight: bold;
-  cursor: pointer;
-  padding: 10px;
-  border-radius: 6px;
-  border: none;
-  transition: background-color 0.3s ease-in-out;
-}
-
-form button:hover {
-  background-color: #00B6FF;
-}
-
-/* Ajuste para cidade e estado ficarem lado a lado */
-.form-row {
-  display: flex;
-  gap: 15px;
-  justify-content: space-between;
-}
-
-.form-row div {
-  flex: 1;
-}
-
-.form-row input,
-.form-row select {
-  width: 100%;
-}
-
-/* === Estilo para tabela === */
-.table-container {
-  width: 80%;
-  max-width: 800px;
-  margin: 20px auto;
-  overflow-x: auto;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-thead {
-  position: sticky;
-  top: 0;
-  background-color: #007BB5;
-  color: rgb(0, 0, 0);
-}
-
-table th, table td {
-  border: 1px solid #ddd;
-  padding: 12px;
-  text-align: center;
-  font-size: 12px;
-}
-
-table th {
-  background-color: #f2f2f2;
-  font-weight: bold;
-}
-
-table td {
-  background-color: #fff;
-  color: #333;
-}
-
-table tr:hover td {
-  background-color: #f7f7f7;
-}
-
-/* === Navegação === */
-#navegacao {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-
-button {
-  padding: 5px 15px;
-  font-size: 16px;
-}
-
-#pagina-atual {
-  font-size: 16px;
-}
-
-/* === Estilo personalizado para o rodapé === */
-footer.footer {
-  background-color: #000000;
-  color: #fff;
-  text-align: center;
-  padding: 10px 0;
-  font-size: 14px;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  z-index: 10;
-}
-
-/* === Estilos gerais do card === */
-.info-card {
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  width: 90%;
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 10px;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
-}
-
-/* Cabeçalho do card */
-.card-header {
-  text-align: center;
-  background-color: #007BB5;
-  padding: 15px;
-  color: #fff;
-  border-radius: 10px 10px 0 0;
-}
-
-.card-header h4 {
-  font-size: 1.8em;
-  font-weight: bold;
-  margin: 0;
-  text-transform: uppercase;
-}
-
-/* Corpo do card */
-.card-body {
-  margin-top: 20px;
-  text-align: center;
-}
-
-.card-body h5 {
-  font-size: 1.4em;
-  color: #333;
-  margin-bottom: 15px;
-}
-
-.card-body p {
-  font-size: 1em;
-  color: #555;
-  margin-bottom: 12px;
-  line-height: 1.6;
-}
-
-/* Rodapé do card com o botão */
-.card-footer {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.btn-action {
-  background-color: #00B6FF;
-  color: white;
-  font-size: 1em;
-  padding: 12px 25px;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.btn-action:hover {
-  background-color: #007BB5;
-}
-
-/* === Estilos para o topo === */
+/* === Estilos do Header === */
 header {
   background-color: #000000;
   padding: 10px 20px;
@@ -557,18 +190,211 @@ header {
   }
 }
 
-/* === Estilos do link de doação === */
-#doacao-link {
-  color: #007BB5;
-  text-decoration: none;
-  font-weight: bold;
+/* === Estilo do menu === */
+.nav-links {
+  display: none; /* Inicialmente escondido */
+  list-style: none;
+  padding: 0;
 }
 
-#doacao-link:hover {
+.nav-links.active {
+  display: flex; /* Exibe o menu quando 'active' é adicionado */
+  flex-direction: column; /* Exibe os itens de forma vertical */
+}
+
+.hamburger {
+  cursor: pointer;
+  font-size: 30px; /* Ajusta o tamanho do ícone */
+  display: none; /* Esconde o hambúrguer por padrão em telas grandes */
+}
+
+/* Exibe o hambúrguer em telas pequenas */
+@media screen and (max-width: 768px) {
+  .hamburger {
+      display: block;
+  }
+}
+
+/* === Estilo do botão de download === */
+.btn-download {
+  display: inline-block;
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.btn-download:hover {
+  background-color: #0056b3;
+}
+
+/* === Estilos para a área principal === */
+main {
+  padding: 30px;
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin-top: 80px; /* Para garantir que o conteúdo não fique escondido atrás do cabeçalho fixo */
+}
+
+main h1, main h2 {
+  color: #007BB5;
+}
+
+main .section-title {
+  font-size: 1.2em;
+  margin-top: 20px;
+  color: #007BB5;
+}
+
+main .content {
+  margin-bottom: 20px;
+}
+
+/* === Estilo para o menu horizontal === */
+.menu-horizontal {
+  background-color: #007BB5;
+  padding: 10px 0;
+  width: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.menu-horizontal ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.menu-horizontal li {
+  margin-right: 15px;
+}
+
+.menu-horizontal a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  transition: color 0.3s ease-in-out;
+}
+
+.menu-horizontal a:hover {
   color: #00B6FF;
 }
 
-/* === Estilo do popup === */
+/* === Estilo para os checkboxes === */
+.checkbox-group {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+}
+
+.checkbox-group label {
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.checkbox-group input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  cursor: pointer;
+  accent-color: #007BB5;
+}
+
+/* === Estilo do rodapé === */
+footer.footer {
+  background-color: #000000;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 14px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+/* === Estilos gerais do card === */
+.info-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 10px;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* Cabeçalho do card */
+.card-header {
+  text-align: center;
+  background-color: #007BB5;
+  padding: 15px;
+  color: #fff;
+  border-radius: 10px 10px 0 0;
+}
+
+.card-header h4 {
+  font-size: 1.8em;
+  font-weight: bold;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+/* Corpo do card */
+.card-body {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.card-body h5 {
+  font-size: 1.4em;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.card-body p {
+  font-size: 1em;
+  color: #555;
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+/* Rodapé do card com o botão */
+.card-footer {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.btn-action {
+  background-color: #00B6FF;
+  color: white;
+  font-size: 1em;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-action:hover {
+  background-color: #007BB5;
+}
+
+/* === Estilos do popup === */
 .popup {
   display: none;
   position: fixed;
@@ -594,31 +420,24 @@ header {
 .popup-content h2 {
   margin-bottom: 20px;
   font-size: 22px;
-  color: #007BB5;
+  color: #333;
 }
 
 .popup-content p {
-  font-size: 16px;
-  color: #333;
-  margin: 10px 0;
+  margin-bottom: 20px;
 }
 
-.close-btn {
-  background-color: #FF0000;
+.popup .popup-close {
+  background-color: #ff4c4c;
   color: white;
-  padding: 8px 16px;
-  border-radius: 6px;
-  border: none;
+  padding: 8px 15px;
+  border-radius: 50%;
   cursor: pointer;
-  margin-top: 20px;
-  font-size: 16px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 
-.close-btn:hover {
-  background-color: #FF4D4D;
-}
-
-/* === QR Code === */
-#qrcode {
-  margin-top: 20px;
+.popup .popup-close:hover {
+  background-color: #e60000;
 }
