@@ -502,27 +502,28 @@ header {
   padding: 10px 20px;
 }
 
+/* Estilo do botão de voltar para parecer um link */
 .btn-voltar {
   display: inline-flex;
   align-items: center;
-  background-color: #6c757d;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  font-size: 1em;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-  margin-left: auto;
+  background-color: transparent; /* Remover o fundo */
+  color: #007bff; /* Cor do texto do link */
+  padding: 0; /* Remover o padding */
+  border: none; /* Remover bordas */
+  font-size: 16px; /* Tamanho da fonte do link */
+  text-decoration: none; /* Remover sublinhado */
+  transition: color 0.3s ease; /* Efeito suave ao passar o mouse */
 }
 
+.btn-voltar:hover {
+  color: #0056b3; /* Cor do texto ao passar o mouse (efeito de link) */
+}
+
+/* Estilos do ícone de voltar */
 .btn-voltar i {
   margin-right: 5px;
 }
 
-.btn-voltar:hover {
-  background-color: #5a6268;
-}
 
 .bi-arrow-left {
   font-size: 1.2em;
