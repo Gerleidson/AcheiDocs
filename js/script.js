@@ -166,7 +166,6 @@ window.onload = () => exibirDocumentosPaginados(paginaAtual);
 // Tornar a função globalmente acessível
 window.buscarCadastroPorNome = buscarCadastroPorNome;
 
-
 // Mostrar o popup quando o link de doação for clicado
 const doacaoLink = document.getElementById("doacao-link");
 const popup = document.getElementById("popup");
@@ -180,10 +179,17 @@ doacaoLink.addEventListener("click", (event) => {
     popup.style.display = "flex";
     
     // Gerar o QR Code para o PIX
-    const pix = "27.201.781.0001/39"; // Substitua com sua chave PIX
+    const chavePix = "27.201.781/0001-39"; // Substitua com sua chave PIX
+    const valor = "10.00"; // Exemplo de valor
+    const nomeRecebedor = "Gerleidson Bomfim";
+    const cidadeRecebedor = "Camaçari";
+    const txid = "1234567890"; // Se necessário, adicione um TXID
 
-    // Verifique se a chave PIX está no formato correto
-    console.log("Gerando QR Code para:", pix);
+    // Montando o formato padrão para o código QR PIX
+    const pix = `00020126500014BR.GOV.BCB.PIX011427.201.781/0001-39520400005303986540010005802BR5913Gerleidson Bomfim6009Camaçari6207050312345678906304`;
+
+    // Exibir o código gerado no console (você pode gerar o QR Code depois disso)
+    console.log(pix);
 
     QRCode.toCanvas(document.getElementById("qrcode"), pix, (error) => {
         if (error) {
@@ -201,7 +207,7 @@ closeBtn.addEventListener("click", () => {
 
 // Tornar o PIX clicável e copiar para a área de transferência
 pixCopy.addEventListener("click", () => {
-    const pix = "27.201.781.0001/39"; // Substitua com sua chave PIX
+    const pix = "27.201.781/0001-39"; // Substitua com sua chave PIX
     
     // Copiar o valor do PIX para a área de transferência
     navigator.clipboard.writeText(pix).then(() => {
@@ -211,7 +217,6 @@ pixCopy.addEventListener("click", () => {
     });
 });
 
-
 document.addEventListener('DOMContentLoaded', function () {
     // Código do hamburguer: Adiciona o evento de clique no ícone
     document.getElementById('hamburger-icon').addEventListener('click', function() {
@@ -219,4 +224,3 @@ document.addEventListener('DOMContentLoaded', function () {
         navLinks.classList.toggle('active'); // Alterna a classe 'active' para exibir/ocultar o menu
     });
 });
-
