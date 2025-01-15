@@ -431,25 +431,105 @@ footer.footer {
   margin-top: 20px;
 }
 
+/* === Estilos gerais para o cabeçalho === */
+header {
+  background-color: #343a40;
+  width: 100%;
+  padding: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 10px 20px;
+}
+
+.navbar .logo span {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Estilos para o menu */
+.menu {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.nav-links {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  margin-left: 20px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #007bff;
+}
+
+.hamburger {
+  display: none;
+  font-size: 30px;
+  cursor: pointer;
+  color: white;
+  margin-left: 50px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 20px;
+}
+
+.btn-voltar {
+  display: inline-flex;
+  align-items: center;
+  background-color: #6c757d;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  margin-left: auto;
+}
+
+.btn-voltar i {
+  margin-right: 5px;
+}
+
+.btn-voltar:hover {
+  background-color: #5a6268;
+}
+
+.bi-arrow-left {
+  font-size: 1.2em;
+}
+
 /* === Menu em telas pequenas === */
 @media (max-width: 768px) {
-  .hamburger {
-    display: block; /* Exibe o ícone de menu hamburguer em telas pequenas */
-  }
-
-  .nav-links {
-    display: none; /* Oculta o menu por padrão */
-    flex-direction: column; /* Organiza os itens de menu em uma coluna */
-    width: 100%; /* Garante que o menu ocupe toda a largura da tela */
-    background-color: #343a40; /* Cor de fundo para o menu */
-    padding: 10px;
-    margin-top: 10px; /* Espaço abaixo do ícone */
-  }
-
-  .nav-links.active {
-    display: flex; /* Exibe o menu quando ativado */
-  }
-
   .info-card {
     width: 95%;
     max-width: 100%;
@@ -534,125 +614,6 @@ footer.footer {
     width: 90%;
   }
 }
-
-
-
-
-
-
-
-
-
-
-/* === Estilos gerais para o cabeçalho === */
-header {
-  background-color: #343a40;
-  width: 100%;
-  padding: 0;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1000;
-}
-
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #333;
-  padding: 10px 20px;
-}
-
-.navbar .logo span {
-  color: white;
-  font-size: 24px;
-  font-weight: bold;
-}
-
-/* Estilos para o menu */
-.menu {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  width: 100%;
-}
-
-.nav-links {
-  display: flex;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-links li {
-  margin-left: 20px;
-}
-
-.nav-links a {
-  color: white;
-  text-decoration: none;
-  font-size: 16px;
-  transition: color 0.3s ease;
-}
-
-.nav-links a:hover {
-  color: #007bff;
-}
-
-.hamburger {
-  display: none;
-  font-size: 30px;
-  cursor: pointer;
-  color: white;
-  margin-left: 20px;
-}
-
-
-
-
-
-.container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 10px 20px;
-}
-
-.btn-voltar {
-  display: inline-flex;
-  align-items: center;
-  background-color: #6c757d;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  font-size: 1em;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-  margin-left: auto;
-}
-
-.btn-voltar i {
-  margin-right: 5px;
-}
-
-.btn-voltar:hover {
-  background-color: #5a6268;
-}
-
-.bi-arrow-left {
-  font-size: 1.2em;
-}
-
-
-
-
-
-
-
-
-
 
 
 /* Responsividade para telas menores */
