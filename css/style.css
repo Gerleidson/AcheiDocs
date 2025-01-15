@@ -378,46 +378,43 @@ header {
   z-index: 1000;
 }
 
-/* Estilos básicos */
 .navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
-  padding: 10px 20px;
-  background-color: #333;
-  color: white;
 }
 
 .navbar .logo span {
-  font-size: 24px;
+  font-size: 20px;
+  font-weight: bold;
 }
 
-.menu {
+.navbar .menu {
   display: flex;
   align-items: center;
 }
 
 .nav-links {
   display: flex;
-  list-style: none;
+  list-style-type: none;
+  margin: 0;
   padding: 0;
 }
 
 .nav-links li {
-  margin: 0 15px;
+  margin-left: 20px;
 }
 
-.nav-links a {
-  text-decoration: none;
+.nav-links li a {
   color: white;
+  text-decoration: none;
   font-size: 16px;
 }
 
 .hamburger {
   display: none;
-  font-size: 30px;
+  font-size: 24px;
   cursor: pointer;
-  color: white;
   margin-left: 20px;
 }
 
@@ -489,23 +486,23 @@ header {
 
 /* === Responsividade === */
 @media (max-width: 768px) {
-  .hamburger {
-    display: block;
-  }
   .nav-links {
     display: none;
     flex-direction: column;
     position: absolute;
-    top: 60px;
+    top: 50px;
     right: 20px;
     background-color: #007bff;
     padding: 10px;
     width: 200px;
-    border-radius: 5px;
-}
+  }
   .nav-links.active {
     display: flex;
   }
+  .hamburger {
+    display: block;
+  }
+
   /* Outros ajustes para responsividade */
   .info-card {
     width: 95%;
