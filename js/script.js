@@ -172,23 +172,28 @@ const popup = document.getElementById("popup");
 const closeBtn = document.getElementById("close-btn");
 const pixCopy = document.getElementById("pix-copy");
 
+
+
+
+
+
 doacaoLink.addEventListener("click", (event) => {
-    event.preventDefault(); // Impede a navegação padrão do link
+    event.preventDefault();
 
     // Exibe o popup
     popup.style.display = "flex";
 
     // Dados do PIX
-    const chavePix = "27.201.781/0001-39"; // Substitua pela sua chave PIX
-    const valor = "10.00"; // Valor da doação
-    const nomeRecebedor = "Gerleidson Bomfim";
-    const cidadeRecebedor = "Camaçari";
-    const txid = "1234567890"; // Opcional: Identificador único da transação
+    const chavePix = "27.201.781/0001-39"; // Chave PIX
+    const valor = "10.00"; // Valor da transação
+    const nomeRecebedor = "Gerleidson Bomfim"; // Nome do recebedor
+    const cidadeRecebedor = "Camaçari"; // Cidade do recebedor
+    const txid = "1234567890"; // TXID
 
     // Função para calcular o CRC16
-    function calculaCRC16(payload) {
-        let polinomio = 0x1021; // Polinômio usado no cálculo do CRC16
-        let resultado = 0xFFFF; // Valor inicial do CRC16
+    function calcularCRC16(payload) {
+        let polinomio = 0x1021;
+        let resultado = 0xFFFF;
 
         for (let i = 0; i < payload.length; i++) {
             resultado ^= payload.charCodeAt(i) << 8;
@@ -200,45 +205,38 @@ doacaoLink.addEventListener("click", (event) => {
                 }
             }
         }
-
-        return (resultado & 0xFFFF).toString(16).toUpperCase().padStart(4, "0");
+        return ((resultado ^ 0x0000) & 0xFFFF).toString(16).toUpperCase().padStart(4, "0");
     }
 
-    // Formatação do valor em centavos
-    const valorCentavos = valor ? (parseFloat(valor) * 100).toFixed(0).padStart(10, "0") : "";
+    // Montar o payload do BR Code (PIX)
+    const payload = [
+        "00" + "02" + "01", // Payload Format Indicator
+        "26" + ("0014BR.GOV.BCB.PIX0114" + chavePix).length.toString().padStart(2, "0") + "0014BR.GOV.BCB.PIX0114" + chavePix, // Merchant Account Info
+        "52" + "04" + "0000", // Merchant Category Code (sem categoria específica)
+        "53" + "03" + "986", // Moeda (986 = BRL)
+        "54" + valor.length.toString().padStart(2, "0") + valor, // Valor
+        "58" + "02" + "BR", // País
+        "59" + nomeRecebedor.length.toString().padStart(2, "0") + nomeRecebedor, // Nome do recebedor
+        "60" + cidadeRecebedor.length.toString().padStart(2, "0") + cidadeRecebedor, // Cidade do recebedor
+        "62" + ("0503" + txid).length.toString().padStart(2, "0") + "0503" + txid, // TXID
+    ].join("");
 
-    // Montagem do payload
-    let payload = `000201` + // Payload Format Indicator
-                  `26${26 + chavePix.length}0014BR.GOV.BCB.PIX0114${chavePix}` + // Merchant Account Information
-                  `52040000` + // Merchant Category Code
-                  `5303986` + // Currency (BRL)
-                  `54${valorCentavos.length}${valorCentavos}` + // Transaction Amount
-                  `5802BR` + // Country Code
-                  `59${nomeRecebedor.length}${nomeRecebedor}` + // Merchant Name
-                  `60${cidadeRecebedor.length}${cidadeRecebedor}`; // Merchant City
+    // Adicionar o CRC16
+    const payloadComCRC16 = `${payload}6304${calcularCRC16(payload + "6304")}`;
 
-    // Adiciona o campo TXID, se fornecido
-    if (txid) {
-        payload += `62${txid.length + 4}05${txid.length}${txid}`;
-    }
+    // Exibir o payload para depuração
+    console.log("Payload do QR Code PIX:", payloadComCRC16);
 
-    // Adiciona o campo CRC16
-    payload += `6304`;
-    const crc16 = calculaCRC16(payload);
-    payload += crc16;
-
-    console.log("Código PIX gerado:", payload);
-
-    // Gerar o QR Code no elemento <canvas>
-    QRCode.toCanvas(document.getElementById("qrcode"), payload, (error) => {
+    // Gerar o QR Code
+    QRCode.toCanvas(document.getElementById("qrcode"), payloadComCRC16, (error) => {
         if (error) {
             console.error("Erro ao gerar QR Code:", error);
-            alert("Erro ao gerar QR Code. Tente novamente.");
         } else {
-            console.log("QR Code gerado com sucesso!");
+            console.log("QR Code PIX gerado com sucesso!");
         }
     });
 });
+
 
 
 // Fechar o popup
