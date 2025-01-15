@@ -378,59 +378,47 @@ header {
   z-index: 1000;
 }
 
+/* Estilos básicos */
 .navbar {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
 }
 
 .navbar .logo span {
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 24px;
 }
 
-.navbar .menu {
+.menu {
   display: flex;
   align-items: center;
 }
 
 .nav-links {
   display: flex;
-  list-style-type: none;
-  margin: 0;
+  list-style: none;
   padding: 0;
 }
 
 .nav-links li {
-  margin-left: 20px;
+  margin: 0 15px;
 }
 
-.nav-links li a {
-  color: white;
+.nav-links a {
   text-decoration: none;
+  color: white;
   font-size: 16px;
 }
 
 .hamburger {
   display: none;
-  font-size: 24px;
+  font-size: 30px;
   cursor: pointer;
+  color: white;
   margin-left: 20px;
-}
-
-.nav-links {
-  display: none;
-  flex-direction: column;
-  position: absolute;
-  top: 50px;
-  right: 20px;
-  background-color: #007bff;
-  padding: 10px;
-  width: 200px;
-}
-
-.nav-links.active {
-  display: flex;
 }
 
 /* === Estilos do link de doação === */
@@ -506,7 +494,15 @@ header {
   }
   .nav-links {
     display: none;
-  }
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: #007bff;
+    padding: 10px;
+    width: 200px;
+    border-radius: 5px;
+}
   .nav-links.active {
     display: flex;
   }
