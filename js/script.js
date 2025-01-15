@@ -1,5 +1,5 @@
 import { salvarDados } from './firebase.js'; 
-import { getDatabase, ref, get, onChildAdded, remove, child } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js"; 
+import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js"; 
 
 // Inicializando o Firebase corretamente com o db importado
 const db = getDatabase();
@@ -26,14 +26,8 @@ document.getElementById('form-cadastro').addEventListener('submit', function (ev
         return;
     }
 
-    // Adiciona a data de cadastro (timestamp) no momento do cadastro
-    const dataCadastro = Date.now(); // Obtém o timestamp atual (em milissegundos)
-
-    // Chama a função para salvar no Firebase, incluindo a data de cadastro
-    salvarDados(nome, documento, cidade, estado, telefone, tipo, dataCadastro);
-
-    // Limpa o formulário após o cadastro ser realizado
-    document.getElementById('form-cadastro').reset();
+    // Chama a função para salvar no Firebase
+    salvarDados(nome, documento, cidade, estado, telefone, tipo);
 });
 
 // Função para buscar o cadastro por nome
@@ -45,7 +39,7 @@ function buscarCadastroPorNome() {
     }
 
     // Referência ao banco de dados do Firebase
-    const dbRef = ref(db, "documentos/");
+    const dbRef = ref(db, "documentos/"); 
 
     get(dbRef).then((snapshot) => {
         if (snapshot.exists()) {
@@ -79,7 +73,7 @@ function exibirPopup(dados) {
         // Se os dados forem encontrados, mostra um pop-up com as informações
         alert(`
             Resultado Encontrado:
-
+            
             Nome: ${dados.nome}
             Documento: ${dados.documento}
             Telefone: ${dados.telefone}
@@ -112,7 +106,6 @@ function exibirDocumentosPaginados(pagina) {
 
             // Atualizar a navegação de página
             atualizarNavegacao(pagina, totalPaginas);
-
         } else {
             console.log("Nenhum dado encontrado.");
         }
@@ -134,7 +127,7 @@ function exibirDocumentosNaTabela(documentos) {
             <td>${doc.cidade}</td>
             <td>${doc.estado}</td>
             <td>${doc.telefone}</td>
-            <td>${doc.tipo}</td>
+            <td>${doc.tipo}</td> <!-- Corrigido para 'tipo' -->
         `;
         tabela.appendChild(row);
     });
@@ -167,49 +160,28 @@ document.getElementById('next').addEventListener('click', () => {
     exibirDocumentosPaginados(paginaAtual);
 });
 
-// Função para observar novos documentos no Firebase e atualizar a tabela automaticamente
-function ouvirNovosDocumentos() {
-    const referencia = ref(db, 'documentos/');
-    
-    // Adiciona um listener para quando um novo dado é adicionado
-    onChildAdded(referencia, (snapshot) => {
-        const novoDocumento = snapshot.val();
-
-        // Verificar se o novo documento precisa ser exibido na página atual
-        const totalDocumentos = Object.keys(snapshot.val()).length;
-        const totalPaginas = Math.ceil(totalDocumentos / registrosPorPagina);
-
-        // Atualizar a tabela automaticamente
-        if (paginaAtual <= totalPaginas) {
-            exibirDocumentosPaginados(paginaAtual);
-        }
-    });
-}
-
 // Chama a função ao carregar a página para exibir os documentos da primeira página
-window.onload = () => {
-    exibirDocumentosPaginados(paginaAtual);
-    ouvirNovosDocumentos(); // Chama a função para ouvir os novos documentos
-};
+window.onload = () => exibirDocumentosPaginados(paginaAtual);
 
 // Tornar a função globalmente acessível
 window.buscarCadastroPorNome = buscarCadastroPorNome;
 
 
-// Aguarde o DOM estar carregado
-  document.addEventListener('DOMContentLoaded', function() {
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
-
-    hamburger.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-    });
-  });
 
 
 
-  
- 
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Mostrar o popup quando o link de doação for clicado
 const doacaoLink = document.getElementById("doacao-link");
@@ -237,7 +209,6 @@ doacaoLink.addEventListener("click", (event) => {
         }
     });
 });
-
 
 // Fechar o popup
 closeBtn.addEventListener("click", () => {
