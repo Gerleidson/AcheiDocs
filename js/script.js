@@ -273,3 +273,10 @@ dicasLink.addEventListener('click', function(e) {
 closeDicas.addEventListener('click', function() {
     popupDicas.style.display = 'none'; // Esconde o popup
 });
+
+// Fechar o popup clicando fora do conteúdo
+popupDicas.addEventListener('click', function(e) {
+    if (e.target === popupDicas) {
+        popupDicas.style.display = 'none';
+    }
+});
