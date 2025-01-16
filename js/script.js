@@ -227,16 +227,8 @@ doacaoLink.addEventListener("click", (event) => {
     // Exibir o payload para depuração
     console.log("Payload do QR Code PIX:", payloadComCRC16);
 
-    // Gerar o QR Code
-    QRCode.toCanvas(document.getElementById("qrcode"), payloadComCRC16, (error) => {
-        if (error) {
-            console.error("Erro ao gerar QR Code:", error);
-        } else {
-            console.log("QR Code PIX gerado com sucesso!");
-        }
-    });
+    
 });
-
 
 
 // Fechar o popup
@@ -262,4 +254,22 @@ document.addEventListener('DOMContentLoaded', function () {
         const navLinks = document.getElementById('nav-links');
         navLinks.classList.toggle('active'); // Alterna a classe 'active' para exibir/ocultar o menu
     });
+});
+
+
+
+// Obtendo os elementos do popup e botão de fechamento
+const dicasLink = document.getElementById('dicas-link');
+const popupDicas = document.getElementById('popup-dicas');
+const closeDicas = document.getElementById('close-dicas');
+
+// Abrir o popup quando o link for clicado
+dicasLink.addEventListener('click', function(e) {
+    e.preventDefault();
+    popupDicas.style.display = 'flex'; // Torna o popup visível
+});
+
+// Fechar o popup quando o botão de fechar for clicado
+closeDicas.addEventListener('click', function() {
+    popupDicas.style.display = 'none'; // Esconde o popup
 });

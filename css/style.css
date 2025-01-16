@@ -396,7 +396,8 @@ footer.footer {
   border-radius: 8px;
   text-align: center;
   width: 80%;
-  max-width: 400px;
+  max-width: 500px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .popup-content h2 {
@@ -411,6 +412,16 @@ footer.footer {
   margin: 10px 0;
 }
 
+.popup ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.popup ul li {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
 .close-btn {
   background-color: #FF0000;
   color: white;
@@ -423,7 +434,7 @@ footer.footer {
 }
 
 .close-btn:hover {
-  background-color: #FF4D4D;
+  background-color: #007BB5;
 }
 
 /* === QR Code === */
