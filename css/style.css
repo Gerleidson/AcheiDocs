@@ -304,7 +304,7 @@ footer.footer {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   width: 90%;
   max-width: 800px;
-  margin: 50px auto 10px auto; /* Espaço superior menor (20px), inferior ainda menor (10px) */
+  margin: 10px auto 10px auto; /* Espaço superior menor (20px), inferior ainda menor (10px) */
   padding: 10px;
   transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
@@ -652,7 +652,6 @@ header {
   }
 }
 
-
 /* Estilos para a seção clima */
 main.clima {
   background-color: #fff; /* Cor de fundo branca */
@@ -663,6 +662,7 @@ main.clima {
   max-width: 100%; /* Limita a largura máxima do main */
   margin: 30px auto; /* Centraliza a seção na página e adiciona espaçamento vertical */
   text-align: center; /* Centraliza o conteúdo dentro da seção */
+  box-sizing: border-box; /* Para garantir que a largura seja calculada com padding */
 }
 
 /* Estilos para o widget de clima */
@@ -688,12 +688,25 @@ main.clima .weatherwidget-io:hover {
 /* Responsividade para telas menores */
 @media (max-width: 600px) {
   main.clima {
-    width: 100%; /* Reduz a largura para 90% em telas pequenas */
-    padding: 15px; /* Ajusta o espaçamento interno */
+    width: 100%; /* Largura total da tela para dispositivos móveis */
+    padding: 0; /* Ajusta o espaçamento interno */
+    margin: 30px 0; /* Reduz a margem para dispositivos móveis */
   }
 
   main.clima .weatherwidget-io {
-    font-size: 1em; /* Reduz o tamanho da fonte */
-    padding: 10px 0; /* Ajusta o espaçamento interno */
+    font-size: 1em; /* Reduz o tamanho da fonte para telas pequenas */
+    padding: 8px 0; /* Ajusta o espaçamento interno */
+    margin-top: 0px; /* Ajusta a margem superior */
+  }
+}
+
+@media (max-width: 400px) {
+  main.clima {
+    padding: 5px; /* Reduz o padding em dispositivos muito pequenos */
+  }
+
+  main.clima .weatherwidget-io {
+    font-size: 0.9em; /* Reduz ainda mais o tamanho da fonte */
+    padding: 6px 0; /* Ajusta o espaçamento interno */
   }
 }
