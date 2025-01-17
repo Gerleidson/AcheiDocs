@@ -27,11 +27,6 @@
     padding: 10px 20px;
   }
 
-  table th,
-  table td {
-    padding: 8px;
-    font-size: 12px;
-  }
 
   .form-row {
     flex-direction: column;
@@ -68,19 +63,5 @@
   form {
     width: 100%;
     padding: 10px;
-  }
-
-  .table-container {
-    width: 100%;
-  }
-
-  table th,
-  table td {
-    font-size: 11px;
-    padding: 8px;
-  }
-
-  table {
-    width: 100%;
   }
 }
