@@ -1,57 +1,112 @@
 /* === Estilo para tabela === */
 .table-container {
-    width: 80%;
-    max-width: 800px;
-    margin: 20px auto;
-    overflow-x: auto;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  thead {
-    position: sticky;
-    top: 0;
-    background-color: #007BB5;
-    color: rgb(0, 0, 0);
-  }
-  
+  width: 80%;
+  max-width: 800px;
+  margin: 20px auto;
+  overflow-x: auto; /* Adiciona rolagem horizontal */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  position: sticky;
+  top: 0;
+  background-color: #007BB5;
+  color: rgb(0, 0, 0);
+}
+
+table th, table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+  font-size: 11px;
+}
+
+table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+table td {
+  background-color: #fff;
+  color: #333;
+}
+
+table tr:hover td {
+  background-color: #f7f7f7;
+}
+
+/* === Navegação === */
+#navegacao {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap; /* Permite quebra de linha em telas pequenas */
+}
+
+button {
+  padding: 8px 18px;
+  font-size: 14px;
+  border: none;
+  background-color: #007BB5;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #005f87;
+}
+
+#pagina-atual {
+  font-size: 16px;
+  color: white;
+}
+
+/* === Responsividade === */
+
+/* Ajustes para telas pequenas */
+@media (max-width: 768px) {
   table th, table td {
-    border: 1px solid #ddd;
-    padding: 12px;
-    text-align: center;
-    font-size: 11px;
+      font-size: 9px;
+      padding: 8px;
   }
-  
-  table th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-  }
-  
-  table td {
-    background-color: #fff;
-    color: #333;
-  }
-  
-  table tr:hover td {
-    background-color: #f7f7f7;
-  }
-  
-  /* === Navegação === */
-  #navegacao {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-  }
-  
+
   button {
-    padding: 5px 15px;
-    font-size: 16px;
+      font-size: 12px;
+      padding: 6px 12px;
   }
-  
+
+  #navegacao {
+      gap: 5px;
+  }
+
   #pagina-atual {
-    font-size: 16px;
+      font-size: 14px;
   }
+}
+
+/* Ajustes para telas muito pequenas */
+@media (max-width: 480px) {
+  .table-container {
+      width: 90%;
+  }
+
+  table th, table td {
+      font-size: 8px;
+      padding: 6px;
+  }
+
+  button {
+      font-size: 12px;
+      padding: 5px 10px;
+  }
+
+  #pagina-atual {
+      font-size: 12px;
+  }
+}
