@@ -27,11 +27,6 @@
     padding: 10px 20px;
   }
 
-  table th,
-  table td {
-    padding: 8px;
-    font-size: 12px;
-  }
 
   .form-row {
     flex-direction: column;
@@ -69,6 +64,7 @@
     width: 100%;
     padding: 10px;
   }
+<<<<<<< HEAD
 
   .table-container {
     width: 100%;
@@ -83,4 +79,6 @@
   table {
     width: 100%;
   }
+=======
+>>>>>>> 86782ede1f4e9a3db50676c83640ad4f825d5559
 }

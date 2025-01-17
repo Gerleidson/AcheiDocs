@@ -117,7 +117,7 @@ header {
   display: inline-flex;
   align-items: center;
   background-color: transparent; /* Remover o fundo */
-  color: #007bff; /* Cor do texto do link */
+  color: #fff; /* Cor do texto do link */
   padding: 0; /* Remover o padding */
   border: none; /* Remover bordas */
   font-size: 16px; /* Tamanho da fonte do link */
