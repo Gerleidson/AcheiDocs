@@ -9,7 +9,6 @@ body, h1, h2, h3, p, ul, li, form, button, input, select {
 body {
   font-family: 'Arial', sans-serif;
   position: relative;
-  background: url('/img/bg.jpga') no-repeat center center fixed; /* === img BG apague a ultima letra da extensao da img === */
   background-size: cover;
   color: #333;
   line-height: 1.6;
@@ -19,7 +18,11 @@ body {
   flex-direction: column;
   min-height: 100vh;
   padding: 20px;
+  justify-content: space-between; /* Alterado para garantir que o conteúdo e o rodapé se alinhem corretamente */
+  margin-bottom: 30px; /* Ajuste a margem inferior para dar espaço para o rodapé */
 }
+
+
 
 body::before {
   content: ''; 
@@ -40,7 +43,9 @@ main {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   margin-top: 80px;
+  padding-bottom: 60px; /* Espaço suficiente para o rodapé */
 }
+
 
 main h1, main h2 {
   color: #007BB5;
@@ -291,11 +296,12 @@ footer.footer {
   text-align: center;
   padding: 10px 0;
   font-size: 14px;
-  position: fixed;
+  position: absolute; /* Alterado para absolute */
   bottom: 0;
   width: 100%;
   z-index: 10;
 }
+
 
 /* === Estilos gerais do card === */
 .info-card {
