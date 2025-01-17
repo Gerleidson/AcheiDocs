@@ -298,13 +298,25 @@ footer.footer {
 }
 
 /* === Estilos gerais do card === */
+/* Ajustando o margin-top do main para diminuir o espaço entre o header e o card */
+main {
+  padding: 50px;
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin-top: 80px; /* Reduzido de 80px para 40px */
+}
+
+/* Ajustando o margin-top do info-card para reduzir o espaço superior */
 .info-card {
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   width: 90%;
   max-width: 800px;
-  margin: 50px auto 10px auto; /* Espaço superior menor (20px), inferior ainda menor (10px) */
+  margin: 150px auto 10px auto; /* Reduzido o margin-top para 30px */
   padding: 10px;
   transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
@@ -651,4 +663,5 @@ header {
       display: flex;
   }
 }
+
 
