@@ -1,0 +1,6 @@
+/* === Reset de estilos padrão === */
+body, h1, h2, h3, p, ul, li, form, button, input, select {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }

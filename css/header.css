@@ -1,0 +1,140 @@
+/* === Estilos gerais para o cabeçalho === */
+header {
+  background-color: #343a40;
+  width: 100%;
+  padding: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #000000;
+  padding: 10px 20px;
+  height: 50px;
+  }
+  
+.navbar .logo span {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Estilos para o menu */
+.menu {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.nav-links {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  margin-left: 20px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #007bff;
+}
+
+.hamburger {
+  display: none;
+  font-size: 30px;
+  cursor: pointer;
+  color: white;
+  margin-left: 50px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 20px;
+}
+
+/* === Estilo para o menu horizontal === */
+.menu-horizontal {
+  background-color: #007BB5;
+  padding: 10px 0;
+  width: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.menu-horizontal ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.menu-horizontal li {
+  margin-right: 15px;
+}
+
+.menu-horizontal a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  transition: color 0.3s ease-in-out;
+}
+
+.menu-horizontal a:hover {
+  color: #00B6FF;
+}
+
+/* === Estilos do link de doação === */
+#doacao-link {
+  color: #fff;
+  text-decoration: none;
+}
+
+#doacao-link:hover {
+  color: #007BB5;
+}
+
+/* Estilo do botão de voltar para parecer um link */
+.btn-voltar {
+  display: inline-flex;
+  align-items: center;
+  background-color: transparent; /* Remover o fundo */
+  color: #007bff; /* Cor do texto do link */
+  padding: 0; /* Remover o padding */
+  border: none; /* Remover bordas */
+  font-size: 16px; /* Tamanho da fonte do link */
+  text-decoration: none; /* Remover sublinhado */
+  transition: color 0.3s ease; /* Efeito suave ao passar o mouse */
+}
+
+.btn-voltar:hover {
+  color: #0056b3; /* Cor do texto ao passar o mouse (efeito de link) */
+}
+
+/* Estilos do ícone de voltar */
+.btn-voltar i {
+  margin-right: 5px;
+}
+
+.bi-arrow-left {
+  font-size: 1.2em;
+}
+

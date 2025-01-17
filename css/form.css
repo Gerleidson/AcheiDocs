@@ -1,0 +1,103 @@
+/* === Estilo para formulários === */
+form {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  form h3 {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    color: #333;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  form label {
+    font-size: 14px;
+    color: #333;
+  }
+  
+  form input,
+  form textarea,
+  form button,
+  form select {
+    width: 100%;
+    margin-bottom: 12px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.3s ease-in-out;
+  }
+  
+  form input:focus,
+  form textarea:focus,
+  form select:focus {
+    border-color: #007BB5;
+    outline: none;
+  }
+  
+  form button {
+    background-color: #007BB5;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  form button:hover {
+    background-color: #00B6FF;
+  }
+  
+  /* Ajuste para cidade e estado ficarem lado a lado */
+  .form-row {
+    display: flex;
+    gap: 15px;
+    justify-content: space-between;
+  }
+  
+  .form-row div {
+    flex: 1;
+  }
+  
+  .form-row input,
+  .form-row select {
+    width: 100%;
+  }
+
+  /* === Estilo para os checkboxes === */
+.checkbox-group {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+}
+
+.checkbox-group label {
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.checkbox-group input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  cursor: pointer;
+  accent-color: #007BB5;
+}
