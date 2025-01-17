@@ -1,3 +1,4 @@
+
 /* === Menu em telas pequenas === */
 @media (max-width: 768px) {
   .info-card {
@@ -56,31 +57,8 @@
   form select {
     padding: 8px;
   }
-
-  /* Menu de navegação para telas menores */
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    background-color: #333;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    padding: 10px 0;
-  }
-
-  /* Exibe o ícone do hamburguer em telas menores */
-  .hamburger {
-    display: block;
-  }
-
-  /* Exibe o menu quando a classe 'active' é adicionada */
-  .nav-links.active {
-    display: flex;
-  }
 }
 
-/* === Responsividade para telas menores (menor que 600px) === */
 @media (max-width: 600px) {
   .info-card {
     width: 95%;
@@ -106,29 +84,29 @@
   table {
     width: 100%;
   }
-
-  /* Ajustes específicos para main.clima */
-  main.clima {
-    width: 100%; /* Largura total da tela para dispositivos móveis */
-    padding: 0; /* Ajusta o espaçamento interno */
-    margin: 0; /* Reduz a margem para dispositivos móveis */
-  }
-
-  main.clima .weatherwidget-io {
-    font-size: 1em; /* Reduz o tamanho da fonte para telas pequenas */
-    padding: 8px 0; /* Ajusta o espaçamento interno */
-    margin-top: 0px; /* Ajusta a margem superior */
-  }
 }
 
-/* === Responsividade para telas menores que 400px === */
-@media (max-width: 400px) {
-  main.clima {
-    padding: 5px; /* Reduz o padding em dispositivos muito pequenos */
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  /* Esconde o menu por padrão em telas pequenas */
+  .nav-links {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      background-color: #333;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      padding: 10px 0;
   }
 
-  main.clima .weatherwidget-io {
-    font-size: 0.9em; /* Reduz ainda mais o tamanho da fonte */
-    padding: 6px 0; /* Ajusta o espaçamento interno */
+  /* Exibe o ícone do hamburguer em telas menores */
+  .hamburger {
+      display: block;
+  }
+
+  /* Exibe o menu quando a classe 'active' é adicionada */
+  .nav-links.active {
+      display: flex;
   }
 }
