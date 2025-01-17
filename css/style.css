@@ -367,13 +367,12 @@ footer.footer {
 
 /* === Estilos do link de doação === */
 #doacao-link {
-  color: #007BB5;
+  color: #ffffff;
   text-decoration: none;
-  font-weight: bold;
 }
 
 #doacao-link:hover {
-  color: #00B6FF;
+  color: #007BB5;
 }
 
 /* === Estilo do popup === */
@@ -652,3 +651,5 @@ header {
       display: flex;
   }
 }
+
+
