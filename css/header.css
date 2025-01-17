@@ -138,3 +138,28 @@ header {
   font-size: 1.2em;
 }
 
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  /* Esconde o menu por padrão em telas pequenas */
+  .nav-links {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      background-color: #333;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      padding: 10px 0;
+  }
+
+  /* Exibe o ícone do hamburguer em telas menores */
+  .hamburger {
+      display: block;
+  }
+
+  /* Exibe o menu quando a classe 'active' é adicionada */
+  .nav-links.active {
+      display: flex;
+  }
+}
