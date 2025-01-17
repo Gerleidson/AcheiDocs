@@ -158,7 +158,7 @@ form {
   border-radius: 8px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 10px;
 }
 
 form h3 {
@@ -250,7 +250,7 @@ table th, table td {
   border: 1px solid #ddd;
   padding: 12px;
   text-align: center;
-  font-size: 12px;
+  font-size: 11px;
 }
 
 table th {
@@ -304,7 +304,7 @@ footer.footer {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   width: 90%;
   max-width: 800px;
-  margin: 10px auto 10px auto; /* Espaço superior menor (20px), inferior ainda menor (10px) */
+  margin: 10px auto 10px auto; /* Espaço superior menor (10px), inferior ainda menor (10px) */
   padding: 10px;
   transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
@@ -623,7 +623,7 @@ header {
   }
 
   table {
-    width: 90%;
+    width: 100%;
   }
 }
 
@@ -659,10 +659,10 @@ main.clima {
   border-radius: 10px; /* Bordas arredondadas */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra leve para dar destaque */
   width: 100%; /* Largura total do main */
-  max-width: 100%; /* Limita a largura máxima do main */
   margin: 30px auto; /* Centraliza a seção na página e adiciona espaçamento vertical */
   text-align: center; /* Centraliza o conteúdo dentro da seção */
   box-sizing: border-box; /* Para garantir que a largura seja calculada com padding */
+  margin-top: 60px; /* Adiciona espaçamento inferior */
 }
 
 /* Estilos para o widget de clima */
@@ -673,7 +673,7 @@ main.clima .weatherwidget-io {
   text-decoration: none; /* Remove sublinhado */
   display: block; /* Faz com que o link ocupe toda a largura disponível */
   padding: 12px 0; /* Espaçamento interno do link */
-  margin-top: 20px; /* Distância do topo */
+  margin-top: 0px; /* Distância do topo */
   border-radius: 5px; /* Bordas arredondadas */
   background-color: #f0f8ff; /* Cor de fundo suave */
   transition: background-color 0.3s ease, color 0.3s ease; /* Transições suaves para hover */
@@ -689,8 +689,8 @@ main.clima .weatherwidget-io:hover {
 @media (max-width: 600px) {
   main.clima {
     width: 100%; /* Largura total da tela para dispositivos móveis */
-    padding: 0; /* Ajusta o espaçamento interno */
-    margin: 30px 0; /* Reduz a margem para dispositivos móveis */
+    padding:0; /* Ajusta o espaçamento interno */
+    margin: px 0; /* Reduz a margem para dispositivos móveis */
   }
 
   main.clima .weatherwidget-io {
