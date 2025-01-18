@@ -297,3 +297,60 @@ document.addEventListener('DOMContentLoaded', exibirTotalCadastros);
 
 
 
+
+
+
+// Função para exibir o clima na tela
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+} else {
+    alert("Seu navegador não suporta geolocalização.");
+}
+
+function successCallback(position) {
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+    fetchWeather(latitude, longitude);
+}
+
+function errorCallback(error) {
+    const weatherCity = document.querySelector(".weather-city");
+    weatherCity.textContent = "Erro ao obter localização";
+    console.error("Erro ao obter localização:", error);
+}
+
+function fetchWeather(lat, lon) {
+    const apiKey = "16be4fa1c04079d1ea3e2f83fbb54d9f"; // Substitua pela sua chave da OpenWeatherMap
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=pt_br`;
+
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Erro ao buscar dados da API");
+            }
+            return response.json();
+        })
+        .then(data => {
+            displayWeather(data);
+        })
+        .catch(error => {
+            console.error("Erro ao buscar dados climáticos:", error);
+            const weatherCity = document.querySelector(".weather-city");
+            weatherCity.textContent = "Erro ao carregar clima";
+        });
+}
+
+function displayWeather(data) {
+    const city = data.name;
+    const temperature = Math.round(data.main.temp); // Arredonda a temperatura
+    const description = data.weather[0].description;
+    const iconCode = data.weather[0].icon;
+    const iconUrl = `https://openweathermap.org/img/wn/${iconCode}.png`;
+
+    document.querySelector(".weather-city").textContent = city;
+    document.querySelector(".weather-temp").textContent = `${temperature}°C`;
+    document.querySelector(".weather-desc").textContent = description;
+    const weatherIcon = document.querySelector(".weather-icon");
+    weatherIcon.src = iconUrl;
+    weatherIcon.style.display = "inline";
+}
