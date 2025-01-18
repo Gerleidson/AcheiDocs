@@ -2,8 +2,8 @@
 form {
     width: 100%;
     max-width: 800px;
-    margin: 20px 0;
-    padding: 20px;
+    margin: 10px 0;
+    padding: 25px;
     background-color: #fff;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
@@ -44,6 +44,7 @@ form {
   form select:focus {
     border-color: #007BB5;
     outline: none;
+    background-color: #d2ecf7;
   }
   
   form button {
