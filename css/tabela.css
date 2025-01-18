@@ -1,7 +1,7 @@
 /* Estilo da tabela - Princ Table */
 .table {
   width: 100%;
-  margin: 20px 0;
+  margin: 10px 0;
   border-collapse: collapse;
   text-align: left;
   background-color: #f9f9f9;
@@ -14,8 +14,8 @@
 }
 
 .table thead th {
-  padding: 10px;
-  font-size: 14px;
+  padding: 8px;
+  font-size: 12px;
   text-transform: uppercase;
 }
 
@@ -28,8 +28,8 @@
 }
 
 .table tbody td {
-  padding: 10px;
-  font-size: 14px;
+  padding: 8px;
+  font-size: 12px;
   border: 1px solid #ddd;
 }
 
@@ -60,18 +60,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  margin-top: 10px;
+  gap: 8px;
+  margin-bottom: 10px;
 }
 
 #navegacao button {
-  padding: 5px 10px;
+  padding: 4px 8px;
   border: none;
   background-color: #007bff;
   color: #fff;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 12px;
   transition: background-color 0.3s ease;
 }
 
@@ -85,33 +85,12 @@
 }
 
 #pagina-atual {
-  font-size: 14px;
-  color: #333;
+  font-size: 12px;
+  color: #ffffff;
 }
 
 /* Ajustes para telas menores */
 @media (max-width: 768px) {
-  .table tbody td,
-  .table thead th {
-      font-size: 12px;
-      padding: 8px;
-  }
-
-  .table {
-      font-size: 12px;
-  }
-
-  #navegacao button {
-      font-size: 12px;
-      padding: 5px;
-  }
-
-  #pagina-atual {
-      font-size: 12px;
-  }
-}
-
-@media (max-width: 576px) {
   .table tbody td,
   .table thead th {
       font-size: 10px;
@@ -129,5 +108,26 @@
 
   #pagina-atual {
       font-size: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .table tbody td,
+  .table thead th {
+      font-size: 8px;
+      padding: 4px;
+  }
+
+  .table {
+      font-size: 8px;
+  }
+
+  #navegacao button {
+      font-size: 8px;
+      padding: 3px;
+  }
+
+  #pagina-atual {
+      font-size: 8px;
   }
 }
