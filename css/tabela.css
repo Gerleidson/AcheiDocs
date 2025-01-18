@@ -27,7 +27,6 @@
   background-color: #e0e0e0;
 }
 
-
 .table tbody td {
   padding: 10px;
   font-size: 14px;
@@ -38,6 +37,23 @@
   text-align: center;
 }
 
+/* Responsividade para telas menores */
+.table-responsive {
+  overflow-x: auto;
+}
+
+.table-responsive::-webkit-scrollbar {
+  height: 8px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+  background-color: #007bff;
+  border-radius: 4px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
 
 /* Navegação da tabela */
 #navegacao {
@@ -51,7 +67,7 @@
 #navegacao button {
   padding: 5px 10px;
   border: none;
-  background-color: #007BB5;
+  background-color: #007bff;
   color: #fff;
   border-radius: 5px;
   cursor: pointer;
@@ -70,50 +86,48 @@
 
 #pagina-atual {
   font-size: 14px;
-  color: #ffffff;
+  color: #333;
 }
 
-
-/* === Responsividade === */
-
-/* Ajustes para telas pequenas */
+/* Ajustes para telas menores */
 @media (max-width: 768px) {
-  table th, table td {
-      font-size: 9px;
+  .table tbody td,
+  .table thead th {
+      font-size: 12px;
       padding: 8px;
   }
 
-  button {
+  .table {
       font-size: 12px;
-      padding: 6px 12px;
   }
 
-  #navegacao {
-      gap: 5px;
+  #navegacao button {
+      font-size: 12px;
+      padding: 5px;
   }
 
   #pagina-atual {
-      font-size: 14px;
+      font-size: 12px;
   }
 }
 
-/* Ajustes para telas muito pequenas */
-@media (max-width: 480px) {
-  .table-container {
-      width: 90%;
-  }
-
-  table th, table td {
-      font-size: 8px;
+@media (max-width: 576px) {
+  .table tbody td,
+  .table thead th {
+      font-size: 10px;
       padding: 6px;
   }
 
-  button {
-      font-size: 12px;
-      padding: 5px 10px;
+  .table {
+      font-size: 10px;
+  }
+
+  #navegacao button {
+      font-size: 10px;
+      padding: 4px;
   }
 
   #pagina-atual {
-      font-size: 12px;
+      font-size: 10px;
   }
 }
