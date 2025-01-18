@@ -78,9 +78,6 @@ function buscarCadastroPorNome() {
                 }
             }
 
-                // Limpa o formulário de busca após executar
-    document.getElementById('form-busca').reset();
-
             if (!encontrado) {
                 exibirPopup(null); // Exibe pop-up informando que não encontrou o item
             }
@@ -91,6 +88,8 @@ function buscarCadastroPorNome() {
         console.error("Erro ao buscar os dados:", error);
         exibirPopup(null); // Exibe pop-up de erro
     });
+
+
 
 
 }
@@ -113,8 +112,8 @@ function exibirPopup(dados) {
         // Caso contrário, mostra uma mensagem dizendo que não foi encontrado
         alert("Não há registro.");
     }
-
-
+            // Limpa o formulário de busca após executar
+            document.getElementById('form-busca').reset();
 }
 
 // Função para exibir documentos com paginação
