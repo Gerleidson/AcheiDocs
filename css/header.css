@@ -166,12 +166,13 @@ header {
   .nav-links {
       display: none;
       flex-direction: column;
-      width: 100%;
+      width: auto; /* Remova largura fixa */
       background-color: #333;
       position: absolute;
-      top: 60px;
-      left: 0;
+      top: 100px;
+      right: 0; /* Define o menu no lado direito */
       padding: 10px 0;
+      align-items: flex-end; /* Alinha os links no lado direito */
   }
 
   /* Exibe o ícone do hamburguer em telas menores */
@@ -184,6 +185,3 @@ header {
       display: flex;
   }
 }
-
-
-
