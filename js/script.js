@@ -30,6 +30,9 @@ document.getElementById('form-cadastro').addEventListener('submit', function (ev
     salvarDados(nome, documento, cidade, estado, telefone, tipo);
 });
 
+// Limpa o formulário após enviar
+document.getElementById('form-cadastro').reset();
+
 // Função para buscar o cadastro por nome
 function buscarCadastroPorNome() {
     const nomeBusca = document.getElementById('nome-busca').value.trim();
@@ -65,6 +68,9 @@ function buscarCadastroPorNome() {
         console.error("Erro ao buscar os dados:", error);
         exibirPopup(null); // Exibe pop-up de erro
     });
+
+    // Limpa o formulário de busca após executar
+    document.getElementById('form-busca').reset();
 }
 
 // Função para exibir o pop-up com o resultado da busca ou mensagem de erro
