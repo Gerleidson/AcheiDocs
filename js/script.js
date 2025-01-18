@@ -41,7 +41,7 @@ document.getElementById('form-cadastro').addEventListener('submit', function (ev
 
     // Validação do telefone
     if (!telefoneRegex.test(telefone)) {
-        alert("Por favor, insira um telefone válido no formato (XX) XXXXX-XXXX ou (XX) XXXX-XXXX.");
+        alert("Por favor, insira um telefone válido no formato (XX) XXXXX-XXXX.");
         return;
     }
     
@@ -78,6 +78,9 @@ function buscarCadastroPorNome() {
                 }
             }
 
+                // Limpa o formulário de busca após executar
+    document.getElementById('form-busca').reset();
+
             if (!encontrado) {
                 exibirPopup(null); // Exibe pop-up informando que não encontrou o item
             }
@@ -89,8 +92,7 @@ function buscarCadastroPorNome() {
         exibirPopup(null); // Exibe pop-up de erro
     });
 
-    // Limpa o formulário de busca após executar
-    document.getElementById('form-busca').reset();
+
 }
 
 // Função para exibir o pop-up com o resultado da busca ou mensagem de erro
@@ -111,6 +113,8 @@ function exibirPopup(dados) {
         // Caso contrário, mostra uma mensagem dizendo que não foi encontrado
         alert("Não há registro.");
     }
+
+
 }
 
 // Função para exibir documentos com paginação
