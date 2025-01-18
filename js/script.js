@@ -20,12 +20,31 @@ document.getElementById('form-cadastro').addEventListener('submit', function (ev
     const telefone = document.getElementById('telefone').value;
     const tipo = document.querySelector('input[name="tipo"]:checked') ? document.querySelector('input[name="tipo"]:checked').value : '';
 
+    // Validações
+    const telefoneRegex = /^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$/;
+    const telefoneInput = document.getElementById('telefone');
+    telefoneInput.addEventListener('input', () => {
+        const telefoneVal = telefoneInput.value.trim();
+        if (!telefoneRegex.test(telefoneVal)) {
+            telefoneInput.style.borderColor = 'red'; // Indicar erro
+        } else {
+            telefoneInput.style.borderColor = 'green'; // Indicar válido
+        }
+    });
+    
+
     // Verifica se todos os campos obrigatórios foram preenchidos
     if (!nome || !documento || !cidade || !estado || !telefone || !tipo) {
         alert("Por favor, preencha todos os campos.");
         return;
     }
 
+    // Validação do telefone
+    if (!telefoneRegex.test(telefone)) {
+        alert("Por favor, insira um telefone válido no formato (XX) XXXXX-XXXX ou (XX) XXXX-XXXX.");
+        return;
+    }
+    
     // Chama a função para salvar no Firebase
     salvarDados(nome, documento, cidade, estado, telefone, tipo);
     
