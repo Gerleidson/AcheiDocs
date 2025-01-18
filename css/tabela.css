@@ -38,23 +38,6 @@
   text-align: center;
 }
 
-/* Responsividade para telas menores */
-.table-responsive {
-  overflow-x: auto;
-}
-
-.table-responsive::-webkit-scrollbar {
-  height: 8px;
-}
-
-.table-responsive::-webkit-scrollbar-thumb {
-  background-color: #007BB5;
-  border-radius: 4px;
-}
-
-.table-responsive::-webkit-scrollbar-track {
-  background-color: #f1f1f1;
-}
 
 /* Navegação da tabela */
 #navegacao {
