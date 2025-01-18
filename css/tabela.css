@@ -27,6 +27,7 @@
   background-color: #e0e0e0;
 }
 
+
 .table tbody td {
   padding: 10px;
   font-size: 14px;
@@ -86,5 +87,50 @@
 
 #pagina-atual {
   font-size: 14px;
-  color: #333;
+  color: #ffffff;
+}
+
+
+/* === Responsividade === */
+
+/* Ajustes para telas pequenas */
+@media (max-width: 768px) {
+  table th, table td {
+      font-size: 9px;
+      padding: 8px;
+  }
+
+  button {
+      font-size: 12px;
+      padding: 6px 12px;
+  }
+
+  #navegacao {
+      gap: 5px;
+  }
+
+  #pagina-atual {
+      font-size: 14px;
+  }
+}
+
+/* Ajustes para telas muito pequenas */
+@media (max-width: 480px) {
+  .table-container {
+      width: 90%;
+  }
+
+  table th, table td {
+      font-size: 8px;
+      padding: 6px;
+  }
+
+  button {
+      font-size: 12px;
+      padding: 5px 10px;
+  }
+
+  #pagina-atual {
+      font-size: 12px;
+  }
 }
