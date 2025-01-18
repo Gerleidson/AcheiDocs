@@ -294,12 +294,6 @@ function exibirTotalCadastros() {
 // Chamar a função ao carregar a página
 document.addEventListener('DOMContentLoaded', exibirTotalCadastros);
 
-
-
-
-
-
-
 // Função para exibir o clima na tela
 if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
