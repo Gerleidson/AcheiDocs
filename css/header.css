@@ -21,20 +21,9 @@ header {
   }
  
 .navbar .logo span {
-  color: white;
+  color: rgb(255, 0, 0);
   font-size: 24px;
   font-weight: bold;
-}
-
-.weather-info {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.weather-icon {
-  width: 24px;
-  height: 24px;
 }
 
 /* Estilos para o menu */

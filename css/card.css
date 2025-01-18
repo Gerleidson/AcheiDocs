@@ -5,7 +5,7 @@
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     width: 90%;
     max-width: 800px;
-    margin: 60px auto 10px auto; /* Espaço superior menor (10px), inferior ainda menor (10px) */
+    margin: 90px auto 10px auto; /* Espaço superior menor (10px), inferior ainda menor (10px) */
     padding: 10px;
     transition: box-shadow 0.3s ease, transform 0.3s ease;
   }
