@@ -28,10 +28,11 @@ document.getElementById('form-cadastro').addEventListener('submit', function (ev
 
     // Chama a função para salvar no Firebase
     salvarDados(nome, documento, cidade, estado, telefone, tipo);
+    
+    // Limpa o formulário após enviar
+    document.getElementById('form-cadastro').reset();
 });
 
-// Limpa o formulário após enviar
-document.getElementById('form-cadastro').reset();
 
 // Função para buscar o cadastro por nome
 function buscarCadastroPorNome() {
@@ -196,43 +197,6 @@ doacaoLink.addEventListener("click", (event) => {
     const cidadeRecebedor = "Camaçari"; // Cidade do recebedor
     const txid = "1234567890"; // TXID
 
-    // Função para calcular o CRC16
-    function calcularCRC16(payload) {
-        let polinomio = 0x1021;
-        let resultado = 0xFFFF;
-
-        for (let i = 0; i < payload.length; i++) {
-            resultado ^= payload.charCodeAt(i) << 8;
-            for (let j = 0; j < 8; j++) {
-                if ((resultado & 0x8000) !== 0) {
-                    resultado = (resultado << 1) ^ polinomio;
-                } else {
-                    resultado <<= 1;
-                }
-            }
-        }
-        return ((resultado ^ 0x0000) & 0xFFFF).toString(16).toUpperCase().padStart(4, "0");
-    }
-
-    // Montar o payload do BR Code (PIX)
-    const payload = [
-        "00" + "02" + "01", // Payload Format Indicator
-        "26" + ("0014BR.GOV.BCB.PIX0114" + chavePix).length.toString().padStart(2, "0") + "0014BR.GOV.BCB.PIX0114" + chavePix, // Merchant Account Info
-        "52" + "04" + "0000", // Merchant Category Code (sem categoria específica)
-        "53" + "03" + "986", // Moeda (986 = BRL)
-        "54" + valor.length.toString().padStart(2, "0") + valor, // Valor
-        "58" + "02" + "BR", // País
-        "59" + nomeRecebedor.length.toString().padStart(2, "0") + nomeRecebedor, // Nome do recebedor
-        "60" + cidadeRecebedor.length.toString().padStart(2, "0") + cidadeRecebedor, // Cidade do recebedor
-        "62" + ("0503" + txid).length.toString().padStart(2, "0") + "0503" + txid, // TXID
-    ].join("");
-
-    // Adicionar o CRC16
-    const payloadComCRC16 = `${payload}6304${calcularCRC16(payload + "6304")}`;
-
-    // Exibir o payload para depuração
-    console.log("Payload do QR Code PIX:", payloadComCRC16);
-
     
 });
 
@@ -261,7 +225,6 @@ document.addEventListener('DOMContentLoaded', function () {
         navLinks.classList.toggle('active'); // Alterna a classe 'active' para exibir/ocultar o menu
     });
 });
-
 
 
 // Obtendo os elementos do popup e botão de fechamento
