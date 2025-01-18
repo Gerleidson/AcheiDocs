@@ -1,112 +1,90 @@
-/* === Estilo para tabela === */
-.table-container {
-  width: 80%;
-  max-width: 800px;
-  margin: 20px auto;
-  overflow-x: auto; /* Adiciona rolagem horizontal */
-}
-
-table {
+/* Estilo da tabela - Princ Table */
+.table {
   width: 100%;
+  margin: 20px 0;
   border-collapse: collapse;
+  text-align: left;
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
 }
 
-thead {
-  position: sticky;
-  top: 0;
+.table thead {
   background-color: #007BB5;
-  color: rgb(0, 0, 0);
+  color: #fff;
 }
 
-table th, table td {
+.table thead th {
+  padding: 10px;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f1f1f1;
+}
+
+.table tbody tr:hover {
+  background-color: #e0e0e0;
+}
+
+.table tbody td {
+  padding: 10px;
+  font-size: 14px;
   border: 1px solid #ddd;
-  padding: 12px;
+}
+
+.table tbody td:nth-child(6) {
   text-align: center;
-  font-size: 11px;
 }
 
-table th {
-  background-color: #f2f2f2;
-  font-weight: bold;
+/* Responsividade para telas menores */
+.table-responsive {
+  overflow-x: auto;
 }
 
-table td {
-  background-color: #fff;
-  color: #333;
+.table-responsive::-webkit-scrollbar {
+  height: 8px;
 }
 
-table tr:hover td {
-  background-color: #f7f7f7;
+.table-responsive::-webkit-scrollbar-thumb {
+  background-color: #007BB5;
+  border-radius: 4px;
 }
 
-/* === Navegação === */
+.table-responsive::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+/* Navegação da tabela */
 #navegacao {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
-  flex-wrap: wrap; /* Permite quebra de linha em telas pequenas */
+  margin-top: 10px;
 }
 
-button {
-  padding: 8px 18px;
-  font-size: 14px;
+#navegacao button {
+  padding: 5px 10px;
   border: none;
   background-color: #007BB5;
-  color: white;
-  cursor: pointer;
+  color: #fff;
   border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
 }
 
-button:hover {
-  background-color: #005f87;
+#navegacao button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+#navegacao button:hover:not(:disabled) {
+  background-color: #0056b3;
 }
 
 #pagina-atual {
-  font-size: 16px;
-  color: white;
-}
-
-/* === Responsividade === */
-
-/* Ajustes para telas pequenas */
-@media (max-width: 768px) {
-  table th, table td {
-      font-size: 9px;
-      padding: 8px;
-  }
-
-  button {
-      font-size: 12px;
-      padding: 6px 12px;
-  }
-
-  #navegacao {
-      gap: 5px;
-  }
-
-  #pagina-atual {
-      font-size: 14px;
-  }
-}
-
-/* Ajustes para telas muito pequenas */
-@media (max-width: 480px) {
-  .table-container {
-      width: 90%;
-  }
-
-  table th, table td {
-      font-size: 8px;
-      padding: 6px;
-  }
-
-  button {
-      font-size: 12px;
-      padding: 5px 10px;
-  }
-
-  #pagina-atual {
-      font-size: 12px;
-  }
+  font-size: 14px;
+  color: #333;
 }

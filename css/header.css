@@ -34,24 +34,43 @@ header {
 
 .nav-links {
   display: flex;
-  list-style-type: none;
   margin: 0;
   padding: 0;
+  list-style: none;
 }
 
 .nav-links li {
-  margin-left: 20px;
+  position: relative;
 }
 
 .nav-links a {
-  color: white;
   text-decoration: none;
+  color: #ffffff;
   font-size: 16px;
+  position: relative;
+  display: inline-block;
+  padding: 5px 10px;
   transition: color 0.3s ease;
 }
 
+/* Efeito de hover com underline animado */
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #007BFF; /* Cor da linha animada */
+  transition: width 0.3s ease;
+}
+
 .nav-links a:hover {
-  color: #007bff;
+  color: #007BFF; /* Cor do texto ao passar o mouse */
+}
+
+.nav-links a:hover::after {
+  width: 100%;
 }
 
 .hamburger {
