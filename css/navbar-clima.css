@@ -4,8 +4,8 @@
     justify-content: center; /* Centraliza o conteúdo */
     align-items: center;
     padding: 10px 20px;
-    background-color: #ffffff; /* Azul similar ao padrão */
-    color: #000000;
+    background-color: #007BB5; /* Azul similar ao padrão */
+    color: #fff;
     position: sticky; /* Fixa no topo da página ao rolar */
     top: 0;
     z-index: 1000; /* Para garantir que fique acima de outros elementos */
