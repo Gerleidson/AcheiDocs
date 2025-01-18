@@ -52,7 +52,7 @@ document.getElementById('form-cadastro').addEventListener('submit', function (ev
     document.getElementById('form-cadastro').reset();
 });
 
-
+// Função para buscar o cadastro por nome
 // Função para buscar o cadastro por nome
 function buscarCadastroPorNome() {
     const nomeBusca = document.getElementById('nome-busca').value.trim();
@@ -62,16 +62,16 @@ function buscarCadastroPorNome() {
     }
 
     // Referência ao banco de dados do Firebase
-    const dbRef = ref(db, "documentos/"); 
+    const dbRef = ref(db, "documentos/");
 
     get(dbRef).then((snapshot) => {
         if (snapshot.exists()) {
             let encontrado = false;
-            const dados = snapshot.val(); // Obter os dados do banco
+            const dados = snapshot.val();
 
             // Verificando se algum item corresponde ao nome
             for (const id in dados) {
-                if (dados[id].nome.toUpperCase() === nomeBusca.toUpperCase()) { // Comparação em maiúsculas
+                if (dados[id].nome.toUpperCase() === nomeBusca.toUpperCase()) {
                     encontrado = true;
                     exibirPopup(dados[id]); // Exibe o pop-up com as informações do cadastro
                     break;
@@ -89,10 +89,10 @@ function buscarCadastroPorNome() {
         exibirPopup(null); // Exibe pop-up de erro
     });
 
-
-
-
+    // Limpa o formulário de busca após executar
+    document.getElementById('form-busca').reset();
 }
+
 
 // Função para exibir o pop-up com o resultado da busca ou mensagem de erro
 function exibirPopup(dados) {
@@ -112,8 +112,6 @@ function exibirPopup(dados) {
         // Caso contrário, mostra uma mensagem dizendo que não foi encontrado
         alert("Não há registro.");
     }
-            // Limpa o formulário de busca após executar
-            document.getElementById('form-busca').reset();
 }
 
 // Função para exibir documentos com paginação
