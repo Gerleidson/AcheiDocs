@@ -53,7 +53,6 @@ document.getElementById('form-cadastro').addEventListener('submit', function (ev
 });
 
 // Função para buscar o cadastro por nome
-// Função para buscar o cadastro por nome
 function buscarCadastroPorNome() {
     const nomeBusca = document.getElementById('nome-busca').value.trim();
     if (nomeBusca === "") {
@@ -269,3 +268,32 @@ popupDicas.addEventListener('click', function(e) {
         popupDicas.style.display = 'none';
     }
 });
+
+
+// Função para exibir o total de cadastros
+function exibirTotalCadastros() {
+    const contador = document.getElementById('contador-registros'); // Elemento para exibir o total
+
+    // Referência ao nó "documentos" no Firebase
+    const referencia = ref(db, 'documentos/');
+
+    // Buscar os dados do Firebase
+    get(referencia).then((snapshot) => {
+        if (snapshot.exists()) {
+            const totalRegistros = Object.keys(snapshot.val()).length; // Conta o número de registros
+            contador.textContent = `${totalRegistros}`; // Atualiza o contador no DOM
+        } else {
+            contador.textContent = "Total de Cadastros: 0"; // Exibe 0 se não houver dados
+        }
+    }).catch((error) => {
+        console.error("Erro ao buscar o total de cadastros:", error);
+        contador.textContent = "Erro ao carregar o total de cadastros.";
+    });
+}
+
+// Chamar a função ao carregar a página
+document.addEventListener('DOMContentLoaded', exibirTotalCadastros);
+
+
+
+

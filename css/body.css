@@ -13,7 +13,8 @@ body {
     padding: 20px;
     background-color: rgba(29, 28, 28, 0.9); 
   }
-  
+
+ 
   main {
     padding: 20px;
     max-width: 900px;
@@ -52,3 +53,10 @@ body {
   .btn-download:hover {
     background-color: #0056b3;
   }
+
+  .contador-container {
+    margin: 10px 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+}
