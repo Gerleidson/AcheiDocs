@@ -1,5 +1,5 @@
 /* === Estilo para formulários === */
-form {
+  form {
     width: 100%;
     max-width: 800px;
     margin: 10px 0;
@@ -10,8 +10,10 @@ form {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    position: relative;
+    border: 2px solid #ccc; /* Borda padrão */
+    overflow: hidden; /* Necessário para o efeito não ultrapassar as bordas */
   }
-  
   form h3 {
     font-size: 1.2em;
     margin-bottom: 15px;
@@ -103,3 +105,38 @@ form {
   accent-color: #007BB5;
 }
 
+/* === Estilo para o formulário com efeito de luz ao redor da borda === */
+/* Adicionando o efeito de luz */
+form:focus-within {
+  animation: border-light 1.5s infinite; /* Animação infinita de luz ao redor */
+  border-color: transparent; /* A borda fica invisível enquanto o efeito ocorre */
+}
+
+/* Definindo o comportamento da animação */
+@keyframes border-light {
+  0% {
+      border: 2px solid #007BB5;
+      box-shadow: 0 0 5px rgba(0, 123, 181, 0.6); /* Luz inicial */
+  }
+  25% {
+      box-shadow: 0 4px 15px rgba(0, 123, 181, 0.8); /* Luz começando a se espalhar */
+  }
+  50% {
+      box-shadow: 0 0 15px rgba(0, 123, 181, 0.8), 0 0 15px rgba(0, 123, 181, 0.6); /* Luz ao redor da borda */
+  }
+  75% {
+      box-shadow: 0 4px 25px rgba(0, 123, 181, 0.6), 0 0 30px rgba(0, 123, 181, 0.4); /* Efeito mais intenso */
+  }
+  100% {
+      box-shadow: 0 0 40px rgba(0, 123, 181, 0.4); /* Luz mais suave até a transição */
+  }
+}
+
+/* Efeito de borda ao passar o mouse (opcional) */
+form input:focus,
+form textarea:focus,
+form select:focus {
+  border-color: #007BB5;
+  outline: none;
+  background-color: #d2ecf7;
+}
