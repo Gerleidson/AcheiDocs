@@ -26,7 +26,7 @@ header {
   font-weight: bold;
 }
 /* Efeito de brilho no texto */
-span {
+.logo {
   font-size: 2em; /* Tamanho do texto */
   font-weight: bold; /* Deixar o texto em negrito */
   color: #007BB5; /* Cor do texto */
