@@ -1,78 +1,72 @@
-/* === Estilos gerais do card com efeito fade-in === */
+/* === Estilos gerais do card === */
 .info-card {
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  width: 90%;
-  max-width: 800px;
-  margin: 90px auto 10px auto;
-  padding: 10px;
-  opacity: 0; /* Inicialmente invisível */
-  transition: opacity 1s ease; /* Transição suave para opacidade */
-}
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 800px;
+    margin: 90px auto 10px auto; /* Espaço superior menor (10px), inferior ainda menor (10px) */
+    padding: 10px;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  
+  /* Cabeçalho do card */
+  .card-header {
+    text-align: center;
+    background-color: #007BB5;
+    padding: 15px;
+    color: #fff;
+    border-radius: 10px 10px 0 0;
+  }
+  
+  .card-header h4 {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin: 0;
+    text-transform: uppercase;
+  }
+  
+  /* Corpo do card */
+  .card-body {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .card-body h5 {
+    font-size: 1.4em;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  .card-body p {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 12px;
+    line-height: 1.6;
+  }
+  
+  /* Rodapé do card com o botão */
+  .card-footer {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .btn-action {
+    background-color: #00B6FF;
+    color: white;
+    font-size: 1em;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-action:hover {
+    background-color: #007BB5;
+  }
 
-/* Ativação do fade-in quando o card estiver visível */
-.info-card.fade-in {
-  opacity: 1; /* Torna o card totalmente visível */
-}
-
-/* Cabeçalho do card */
-.card-header {
-  text-align: center;
-  background-color: #007BB5;
-  padding: 15px;
-  color: #fff;
-  border-radius: 10px 10px 0 0;
-}
-
-.card-header h4 {
-  font-size: 1.8em;
-  font-weight: bold;
-  margin: 0;
-  text-transform: uppercase;
-}
-
-/* Corpo do card */
-.card-body {
-  margin-top: 20px;
-  text-align: center;
-}
-
-.card-body h5 {
-  font-size: 1.4em;
-  color: #333;
-  margin-bottom: 15px;
-}
-
-.card-body p {
-  font-size: 1em;
-  color: #555;
-  margin-bottom: 12px;
-  line-height: 1.6;
-}
-
-/* Rodapé do card com o botão */
-.card-footer {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.btn-action {
-  background-color: #00B6FF;
-  color: white;
-  font-size: 1em;
-  padding: 12px 25px;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.btn-action:hover {
-  background-color: #007BB5;
-}
-
-/* === Header com imagem === */
+  /* === Header com imagem === */
 #foto {
   text-align: center;
   margin: 20px 0;
