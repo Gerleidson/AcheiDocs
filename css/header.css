@@ -29,7 +29,7 @@ header {
 .logo {
   font-size: 2em; /* Tamanho do texto */
   font-weight: bold; /* Deixar o texto em negrito */
-  color: #007BB5; /* Cor do texto */
+  color:rgb(255, 255, 255); /* Cor do texto */
   position: relative;
   display: inline-block;
   animation: glow 1.5s ease-in-out infinite; /* Animação de brilho contínuo */
