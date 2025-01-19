@@ -349,7 +349,3 @@ function displayWeather(data) {
     weatherIcon.style.display = "inline";
 }
 
-
-window.onload = function() {
-    document.querySelector('.info-card').classList.add('fade-in');
-};
