@@ -350,3 +350,6 @@ function displayWeather(data) {
 }
 
 
+window.onload = function() {
+    document.querySelector('.info-card').classList.add('fade-in');
+};
