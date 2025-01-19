@@ -348,3 +348,5 @@ function displayWeather(data) {
     weatherIcon.src = iconUrl;
     weatherIcon.style.display = "inline";
 }
+
+
