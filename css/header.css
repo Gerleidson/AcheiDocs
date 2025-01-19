@@ -25,6 +25,29 @@ header {
   font-size: 24px;
   font-weight: bold;
 }
+/* Efeito de brilho no texto */
+span {
+  font-size: 2em; /* Tamanho do texto */
+  font-weight: bold; /* Deixar o texto em negrito */
+  color: #007BB5; /* Cor do texto */
+  position: relative;
+  display: inline-block;
+  animation: glow 1.5s ease-in-out infinite; /* Animação de brilho contínuo */
+}
+
+/* Animação do brilho no texto */
+@keyframes glow {
+  0% {
+      text-shadow: 0 0 5px rgba(0, 123, 181, 0.7), 0 0 10px rgba(0, 123, 181, 0.5), 0 0 15px rgba(0, 123, 181, 0.3);
+  }
+  50% {
+      text-shadow: 0 0 10px rgba(0, 123, 181, 1), 0 0 20px rgba(0, 123, 181, 0.7), 0 0 30px rgba(0, 123, 181, 0.5);
+  }
+  100% {
+      text-shadow: 0 0 5px rgba(0, 123, 181, 0.7), 0 0 10px rgba(0, 123, 181, 0.5), 0 0 15px rgba(0, 123, 181, 0.3);
+  }
+}
+
 
 /* Estilos para o menu */
 .menu {
