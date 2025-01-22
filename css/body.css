@@ -176,11 +176,11 @@ button:hover {
 .politicaP {
   padding: 20px;
   max-width: 900px;
-  margin: 0 auto;
+  margin: 0;
   background-color: white;
   border-radius: 8px;
-  margin-top: 80px;
-  margin-bottom: 30px;
+  margin-top: 110px;
+  margin-bottom: 20px;
 }
 
 main h1, main h2 {
