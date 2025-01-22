@@ -4,6 +4,7 @@
     justify-content: center; /* Centraliza o conteúdo */
     align-items: center;
     padding: 10px 20px;
+    margin: 0;
     background-color: #007BB5; /* Azul similar ao padrão */
     color: #fff;
     position: sticky; /* Fixa no topo da página ao rolar */
@@ -38,15 +39,3 @@
     display: inline-block; /* Para garantir alinhamento correto */
 }
 
-/* Ajustes responsivos */
-@media (max-width: 768px) {
-    .weather-info {
-        flex-wrap: wrap; /* Permite quebrar a linha em telas menores */
-        text-align: center; /* Centraliza o texto em dispositivos pequenos */
-    }
-
-    .weather-icon {
-        width: 24px; /* Reduz o tamanho do ícone para telas menores */
-        height: 24px;
-    }
-}

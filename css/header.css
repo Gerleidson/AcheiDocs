@@ -6,6 +6,7 @@ header {
   position: fixed;
   top: 0;
   left: 0;
+  margin: 0;
   z-index: 1000;
 }
 
@@ -182,29 +183,3 @@ header {
   font-size: 1.2em;
 }
 
-
-/* Responsividade para telas menores */
-@media (max-width: 768px) {
-  /* Esconde o menu por padrão em telas pequenas */
-  .nav-links {
-      display: none;
-      flex-direction: column;
-      width: auto; /* Remova largura fixa */
-      background-color: #333;
-      position: absolute;
-      top: 100px;
-      right: 0; /* Define o menu no lado direito */
-      padding: 10px 0;
-      align-items: flex-end; /* Alinha os links no lado direito */
-  }
-
-  /* Exibe o ícone do hamburguer em telas menores */
-  .hamburger {
-      display: block;
-  }
-
-  /* Exibe o menu quando a classe 'active' é adicionada */
-  .nav-links.active {
-      display: flex;
-  }
-}

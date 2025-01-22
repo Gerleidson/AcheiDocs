@@ -1,0 +1,240 @@
+/* === Responsividade geral === */
+
+/* Para telas menores, como tablets */
+@media screen and (max-width: 768px) {
+  /* Ajustes gerais para o formulário */
+  #form-cadastro {
+    margin: 10px;
+    padding: 15px;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+
+  .form-row div {
+    margin-bottom: 10px;
+  }
+
+  input[type="text"], input[type="tel"], select {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  button {
+    padding: 10px;
+    font-size: 1rem;
+  }
+
+  .checkbox-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* Ajustes na seção de informações */
+  .info {
+    padding: 20px;
+  }
+
+  .info h1 {
+    font-size: 28px;
+  }
+
+  .info h4 {
+    font-size: 18px;
+  }
+
+  #localizar-documento {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  input[type="text"], button {
+    width: 100%;
+    max-width: none;
+  }
+
+  button {
+    padding: 12px 0;
+  }
+
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    margin: 10px;
+  }
+
+  .principal {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  /* Responsividade tabela */
+  .table tbody td,
+  .table thead th {
+    font-size: 10px;
+    padding: 6px;
+  }
+
+  .table {
+    font-size: 10px;
+  }
+
+  #navegacao button {
+    font-size: 10px;
+    padding: 4px;
+  }
+
+  #pagina-atual {
+    font-size: 10px;
+  }
+
+  /* Responsividade clima */
+  .weather-info {
+    flex-wrap: wrap; /* Permite quebrar a linha em telas menores */
+    text-align: center; /* Centraliza o texto em dispositivos pequenos */
+  }
+
+  .weather-icon {
+    width: 24px; /* Reduz o tamanho do ícone para telas menores */
+    height: 24px;
+  }
+
+  /* Responsividade menu de navegação */
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: auto; /* Remova largura fixa */
+    background-color: #333;
+    position: absolute;
+    top: 100px;
+    right: 0; /* Define o menu no lado direito */
+    padding: 10px 0;
+    align-items: flex-end; /* Alinha os links no lado direito */
+  }
+
+  .hamburger {
+    display: block; /* Exibe o ícone do hambúrguer */
+  }
+
+  .nav-links.active {
+    display: flex; /* Exibe o menu quando a classe 'active' é adicionada */
+  }
+
+  /* Ajustes no menu em telas pequenas */
+  .info-card {
+    width: 95%;
+    max-width: 100%;
+    padding: 15px;
+  }
+
+  form {
+    padding: 15px;
+  }
+
+  .card-header h4 {
+    font-size: 1.6em;
+  }
+
+  .card-body h5 {
+    font-size: 1.2em;
+  }
+
+  .card-body p {
+    font-size: 0.9em;
+  }
+
+  .btn-action {
+    font-size: 0.9em;
+    padding: 10px 20px;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  form input,
+  form button {
+    padding: 8px;
+  }
+
+  .menu-horizontal ul {
+    flex-direction: column;
+  }
+
+  .checkbox-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  form input,
+  form select {
+    padding: 8px;
+  }
+}
+
+/* Para dispositivos móveis com telas muito pequenas */
+@media screen and (max-width: 480px) {
+  #form-cadastro {
+    margin: 10px;
+    padding: 10px;
+    width: 100%;
+  }
+
+  input[type="text"], input[type="tel"], select {
+    font-size: 0.85rem;
+    padding: 6px;
+  }
+
+  button {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+
+  .checkbox-group {
+    flex-direction: column;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .info h1 {
+    font-size: 24px;
+  }
+
+  .info h4 {
+    font-size: 20px;
+  }
+
+  /* Ajustes no menu em telas pequenas */
+  .info-card {
+    width: 95%;
+    max-width: 100%;
+    padding: 10px;
+  }
+
+  form {
+    width: 100%;
+    padding: 10px;
+  }
+
+  .table-container {
+    width: 100%;
+  }
+
+  table th,
+  table td {
+    font-size: 11px;
+    padding: 8px;
+  }
+
+  table {
+    width: 100%;
+  }
+}
