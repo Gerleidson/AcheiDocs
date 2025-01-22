@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,14 +32,14 @@
         import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
 
         const firebaseConfig = {
-        apiKey: "AIzaSyCmcDHVj8vdMZeLsnygh0jMjCfZ0Hyh8bY",
-        authDomain: "acheidocs-c7b8f.firebaseapp.com",
-        databaseURL: "https://acheidocs-c7b8f-default-rtdb.firebaseio.com",
-        projectId: "acheidocs-c7b8f",
-        storageBucket: "acheidocs-c7b8f.firebasestorage.app",
-        messagingSenderId: "390960971384",
-        appId: "1:390960971384:web:85ab3b905743a33930778d",
-        measurementId: "G-S829CSFXDM"
+            apiKey: "AIzaSyCmcDHVj8vdMZeLsnygh0jMjCfZ0Hyh8bY",
+            authDomain: "acheidocs-c7b8f.firebaseapp.com",
+            databaseURL: "https://acheidocs-c7b8f-default-rtdb.firebaseio.com",
+            projectId: "acheidocs-c7b8f",
+            storageBucket: "acheidocs-c7b8f.firebasestorage.app",
+            messagingSenderId: "390960971384",
+            appId: "1:390960971384:web:85ab3b905743a33930778d",
+            measurementId: "G-S829CSFXDM"
         };
     </script>
 
@@ -47,19 +48,18 @@
 
     <script type="application/ld+json">
         {
-          "@context": "https://schema.org",
-          "@type": "WebSite",
-          "name": "AcheiDocs",
-          "url": "https://achei-docs.vercel.app/",
-          "description": "Encontre e devolva itens perdidos com o AcheiDocs.",
-          "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://achei-docs.vercel.app/?q={search_term_string}",
-            "query-input": "required name=search_term_string"
-          }
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "AcheiDocs",
+            "url": "https://achei-docs.vercel.app/",
+            "description": "Encontre e devolva itens perdidos com o AcheiDocs.",
+            "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://achei-docs.vercel.app/?q={search_term_string}",
+                "query-input": "required name=search_term_string"
+            }
         }
-        </script>        
-   
+    </script>
 </head>
 
 <body>
@@ -72,161 +72,154 @@
                 <img class="weather-icon" src="" alt="" style="display: none;">
             </div>
         </div>
-        <div class="navbar">
+
+        <nav class="navbar">
             <div class="logo">
                 <span id="logo">AcheiDocs</span>
             </div>
-            <div class="menu">
-                    <ul class="nav-links" id="nav-links">
-                    <li><a href="#" id="dicas-link">Dicas de Segurança</a></li>
-                    <li><a href="#" id="doacao-link">Faça uma Doação</a></li>
-                    <li><a href="politica.html">Política de Privacidade</a></li>
-                </ul>
-                <div class="hamburger" id="hamburger-icon">
-                    &#9776; <!-- Ícone de menu hamburguer -->
-                </div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#" id="dicas-link">Dicas de Segurança</a></li>
+                <li><a href="#" id="doacao-link">Faça uma Doação</a></li>
+                <li><a href="politica.html">Política de Privacidade</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger-icon">
+                &#9776; <!-- Ícone de menu hamburguer -->
             </div>
-        </div>
-        
+        </nav>
     </header>
-    
-    <!-- Popup de Doação -->
-    <div class="popup" id="popup">
+
+    <!-- Popups -->
+    <section class="popup" id="popup">
         <div class="popup-content">
             <h2>Ajude-nos a manter o site</h2>
             <p><strong>Conta Bancária:</strong> Banco Nubank </p>
             <p><strong>Ag:</strong> 0001</p>
             <p><strong>C/C:</strong> 86034216-6</p>
-            <p><strong>PIX:</strong> 
-                <span id="pix-copy" style="color: blue; cursor: pointer;">27.201.781/0001-39</span> <!-- PIX clicável -->
+            <p><strong>PIX:</strong>
+                <span id="pix-copy" style="color: blue; cursor: pointer;">27.201.781/0001-39</span>
             </p>
             <button class="close-btn" id="close-btn">Fechar</button>
         </div>
-    </div>
+    </section>
 
-    <!-- Popup de Dicas de Segurança -->
-    <div class="popup" id="popup-dicas">
+    <section class="popup" id="popup-dicas">
         <div class="popup-content">
             <h2>Dicas de Segurança para Entrega e Recebimento de Documentos</h2>
             <ul>
                 <li><strong>Verifique a autenticidade:</strong> Ao receber ou entregar documentos, sempre confirme a autenticidade da pessoa envolvida.</li>
                 <li><strong>Marque um local seguro para entrega:</strong> Combine a entrega ou recebimento em locais públicos, movimentados e, preferencialmente, com câmeras de segurança.</li>
-                <li><strong>Deixe os documentos em um local seguro ou órgão público:</strong> Se você não deseja devolver os documentos pessoalmente, pode deixá-los em um local seguro, como uma delegacia e informe a pessoa sobre o local para que ela possa retirá-los com segurança.<strong> É uma maneira eficaz de garantir que os documentos cheguem ao seu proprietário sem risco para ambas as partes.</strong></li>
+                <li><strong>Deixe os documentos em um local seguro ou órgão público:</strong> Se você não deseja devolver os documentos pessoalmente, pode deixá-los em um local seguro, como uma delegacia e informe a pessoa sobre o local para que ela possa retirá-los com segurança.</li>
             </ul>
             <button class="close-btn" id="close-dicas">Fechar</button>
-
         </div>
-    </div>
+    </section>
 
-    <div class="foto text-center" id="foto">
-        <div class="info-card">
-            <div class="card-header">
-                <img src="img/icon.png" alt="imagem" class="img-fluid" style="max-width: 100px;">
-                <h4>AcheiDocs</h4>
-            </div>
-            <div class="card-body">
-                <h5>Plataforma Simples e Eficaz para Cadastro de Achados e Perdidos</h5>
-                <p>Confira se seu nome está na lista de objetos e documentos encontrados.</p>
-                <p>Se estiver, entre em contato com o responsável através do telefone cadastrado.</p>
-                <p>O cadastro será mantido por 120 dias a partir da data de registro.</p>
+    <main class="principal" id="principal">
+        <section class="info" id="info">   
+                <h1>Perdeu algum documento?</h1>
+                <h3>Confira se seu nome está na lista de objetos e documentos encontrados. Se estiver, entre em contato com o responsável através do telefone cadastrado.</h3>
+                <h3>O cadastro será mantido por 120 dias a partir da data de registro.</h3>
                 <u><h4>Nosso objetivo é facilitar a recuperação de seus itens de forma rápida e segura!</h4></u>
-            </div>
-        </div>
-    </div>
+        </section>
 
-    <form action="/encontrar" method="get">
-        <h3 id="localizar-documento">Encontre seu documento pelo nome</h3>
-        <input type="text" id="nome-busca" name="nome-busca" placeholder="Digite nome completo" required>
-        <button type="button" onclick="buscarCadastroPorNome()">Buscar</button>
-    </form>
+        <section>
+            <form action="/encontrar" method="get">
+                <h3 id="localizar-documento">Encontre seu documento pelo nome</h3>
+                <input type="text" id="nome-busca" name="nome-busca" placeholder="Digite nome completo" required>
+                <button type="button" onclick="buscarCadastroPorNome()">Buscar</button>
+            </form>
+        </section>
+    </main>
 
-    <form id="form-cadastro" method="POST">
-        <h3>Cadastrar documento</h3>
-        <div class="checkbox-group">
-            <label for="achado">
-                <input type="radio" id="achado" name="tipo" value="achado">
-                Documento Achado
-            </label>
-            <label for="perdido">
-                <input type="radio" id="perdido" name="tipo" value="perdido">
-                Documento Perdido
-            </label>
-        </div>        
-    
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" placeholder="Digite nome completo" required>
-    
-        <div class="form-row">
-            <div>
-                <label for="documento">Documento:</label>
-                <!-- Caixa de seleção (Select) para o tipo de documento -->
-                <select id="documento" name="documento" required>
-                    <option value="">Selecione um documento</option>
-                    <option value="RG">RG</option>
-                    <option value="CPF">CPF</option>
-                    <option value="CTPS">CTPS</option>
-                    <option value="CNH">CNH</option>
-                    <option value="Passaporte">Passaporte</option>
-                    <option value="Título de eleitor">Título de eleitor</option>
-                    <option value="Certidão">Certidão</option>
-                    <option value="Outros">Outros</option>
-                </select>
+    <section>
+        <form id="form-cadastro" method="POST">
+            <h3>Cadastrar documento</h3>
+            <div class="checkbox-group">
+                <label for="achado">
+                    <input type="radio" id="achado" name="tipo" value="achado">
+                    Documento Achado
+                </label>
+                <label for="perdido">
+                    <input type="radio" id="perdido" name="tipo" value="perdido">
+                    Documento Perdido
+                </label>
             </div>
-            <div>
-                <label for="telefone">Telefone:</label>
-                <input type="tel" id="telefone" name="telefone" placeholder="(XX) XXXXX-XXXX" required>
+
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" placeholder="Digite nome completo" required>
+
+            <div class="form-row">
+                <div>
+                    <label for="documento">Documento:</label>
+                    <select id="documento" name="documento" required>
+                        <option value="">Selecione um documento</option>
+                        <option value="RG">RG</option>
+                        <option value="CPF">CPF</option>
+                        <option value="CTPS">CTPS</option>
+                        <option value="CNH">CNH</option>
+                        <option value="Passaporte">Passaporte</option>
+                        <option value="Título de eleitor">Título de eleitor</option>
+                        <option value="Certidão">Certidão</option>
+                        <option value="Outros">Outros</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="telefone">Telefone:</label>
+                    <input type="tel" id="telefone" name="telefone" placeholder="(XX) XXXXX-XXXX" required>
+                </div>
             </div>
-        </div>
-    
-        <div class="form-row">
-            <div>
-                <label for="cidade">Cidade:</label>
-                <input type="text" id="cidade" name="cidade" placeholder="Digite sua cidade" required>
+
+            <div class="form-row">
+                <div>
+                    <label for="cidade">Cidade:</label>
+                    <input type="text" id="cidade" name="cidade" placeholder="Digite sua cidade" required>
+                </div>
+                <div>
+                    <label for="estado">Estado:</label>
+                    <select id="estado" name="estado" required>
+                        <option value="">Selecione o estado</option>
+                        <option value="AC">AC</option>
+                        <option value="AL">AL</option>
+                        <option value="AP">AP</option>
+                        <option value="AM">AM</option>
+                        <option value="BA">BA</option>
+                        <option value="CE">CE</option>
+                        <option value="DF">DF</option>
+                        <option value="ES">ES</option>
+                        <option value="GO">GO</option>
+                        <option value="MA">MA</option>
+                        <option value="MT">MT</option>
+                        <option value="MS">MS</option>
+                        <option value="MG">MG</option>
+                        <option value="PA">PA</option>
+                        <option value="PB">PB</option>
+                        <option value="PR">PR</option>
+                        <option value="PE">PE</option>
+                        <option value="PI">PI</option>
+                        <option value="RJ">RJ</option>
+                        <option value="RN">RN</option>
+                        <option value="RS">RS</option>
+                        <option value="RO">RO</option>
+                        <option value="RR">RR</option>
+                        <option value="SC">SC</option>
+                        <option value="SP">SP</option>
+                        <option value="SE">SE</option>
+                        <option value="TO">TO</option>                            
+                    </select>
+                </div>
             </div>
-            <div>
-                <label for="estado">Estado:</label>
-                <select id="estado" name="estado" required>
-                    <option value="">Selecione o estado</option>
-                    <option value="AC">AC</option>
-                    <option value="AL">AL</option>
-                    <option value="AP">AP</option>
-                    <option value="AM">AM</option>
-                    <option value="BA">BA</option>
-                    <option value="CE">CE</option>
-                    <option value="DF">DF</option>
-                    <option value="ES">ES</option>
-                    <option value="GO">GO</option>
-                    <option value="MA">MA</option>
-                    <option value="MT">MT</option>
-                    <option value="MS">MS</option>
-                    <option value="MG">MG</option>
-                    <option value="PA">PA</option>
-                    <option value="PB">PB</option>
-                    <option value="PR">PR</option>
-                    <option value="PE">PE</option>
-                    <option value="PI">PI</option>
-                    <option value="RJ">RJ</option>
-                    <option value="RN">RN</option>
-                    <option value="RS">RS</option>
-                    <option value="RO">RO</option>
-                    <option value="RR">RR</option>
-                    <option value="SC">SC</option>
-                    <option value="SP">SP</option>
-                    <option value="SE">SE</option>
-                    <option value="TO">TO</option>
-                </select>
-            </div>
-        </div>
-    
-        <button type="submit">Cadastrar</button>
-    </form>
-    
-    <div class="contador-container">
+
+            <button type="submit">Cadastrar</button>
+        </form>
+    </section>
+
+    <section class="contador-container">
         <h2>Itens cadastrados</h2>
         Total de registros: <span id="contador-registros">0</span>
-    </div>
-    <div class="table-responsive">
-        <table class="table table-striped table-bordered" id="tabela">  
+    </section>
+
+    <section class="table-responsive">
+        <table class="table table-striped table-bordered" id="tabela">
             <thead class="thead-light">
                 <tr>
                     <th>Nome</th>
@@ -236,40 +229,33 @@
                     <th>Contato</th>
                     <th>Status</th>
                 </tr>
-            </thead>    
+            </thead>
             <tbody>
                 <!-- Os dados serão inseridos aqui dinamicamente -->
             </tbody>
         </table>
-        <br>
         <div id="navegacao">
             <button id="prev" disabled>Anterior</button>
             <span id="pagina-atual">Página 1 de 1</span>
             <button id="next">Próxima</button>
         </div>
-    </div>
-    <br>    
+    </section>
 
     <footer class="footer bg-primary text-white text-center py-1" style="position: fixed; bottom: 0; width: 100%; z-index: 10;">
         <p class="mb-0">&copy; 2024 AcheiDocs - Todos os Direitos Reservados.</p>
     </footer>
 
     <!-- Anúncio -->
-    <ins class="adsbygoogle"
-        style="display:block"
-        data-ad-client="ca-pub-4489234399035406"
-        data-ad-slot="2160641399"
-        data-ad-format="auto"
-        data-full-width-responsive="true"></ins>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4489234399035406" data-ad-slot="2160641399" data-ad-format="auto" data-full-width-responsive="true"></ins>
     <script>
         (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
-    
-    
+
     <!-- Incluindo os scripts -->
     <script type="module" src="js/script.js"></script>
-    <script type="module" src="js/firebase.js"></script>    
+    <script type="module" src="js/firebase.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.js"></script>
 
 </body>
+
 </html>
