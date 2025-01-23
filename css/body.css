@@ -4,12 +4,10 @@ body {
   position: relative;
   background-size: cover;
   color: #000000;
-  line-height: 1.6;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  min-height: 100vh;
   background-color: #ffffff;
   margin: 0;
   padding: 0;
@@ -107,12 +105,9 @@ button:hover {
 
 /* === Estilos do formulário de cadastro === */
 #form-cadastro {
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  padding: 20px;
-  width: 100%;
-  max-width: 600px;
-  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
 }
 
 #form-cadastro h3 {
@@ -121,7 +116,6 @@ button:hover {
   margin-bottom: 20px;
   text-align: center;
 }
-
 
 input[type="radio"] {
   margin-right: 5px;

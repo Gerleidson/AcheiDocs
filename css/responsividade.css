@@ -4,8 +4,9 @@
   /* Ajustes gerais para o formulário */
   #form-cadastro {
     margin: 10px;
-    padding: 20px;
     width: 100%; /* Aumenta a largura do formulário para 90% */
+    margin-bottom: 10px;
+    margin-top: 10px;
   }
 
   .form-row {
@@ -28,7 +29,7 @@
   }
 
   .checkbox-group {
-    flex-direction:row;
+    flex-direction:column;
     gap: 10px;
   }
 
@@ -127,22 +128,11 @@
   }
 
   /* Ajustes no menu em telas pequenas */
-  .info-card {
-    width: 95%;
-    max-width: 100%;
-    padding: 15px;
-  }
-
-  form {
-    padding: 15px;
-  }
 
   .btn-action {
     font-size: 0.9em;
     padding: 10px 20px;
   }
-
-
 
   form input,
   form button {
@@ -159,57 +149,4 @@
   }
 }
 
-/* Para dispositivos móveis com telas muito pequenas */
-@media screen and (max-width: 480px) {
-  #form-cadastro {
-    margin: 0;
-    padding: 10px;
-    width: 100%; /* Mantém a largura total do formulário */
-  }
 
-  input[type="text"], input[type="tel"], select {
-    font-size: 0.85rem;
-    padding: 6px;
-  }
-
-  button {
-    padding: 8px 16px;
-    font-size: 0.9rem;
-  }
-
-  .checkbox-group {
-    flex-direction: row;
-  }
-
-  .form-row {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .info h1 {
-    font-size: 24px;
-  }
-
-  .info h4 {
-    font-size: 20px;
-  }
-
-  form {
-    width: 100%;
-    padding: 10px;
-  }
-
-  .table-container {
-    width: 100%;
-  }
-
-  table th,
-  table td {
-    font-size: 10px; /* Diminui ainda mais o tamanho da tabela */
-    padding: 6px; /* Diminui o padding da tabela */
-  }
-
-  table {
-    width: 100%;
-  }
-}
