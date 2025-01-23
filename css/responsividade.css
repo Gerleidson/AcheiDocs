@@ -1,12 +1,11 @@
 /* === Responsividade geral === */
 
-/* Para telas menores, como tablets */
 @media screen and (max-width: 768px) {
   /* Ajustes gerais para o formulário */
   #form-cadastro {
     margin: 10px;
     padding: 15px;
-    width: 90%; /* Aumenta a largura do formulário para 90% */
+    width: 100%; /* Aumenta a largura do formulário para 90% */
   }
 
   .form-row {
@@ -28,7 +27,7 @@
   }
 
   .checkbox-group {
-    flex-direction: column;
+    flex-direction:row;
     gap: 10px;
   }
 
@@ -48,6 +47,7 @@
   #localizar-documento {
     font-size: 1.5rem;
     margin-bottom: 10px;
+    margin-top: 10px;
   }
 
   input[type="text"], button {
@@ -136,18 +136,6 @@
     padding: 15px;
   }
 
-  .card-header h4 {
-    font-size: 1.6em;
-  }
-
-  .card-body h5 {
-    font-size: 1.2em;
-  }
-
-  .card-body p {
-    font-size: 0.9em;
-  }
-
   .btn-action {
     font-size: 0.9em;
     padding: 10px 20px;
@@ -165,11 +153,6 @@
 
   .menu-horizontal ul {
     flex-direction: column;
-  }
-
-  .checkbox-group {
-    flex-direction: column;
-    gap: 10px;
   }
 
   form input,
@@ -197,7 +180,7 @@
   }
 
   .checkbox-group {
-    flex-direction: column;
+    flex-direction: row;
   }
 
   .form-row {
@@ -214,11 +197,6 @@
   }
 
   /* Ajustes no menu em telas pequenas */
-  .info-card {
-    width: 95%;
-    max-width: 100%;
-    padding: 10px;
-  }
 
   form {
     width: 100%;
