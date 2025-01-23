@@ -1,5 +1,7 @@
 /* === Estilo para formulários === */
   form {
+      width: 100%; /* Ou defina uma largura fixa */
+      max-width: 600px; /* Limita a largura máxima */
     margin: 20px 0;
     padding: 20px;
     background-color: #fff;
@@ -12,6 +14,7 @@
     border: 2px solid #ccc; /* Borda padrão */
     overflow: hidden; /* Necessário para o efeito não ultrapassar as bordas */
   }
+  
   form h3 {
     font-size: 1.2em;
     margin-bottom: 15px;
