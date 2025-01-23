@@ -40,7 +40,8 @@
 /* Responsividade para telas menores */
 .table-responsive {
   overflow-x: auto;
-  width: 90%;
+  width: 50%;  /* apagar se precisar diminuir a tabela */
+
 }
 
 .table-responsive::-webkit-scrollbar {
