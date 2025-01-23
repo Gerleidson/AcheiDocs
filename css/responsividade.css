@@ -4,12 +4,13 @@
   /* Ajustes gerais para o formulário */
   #form-cadastro {
     margin: 10px;
-    padding: 15px;
+    padding: 20px;
     width: 100%; /* Aumenta a largura do formulário para 90% */
   }
 
   .form-row {
     flex-direction: column;
+    gap: 10px;
   }
 
   .form-row div {
@@ -141,10 +142,7 @@
     padding: 10px 20px;
   }
 
-  .form-row {
-    flex-direction: column;
-    gap: 10px;
-  }
+
 
   form input,
   form button {
@@ -164,7 +162,7 @@
 /* Para dispositivos móveis com telas muito pequenas */
 @media screen and (max-width: 480px) {
   #form-cadastro {
-    margin: 10px;
+    margin: 0;
     padding: 10px;
     width: 100%; /* Mantém a largura total do formulário */
   }
@@ -195,8 +193,6 @@
   .info h4 {
     font-size: 20px;
   }
-
-  /* Ajustes no menu em telas pequenas */
 
   form {
     width: 100%;
