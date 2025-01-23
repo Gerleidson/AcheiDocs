@@ -9,12 +9,11 @@
     border-radius: 8px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
     position: relative;
     border: 2px solid #ccc; /* Borda padrão */
     overflow: hidden; /* Necessário para o efeito não ultrapassar as bordas */
   }
-  
+
   form h3 {
     font-size: 1.2em;
     margin-bottom: 15px;
@@ -68,7 +67,6 @@
   /* Ajuste para cidade e estado ficarem lado a lado */
   .form-row {
     display: flex;
-    gap: 15px;
     justify-content: space-between;
   }
   
@@ -84,7 +82,6 @@
   /* === Estilo para os checkboxes === */
 .checkbox-group {
   display: flex;
-  gap: 15px;
   justify-content: center;
   align-items: center;
 }
