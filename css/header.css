@@ -75,21 +75,12 @@ header {
   font-size: 16px;
   position: relative;
   display: inline-block;
-  padding: 8px 12x; /* Aumentando o padding para dar mais espaço e tornar o link mais parecido com um botão */
+  padding: 8px 15px; /* Aumentando o padding para dar mais espaço e tornar o link mais parecido com um botão */
   border: 2px solid transparent; /* Inicialmente, a borda é invisível */
   border-radius: 5px; /* Arredondando as bordas */
   transition: all 0.3s ease; /* Transições suaves para todos os efeitos */
 }
-/* Efeito de hover e foco (quando o usuário passar o mouse ou clicar) */
-.nav-links a:hover, .nav-links a:focus {
-  color: #ffffff; /* Cor do texto ao passar o mouse */
-  border-color: #ffffff; /* Borda branca ao passar o mouse */
-  background-color: rgba(255, 255, 255, 0.1); /* Fundo levemente branco para dar um efeito de destaque */
-}
 
-.nav-links a:active {
-  background-color: rgba(255, 255, 255, 0.2); /* Efeito de fundo mais intenso quando o link é pressionado */
-}
 
 /* Efeito de hover com underline animado */
 .nav-links a::after {
@@ -104,7 +95,7 @@ header {
 }
 
 .nav-links a:hover {
-  color: ffffff; /* Cor do texto ao passar o mouse */
+  color: #007BFF; /* Cor do texto ao passar o mouse */
 }
 
 .nav-links a:hover::after {
@@ -166,7 +157,7 @@ header {
 }
 
 #doacao-link:hover {
-  color: #ffffff;
+  color: #007BB5;
 }
 
 /* Estilo do botão de voltar para parecer um link */
