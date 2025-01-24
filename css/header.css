@@ -26,6 +26,7 @@ header {
   font-size: 24px;
   font-weight: bold;
 }
+
 /* Efeito de brilho no texto */
 .logo {
   font-size: 2em; /* Tamanho do texto */
@@ -80,7 +81,6 @@ header {
   border-radius: 5px; /* Arredondando as bordas */
   transition: all 0.3s ease; /* Transições suaves para todos os efeitos */
 }
-
 
 /* Efeito de hover com underline animado */
 .nav-links a::after {
