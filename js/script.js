@@ -349,15 +349,3 @@ function displayWeather(data) {
     weatherIcon.style.display = "inline";
 }
 
-
-
-window.addEventListener('scroll', function() {
-    const form = document.getElementById('form-cadastro');
-    const rect = form.getBoundingClientRect();
-    
-    // Verifica se o formulário está visível na tela
-    if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
-      form.classList.add('visible'); // Adiciona a classe que torna o formulário visível
-    }
-  });
-  
