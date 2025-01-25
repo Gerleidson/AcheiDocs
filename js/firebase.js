@@ -65,3 +65,29 @@ export function buscarDadosDoFirebase() {
             console.error("Erro ao buscar dados:", error);
         });
 }
+
+// Função para capturar feedback
+const formFeedback = document.getElementById('feedback-form');
+
+formFeedback.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const nome = document.getElementById('nome-feedback').value;
+    const email = document.getElementById('email-feedback').value;
+    const comentario = document.getElementById('comentario').value;
+
+// Armazenar no Firebase (assumindo que o Firebase já está configurado no seu projeto)
+const feedbackRef = push(ref(db, 'feedbacks'));
+    
+    set(feedbackRef, {
+        nome: nome,
+        email: email,
+        comentario: comentario,
+        data: new Date().toISOString(),
+    }).then(() => {
+        alert('Obrigado pelo seu feedback!');
+        formFeedback.reset();
+    }).catch((error) => {
+        alert('Erro ao enviar o feedback: ' + error.message);
+    });
+});
