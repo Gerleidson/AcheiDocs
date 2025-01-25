@@ -344,7 +344,8 @@ function displayWeather(data) {
     weatherIcon.style.display = "inline";
 }
 
-// Script para capturar feedback do formulário
+
+// Função para capturar feedback
 const formFeedback = document.getElementById('feedback-form');
 
 formFeedback.addEventListener('submit', function(event) {
@@ -355,9 +356,9 @@ formFeedback.addEventListener('submit', function(event) {
     const comentario = document.getElementById('comentario').value;
 
     // Armazenar no Firebase (assumindo que o Firebase já está configurado no seu projeto)
-    const feedbackRef = firebase.database().ref('feedbacks').push();
+    const feedbackRef = push(ref(db, 'feedbacks'));
     
-    feedbackRef.set({
+    set(feedbackRef, {
         nome: nome,
         email: email,
         comentario: comentario,

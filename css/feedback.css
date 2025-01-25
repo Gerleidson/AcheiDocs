@@ -1,10 +1,10 @@
 /* Estilos para a seção de Feedback */
 .feedback-section {
-    padding: 20px 20px;
     background-color: #f9f9f9; /* Mantém a cor de fundo */
-    margin: 0; /* Remove margens externas */
+    margin: 0 auto; /* Remove margens externas */
     width: 100%; /* Garante que a largura ocupe toda a tela */
     box-sizing: border-box; /* Garante que o padding não afete a largura */
+
 }
 
 /* Container do formulário */
@@ -12,7 +12,6 @@
     max-width: 600px; /* Reduzi a largura máxima do formulário */
     margin: 0 auto;   /* Centraliza horizontalmente */
     padding: 20px;
-
     border-radius: 8px;
 }
 
