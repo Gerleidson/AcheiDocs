@@ -40,7 +40,6 @@
 /* Responsividade para telas menores */
 .table-responsive {
   overflow-x: auto;
-  width: 90%;  /* apagar se precisar diminuir a tabela */
 
 }
 
