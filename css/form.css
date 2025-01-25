@@ -22,6 +22,10 @@ form.zoom-in {
   opacity: 1;
   transform: scale(1); /* Zoom completo */
 }
+form.zoom-out {
+  opacity: 0;
+  transform: scale(0.8); /* Reduz o tamanho do formulário */
+}
 
   form h3 {
     font-size: 1.2em;

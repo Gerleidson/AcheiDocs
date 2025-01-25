@@ -344,18 +344,33 @@ function displayWeather(data) {
     weatherIcon.style.display = "inline";
 }
 
-// Função que verifica se o formulário está visível na tela
+// Função para os efeitos zoom in e zoom out
+
+let lastScrollTop = 0; // Armazena a posição da rolagem anterior
+
+// Função que verifica a visibilidade e a direção da rolagem
 function checkFormVisibility() {
     const forms = document.querySelectorAll('form');
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop; // Posição atual da rolagem
+
     forms.forEach(form => {
         const formPosition = form.getBoundingClientRect().top; // Posição do formulário
         const windowHeight = window.innerHeight; // Altura da janela
 
-        // Se o formulário estiver na tela, aplicamos a classe 'zoom-in'
-        if (formPosition < windowHeight * 0.8 && !form.classList.contains('zoom-in')) {
+        // Se o formulário estiver na tela e a rolagem for para baixo, aplica o zoom-in
+        if (formPosition < windowHeight * 0.8 && !form.classList.contains('zoom-in') && scrollTop > lastScrollTop) {
             form.classList.add('zoom-in');
+            form.classList.remove('zoom-out'); // Remove o zoom-out, caso esteja ativo
+        }
+        // Se a rolagem for para cima, aplica o zoom-out
+        else if (scrollTop < lastScrollTop && formPosition > windowHeight * 0.8) {
+            form.classList.add('zoom-out');
+            form.classList.remove('zoom-in'); // Remove o zoom-in, caso esteja ativo
         }
     });
+
+    // Atualiza a posição da rolagem para a próxima comparação
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Impede rolar para valores negativos
 }
 
 // Chama a função quando a página carrega e quando o usuário rola a página
