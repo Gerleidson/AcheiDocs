@@ -1,7 +1,7 @@
 /* === Estilo para formulários === */
   form {
-      width: 100%; /* Ou defina uma largura fixa */
-      max-width: 600px; /* Limita a largura máxima */
+    width: 100%; /* Ou defina uma largura fixa */
+    max-width: 600px; /* Limita a largura máxima */
     margin: 20px 0;
     padding: 20px;
     background-color: #fff;
