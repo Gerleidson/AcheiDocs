@@ -344,4 +344,20 @@ function displayWeather(data) {
     weatherIcon.style.display = "inline";
 }
 
+// Função que verifica se o formulário está visível na tela
+function checkFormVisibility() {
+    const forms = document.querySelectorAll('form');
+    forms.forEach(form => {
+        const formPosition = form.getBoundingClientRect().top; // Posição do formulário
+        const windowHeight = window.innerHeight; // Altura da janela
 
+        // Se o formulário estiver na tela, aplicamos a classe 'zoom-in'
+        if (formPosition < windowHeight * 0.8 && !form.classList.contains('zoom-in')) {
+            form.classList.add('zoom-in');
+        }
+    });
+}
+
+// Chama a função quando a página carrega e quando o usuário rola a página
+window.addEventListener('scroll', checkFormVisibility);
+window.addEventListener('load', checkFormVisibility);

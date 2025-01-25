@@ -1,18 +1,27 @@
 /* === Estilo para formulários === */
-  form {
-    width: 100%; /* Ou defina uma largura fixa */
-    max-width: 600px; /* Limita a largura máxima */
-    margin: 20px 0;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    border: 2px solid #ccc; /* Borda padrão */
-    overflow: hidden; /* Necessário para o efeito não ultrapassar as bordas */
-  }
+form {
+  width: 100%; 
+  max-width: 600px;
+  margin: 20px 0;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border: 2px solid #ccc;
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(0.8); /* Inicialmente o formulário está com zoom out */
+  transition: transform 1s ease, opacity 1s ease;
+}
+
+/* Quando o formulário estiver visível, ele aplica o zoom-in */
+form.zoom-in {
+  opacity: 1;
+  transform: scale(1); /* Zoom completo */
+}
 
   form h3 {
     font-size: 1.2em;
@@ -138,11 +147,3 @@ form select:focus {
   outline: none;
   background-color: #d2ecf7;
 }
-
-
-
-
-
-
-
-
