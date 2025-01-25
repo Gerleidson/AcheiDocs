@@ -77,6 +77,7 @@ formFeedback.addEventListener('submit', function(event) {
     const comentario = document.getElementById('comentario').value;
 
 // Armazenar no Firebase (assumindo que o Firebase já está configurado no seu projeto)
+const db = getDatabase(); // Adicionando a obtenção do db aqui
 const feedbackRef = push(ref(db, 'feedbacks'));
     
     set(feedbackRef, {
