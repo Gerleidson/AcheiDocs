@@ -6,6 +6,7 @@
   text-align: left;
   background-color: #f9f9f9;
   font-family: 'Roboto', sans-serif;
+  
 }
 
 .table thead {
@@ -40,6 +41,8 @@
 /* Responsividade para telas menores */
 .table-responsive {
   overflow-x: auto;
+  width: 90%;  /* apagar se precisar diminuir a tabela */
+  max-width: 600px;
 
 }
 

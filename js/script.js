@@ -198,11 +198,6 @@ const popup = document.getElementById("popup");
 const closeBtn = document.getElementById("close-btn");
 const pixCopy = document.getElementById("pix-copy");
 
-
-
-
-
-
 doacaoLink.addEventListener("click", (event) => {
     event.preventDefault();
 
