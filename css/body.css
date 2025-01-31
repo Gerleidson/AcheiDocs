@@ -1,18 +1,71 @@
 /* === Estilos globais === */
 body {
+<<<<<<< Updated upstream
   font-family: 'Arial', sans-serif;
   position: relative;
   background-size: cover;
   color: #000000;
+=======
+  font-family: 'Roboto', sans-serif;
+  position: relative;
+  background-size: cover;
+  line-height: 1.6;
+>>>>>>> Stashed changes
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+<<<<<<< Updated upstream
   margin: 0;
   padding: 0;
   bottom: 50px;
   background-color: #ffffff
 }
+=======
+  min-height: 100vh;
+  padding: 20px;
+  background-color: #121212;
+}
+ 
+  main {
+    padding: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-top: 80px;
+  }
+  
+  main h1, main h2 {
+    color: #007BB5;
+  }
+  
+  main .section-title {
+    font-size: 1.2em;
+    margin-top: 20px;
+    color: #007BB5;
+  }
+  
+  main .content {
+    margin-bottom: 20px;
+  }
+  
+  .btn-download {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+  }
+  
+  .btn-download:hover {
+    background-color: #0056b3;
+  }
+>>>>>>> Stashed changes
 
 /* === Estilos principais === */
 .principal {
