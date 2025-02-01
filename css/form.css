@@ -1,8 +1,7 @@
 /* === Estilo para formulários === */
 form {
-  width: 100%; 
   max-width: 600px;
-  margin: 20px 0;
+  margin: 0 auto;   /* Centraliza horizontalmente */
   padding: 20px;
   background-color: #fff;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);

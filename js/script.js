@@ -390,3 +390,20 @@ function checkFormVisibility() {
 // Chama a função quando a página carrega e quando o usuário rola a página
 window.addEventListener('scroll', checkFormVisibility);
 window.addEventListener('load', checkFormVisibility);
+
+
+// Obtendo todos os botões de perguntas
+const faqQuestions = document.querySelectorAll('.faq-question');
+
+// Adicionando evento de clique para cada pergunta
+faqQuestions.forEach(question => {
+    question.addEventListener('click', function() {
+        // Alterna a exibição da resposta
+        const answer = this.nextElementSibling;
+        if (answer.style.display === 'block') {
+            answer.style.display = 'none';
+        } else {
+            answer.style.display = 'block';
+        }
+    });
+});
