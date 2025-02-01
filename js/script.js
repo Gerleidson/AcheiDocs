@@ -1,198 +1,131 @@
 import { salvarDados } from './firebase.js'; 
 import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js"; 
 
-// Inicializando o Firebase corretamente com o db importado
 const db = getDatabase();
-
-// Variáveis de controle de paginação
-const registrosPorPagina = 10; // Exibir 10 registros por vez
-let paginaAtual = 1; // Página inicial
-const telefoneRegex = /^\(?\d{2}\)?\s?\d{5}-\d{4}$/; 
-
-
+const registrosPorPagina = 10;
+let paginaAtual = 1;
+const telefoneRegex = /^\(?\d{2}\)?\s?\d{5}-\d{4}$/;
 
 // Função para salvar os dados do formulário no Firebase
 document.getElementById('form-cadastro').addEventListener('submit', function (event) {
-    event.preventDefault(); // Impede o envio do formulário tradicional
+    event.preventDefault();
 
-    // Coleta os dados do formulário
-    const nome = document.getElementById('nome').value;
-    const documento = document.getElementById('documento').value; // Agora é um select
-    const cidade = document.getElementById('cidade').value;
-    const estado = document.getElementById('estado').value; // Estado como sigla
-    const telefone = document.getElementById('telefone').value;
-    const tipo = document.querySelector('input[name="tipo"]:checked') ? document.querySelector('input[name="tipo"]:checked').value : '';
-
-
-    // Verifica se todos os campos obrigatórios foram preenchidos
-    if (!nome || !documento || !cidade || !estado || !telefone || !tipo) {
-        alert("Por favor, preencha todos os campos.");
-        return;
-    }
-
-    // Validação do telefone
-    if (!telefoneRegex.test(telefone)) {
-        alert("Por favor, insira um telefone válido no formato (XX) XXXXX-XXXX.");
-        return;
-    }
+    const dados = coletarDadosFormulario();
+    if (!validarFormulario(dados)) return;
     
-    // Chama a função para salvar no Firebase
-    salvarDados(nome, documento, cidade, estado, telefone, tipo);
-    
-    // Limpa o formulário após enviar
-    document.getElementById('form-cadastro').reset();
+    salvarDados(dados.nome, dados.documento, dados.cidade, dados.estado, dados.telefone, dados.tipo);
+    this.reset();
 });
 
-   // Validações
-   const telefoneInput = document.getElementById('telefone');
+// Coleta os dados do formulário
+function coletarDadosFormulario() {
+    return {
+        nome: document.getElementById('nome').value,
+        documento: document.getElementById('documento').value,
+        cidade: document.getElementById('cidade').value,
+        estado: document.getElementById('estado').value,
+        telefone: document.getElementById('telefone').value,
+        tipo: document.querySelector('input[name="tipo"]:checked') ? document.querySelector('input[name="tipo"]:checked').value : ''
+    };
+}
 
-   telefoneInput.addEventListener('input', function(event) {
-       let telefone = telefoneInput.value.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
-   
-       // Aplica a formatação (XX) XXXXX-XXXX
-       if (telefone.length <= 2) {
-           telefone = `(${telefone}`;
-       } else if (telefone.length <= 7) {
-           telefone = `(${telefone.slice(0, 2)}) ${telefone.slice(2)}`;
-       } else {
-           telefone = `(${telefone.slice(0, 2)}) ${telefone.slice(2, 7)}-${telefone.slice(7, 11)}`;
-       }
-   
-       telefoneInput.value = telefone; // Atualiza o valor do input
-   });
-   
-
-// Função para buscar o cadastro por nome
-function buscarCadastroPorNome() {
-    const nomeBusca = document.getElementById('nome-busca').value.trim();
-    if (nomeBusca === "") {
-        alert("Por favor, insira um nome para buscar.");
-        return;
+// Validação do formulário
+function validarFormulario(dados) {
+    if (!dados.nome || !dados.documento || !dados.cidade || !dados.estado || !dados.telefone || !dados.tipo) {
+        alert("Por favor, preencha todos os campos.");
+        return false;
     }
 
-    // Referência ao banco de dados do Firebase
+    if (!telefoneRegex.test(dados.telefone)) {
+        alert("Por favor, insira um telefone válido no formato (XX) XXXXX-XXXX.");
+        return false;
+    }
+    return true;
+}
+
+// Validação e formatação do telefone
+document.getElementById('telefone').addEventListener('input', function(event) {
+    this.value = formatarTelefone(this.value);
+});
+
+function formatarTelefone(telefone) {
+    telefone = telefone.replace(/\D/g, '');
+    if (telefone.length <= 2) return `(${telefone}`;
+    if (telefone.length <= 7) return `(${telefone.slice(0, 2)}) ${telefone.slice(2)}`;
+    return `(${telefone.slice(0, 2)}) ${telefone.slice(2, 7)}-${telefone.slice(7, 11)}`;
+}
+
+// Função de busca por nome
+window.buscarCadastroPorNome = function() {
+    const nomeBusca = document.getElementById('nome-busca').value.trim();
+    if (!nomeBusca) return alert("Por favor, insira um nome para buscar.");
+
     const dbRef = ref(db, "documentos/");
-
     get(dbRef).then((snapshot) => {
-        if (snapshot.exists()) {
-            let encontrado = false;
-            const dados = snapshot.val();
-
-            // Verificando se algum item corresponde ao nome
-            for (const id in dados) {
-                if (dados[id].nome.toUpperCase() === nomeBusca.toUpperCase()) {
-                    encontrado = true;
-                    exibirPopup(dados[id]); // Exibe o pop-up com as informações do cadastro
-                    break;
-                }
-            }
-
-            if (!encontrado) {
-                exibirPopup(null); // Exibe pop-up informando que não encontrou o item
-            }
-        } else {
-            exibirPopup(null); // Exibe pop-up informando que não há registros
-        }
+        const dados = snapshot.exists() ? snapshot.val() : {};
+        const registro = Object.values(dados).find(item => item.nome.toUpperCase() === nomeBusca.toUpperCase());
+        exibirPopup(registro);
     }).catch((error) => {
         console.error("Erro ao buscar os dados:", error);
-        exibirPopup(null); // Exibe pop-up de erro
+        exibirPopup(null);
     });
 
-    // Limpa o formulário de busca após executar
     document.getElementById('form-busca').reset();
 }
 
-
-// Função para exibir o pop-up com o resultado da busca ou mensagem de erro
+// Exibe pop-up com resultados da busca
 function exibirPopup(dados) {
-    if (dados) {
-        // Se os dados forem encontrados, mostra um pop-up com as informações
-        alert(`
-            Resultado Encontrado:
-            
-            Nome: ${dados.nome}
-            Documento: ${dados.documento}
-            Telefone: ${dados.telefone}
-            Cidade: ${dados.cidade}
-            Estado: ${dados.estado}
-            Status: ${dados.tipo}
-        `);
-    } else {
-        // Caso contrário, mostra uma mensagem dizendo que não foi encontrado
-        alert("Não há registro.");
-    }
+    const message = dados ?
+        `Resultado Encontrado:\n\nNome: ${dados.nome}\nDocumento: ${dados.documento}\nTelefone: ${dados.telefone}\nCidade: ${dados.cidade}\nEstado: ${dados.estado}\nStatus: ${dados.tipo}` :
+        "Não há registro.";
+    alert(message);
 }
 
 // Função para exibir documentos com paginação
 function exibirDocumentosPaginados(pagina) {
     const referencia = ref(db, 'documentos/');
     get(referencia).then((snapshot) => {
-        if (snapshot.exists()) {
-            const documentos = snapshot.val();
-            const totalDocumentos = Object.keys(documentos).length; // Total de documentos cadastrados
-            const totalPaginas = Math.ceil(totalDocumentos / registrosPorPagina); // Calcula o número total de páginas
-
-            // Calcular a faixa de registros a exibir
-            const inicio = (pagina - 1) * registrosPorPagina;
-            const fim = inicio + registrosPorPagina;
-
-            // Filtrando os documentos para a página atual
-            const documentosPagina = Object.entries(documentos).slice(inicio, fim).map(([id, doc]) => ({ id, ...doc }));
-            exibirDocumentosNaTabela(documentosPagina);
-
-            // Atualizar a navegação de página
-            atualizarNavegacao(pagina, totalPaginas);
-        } else {
-            console.log("Nenhum dado encontrado.");
-        }
+        const documentos = snapshot.exists() ? snapshot.val() : {};
+        const documentosPagina = paginarDocumentos(documentos, pagina);
+        exibirDocumentosNaTabela(documentosPagina);
+        atualizarNavegacao(pagina, Math.ceil(Object.keys(documentos).length / registrosPorPagina));
     }).catch((error) => {
         console.error("Erro ao buscar dados:", error);
     });
 }
 
-// Função para exibir os documentos na tabela
+// Paginação dos documentos
+function paginarDocumentos(documentos, pagina) {
+    const documentosArray = Object.entries(documentos).map(([id, doc]) => ({ id, ...doc }));
+    const inicio = (pagina - 1) * registrosPorPagina;
+    return documentosArray.slice(inicio, inicio + registrosPorPagina);
+}
+
+// Exibe documentos na tabela
 function exibirDocumentosNaTabela(documentos) {
     const tabela = document.querySelector('#tabela tbody');
-    tabela.innerHTML = '';  // Limpar tabela antes de adicionar novos dados
-
-    documentos.forEach(doc => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
+    tabela.innerHTML = documentos.map(doc => `
+        <tr>
             <td>${doc.nome}</td>
             <td>${doc.documento}</td>
             <td>${doc.cidade}</td>
             <td>${doc.estado}</td>
             <td>${doc.telefone}</td>
-            <td>${doc.tipo}</td> <!-- Corrigido para 'tipo' -->
-        `;
-        tabela.appendChild(row);
-    });
+            <td>${doc.tipo}</td>
+        </tr>
+    `).join('');
 }
 
-// Função para atualizar a navegação entre as páginas
-    function atualizarNavegacao(pagina, totalPaginas) {
+// Atualiza navegação de página
+function atualizarNavegacao(pagina, totalPaginas) {
     const prevButton = document.getElementById('prev');
     const nextButton = document.getElementById('next');
-
-    // Habilitar/desabilitar os botões de navegação
-    if (pagina > 1) {
-        prevButton.disabled = false;
-    } else {
-        prevButton.disabled = true;
-    }
-
-    if (pagina < totalPaginas) {
-        nextButton.disabled = false;
-    } else {
-        nextButton.disabled = true;
-    }
-
-    // Atualizar número da página exibida
+    prevButton.disabled = pagina <= 1;
+    nextButton.disabled = pagina >= totalPaginas;
     document.getElementById('pagina-atual').textContent = `Página ${pagina} de ${totalPaginas}`;
 }
 
-
-// Função para ir para a página anterior
+// Navegação entre páginas
 document.getElementById('prev').addEventListener('click', () => {
     if (paginaAtual > 1) {
         paginaAtual--;
@@ -200,197 +133,92 @@ document.getElementById('prev').addEventListener('click', () => {
     }
 });
 
-// Função para ir para a próxima página
 document.getElementById('next').addEventListener('click', () => {
     paginaAtual++;
     exibirDocumentosPaginados(paginaAtual);
 });
 
-// Chama a função ao carregar a página para exibir os documentos da primeira página
+// Exibir documentos ao carregar a página
 document.addEventListener('DOMContentLoaded', () => {
     exibirDocumentosPaginados(paginaAtual);
     exibirTotalCadastros();
 });
 
-// Tornar a função globalmente acessível
-window.buscarCadastroPorNome = buscarCadastroPorNome;
-
-// Mostrar o popup quando o link de doação for clicado
-const doacaoLink = document.getElementById("doacao-link");
-const popup = document.getElementById("popup");
-const closeBtn = document.getElementById("close-btn");
-const pixCopy = document.getElementById("pix-copy");
-
-doacaoLink.addEventListener("click", (event) => {
-    event.preventDefault();
-
-    // Exibe o popup
-    popup.style.display = "flex";
-
-    // Dados do PIX
-    const chavePix = "27.201.781/0001-39"; // Chave PIX
-    const nomeRecebedor = "Gerleidson Bomfim"; // Nome do recebedor
-    const cidadeRecebedor = "Camaçari"; // Cidade do recebedor
-    
-});
-
-
-// Fechar o popup
-closeBtn.addEventListener("click", () => {
-    popup.style.display = "none";
-});
-
-// Tornar o PIX clicável e copiar para a área de transferência
-pixCopy.addEventListener("click", () => {
-    const pix = "27.201.781/0001-39"; // Substitua com sua chave PIX
-    
-    // Copiar o valor do PIX para a área de transferência
-    navigator.clipboard.writeText(pix).then(() => {
-        alert("Chave PIX copiada para a área de transferência!");
-    }).catch((err) => {
-        console.error("Erro ao copiar para a área de transferência", err);
-    });
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-    // Código do hamburguer: Adiciona o evento de clique no ícone
-    document.getElementById('hamburger-icon').addEventListener('click', function() {
-        const navLinks = document.getElementById('nav-links');
-        navLinks.classList.toggle('active'); // Alterna a classe 'active' para exibir/ocultar o menu
-    });
-});
-
-
-// Obtendo os elementos do popup e botão de fechamento
-const dicasLink = document.getElementById('dicas-link');
-const popupDicas = document.getElementById('popup-dicas');
-const closeDicas = document.getElementById('close-dicas');
-
-// Abrir o popup quando o link for clicado
-dicasLink.addEventListener('click', function(e) {
-    e.preventDefault();
-    popupDicas.style.display = 'flex'; // Torna o popup visível
-});
-
-// Fechar o popup quando o botão de fechar for clicado
-closeDicas.addEventListener('click', function() {
-    popupDicas.style.display = 'none'; // Esconde o popup
-});
-
-// Fechar o popup clicando fora do conteúdo
-popupDicas.addEventListener('click', function(e) {
-    if (e.target === popupDicas) {
-        popupDicas.style.display = 'none';
-    }
-});
-
-
-// Função para exibir o total de cadastros
+// Exibir o total de cadastros
 function exibirTotalCadastros() {
-    const contador = document.getElementById('contador-registros'); // Elemento para exibir o total
-
-    // Referência ao nó "documentos" no Firebase
+    const contador = document.getElementById('contador-registros');
     const referencia = ref(db, 'documentos/');
-
-    // Buscar os dados do Firebase
     get(referencia).then((snapshot) => {
-        if (snapshot.exists()) {
-            const totalRegistros = Object.keys(snapshot.val()).length; // Conta o número de registros
-            contador.textContent = `${totalRegistros}`; // Atualiza o contador no DOM
-        } else {
-            contador.textContent = "Total de Cadastros: 0"; // Exibe 0 se não houver dados
-        }
+        contador.textContent = snapshot.exists() ? Object.keys(snapshot.val()).length : 0;
     }).catch((error) => {
         console.error("Erro ao buscar o total de cadastros:", error);
         contador.textContent = "Erro ao carregar o total de cadastros.";
     });
 }
 
+// Ações do link de doação
+document.getElementById("doacao-link").addEventListener("click", (event) => {
+    event.preventDefault();
+    document.getElementById("popup").style.display = "flex";
+});
 
-// Função para exibir o clima na tela
+document.getElementById("close-btn").addEventListener("click", () => {
+    document.getElementById("popup").style.display = "none";
+});
+
+// Ações do link de dicas
+document.getElementById('dicas-link').addEventListener('click', function(e) {
+    e.preventDefault();
+    document.getElementById('popup-dicas').style.display = 'flex';
+});
+
+document.getElementById('close-dicas').addEventListener('click', function() {
+    document.getElementById('popup-dicas').style.display = 'none';
+});
+
+// Função para exibir o clima
 if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
-} else {
-    alert("Seu navegador não suporta geolocalização.");
 }
 
 function successCallback(position) {
-    const latitude = position.coords.latitude;
-    const longitude = position.coords.longitude;
+    const { latitude, longitude } = position.coords;
     fetchWeather(latitude, longitude);
 }
 
-function errorCallback(error) {
-    const weatherCity = document.querySelector(".weather-city");
-    weatherCity.textContent = "Erro ao obter localização";
-    console.error("Erro ao obter localização:", error);
-}
-
 function fetchWeather(lat, lon) {
-    const apiKey = "16be4fa1c04079d1ea3e2f83fbb54d9f"; // Substitua pela sua chave da OpenWeatherMap
+    const apiKey = "16be4fa1c04079d1ea3e2f83fbb54d9f";
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric&lang=pt_br`;
-
     fetch(url)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Erro ao buscar dados da API");
-            }
-            return response.json();
-        })
-        .then(data => {
-            displayWeather(data);
-        })
-        .catch(error => {
-            console.error("Erro ao buscar dados climáticos:", error);
-            const weatherCity = document.querySelector(".weather-city");
-            weatherCity.textContent = "Erro ao carregar clima";
-        });
+        .then(response => response.json())
+        .then(data => displayWeather(data))
+        .catch(error => console.error("Erro ao buscar dados climáticos:", error));
 }
 
 function displayWeather(data) {
-    const city = data.name;
-    const temperature = Math.round(data.main.temp); // Arredonda a temperatura
-    const description = data.weather[0].description;
-    const iconCode = data.weather[0].icon;
-    const iconUrl = `https://openweathermap.org/img/wn/${iconCode}.png`;
-
-    document.querySelector(".weather-city").textContent = city;
-    document.querySelector(".weather-temp").textContent = `${temperature}°C`;
-    document.querySelector(".weather-desc").textContent = description;
-    const weatherIcon = document.querySelector(".weather-icon");
-    weatherIcon.src = iconUrl;
-    weatherIcon.style.display = "inline";
+    document.querySelector(".weather-city").textContent = data.name;
+    document.querySelector(".weather-temp").textContent = `${Math.round(data.main.temp)}°C`;
+    document.querySelector(".weather-desc").textContent = data.weather[0].description;
+    document.querySelector(".weather-icon").src = `https://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
 }
 
-// Função para os efeitos zoom in e zoom out
+// Função para efeitos de zoom em rolagem
+let lastScrollTop = 0;
+window.addEventListener('scroll', checkFormVisibility);
 
-let lastScrollTop = 0; // Armazena a posição da rolagem anterior
-
-// Função que verifica a visibilidade e a direção da rolagem
 function checkFormVisibility() {
     const forms = document.querySelectorAll('form');
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop; // Posição atual da rolagem
-
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     forms.forEach(form => {
-        const formPosition = form.getBoundingClientRect().top; // Posição do formulário
-        const windowHeight = window.innerHeight; // Altura da janela
-
-        // Se o formulário estiver na tela e a rolagem for para baixo, aplica o zoom-in
+        const formPosition = form.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
         if (formPosition < windowHeight * 0.8 && !form.classList.contains('zoom-in') && scrollTop > lastScrollTop) {
             form.classList.add('zoom-in');
-            form.classList.remove('zoom-out'); // Remove o zoom-out, caso esteja ativo
-        }
-        // Se a rolagem for para cima, aplica o zoom-out
-        else if (scrollTop < lastScrollTop && formPosition > windowHeight * 0.8) {
+            form.classList.remove('zoom-out');
+        } else if (scrollTop < lastScrollTop && formPosition > windowHeight * 0.8) {
             form.classList.add('zoom-out');
-            form.classList.remove('zoom-in'); // Remove o zoom-in, caso esteja ativo
+            form.classList.remove('zoom-in');
         }
     });
-
-    // Atualiza a posição da rolagem para a próxima comparação
-    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Impede rolar para valores negativos
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
 }
-
-// Chama a função quando a página carrega e quando o usuário rola a página
-window.addEventListener('scroll', checkFormVisibility);
-window.addEventListener('load', checkFormVisibility);
