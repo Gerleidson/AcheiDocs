@@ -47,19 +47,21 @@ document.getElementById('form-cadastro').addEventListener('submit', function (ev
    const telefoneInput = document.getElementById('telefone');
 
    telefoneInput.addEventListener('input', function(event) {
-       let telefone = telefoneInput.value.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
-   
-       // Aplica a formatação (XX) XXXXX-XXXX
-       if (telefone.length <= 2) {
-           telefone = `(${telefone}`;
-       } else if (telefone.length <= 7) {
-           telefone = `(${telefone.slice(0, 2)}) ${telefone.slice(2)}`;
-       } else {
-           telefone = `(${telefone.slice(0, 2)}) ${telefone.slice(2, 7)}-${telefone.slice(7, 11)}`;
-       }
-   
-       telefoneInput.value = telefone; // Atualiza o valor do input
-   });
+    setTimeout(() => {
+        let telefone = telefoneInput.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+    
+        if (telefone.length <= 2) {
+            telefone = `(${telefone}`;
+        } else if (telefone.length <= 7) {
+            telefone = `(${telefone.slice(0, 2)}) ${telefone.slice(2)}`;
+        } else {
+            telefone = `(${telefone.slice(0, 2)}) ${telefone.slice(2, 7)}-${telefone.slice(7, 11)}`;
+        }
+    
+        telefoneInput.value = telefone;
+    }, 50); // Pequeno delay para evitar erros de input rápido
+});
+
    
 
 // Função para buscar o cadastro por nome
@@ -106,7 +108,6 @@ function buscarCadastroPorNome() {
 // Função para exibir o pop-up com o resultado da busca ou mensagem de erro
 function exibirPopup(dados) {
     if (dados) {
-        // Se os dados forem encontrados, mostra um pop-up com as informações
         alert(`
             Resultado Encontrado:
             
