@@ -199,7 +199,10 @@ document.getElementById('next').addEventListener('click', () => {
 });
 
 // Chama a função ao carregar a página para exibir os documentos da primeira página
-document.addEventListener('DOMContentLoaded', () => exibirDocumentosPaginados(paginaAtual));
+document.addEventListener('DOMContentLoaded', () => {
+    exibirDocumentosPaginados(paginaAtual);
+    exibirTotalCadastros();
+});
 
 // Tornar a função globalmente acessível
 window.buscarCadastroPorNome = buscarCadastroPorNome;
@@ -295,8 +298,6 @@ function exibirTotalCadastros() {
     });
 }
 
-// Chamar a função ao carregar a página
-document.addEventListener('DOMContentLoaded', exibirTotalCadastros);
 
 // Função para exibir o clima na tela
 if (navigator.geolocation) {
