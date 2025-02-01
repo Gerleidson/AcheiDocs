@@ -154,20 +154,23 @@ document.getElementById('prev').addEventListener('click', () => {
 });
 
 // Função para ir para a próxima página
-// Atualizar evento do botão "Próximo"
 document.getElementById('next').addEventListener('click', () => {
     buscarDadosFirebase((documentos) => {
         if (documentos) {
             const totalDocumentos = Object.keys(documentos).length;
             const totalPaginas = Math.ceil(totalDocumentos / registrosPorPagina);
 
-            if (paginaAtual < totalPaginas) {
+            // Verifica se há pelo menos 10 registros antes de permitir avançar
+            if (totalDocumentos > registrosPorPagina && paginaAtual < totalPaginas) {
                 paginaAtual++;
                 exibirDocumentosPaginados(paginaAtual);
+            } else {
+                alert("Não há registros suficientes para avançar para a próxima página.");
             }
         }
     });
 });
+
 
 
 // Chama a função ao carregar a página para exibir os documentos da primeira página
