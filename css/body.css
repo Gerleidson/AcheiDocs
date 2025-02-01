@@ -205,29 +205,3 @@ input[type="radio"] {
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
-
-/* === Responsividade === */
-@media (max-width: 768px) {
-  .form-row {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .info {
-    max-width: 90%;
-  }
-
-  form {
-    max-width: 100%;
-    align-items: center;
-    padding: 15px;
-  }
-
-  main {
-    padding: 15px;
-  }
-
-  .principal {
-    min-height: 50vh;
-  }
-}

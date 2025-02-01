@@ -1,3 +1,47 @@
+/* Barra de navegação para clima */
+.navbar-clima {
+  display: flex;
+  justify-content: center; /* Centraliza o conteúdo */
+  align-items: center;
+  padding: 10px 20px;
+  margin: 0;
+  background-color: #001b48; /* Azul similar ao padrão */
+  color: #fff;
+  position: sticky; /* Fixa no topo da página ao rolar */
+  top: 0;
+  z-index: 1000; /* Para garantir que fique acima de outros elementos */
+}
+
+/* Informações climáticas */
+.weather-info {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espaçamento entre os elementos */
+  font-size: 14px; /* Ajusta o tamanho da fonte */
+}
+
+.weather-city {
+  font-weight: bold; /* Destaca o nome da cidade */
+}
+
+.weather-temp {
+  font-size: 16px; /* Destaca a temperatura */
+  font-weight: bold;
+}
+
+.weather-desc {
+  font-style: italic; /* Estilo diferenciado para a descrição */
+}
+
+.weather-icon {
+  width: 32px; /* Ajuste do tamanho do ícone */
+  height: 32px;
+  display: inline-block; /* Para garantir alinhamento correto */
+}
+
+
+
+
 /* === Estilos gerais para o cabeçalho === */
 header {
   background-color: #343a40;
