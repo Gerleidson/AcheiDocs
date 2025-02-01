@@ -45,14 +45,22 @@ document.getElementById('form-cadastro').addEventListener('submit', function (ev
 
    // Validações
    const telefoneInput = document.getElementById('telefone');
-   telefoneInput.addEventListener('input', () => {
-       const telefoneVal = telefoneInput.value.trim();
-       if (!telefoneRegex.test(telefoneVal)) {
-           telefoneInput.style.borderColor = 'red'; // Indicar erro
+
+   telefoneInput.addEventListener('input', function(event) {
+       let telefone = telefoneInput.value.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+   
+       // Aplica a formatação (XX) XXXXX-XXXX
+       if (telefone.length <= 2) {
+           telefone = `(${telefone}`;
+       } else if (telefone.length <= 7) {
+           telefone = `(${telefone.slice(0, 2)}) ${telefone.slice(2)}`;
        } else {
-           telefoneInput.style.borderColor = 'green'; // Indicar válido
+           telefone = `(${telefone.slice(0, 2)}) ${telefone.slice(2, 7)}-${telefone.slice(7, 11)}`;
        }
+   
+       telefoneInput.value = telefone; // Atualiza o valor do input
    });
+   
 
 // Função para buscar o cadastro por nome
 function buscarCadastroPorNome() {

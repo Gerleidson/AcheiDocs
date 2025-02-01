@@ -1,11 +1,5 @@
 /* Estilos para a seção de Feedback */
-.feedback-section {
-    background-color: #f9f9f9; /* Mantém a cor de fundo */
-    margin: 0 auto; /* Remove margens externas */
-    width: 100%; /* Garante que a largura ocupe toda a tela */
-    box-sizing: border-box; /* Garante que o padding não afete a largura */
 
-}
 
 /* Container do formulário */
 .feedback-container {
