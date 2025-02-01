@@ -154,10 +154,21 @@ document.getElementById('prev').addEventListener('click', () => {
 });
 
 // Função para ir para a próxima página
+// Atualizar evento do botão "Próximo"
 document.getElementById('next').addEventListener('click', () => {
-    paginaAtual++;
-    exibirDocumentosPaginados(paginaAtual);
+    buscarDadosFirebase((documentos) => {
+        if (documentos) {
+            const totalDocumentos = Object.keys(documentos).length;
+            const totalPaginas = Math.ceil(totalDocumentos / registrosPorPagina);
+
+            if (paginaAtual < totalPaginas) {
+                paginaAtual++;
+                exibirDocumentosPaginados(paginaAtual);
+            }
+        }
+    });
 });
+
 
 // Chama a função ao carregar a página para exibir os documentos da primeira página
 document.addEventListener('DOMContentLoaded', () => {
