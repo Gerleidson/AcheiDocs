@@ -7,6 +7,9 @@ const db = getDatabase();
 // Variáveis de controle de paginação
 const registrosPorPagina = 10; // Exibir 10 registros por vez
 let paginaAtual = 1; // Página inicial
+const telefoneRegex = /^\(?\d{2}\)?\s?\d{5}-\d{4}$/; 
+
+
 
 // Função para salvar os dados do formulário no Firebase
 document.getElementById('form-cadastro').addEventListener('submit', function (event) {
@@ -20,18 +23,6 @@ document.getElementById('form-cadastro').addEventListener('submit', function (ev
     const telefone = document.getElementById('telefone').value;
     const tipo = document.querySelector('input[name="tipo"]:checked') ? document.querySelector('input[name="tipo"]:checked').value : '';
 
-    // Validações
-    const telefoneRegex = /^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$/;
-    const telefoneInput = document.getElementById('telefone');
-    telefoneInput.addEventListener('input', () => {
-        const telefoneVal = telefoneInput.value.trim();
-        if (!telefoneRegex.test(telefoneVal)) {
-            telefoneInput.style.borderColor = 'red'; // Indicar erro
-        } else {
-            telefoneInput.style.borderColor = 'green'; // Indicar válido
-        }
-    });
-    
 
     // Verifica se todos os campos obrigatórios foram preenchidos
     if (!nome || !documento || !cidade || !estado || !telefone || !tipo) {
@@ -51,6 +42,27 @@ document.getElementById('form-cadastro').addEventListener('submit', function (ev
     // Limpa o formulário após enviar
     document.getElementById('form-cadastro').reset();
 });
+
+   // Validações
+   const telefoneInput = document.getElementById('telefone');
+
+   telefoneInput.addEventListener('input', function(event) {
+    setTimeout(() => {
+        let telefone = telefoneInput.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+    
+        if (telefone.length <= 2) {
+            telefone = `(${telefone}`;
+        } else if (telefone.length <= 7) {
+            telefone = `(${telefone.slice(0, 2)}) ${telefone.slice(2)}`;
+        } else {
+            telefone = `(${telefone.slice(0, 2)}) ${telefone.slice(2, 7)}-${telefone.slice(7, 11)}`;
+        }
+    
+        telefoneInput.value = telefone;
+    }, 50); // Pequeno delay para evitar erros de input rápido
+});
+
+   
 
 // Função para buscar o cadastro por nome
 function buscarCadastroPorNome() {
@@ -96,7 +108,6 @@ function buscarCadastroPorNome() {
 // Função para exibir o pop-up com o resultado da busca ou mensagem de erro
 function exibirPopup(dados) {
     if (dados) {
-        // Se os dados forem encontrados, mostra um pop-up com as informações
         alert(`
             Resultado Encontrado:
             
@@ -109,36 +120,11 @@ function exibirPopup(dados) {
         `);
     } else {
         // Caso contrário, mostra uma mensagem dizendo que não foi encontrado
-        alert("Não há registro.");
+        alert(`Nenhum registro encontrado para o nome "${nomeBusca}".`);
     }
 }
 
-// Função para exibir documentos com paginação
-function exibirDocumentosPaginados(pagina) {
-    const referencia = ref(db, 'documentos/');
-    get(referencia).then((snapshot) => {
-        if (snapshot.exists()) {
-            const documentos = snapshot.val();
-            const totalDocumentos = Object.keys(documentos).length; // Total de documentos cadastrados
-            const totalPaginas = Math.ceil(totalDocumentos / registrosPorPagina); // Calcula o número total de páginas
 
-            // Calcular a faixa de registros a exibir
-            const inicio = (pagina - 1) * registrosPorPagina;
-            const fim = inicio + registrosPorPagina;
-
-            // Filtrando os documentos para a página atual
-            const documentosPagina = Object.values(documentos).slice(inicio, fim);
-            exibirDocumentosNaTabela(documentosPagina);
-
-            // Atualizar a navegação de página
-            atualizarNavegacao(pagina, totalPaginas);
-        } else {
-            console.log("Nenhum dado encontrado.");
-        }
-    }).catch((error) => {
-        console.error("Erro ao buscar dados:", error);
-    });
-}
 
 // Função para exibir os documentos na tabela
 function exibirDocumentosNaTabela(documentos) {
@@ -159,19 +145,6 @@ function exibirDocumentosNaTabela(documentos) {
     });
 }
 
-// Função para atualizar a navegação entre as páginas
-function atualizarNavegacao(pagina, totalPaginas) {
-    const prevButton = document.getElementById('prev');
-    const nextButton = document.getElementById('next');
-    
-    // Habilitar/desabilitar os botões de navegação
-    prevButton.disabled = pagina === 1;
-    nextButton.disabled = pagina === totalPaginas;
-
-    // Atualizar número da página exibida
-    document.getElementById('pagina-atual').textContent = `Página ${pagina} de ${totalPaginas}`;
-}
-
 // Função para ir para a página anterior
 document.getElementById('prev').addEventListener('click', () => {
     if (paginaAtual > 1) {
@@ -182,12 +155,80 @@ document.getElementById('prev').addEventListener('click', () => {
 
 // Função para ir para a próxima página
 document.getElementById('next').addEventListener('click', () => {
-    paginaAtual++;
-    exibirDocumentosPaginados(paginaAtual);
+    buscarDadosFirebase((documentos) => {
+        if (documentos) {
+            const totalDocumentos = Object.keys(documentos).length;
+            const totalPaginas = Math.ceil(totalDocumentos / registrosPorPagina);
+
+            // Verifica se há pelo menos 10 registros antes de permitir avançar
+            if (totalDocumentos > registrosPorPagina && paginaAtual < totalPaginas) {
+                paginaAtual++;
+                exibirDocumentosPaginados(paginaAtual);
+            } else {
+                alert("Não há registros suficientes para avançar para a próxima página.");
+            }
+        }
+    });
 });
 
+
+
 // Chama a função ao carregar a página para exibir os documentos da primeira página
-window.onload = () => exibirDocumentosPaginados(paginaAtual);
+document.addEventListener('DOMContentLoaded', () => {
+    exibirDocumentosPaginados(paginaAtual);
+    exibirTotalCadastros();
+});
+
+// Função única para buscar os dados do Firebase e processá-los conforme necessário
+function buscarDadosFirebase(callback) {
+    const referencia = ref(db, 'documentos/');
+    get(referencia).then((snapshot) => {
+        if (snapshot.exists()) {
+            const dados = snapshot.val();
+            callback(dados); // Chama a função correspondente com os dados obtidos
+        } else {
+            callback(null); // Caso não existam registros
+        }
+    }).catch((error) => {
+        console.error("Erro ao buscar dados:", error);
+        callback(null);
+    });
+}
+
+// Função para exibir documentos com paginação
+function exibirDocumentosPaginados(pagina) {
+    buscarDadosFirebase((documentos) => {
+        if (documentos) {
+            const totalDocumentos = Object.keys(documentos).length;
+            const totalPaginas = Math.ceil(totalDocumentos / registrosPorPagina);
+            const inicio = (pagina - 1) * registrosPorPagina;
+            const fim = inicio + registrosPorPagina;
+
+            const documentosPagina = Object.entries(documentos)
+                .slice(inicio, fim)
+                .map(([id, doc]) => ({ id, ...doc }));
+            
+            exibirDocumentosNaTabela(documentosPagina);
+            atualizarNavegacao(pagina, totalPaginas);
+        } else {
+            console.log("Nenhum dado encontrado.");
+        }
+    });
+}
+
+// Função para exibir o total de cadastros
+function exibirTotalCadastros() {
+    const contador = document.getElementById('contador-registros');
+    buscarDadosFirebase((documentos) => {
+        if (documentos) {
+            contador.textContent = `${Object.keys(documentos).length}`;
+        } else {
+            contador.textContent = "Total de Cadastros: 0";
+        }
+    });
+}
+
+
 
 // Tornar a função globalmente acessível
 window.buscarCadastroPorNome = buscarCadastroPorNome;
@@ -206,11 +247,8 @@ doacaoLink.addEventListener("click", (event) => {
 
     // Dados do PIX
     const chavePix = "27.201.781/0001-39"; // Chave PIX
-    const valor = "10.00"; // Valor da transação
     const nomeRecebedor = "Gerleidson Bomfim"; // Nome do recebedor
     const cidadeRecebedor = "Camaçari"; // Cidade do recebedor
-    const txid = "1234567890"; // TXID
-
     
 });
 
@@ -264,30 +302,6 @@ popupDicas.addEventListener('click', function(e) {
     }
 });
 
-
-// Função para exibir o total de cadastros
-function exibirTotalCadastros() {
-    const contador = document.getElementById('contador-registros'); // Elemento para exibir o total
-
-    // Referência ao nó "documentos" no Firebase
-    const referencia = ref(db, 'documentos/');
-
-    // Buscar os dados do Firebase
-    get(referencia).then((snapshot) => {
-        if (snapshot.exists()) {
-            const totalRegistros = Object.keys(snapshot.val()).length; // Conta o número de registros
-            contador.textContent = `${totalRegistros}`; // Atualiza o contador no DOM
-        } else {
-            contador.textContent = "Total de Cadastros: 0"; // Exibe 0 se não houver dados
-        }
-    }).catch((error) => {
-        console.error("Erro ao buscar o total de cadastros:", error);
-        contador.textContent = "Erro ao carregar o total de cadastros.";
-    });
-}
-
-// Chamar a função ao carregar a página
-document.addEventListener('DOMContentLoaded', exibirTotalCadastros);
 
 // Função para exibir o clima na tela
 if (navigator.geolocation) {
@@ -376,3 +390,20 @@ function checkFormVisibility() {
 // Chama a função quando a página carrega e quando o usuário rola a página
 window.addEventListener('scroll', checkFormVisibility);
 window.addEventListener('load', checkFormVisibility);
+
+
+// Obtendo todos os botões de perguntas
+const faqQuestions = document.querySelectorAll('.faq-question');
+
+// Adicionando evento de clique para cada pergunta
+faqQuestions.forEach(question => {
+    question.addEventListener('click', function() {
+        // Alterna a exibição da resposta
+        const answer = this.nextElementSibling;
+        if (answer.style.display === 'block') {
+            answer.style.display = 'none';
+        } else {
+            answer.style.display = 'block';
+        }
+    });
+});

@@ -15,6 +15,7 @@ const firebaseConfig = {
     measurementId: "G-S829CSFXDM"
 };
 
+
 // Inicializando o Firebase, se ainda não foi inicializado
 if (!getApps().length) {
     initializeApp(firebaseConfig);
