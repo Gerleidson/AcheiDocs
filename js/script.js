@@ -119,36 +119,11 @@ function exibirPopup(dados) {
         `);
     } else {
         // Caso contrário, mostra uma mensagem dizendo que não foi encontrado
-        alert("Não há registro.");
+        alert(`Nenhum registro encontrado para o nome "${nomeBusca}".`);
     }
 }
 
-// Função para exibir documentos com paginação
-function exibirDocumentosPaginados(pagina) {
-    const referencia = ref(db, 'documentos/');
-    get(referencia).then((snapshot) => {
-        if (snapshot.exists()) {
-            const documentos = snapshot.val();
-            const totalDocumentos = Object.keys(documentos).length; // Total de documentos cadastrados
-            const totalPaginas = Math.ceil(totalDocumentos / registrosPorPagina); // Calcula o número total de páginas
 
-            // Calcular a faixa de registros a exibir
-            const inicio = (pagina - 1) * registrosPorPagina;
-            const fim = inicio + registrosPorPagina;
-
-            // Filtrando os documentos para a página atual
-            const documentosPagina = Object.entries(documentos).slice(inicio, fim).map(([id, doc]) => ({ id, ...doc }));
-            exibirDocumentosNaTabela(documentosPagina);
-
-            // Atualizar a navegação de página
-            atualizarNavegacao(pagina, totalPaginas);
-        } else {
-            console.log("Nenhum dado encontrado.");
-        }
-    }).catch((error) => {
-        console.error("Erro ao buscar dados:", error);
-    });
-}
 
 // Função para exibir os documentos na tabela
 function exibirDocumentosNaTabela(documentos) {
@@ -169,29 +144,6 @@ function exibirDocumentosNaTabela(documentos) {
     });
 }
 
-// Função para atualizar a navegação entre as páginas
-    function atualizarNavegacao(pagina, totalPaginas) {
-    const prevButton = document.getElementById('prev');
-    const nextButton = document.getElementById('next');
-
-    // Habilitar/desabilitar os botões de navegação
-    if (pagina > 1) {
-        prevButton.disabled = false;
-    } else {
-        prevButton.disabled = true;
-    }
-
-    if (pagina < totalPaginas) {
-        nextButton.disabled = false;
-    } else {
-        nextButton.disabled = true;
-    }
-
-    // Atualizar número da página exibida
-    document.getElementById('pagina-atual').textContent = `Página ${pagina} de ${totalPaginas}`;
-}
-
-
 // Função para ir para a página anterior
 document.getElementById('prev').addEventListener('click', () => {
     if (paginaAtual > 1) {
@@ -211,6 +163,57 @@ document.addEventListener('DOMContentLoaded', () => {
     exibirDocumentosPaginados(paginaAtual);
     exibirTotalCadastros();
 });
+
+// Função única para buscar os dados do Firebase e processá-los conforme necessário
+function buscarDadosFirebase(callback) {
+    const referencia = ref(db, 'documentos/');
+    get(referencia).then((snapshot) => {
+        if (snapshot.exists()) {
+            const dados = snapshot.val();
+            callback(dados); // Chama a função correspondente com os dados obtidos
+        } else {
+            callback(null); // Caso não existam registros
+        }
+    }).catch((error) => {
+        console.error("Erro ao buscar dados:", error);
+        callback(null);
+    });
+}
+
+// Função para exibir documentos com paginação
+function exibirDocumentosPaginados(pagina) {
+    buscarDadosFirebase((documentos) => {
+        if (documentos) {
+            const totalDocumentos = Object.keys(documentos).length;
+            const totalPaginas = Math.ceil(totalDocumentos / registrosPorPagina);
+            const inicio = (pagina - 1) * registrosPorPagina;
+            const fim = inicio + registrosPorPagina;
+
+            const documentosPagina = Object.entries(documentos)
+                .slice(inicio, fim)
+                .map(([id, doc]) => ({ id, ...doc }));
+            
+            exibirDocumentosNaTabela(documentosPagina);
+            atualizarNavegacao(pagina, totalPaginas);
+        } else {
+            console.log("Nenhum dado encontrado.");
+        }
+    });
+}
+
+// Função para exibir o total de cadastros
+function exibirTotalCadastros() {
+    const contador = document.getElementById('contador-registros');
+    buscarDadosFirebase((documentos) => {
+        if (documentos) {
+            contador.textContent = `${Object.keys(documentos).length}`;
+        } else {
+            contador.textContent = "Total de Cadastros: 0";
+        }
+    });
+}
+
+
 
 // Tornar a função globalmente acessível
 window.buscarCadastroPorNome = buscarCadastroPorNome;
@@ -283,28 +286,6 @@ popupDicas.addEventListener('click', function(e) {
         popupDicas.style.display = 'none';
     }
 });
-
-
-// Função para exibir o total de cadastros
-function exibirTotalCadastros() {
-    const contador = document.getElementById('contador-registros'); // Elemento para exibir o total
-
-    // Referência ao nó "documentos" no Firebase
-    const referencia = ref(db, 'documentos/');
-
-    // Buscar os dados do Firebase
-    get(referencia).then((snapshot) => {
-        if (snapshot.exists()) {
-            const totalRegistros = Object.keys(snapshot.val()).length; // Conta o número de registros
-            contador.textContent = `${totalRegistros}`; // Atualiza o contador no DOM
-        } else {
-            contador.textContent = "Total de Cadastros: 0"; // Exibe 0 se não houver dados
-        }
-    }).catch((error) => {
-        console.error("Erro ao buscar o total de cadastros:", error);
-        contador.textContent = "Erro ao carregar o total de cadastros.";
-    });
-}
 
 
 // Função para exibir o clima na tela
