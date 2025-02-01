@@ -1,6 +1,5 @@
 /* === Estilo para formulários === */
 form {
-  max-width: 600px;
   margin: 0 auto;   /* Centraliza horizontalmente */
   padding: 20px;
   background-color: #fff;
@@ -116,7 +115,6 @@ form.zoom-out {
 }
 
 /* === Estilo para o formulário com efeito de luz ao redor da borda === */
-/* Adicionando o efeito de luz */
 form:focus-within {
   animation: border-light 1.5s infinite; /* Animação infinita de luz ao redor */
   border-color: transparent; /* A borda fica invisível enquanto o efeito ocorre */

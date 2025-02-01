@@ -219,6 +219,7 @@ input[type="radio"] {
 
   form {
     max-width: 100%;
+    align-items: center;
     padding: 15px;
   }
 
