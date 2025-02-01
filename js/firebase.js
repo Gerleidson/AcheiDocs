@@ -1,6 +1,7 @@
 // Importando as funções necessárias do Firebase
 import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
 import { getDatabase, ref, set, push, get } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-analytics.js";
 
 // Configuração do Firebase
 const firebaseConfig = {
@@ -13,6 +14,7 @@ const firebaseConfig = {
     appId: "1:390960971384:web:85ab3b905743a33930778d",
     measurementId: "G-S829CSFXDM"
 };
+
 
 // Inicializando o Firebase, se ainda não foi inicializado
 if (!getApps().length) {
