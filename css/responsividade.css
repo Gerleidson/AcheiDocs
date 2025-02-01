@@ -2,10 +2,19 @@
 
 @media screen and (max-width: 768px) {
   /* Ajustes gerais para o formulário */
+  #form-cadastro,
+  input[type="text"], 
+  input[type="tel"], 
+  select, 
+  button {
+    width: 100%;
+    max-width: none;
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
   #form-cadastro {
-    width: 100%; /* Ou defina uma largura fixa */
-    margin-bottom: 10px;
-    margin-top: 10px;
+    margin: 10px 0;
   }
 
   .form-row {
@@ -17,18 +26,13 @@
     margin-bottom: 10px;
   }
 
-  input[type="text"], input[type="tel"], select {
-    font-size: 0.9rem;
-    padding: 8px;
-  }
-
   button {
-    padding: 10px;
+    padding: 12px 0;
     font-size: 1rem;
   }
 
   .checkbox-group {
-    flex-direction:column;
+    flex-direction: column;
     gap: 10px;
   }
 
@@ -47,24 +51,13 @@
 
   #localizar-documento {
     font-size: 1.5rem;
-    margin-bottom: 10px;
-    margin-top: 10px;
-  }
-
-  input[type="text"], button {
-    width: 100%;
-    max-width: none;
-  }
-
-  button {
-    padding: 12px 0;
+    margin: 10px 0;
   }
 
   section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 20px;
     margin: 10px;
   }
 
@@ -75,33 +68,31 @@
   }
 
   /* Responsividade tabela */
+  .table,
   .table tbody td,
-  .table thead th {
-    font-size: 9px; /* Diminui o tamanho da fonte da tabela */
-    padding: 5px; /* Diminui o padding da tabela */
+  .table thead th,
+  #navegacao button,
+  #pagina-atual {
+    font-size: 9px;
   }
 
-  .table {
-    font-size: 9px; /* Diminui o tamanho da fonte da tabela */
+  .table tbody td,
+  .table thead th {
+    padding: 5px;
   }
 
   #navegacao button {
-    font-size: 9px; /* Diminui o tamanho da fonte dos botões de navegação */
     padding: 4px;
-  }
-
-  #pagina-atual {
-    font-size: 9px; /* Diminui o tamanho da fonte da página atual */
   }
 
   /* Responsividade clima */
   .weather-info {
-    flex-wrap: wrap; /* Permite quebrar a linha em telas menores */
-    text-align: center; /* Centraliza o texto em dispositivos pequenos */
+    flex-wrap: wrap;
+    text-align: center;
   }
 
   .weather-icon {
-    width: 24px; /* Reduz o tamanho do ícone para telas menores */
+    width: 24px;
     height: 24px;
   }
 
@@ -109,45 +100,31 @@
   .nav-links {
     display: none;
     flex-direction: column;
-    width: auto; /* Remova largura fixa */
+    width: auto;
     background-color: #333;
     position: absolute;
     top: 100px;
-    right: 0; /* Define o menu no lado direito */
+    right: 0;
     padding: 10px 0;
-    align-items: flex-end; /* Alinha os links no lado direito */
+    align-items: flex-end;
     transition: all 0.3s ease-in-out;
-
   }
 
   .hamburger {
-    display: block; /* Exibe o ícone do hambúrguer */
+    display: block;
   }
 
   .nav-links.active {
-    display: flex; /* Exibe o menu quando a classe 'active' é adicionada */
+    display: flex;
   }
 
   /* Ajustes no menu em telas pequenas */
-
   .btn-action {
     font-size: 0.9em;
     padding: 10px 20px;
   }
 
-  form input,
-  form button {
-    padding: 8px;
-  }
-
   .menu-horizontal ul {
     flex-direction: column;
   }
-
-  form input,
-  form select {
-    padding: 8px;
-  }
 }
-
-

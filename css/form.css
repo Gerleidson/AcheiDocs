@@ -1,5 +1,6 @@
 /* === Estilo para formulários === */
 form {
+  width: 100%;
   margin: 0 auto;   /* Centraliza horizontalmente */
   padding: 20px;
   background-color: #fff;
