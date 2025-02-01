@@ -170,19 +170,27 @@ function exibirDocumentosNaTabela(documentos) {
 }
 
 // Função para atualizar a navegação entre as páginas
-function atualizarNavegacao(pagina, totalPaginas) {
+    function atualizarNavegacao(pagina, totalPaginas) {
     const prevButton = document.getElementById('prev');
     const nextButton = document.getElementById('next');
-    
-    // Habilitar/desabilitar os botões de navegação
-    if (totalPaginas === 0) return;
-    if (paginaAtual > totalPaginas) paginaAtual = totalPaginas;
-        exibirDocumentosPaginados(paginaAtual);
 
+    // Habilitar/desabilitar os botões de navegação
+    if (pagina > 1) {
+        prevButton.disabled = false;
+    } else {
+        prevButton.disabled = true;
+    }
+
+    if (pagina < totalPaginas) {
+        nextButton.disabled = false;
+    } else {
+        nextButton.disabled = true;
+    }
 
     // Atualizar número da página exibida
     document.getElementById('pagina-atual').textContent = `Página ${pagina} de ${totalPaginas}`;
 }
+
 
 // Função para ir para a página anterior
 document.getElementById('prev').addEventListener('click', () => {
