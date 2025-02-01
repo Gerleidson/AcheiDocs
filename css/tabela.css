@@ -10,7 +10,7 @@
 }
 
 .table thead {
-  background-color: #007BB5;
+  background-color: #001b48;
   color: #fff;
 }
 
@@ -51,7 +51,7 @@
 }
 
 .table-responsive::-webkit-scrollbar-thumb {
-  background-color: #007bff;
+  background-color: #001b48;
   border-radius: 4px;
 }
 
@@ -71,7 +71,7 @@
 #navegacao button {
   padding: 4px 8px;
   border: none;
-  background-color: #007bff;
+  background-color: #001b48;
   color: #fff;
   border-radius: 5px;
   cursor: pointer;
@@ -85,7 +85,7 @@
 }
 
 #navegacao button:hover:not(:disabled) {
-  background-color: #0056b3;
+  background-color: #00B6FF;
 }
 
 #pagina-atual {

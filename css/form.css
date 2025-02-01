@@ -57,13 +57,13 @@ form.zoom-out {
   form input:focus,
   form textarea:focus,
   form select:focus {
-    border-color: #007BB5;
+    border-color: #001b48;
     outline: none;
     background-color: #d2ecf7;
   }
   
   form button {
-    background-color: #007BB5;
+    background-color: #001b48;
     color: #fff;
     font-weight: bold;
     cursor: pointer;
@@ -113,7 +113,7 @@ form.zoom-out {
   height: 18px;
   margin: 0;
   cursor: pointer;
-  accent-color: #007BB5;
+  accent-color: #00B6FF;
 }
 
 /* === Estilo para o formulário com efeito de luz ao redor da borda === */
@@ -147,7 +147,7 @@ form:focus-within {
 form input:focus,
 form textarea:focus,
 form select:focus {
-  border-color: #007BB5;
+  border-color: #00B6FF;
   outline: none;
   background-color: #d2ecf7;
 }

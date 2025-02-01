@@ -7,6 +7,9 @@ const db = getDatabase();
 // Variáveis de controle de paginação
 const registrosPorPagina = 10; // Exibir 10 registros por vez
 let paginaAtual = 1; // Página inicial
+const telefoneRegex = /^\(?\d{2}\)?\s?\d{5}-\d{4}$/; 
+
+
 
 // Função para salvar os dados do formulário no Firebase
 document.getElementById('form-cadastro').addEventListener('submit', function (event) {
@@ -20,18 +23,6 @@ document.getElementById('form-cadastro').addEventListener('submit', function (ev
     const telefone = document.getElementById('telefone').value;
     const tipo = document.querySelector('input[name="tipo"]:checked') ? document.querySelector('input[name="tipo"]:checked').value : '';
 
-    // Validações
-    const telefoneRegex = /^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$/;
-    const telefoneInput = document.getElementById('telefone');
-    telefoneInput.addEventListener('input', () => {
-        const telefoneVal = telefoneInput.value.trim();
-        if (!telefoneRegex.test(telefoneVal)) {
-            telefoneInput.style.borderColor = 'red'; // Indicar erro
-        } else {
-            telefoneInput.style.borderColor = 'green'; // Indicar válido
-        }
-    });
-    
 
     // Verifica se todos os campos obrigatórios foram preenchidos
     if (!nome || !documento || !cidade || !estado || !telefone || !tipo) {
@@ -51,6 +42,17 @@ document.getElementById('form-cadastro').addEventListener('submit', function (ev
     // Limpa o formulário após enviar
     document.getElementById('form-cadastro').reset();
 });
+
+   // Validações
+   const telefoneInput = document.getElementById('telefone');
+   telefoneInput.addEventListener('input', () => {
+       const telefoneVal = telefoneInput.value.trim();
+       if (!telefoneRegex.test(telefoneVal)) {
+           telefoneInput.style.borderColor = 'red'; // Indicar erro
+       } else {
+           telefoneInput.style.borderColor = 'green'; // Indicar válido
+       }
+   });
 
 // Função para buscar o cadastro por nome
 function buscarCadastroPorNome() {
@@ -127,7 +129,7 @@ function exibirDocumentosPaginados(pagina) {
             const fim = inicio + registrosPorPagina;
 
             // Filtrando os documentos para a página atual
-            const documentosPagina = Object.values(documentos).slice(inicio, fim);
+            const documentosPagina = Object.entries(documentos).slice(inicio, fim).map(([id, doc]) => ({ id, ...doc }));
             exibirDocumentosNaTabela(documentosPagina);
 
             // Atualizar a navegação de página
@@ -165,8 +167,10 @@ function atualizarNavegacao(pagina, totalPaginas) {
     const nextButton = document.getElementById('next');
     
     // Habilitar/desabilitar os botões de navegação
-    prevButton.disabled = pagina === 1;
-    nextButton.disabled = pagina === totalPaginas;
+    if (totalPaginas === 0) return;
+    if (paginaAtual > totalPaginas) paginaAtual = totalPaginas;
+        exibirDocumentosPaginados(paginaAtual);
+
 
     // Atualizar número da página exibida
     document.getElementById('pagina-atual').textContent = `Página ${pagina} de ${totalPaginas}`;
@@ -187,7 +191,7 @@ document.getElementById('next').addEventListener('click', () => {
 });
 
 // Chama a função ao carregar a página para exibir os documentos da primeira página
-window.onload = () => exibirDocumentosPaginados(paginaAtual);
+document.addEventListener('DOMContentLoaded', () => exibirDocumentosPaginados(paginaAtual));
 
 // Tornar a função globalmente acessível
 window.buscarCadastroPorNome = buscarCadastroPorNome;
@@ -206,11 +210,8 @@ doacaoLink.addEventListener("click", (event) => {
 
     // Dados do PIX
     const chavePix = "27.201.781/0001-39"; // Chave PIX
-    const valor = "10.00"; // Valor da transação
     const nomeRecebedor = "Gerleidson Bomfim"; // Nome do recebedor
     const cidadeRecebedor = "Camaçari"; // Cidade do recebedor
-    const txid = "1234567890"; // TXID
-
     
 });
 

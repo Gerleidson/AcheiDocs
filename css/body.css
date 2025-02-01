@@ -31,13 +31,13 @@ body {
   }
   
   main h1, main h2 {
-    color: #007BB5;
+    color: #001b48;
   }
   
   main .section-title {
     font-size: 1.2em;
     margin-top: 20px;
-    color: #007BB5;
+    color: #001b48;
   }
   
   main .content {
@@ -46,7 +46,7 @@ body {
   
   .btn-download {
     display: inline-block;
-    background-color: #007bff;
+    background-color: #001b48;
     color: #fff;
     padding: 10px 20px;
     text-decoration: none;
@@ -56,7 +56,7 @@ body {
   }
   
   .btn-download:hover {
-    background-color: #0056b3;
+    background-color: #001b48;
   }
 
 /* === Estilos principais === */
@@ -144,7 +144,7 @@ input[type="text"] {
 button {
   padding: 10px 20px;
   font-size: 1rem;
-  background-color: #007BFF;
+  background-color: #001b48;
   color: white;
   border: none;
   border-radius: 5px;
@@ -189,7 +189,7 @@ input[type="text"], input[type="tel"], select {
 button {
   padding: 12px 20px;
   font-size: 1rem;
-  background-color: #007BFF;
+  background-color: #001b48;
   color: white;
   border: none;
   border-radius: 5px;
@@ -230,7 +230,7 @@ button:hover {
 }
 
 main h1, main h2 {
-  color: #007BB5;
+  color: #001b48;
 }
 
 main .section-title {
@@ -245,7 +245,7 @@ main .content {
 
 .btn-download {
   display: inline-block;
-  background-color: #007bff;
+  background-color: #001b48;
   color: #fff;
   padding: 10px 20px;
   text-decoration: none;
