@@ -6,10 +6,10 @@
   select, 
   button {
     width: 100%;
-    max-width: 600px;
+    max-width: 900px;
     font-size: 0.9rem;
     padding: 8px;
-    margin: 0 auto; /* Centraliza horizontalmente */
+    align-items: center;
   }
 
   .form-row {
@@ -44,12 +44,12 @@
     font-size: 18px;
   }
 
+
+
   .principal {
     display: flex;
     flex-direction: column;
     padding: 15px;
-    justify-content: center; /* Centraliza o conteúdo verticalmente */
-    align-items: center; /* Centraliza o conteúdo horizontalmente */
   }
 
   /* Responsividade tabela */
