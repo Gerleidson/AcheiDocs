@@ -43,17 +43,7 @@
     font-size: 18px;
   }
 
-  #localizar-documento {
-    font-size: 1.5rem;
-    margin: 10px 0;
-  }
 
-  section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 10px;
-  }
 
   .principal {
     display: flex;
