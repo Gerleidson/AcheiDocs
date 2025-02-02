@@ -131,9 +131,9 @@ form:focus-within {
 #form-cadastro {
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
   max-width: 800px;
-  width: 100%;
+  margin: 0 auto;
+
 }
 
 #form-cadastro h3 {
