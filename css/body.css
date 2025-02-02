@@ -215,35 +215,3 @@
     color: #000000;
     text-align: center;
   }
-
-  /* === Estilos para a política de privacidade === */
-  .politicaP {
-    padding: 20px;
-    max-width: 900px;
-    margin: 0;
-    background-color: white;
-    border-radius: 8px;
-    margin-top: 110px;
-    margin-bottom: 20px;
-  }
-
-  main .section-title {
-    font-size: 1.2em;
-    margin-top: 20px;
-    color: #007BB5;
-  }
-
-  .btn-download {
-    display: inline-block;
-    background-color: #001b48;
-    color: #fff;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 16px;
-    text-align: center;
-  }
-
-  .btn-download:hover {
-    background-color: #0056b3;
-  }

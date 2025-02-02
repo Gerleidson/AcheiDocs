@@ -1,0 +1,129 @@
+  
+  body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f7f7f7;
+    padding: 20px;
+  }
+  
+  /* Estrutura principal */
+  main.politicaP {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    max-width: 900px;
+    margin-top: 100px;    
+  }
+  
+  /* Títulos */
+  h2 {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* Títulos das seções */
+  .section-title {
+    font-size: 1.5rem;
+    color: #2980b9;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #2980b9;
+    padding-bottom: 5px;
+  }
+  
+  /* Conteúdo das seções */
+  .content {
+    margin-bottom: 20px;
+  }
+  
+  /* Parágrafos */
+  p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    line-height: 1.8;
+  }
+  
+  /* Listas */
+  ul {
+    margin-left: 20px;
+  }
+  
+  ul li {
+    margin-bottom: 10px;
+    font-size: 1rem;
+  }
+  
+  /* Links */
+  a {
+    color: #2980b9;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Botão de download */
+  .btn-download {
+    display: inline-flex;
+    align-items: center;
+    background-color: #2980b9;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-download:hover {
+    background-color: #1c5980;
+  }
+  
+  .btn-download i {
+    margin-left: 10px;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    main.politicaP {
+      padding: 20px;
+    }
+  
+    h2 {
+      font-size: 1.8rem;
+    }
+  
+    .section-title {
+      font-size: 1.3rem;
+    }
+  
+    .content {
+      font-size: 0.95rem;
+    }
+  
+    .btn-download {
+      font-size: 0.9rem;
+      padding: 8px 15px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    h2 {
+      font-size: 1.5rem;
+    }
+  
+    .section-title {
+      font-size: 1.2rem;
+    }
+  
+    .content {
+      font-size: 0.9rem;
+    }
+  }
+  
