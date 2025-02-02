@@ -2,7 +2,7 @@
 .table {
   width: 100%;
   max-width: 800px;
-  margin: 10px 0;
+  margin: 10px auto;
   border-collapse: collapse;
   text-align: left;
   background-color: #f9f9f9;
@@ -40,10 +40,13 @@
 }
 
 /* Responsividade para telas menores */
+
+
 .table-responsive {
   overflow-x: auto;
-  width: 90%;  /* apagar se precisar diminuir a tabela */
-  max-width: 600px;
+  width: 90%;
+  max-width: 800px; /* Ajusta o tamanho máximo */
+  margin: 0 auto; /* Centraliza a tabela responsiva */
 }
 
 .table-responsive::-webkit-scrollbar {

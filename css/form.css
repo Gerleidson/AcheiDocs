@@ -2,7 +2,7 @@
 form {
   width: 100%; 
   max-width: 800px;
-  margin: 20px 0;
+  margin: 20px auto;
   padding: 20px;
   background-color: #fff;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -16,6 +16,7 @@ form {
   transform: scale(0.8); /* Inicialmente o formulário está com zoom out */
   transition: transform 1s ease, opacity 1s ease;
 }
+
 
 form.zoom-in {
   opacity: 1;
