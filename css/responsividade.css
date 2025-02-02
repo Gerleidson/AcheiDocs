@@ -2,11 +2,19 @@
 
 @media screen and (max-width: 768px) {
   /* Ajustes gerais para o formulário */
+  #form-cadastro,
+  input[type="text"], 
+  input[type="tel"], 
+  select, 
+  button {
+    width: 100%;
+    max-width: none;
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
   #form-cadastro {
-    width: 100%; /* Deixa o formulário ocupar toda a largura disponível */
-    max-width: 900px; /* Aumenta o tamanho máximo para telas maiores */
-    margin-bottom: 10px;
-    margin-top: 20px;
+    margin: 10px 0;
   }
 
   .form-row {
@@ -18,28 +26,23 @@
     margin-bottom: 10px;
   }
 
-  input[type="text"], input[type="tel"], select {
-    font-size: 1rem; /* Ajuste o tamanho da fonte para melhor legibilidade */
-    padding: 10px;  /* Aumenta o padding para inputs em telas menores */
-  }
-
   button {
-    padding: 12px 20px;
-    font-size: 1.2rem; /* Ajuste o tamanho do botão */
+    padding: 12px 0;
+    font-size: 1rem;
   }
 
   .checkbox-group {
     flex-direction: column;
-    gap: 12px; /* Aumenta o espaçamento entre os checkboxes */
+    gap: 10px;
   }
 
   /* Ajustes na seção de informações */
   .info {
-    padding: 15px;
+    padding: 20px;
   }
 
   .info h1 {
-    font-size: 26px;
+    font-size: 28px;
   }
 
   .info h4 {
@@ -47,52 +50,39 @@
   }
 
   #localizar-documento {
-    font-size: 1.8rem; /* Aumenta o tamanho da fonte do título */
-    margin-bottom: 10px;
-    margin-top: 15px;
-  }
-
-  input[type="text"], button {
-    width: 100%;
-    max-width: none;
-  }
-
-  button {
-    padding: 12px 0;
+    font-size: 1.5rem;
+    margin: 10px 0;
   }
 
   section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 20px;
     margin: 10px;
   }
 
   .principal {
     display: flex;
     flex-direction: column;
-    padding: 20px; /* Aumenta o padding para maior conforto */
+    padding: 15px;
   }
 
   /* Responsividade tabela */
+  .table,
   .table tbody td,
-  .table thead th {
-    font-size: 12px; /* Aumenta o tamanho da fonte da tabela */
-    padding: 8px; /* Aumenta o padding da tabela */
+  .table thead th,
+  #navegacao button,
+  #pagina-atual {
+    font-size: 9px;
   }
 
-  .table {
-    font-size: 12px; /* Aumenta o tamanho da fonte da tabela */
+  .table tbody td,
+  .table thead th {
+    padding: 5px;
   }
 
   #navegacao button {
-    font-size: 12px; /* Aumenta o tamanho da fonte dos botões de navegação */
-    padding: 6px;
-  }
-
-  #pagina-atual {
-    font-size: 12px; /* Aumenta o tamanho da fonte da página atual */
+    padding: 4px;
   }
 
   /* Responsividade clima */
@@ -102,8 +92,8 @@
   }
 
   .weather-icon {
-    width: 28px; /* Aumenta o tamanho do ícone para uma visualização melhor */
-    height: 28px;
+    width: 24px;
+    height: 24px;
   }
 
   /* Responsividade menu de navegação */
@@ -130,21 +120,11 @@
 
   /* Ajustes no menu em telas pequenas */
   .btn-action {
-    font-size: 1em;
-    padding: 12px 20px;
-  }
-
-  form input,
-  form button {
-    padding: 10px;
+    font-size: 0.9em;
+    padding: 10px 20px;
   }
 
   .menu-horizontal ul {
     flex-direction: column;
-  }
-
-  form input,
-  form select {
-    padding: 10px;
   }
 }
