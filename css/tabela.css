@@ -4,9 +4,7 @@
   margin: 10px 0;
   border-collapse: collapse;
   text-align: left;
-  background-color: #f9f9f9;
-  font-family: 'Roboto', sans-serif;
-  
+  background-color: #f9f9f9; 
 }
 
 .table thead {
@@ -42,7 +40,6 @@
 .table-responsive {
   overflow-x: auto;
   width: 90%;  /* apagar se precisar diminuir a tabela */
-  max-width: 600px;
 
 }
 
