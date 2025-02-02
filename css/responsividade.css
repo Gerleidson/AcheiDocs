@@ -2,6 +2,48 @@
 
 @media screen and (max-width: 768px) {
   /* Ajustes gerais para o formulário */
+  #form-cadastro,
+  input[type="text"], 
+  input[type="tel"], 
+  select, 
+  button {
+    width: 100%;
+    max-width: none;
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .form-row div {
+    margin-bottom: 10px;
+  }
+
+  button {
+    padding: 12px 0;
+    font-size: 1rem;
+  }
+
+  .checkbox-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* Ajustes na seção de informações */
+  .info {
+    padding: 20px;
+  }
+
+  .info h1 {
+    font-size: 28px;
+  }
+
+  .info h4 {
+    font-size: 18px;
+  }
 
   #localizar-documento {
     font-size: 1.5rem;
