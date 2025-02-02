@@ -1,6 +1,7 @@
 /* Estilo da tabela - Princ Table */
 .table {
   width: 100%;
+  max-width: 800px;
   margin: 10px 0;
   border-collapse: collapse;
   text-align: left;
