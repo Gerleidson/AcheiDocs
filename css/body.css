@@ -12,7 +12,8 @@
     flex-direction: column;
     margin: 0;
     padding: 0;
-    background-color: #ffffff
+    background-color: #ffffff;
+    height: 100vh; /* Garante que a altura ocupe toda a tela */
   }
 
 
