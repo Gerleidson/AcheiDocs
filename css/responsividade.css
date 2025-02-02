@@ -23,32 +23,6 @@
   }
 
   /* Ajustes na seção de informações */
-  .info {
-    padding: 20px;
-  }
-
-  .info h1 {
-    font-size: 28px;
-  }
-
-  .info h4 {
-    font-size: 18px;
-  }
-
-  #localizar-documento {
-    font-size: 1.5rem;
-  }
-
-  section {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .principal {
-    display: flex;
-    flex-direction: column;
-    padding: 15px;
-  }
 
   /* Responsividade tabela */
   .table,
