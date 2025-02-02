@@ -12,7 +12,6 @@
     flex-direction: column;
     margin: 0;
     padding: 0;
-    bottom: 50px;
     background-color: #ffffff
   }
 
@@ -124,3 +123,5 @@
     color: #000000;
     text-align: center;
   }
+
+  

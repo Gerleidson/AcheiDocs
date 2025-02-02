@@ -40,8 +40,6 @@
 }
 
 /* Responsividade para telas menores */
-
-
 .table-responsive {
   overflow-x: auto;
   width: 90%;
@@ -95,4 +93,3 @@
   font-size: 12px;
   color: #000000;
 }
-
