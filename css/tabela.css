@@ -4,7 +4,9 @@
   margin: 10px 0;
   border-collapse: collapse;
   text-align: left;
-  background-color: #f9f9f9; 
+  background-color: #f9f9f9;
+  font-family: 'Roboto', sans-serif;
+  
 }
 
 .table thead {
