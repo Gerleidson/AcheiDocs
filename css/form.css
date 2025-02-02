@@ -1,7 +1,7 @@
 /* === Estilo para formulários === */
 form {
   width: 100%; 
-  max-width: 600px;
+  max-width: 800px;
   margin: 20px 0;
   padding: 20px;
   background-color: #fff;
@@ -17,82 +17,67 @@ form {
   transition: transform 1s ease, opacity 1s ease;
 }
 
-/* Quando o formulário estiver visível, ele aplica o zoom-in */
 form.zoom-in {
   opacity: 1;
   transform: scale(1); /* Zoom completo */
 }
+
 form.zoom-out {
   opacity: 0;
   transform: scale(0.8); /* Reduz o tamanho do formulário */
 }
 
-  form h3 {
-    font-size: 1.2em;
-    margin-bottom: 15px;
-    color: #333;
-    text-align: center;
-    font-weight: bold;
-  }
-  
-  form label {
-    font-size: 14px;
-    color: #333;
-  }
-  
-  form input,
-  form textarea,
-  form button,
-  form select {
-    width: 100%;
-    margin-bottom: 12px;
-    padding: 10px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 14px;
-    transition: border-color 0.3s ease-in-out;
-  }
-  
-  form input:focus,
-  form textarea:focus,
-  form select:focus {
-    border-color: #001b48;
-    outline: none;
-    background-color: #d2ecf7;
-  }
-  
-  form button {
-    background-color: #001b48;
-    color: #fff;
-    font-weight: bold;
-    cursor: pointer;
-    padding: 10px;
-    border-radius: 6px;
-    border: none;
-    transition: background-color 0.3s ease-in-out;
-  }
-  
-  form button:hover {
-    background-color: #00B6FF;
-  }
-  
-  /* Ajuste para cidade e estado ficarem lado a lado */
-  .form-row {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .form-row div {
-    flex: 1;
-  }
-  
-  .form-row input,
-  .form-row select {
-    width: 100%;
-  }
+form h3 {
+  font-size: 1.2em;
+  margin-bottom: 15px;
+  color: #333;
+  text-align: center;
+  font-weight: bold;
+}
 
-  /* === Estilo para os checkboxes === */
+form label {
+  font-size: 14px;
+  color: #333;
+}
+
+form input,
+form textarea,
+form button,
+form select {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.3s ease-in-out;
+}
+
+form input:focus,
+form textarea:focus,
+form select:focus {
+  border-color: #00B6FF;
+  outline: none;
+  background-color: #d2ecf7;
+}
+
+form button {
+  background-color: #001b48;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  transition: background-color 0.3s ease-in-out;
+}
+
+form button:hover {
+  background-color: #00B6FF;
+}
+
+/* Estilo para os checkboxes */
 .checkbox-group {
   display: flex;
   justify-content: center;
@@ -116,8 +101,7 @@ form.zoom-out {
   accent-color: #00B6FF;
 }
 
-/* === Estilo para o formulário com efeito de luz ao redor da borda === */
-/* Adicionando o efeito de luz */
+/* Estilo para o formulário com efeito de luz ao redor da borda */
 form:focus-within {
   animation: border-light 1.5s infinite; /* Animação infinita de luz ao redor */
   border-color: transparent; /* A borda fica invisível enquanto o efeito ocorre */
@@ -143,20 +127,45 @@ form:focus-within {
   }
 }
 
-/* Efeito de borda ao passar o mouse (opcional) */
-form input:focus,
-form textarea:focus,
-form select:focus {
-  border-color: #00B6FF;
-  outline: none;
-  background-color: #d2ecf7;
+/* === Estilos do formulário de cadastro === */
+#form-cadastro {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  max-width: 800px;
+  width: 100%;
 }
 
+#form-cadastro h3 {
+  font-size: 24px;
+  color: #000000;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+input[type="radio"] {
+  margin-right: 5px;
+}
+
+/* Ajuste para cidade e estado ficarem lado a lado */
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.form-row div {
+  flex: 1;
+}
+
+.form-row input, .form-row select {
+    width: 100%;
+}
 
 /* Estilos para a seção de Feedback */
 .feedback-container {
-  max-width: 600px; /* Reduzi a largura máxima do formulário */
-  margin: 0 auto;   /* Centraliza horizontalmente */
+  max-width: 800px;
+  margin: 0 auto;
   padding: 20px;
   border-radius: 8px;
 }
@@ -178,7 +187,7 @@ form select:focus {
 #feedback-form {
   display: flex;
   flex-direction: column;
-  align-items: stretch; /* Garante que os elementos ocupem toda a largura disponível */
+  align-items: stretch;
 }
 
 #feedback-form label {
@@ -189,21 +198,21 @@ form select:focus {
 }
 
 #feedback-form input, #feedback-form textarea {
-  width: 100%; /* Faz os inputs e textarea ocuparem toda a largura disponível */
+  width: 100%;
   padding: 12px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 5px;
   margin-bottom: 15px;
-  box-sizing: border-box; /* Garante que o padding não ultrapasse a largura */
+  box-sizing: border-box;
 }
 
 #feedback-form textarea {
-  resize: vertical; /* Permite que o campo de texto seja redimensionado verticalmente */
+  resize: vertical;
 }
 
 #feedback-form .btn-submit {
-  background-color: #001b48; /* Cor do botão conforme solicitado */
+  background-color: #001b48;
   color: white;
   border: none;
   padding: 12px 20px;
@@ -214,7 +223,7 @@ form select:focus {
 }
 
 #feedback-form .btn-submit:hover {
-  background-color: #00B6FF; /* Cor do botão ao passar o mouse */
+  background-color: #00B6FF;
 }
 
 #feedback-form .btn-submit:focus {
