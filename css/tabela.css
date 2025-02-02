@@ -44,7 +44,6 @@
   overflow-x: auto;
   width: 90%;  /* apagar se precisar diminuir a tabela */
   max-width: 600px;
-
 }
 
 .table-responsive::-webkit-scrollbar {
