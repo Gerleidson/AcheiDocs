@@ -134,12 +134,12 @@ header {
   left: 0;
   width: 0;
   height: 2px;
-  background-color: #007BFF; /* Cor da linha animada */
+  background-color: #00B6FF; /* Cor da linha animada */
   transition: width 0.3s ease;
 }
 
 .nav-links a:hover {
-  color: #007BFF; /* Cor do texto ao passar o mouse */
+  color: #00B6FF; /* Cor do texto ao passar o mouse */
 }
 
 .nav-links a:hover::after {
@@ -164,7 +164,7 @@ header {
 
 /* === Estilo para o menu horizontal === */
 .menu-horizontal {
-  background-color: #007BB5;
+  background-color: #00B6FF;
   padding: 10px 0;
   width: 100%;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -201,7 +201,7 @@ header {
 }
 
 #doacao-link:hover {
-  color: #007BB5;
+  color: #00B6FF;
 }
 
 /* Estilo do botão de voltar para parecer um link */
