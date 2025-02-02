@@ -82,6 +82,8 @@ form button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 50px;
+
 }
 
 .checkbox-group label {
