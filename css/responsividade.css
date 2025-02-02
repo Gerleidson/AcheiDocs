@@ -23,6 +23,23 @@
   }
 
   /* Ajustes na seção de informações */
+  .info {
+    padding: 10px;
+  }
+
+  .info h1 {
+    font-size: 22px;
+  }
+
+  .info h4 {
+    font-size: 18px;
+  }
+
+
+  .principal {
+    display: flex;
+    flex-direction: column;
+  }
 
   /* Responsividade tabela */
   .table,
