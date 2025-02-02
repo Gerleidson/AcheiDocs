@@ -3,10 +3,10 @@
 @media screen and (max-width: 768px) {
   /* Ajustes gerais para o formulário */
   #form-cadastro {
-    width: 110%; /* Ou defina uma largura fixa */
-    max-width: 800px; /* Limita a largura máxima */
+    width: 100%; /* Deixa o formulário ocupar toda a largura disponível */
+    max-width: 900px; /* Aumenta o tamanho máximo para telas maiores */
     margin-bottom: 10px;
-    margin-top: 10px;
+    margin-top: 20px;
   }
 
   .form-row {
@@ -19,27 +19,27 @@
   }
 
   input[type="text"], input[type="tel"], select {
-    font-size: 0.9rem;
-    padding: 8px;
+    font-size: 1rem; /* Ajuste o tamanho da fonte para melhor legibilidade */
+    padding: 10px;  /* Aumenta o padding para inputs em telas menores */
   }
 
   button {
-    padding: 10px;
-    font-size: 1rem;
+    padding: 12px 20px;
+    font-size: 1.2rem; /* Ajuste o tamanho do botão */
   }
 
   .checkbox-group {
-    flex-direction:column;
-    gap: 10px;
+    flex-direction: column;
+    gap: 12px; /* Aumenta o espaçamento entre os checkboxes */
   }
 
   /* Ajustes na seção de informações */
   .info {
-    padding: 20px;
+    padding: 15px;
   }
 
   .info h1 {
-    font-size: 28px;
+    font-size: 26px;
   }
 
   .info h4 {
@@ -47,9 +47,9 @@
   }
 
   #localizar-documento {
-    font-size: 1.5rem;
+    font-size: 1.8rem; /* Aumenta o tamanho da fonte do título */
     margin-bottom: 10px;
-    margin-top: 10px;
+    margin-top: 15px;
   }
 
   input[type="text"], button {
@@ -72,73 +72,71 @@
   .principal {
     display: flex;
     flex-direction: column;
-    padding: 15px;
+    padding: 20px; /* Aumenta o padding para maior conforto */
   }
 
   /* Responsividade tabela */
   .table tbody td,
   .table thead th {
-    font-size: 9px; /* Diminui o tamanho da fonte da tabela */
-    padding: 5px; /* Diminui o padding da tabela */
+    font-size: 12px; /* Aumenta o tamanho da fonte da tabela */
+    padding: 8px; /* Aumenta o padding da tabela */
   }
 
   .table {
-    font-size: 9px; /* Diminui o tamanho da fonte da tabela */
+    font-size: 12px; /* Aumenta o tamanho da fonte da tabela */
   }
 
   #navegacao button {
-    font-size: 9px; /* Diminui o tamanho da fonte dos botões de navegação */
-    padding: 4px;
+    font-size: 12px; /* Aumenta o tamanho da fonte dos botões de navegação */
+    padding: 6px;
   }
 
   #pagina-atual {
-    font-size: 9px; /* Diminui o tamanho da fonte da página atual */
+    font-size: 12px; /* Aumenta o tamanho da fonte da página atual */
   }
 
   /* Responsividade clima */
   .weather-info {
-    flex-wrap: wrap; /* Permite quebrar a linha em telas menores */
-    text-align: center; /* Centraliza o texto em dispositivos pequenos */
+    flex-wrap: wrap;
+    text-align: center;
   }
 
   .weather-icon {
-    width: 24px; /* Reduz o tamanho do ícone para telas menores */
-    height: 24px;
+    width: 28px; /* Aumenta o tamanho do ícone para uma visualização melhor */
+    height: 28px;
   }
 
   /* Responsividade menu de navegação */
   .nav-links {
     display: none;
     flex-direction: column;
-    width: auto; /* Remova largura fixa */
+    width: auto;
     background-color: #333;
     position: absolute;
     top: 100px;
-    right: 0; /* Define o menu no lado direito */
+    right: 0;
     padding: 10px 0;
-    align-items: flex-end; /* Alinha os links no lado direito */
+    align-items: flex-end;
     transition: all 0.3s ease-in-out;
-
   }
 
   .hamburger {
-    display: block; /* Exibe o ícone do hambúrguer */
+    display: block;
   }
 
   .nav-links.active {
-    display: flex; /* Exibe o menu quando a classe 'active' é adicionada */
+    display: flex;
   }
 
   /* Ajustes no menu em telas pequenas */
-
   .btn-action {
-    font-size: 0.9em;
-    padding: 10px 20px;
+    font-size: 1em;
+    padding: 12px 20px;
   }
 
   form input,
   form button {
-    padding: 8px;
+    padding: 10px;
   }
 
   .menu-horizontal ul {
@@ -147,6 +145,6 @@
 
   form input,
   form select {
-    padding: 8px;
+    padding: 10px;
   }
 }
