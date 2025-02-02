@@ -8,7 +8,7 @@
   select, 
   button {
     width: 100%;
-    max-width: none;
+    max-width: 600;
     font-size: 0.9rem;
     padding: 8px;
   }
