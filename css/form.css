@@ -133,7 +133,7 @@ form:focus-within {
   flex-direction: column;
   max-width: 800px;
   margin: 0 auto;
-
+  align-items: stretch;
 }
 
 #form-cadastro h3 {
