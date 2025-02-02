@@ -39,8 +39,8 @@
 /* Responsividade para telas menores */
 .table-responsive {
   overflow-x: auto;
-  width: 80%;  /* apagar se precisar diminuir a tabela */
-  max-width: 700px;
+  width: 90%;  /* apagar se precisar diminuir a tabela */
+  max-width: 600px;
 
 }
 
