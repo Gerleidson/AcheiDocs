@@ -1,7 +1,15 @@
-/* === Responsividade geral === */
-
 @media screen and (max-width: 768px) {
   /* Ajustes gerais para o formulário */
+  #form-cadastro,
+  input[type="text"], 
+  input[type="tel"], 
+  select, 
+  button {
+    width: 100%;
+    max-width: 600px;
+    font-size: 0.9rem;
+    padding: 8px;
+  }
 
   .form-row {
     flex-direction: column;
@@ -24,22 +32,33 @@
 
   /* Ajustes na seção de informações */
   .info {
-    padding: 10px;
-    gap: 10px;
-    margin-top: 30px;
+    padding: 20px;
   }
 
   .info h1 {
-    font-size: 22px;
+    font-size: 28px;
   }
 
   .info h4 {
     font-size: 18px;
   }
 
+  #localizar-documento {
+    font-size: 1.5rem;
+    margin: 10px 0;
+  }
+
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+  }
+
   .principal {
     display: flex;
     flex-direction: column;
+    padding: 15px;
   }
 
   /* Responsividade tabela */
