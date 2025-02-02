@@ -1,0 +1,126 @@
+/* === Responsividade geral === */
+
+@media screen and (max-width: 768px) {
+  /* Ajustes gerais para o formulário */
+  #form-cadastro,
+  input[type="text"], 
+  input[type="tel"], 
+  select, 
+  button {
+    width: 100%;
+    max-width: 600px;
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .form-row div {
+    margin-bottom: 10px;
+  }
+
+  button {
+    padding: 12px 0;
+    font-size: 1rem;
+  }
+
+  .checkbox-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* Ajustes na seção de informações */
+  .info {
+    padding: 20px;
+  }
+
+  .info h1 {
+    font-size: 28px;
+  }
+
+  .info h4 {
+    font-size: 18px;
+  }
+
+  #localizar-documento {
+    font-size: 1.5rem;
+    margin: 10px 0;
+  }
+
+  section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+  }
+
+  .principal {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  /* Responsividade tabela */
+  .table,
+  .table tbody td,
+  .table thead th,
+  #navegacao button,
+  #pagina-atual {
+    font-size: 9px;
+  }
+
+  .table tbody td,
+  .table thead th {
+    padding: 5px;
+  }
+
+  #navegacao button {
+    padding: 4px;
+  }
+
+  /* Responsividade clima */
+  .weather-info {
+    flex-wrap: wrap;
+    text-align: center;
+  }
+
+  .weather-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* Responsividade menu de navegação */
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: auto;
+    background-color: #333;
+    position: absolute;
+    top: 100px;
+    right: 0;
+    padding: 10px 0;
+    align-items: flex-end;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  /* Ajustes no menu em telas pequenas */
+  .btn-action {
+    font-size: 0.9em;
+    padding: 10px 20px;
+  }
+
+  .menu-horizontal ul {
+    flex-direction: column;
+  }
+}
