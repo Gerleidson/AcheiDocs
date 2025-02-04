@@ -40,7 +40,18 @@
   main .content {
     margin-bottom: 20px;
   }
-  
+
+  /* Adicionando um estilo para centralizar as sections */
+section {
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  text-align: center; /* Centraliza o texto */
+  height: 100%; /* Garante que a seção tenha altura suficiente para centralizar o conteúdo */
+  padding: 20px; /* Adiciona um pouco de espaçamento interno */
+}
+
+ 
   .btn-download {
     display: inline-block;
     background-color: #001b48;
