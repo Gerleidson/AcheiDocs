@@ -41,12 +41,7 @@
     margin-bottom: 20px;
   }
 
-  /* Adicionando um estilo para centralizar as sections */
-  section {
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center; /* Centraliza verticalmente */
-    text-align: center; /* Centraliza o texto */
-  }
+ 
 
   .btn-download {
     display: inline-block;
