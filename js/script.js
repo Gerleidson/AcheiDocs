@@ -10,7 +10,6 @@ let paginaAtual = 1; // Página inicial
 const telefoneRegex = /^\(?\d{2}\)?\s?\d{5}-\d{4}$/; 
 
 
-
 // Função para salvar os dados do formulário no Firebase
 document.getElementById('form-cadastro').addEventListener('submit', function (event) {
     event.preventDefault(); // Impede o envio do formulário tradicional
@@ -63,7 +62,6 @@ document.getElementById('form-cadastro').addEventListener('submit', function (ev
 });
 
    
-
 // Função para buscar o cadastro por nome
 function buscarCadastroPorNome() {
     const nomeBusca = document.getElementById('nome-busca').value.trim();
@@ -125,7 +123,6 @@ function exibirPopup(dados) {
 }
 
 
-
 // Função para exibir os documentos na tabela
 function exibirDocumentosNaTabela(documentos) {
     const tabela = document.querySelector('#tabela tbody');
@@ -170,7 +167,6 @@ document.getElementById('next').addEventListener('click', () => {
         }
     });
 });
-
 
 
 // Chama a função ao carregar a página para exibir os documentos da primeira página
@@ -227,7 +223,6 @@ function exibirTotalCadastros() {
         }
     });
 }
-
 
 
 // Tornar a função globalmente acessível
@@ -358,8 +353,8 @@ function displayWeather(data) {
     weatherIcon.style.display = "inline";
 } */
 
-// Função para os efeitos zoom in e zoom out
 
+// Função para os efeitos zoom in e zoom out
 let lastScrollTop = 0; // Armazena a posição da rolagem anterior
 
 // Função que verifica a visibilidade e a direção da rolagem
