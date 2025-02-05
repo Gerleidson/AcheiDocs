@@ -303,7 +303,7 @@ popupDicas.addEventListener('click', function(e) {
 });
 
 
-// Função para exibir o clima na tela
+/* Função para exibir o clima na tela
 if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
 } else {
@@ -356,7 +356,7 @@ function displayWeather(data) {
     const weatherIcon = document.querySelector(".weather-icon");
     weatherIcon.src = iconUrl;
     weatherIcon.style.display = "inline";
-}
+} */
 
 // Função para os efeitos zoom in e zoom out
 
