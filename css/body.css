@@ -1,5 +1,5 @@
-* /*=== Estilos globais === */
-body {
+  * /*=== Estilos globais === */
+  body {
   position: relative;
   color: #000000;
   font-family: 'Roboto', sans-serif;
@@ -14,9 +14,10 @@ body {
   background-size: cover;
   background-color: #f4f7fa;
   height: 100vh; /* Garante que a altura ocupe toda a tela */
-} 
+  } 
 
-main {
+  /* pagina de politica de privatidade */
+  main {
   padding: 0 20px;
   max-width: 1100px;
   margin-top: 80px;
@@ -24,23 +25,23 @@ main {
   background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-}
+  }
 
-main h1, main h2 {
-  color: #001b48;
-}
+  main h1, main h2 {
+  color: #000000;
+  }
 
-main .section-title {
+  main .section-title {
   font-size: 1.2em;
   margin-top: 20px;
   color: #001b48;
-}
+  }
 
-main .content {
+  main .content {
   margin-bottom: 20px;
-}
+  }
 
-.btn-download {
+  .btn-download {
   display: inline-block;
   background-color: #001b48;
   color: #fff;
@@ -49,29 +50,29 @@ main .content {
   border-radius: 5px;
   font-size: 16px;
   text-align: center;
-}
+  }
 
-.btn-download:hover {
+  .btn-download:hover {
   background-color: #00B6FF;
-}
-/* === Estilos principais === */
-.principal {
+  }
+
+  /* === Estilos principais === */
+  .principal {
   padding: 0;
   margin-top: 70px;
   width: 100%;
   max-width: 100%;
   background-image: url(/img/a.avif);
-  background-repeat: no-repeat;
   background-size: 100% 100%;
-  display: flex;
+  display:grid;
   justify-content: center;
   align-items: center;
   min-height: 70vh;
   position: relative;
   gap: 20px; /* Aumentei um pouco o espaço entre os elementos */
-}
+  }
 
-.principal::before {
+  .principal::before {
     content: '';
     position: absolute;
     top: 0;
@@ -91,7 +92,7 @@ main .content {
     padding: 20px;
     border-radius: 10px;
     text-align:center;
-    max-width: 800px;
+    max-width: 1100px;
   }
 
   .info h1 {
@@ -100,15 +101,19 @@ main .content {
     margin-bottom: 20px;
     font-weight: bold;
   }
+  
+    .info p {
+      font-size: 20px;
+      color: #ffffff;
+    }
+
   .info h3 {
     font-size: 20px;
     color: #ffffff;
-    margin-bottom: 20px;
-    font-weight: bold;
   }
 
-/* Estilo para a seção de importância de cadastro */
-.importancia-cadastro {
+  /* Estilo para a seção de importância de cadastro */
+  .importancia-cadastro {
   background-color: #f9f9f9; /* Um fundo suave para dar um contraste mais suave */
   padding: 30px 20px; /* Mais espaçamento para tornar o conteúdo mais arejado */
   border-radius: 12px; /* Cantos mais arredondados para um visual mais moderno */
@@ -116,35 +121,19 @@ main .content {
   margin-bottom: 40px; /* Mais espaço entre as seções */
   max-width: 800px; /* Limita o tamanho da seção em telas maiores */
   margin: 0 auto; /* Centraliza a seção */
-}
+  }
 
-.importancia-cadastro h2 {
+  .importancia-cadastro h2 {
   font-size: 2.4rem; /* Tamanho de fonte maior para dar mais destaque */
   color: #000000; /* Cor mais forte e sofisticada para o título */
   margin-bottom: 20px; /* Maior espaço abaixo do título */
   text-align: center;
   font-weight: 700; /* Peso de fonte mais forte para destacar */
-}
+  }
 
-.importancia-cadastro p:last-child {
+  .importancia-cadastro p:last-child {
   margin-bottom: 0; /* Remove o espaço extra no último parágrafo */
-}
-
-/* Adicionando responsividade */
-@media (max-width: 768px) {
-  .importancia-cadastro {
-    padding: 20px 15px; /* Ajuste de padding para telas menores */
-    margin-bottom: 30px; /* Menos espaço entre seções em dispositivos menores */
   }
-
-  .importancia-cadastro h2 {
-    font-size: 2rem; /* Menor tamanho de fonte em telas menores */
-  }
-
-  .importancia-cadastro p {
-    font-size: 1rem; /* Ajuste no tamanho da fonte em telas pequenas */
-  }
-}
 
   /* === Estilos do contador === */
   .contador-container {
@@ -153,5 +142,3 @@ main .content {
     color: #000000;
     text-align: center;
   }
-
-  

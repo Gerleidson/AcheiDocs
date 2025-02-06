@@ -13,7 +13,6 @@ form {
   flex-direction: column;
   position: relative;
   border: 2px solid #ccc;
-  overflow: hidden;
   opacity: 0;
   transform: scale(0.8); /* Inicialmente o formulário está com zoom out */
   transition: transform 1s ease, opacity 1s ease;
@@ -32,9 +31,14 @@ form.zoom-out {
 form h3 {
   font-size: 1.2em;
   margin-bottom: 15px;
-  color: #333;
+  color: #000000;
   text-align: center;
   font-weight: bold;
+}
+form p {
+  font-size: 16px;
+  color: #000000;
+  margin-bottom: 15px;
 }
 
 form label {
@@ -73,31 +77,6 @@ form button {
 
 form button:hover {
   background-color: #00B6FF;
-}
-
-/* Estilo para os checkboxes */
-.checkbox-group {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 50px;
-}
-
-.checkbox-group label {
-  font-size: 14px;
-  color: #333;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.checkbox-group input[type="radio"] {
-  width: 18px;
-  height: 18px;
-  margin: 0;
-  cursor: pointer;
-  accent-color: #00B6FF;
 }
 
 
@@ -146,6 +125,31 @@ form:focus-within {
 input[type="radio"] {
   margin-right: 5px;
 } 
+
+/* Estilo para os checkboxes */
+.checkbox-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
+.checkbox-group label {
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.checkbox-group input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  cursor: pointer;
+  accent-color: #00B6FF;
+}
 
 /* Ajuste para cidade e estado ficarem lado a lado */
 .form-row {
