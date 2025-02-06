@@ -19,9 +19,6 @@ form {
   transition: transform 1s ease, opacity 1s ease;
 }
 
-
-
-
 form.zoom-in {
   opacity: 1;
   transform: scale(1); /* Zoom completo */
@@ -62,14 +59,6 @@ form select {
   transition: border-color 0.3s ease-in-out;
 }
 
-form input:focus,
-form textarea:focus,
-form select:focus {
-  border-color: #00B6FF;
-  outline: none;
-  background-color: #d2ecf7;
-}
-
 form button {
   background-color: #001b48;
   color: white;
@@ -92,7 +81,6 @@ form button:hover {
   justify-content: center;
   align-items: center;
   gap: 50px;
-
 }
 
 .checkbox-group label {
@@ -111,6 +99,7 @@ form button:hover {
   cursor: pointer;
   accent-color: #00B6FF;
 }
+
 
 /* Estilo para o formulário com efeito de luz ao redor da borda */
 form:focus-within {
@@ -156,7 +145,7 @@ form:focus-within {
 
 input[type="radio"] {
   margin-right: 5px;
-}
+} 
 
 /* Ajuste para cidade e estado ficarem lado a lado */
 .form-row {
@@ -172,6 +161,9 @@ input[type="radio"] {
 .form-row input, .form-row select {
     width: 100%;
 }
+
+
+
 
 
 /* Estilos para a seção de Feedback */

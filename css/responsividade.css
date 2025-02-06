@@ -71,17 +71,6 @@
     padding: 4px;
   }
 
-  /* Responsividade clima */
-  .weather-info {
-    flex-wrap: wrap;
-    text-align: center;
-  }
-
-  .weather-icon {
-    width: 24px;
-    height: 24px;
-  }
-
   /* Responsividade menu de navegação */
   .nav-links {
     display: none;

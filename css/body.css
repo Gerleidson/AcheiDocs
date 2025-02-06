@@ -1,86 +1,85 @@
 * /*=== Estilos globais === */
-  body {
-    position: relative;
-    color: #000000;
-    font-family: 'Roboto', sans-serif;
-    position: relative;
-    line-height: 1.6;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin: 0 auto;
-    padding: 0;
-    background-size: cover;
-    background-size: cover;
-    background-color: #f4f7fa;
-    height: 100vh; /* Garante que a altura ocupe toda a tela */
-  } 
+body {
+  position: relative;
+  color: #000000;
+  font-family: 'Roboto', sans-serif;
+  position: relative;
+  line-height: 1.6;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 0;
+  background-size: cover;
+  background-size: cover;
+  background-color: #f4f7fa;
+  height: 100vh; /* Garante que a altura ocupe toda a tela */
+} 
 
-  main {
-    padding: 0 20px;
-    max-width: 1100px;
-    margin-top: 80px;
-    margin: 0 auto;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-  }
-  
-  main h1, main h2 {
-    color: #001b48;
-  }
-  
-  main .section-title {
-    font-size: 1.2em;
-    margin-top: 20px;
-    color: #001b48;
-  }
-  
-  main .content {
-    margin-bottom: 20px;
-  }
-  
-  .btn-download {
-    display: inline-block;
-    background-color: #001b48;
-    color: #fff;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 16px;
-    text-align: center;
-  }
-  
-  .btn-download:hover {
-    background-color: #001b48;
-  }
+main {
+  padding: 0 20px;
+  max-width: 1100px;
+  margin-top: 80px;
+  margin: 0 auto;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
 
-  /* === Estilos principais === */
-  .principal {
-    padding: 0;
-    margin-top: 80px;
-    width: 100%;
-    max-width: 100%;
-    background-image: url(/img/a.avif);
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    background-position: center center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 70vh;
-    position: relative;
-    gap: 10px;
-  }
+main h1, main h2 {
+  color: #001b48;
+}
 
-  .principal::before {
+main .section-title {
+  font-size: 1.2em;
+  margin-top: 20px;
+  color: #001b48;
+}
+
+main .content {
+  margin-bottom: 20px;
+}
+
+.btn-download {
+  display: inline-block;
+  background-color: #001b48;
+  color: #fff;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.btn-download:hover {
+  background-color: #001b48;
+}
+/* === Estilos principais === */
+.principal {
+  padding: 0;
+  margin-top: 70px;
+  width: 100%;
+  max-width: 100%;
+  background-image: url(/img/a.avif);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+  position: relative;
+  gap: 20px; /* Aumentei um pouco o espaço entre os elementos */
+}
+
+.principal::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(66, 65, 65, 0.6);
+    background-color: rgba(66, 65, 65, 0.7);
     z-index: 0;
   }
 
@@ -93,7 +92,7 @@
     padding: 20px;
     border-radius: 10px;
     text-align:center;
-    max-width: 500px;
+    max-width: 800px;
   }
 
   .info h1 {
@@ -106,12 +105,6 @@
     font-size: 20px;
     color: #ffffff;
     margin-bottom: 20px;
-    font-weight: bold;
-  }
-
-  .info h4, u h4 {
-    font-size: 21px;
-    color: #ffffff;
     font-weight: bold;
   }
 
@@ -134,15 +127,6 @@
   font-weight: 700; /* Peso de fonte mais forte para destacar */
 }
 
-.importancia-cadastro p {
-  font-size: 1.15rem; /* Leve aumento no tamanho da fonte para maior legibilidade */
-  color: #7f8c8d; /* Cor mais suave para o texto */
-  line-height: 1.8; /* Aumento na altura da linha para maior legibilidade */
-  margin-bottom: 20px; /* Espaçamento maior entre parágrafos */
-  text-align: center;
-  font-family: 'Roboto', sans-serif; /* Fonte mais limpa e moderna */
-}
-
 .importancia-cadastro p:last-child {
   margin-bottom: 0; /* Remove o espaço extra no último parágrafo */
 }
@@ -162,8 +146,6 @@
     font-size: 1rem; /* Ajuste no tamanho da fonte em telas pequenas */
   }
 }
-
-
 
   /* === Estilos do contador === */
   .contador-container {
