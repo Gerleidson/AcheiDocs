@@ -52,7 +52,7 @@ main .content {
 }
 
 .btn-download:hover {
-  background-color: #001b48;
+  background-color: #00B6FF;
 }
 /* === Estilos principais === */
 .principal {
@@ -120,7 +120,7 @@ main .content {
 
 .importancia-cadastro h2 {
   font-size: 2.4rem; /* Tamanho de fonte maior para dar mais destaque */
-  color: #2c3e50; /* Cor mais forte e sofisticada para o título */
+  color: #000000; /* Cor mais forte e sofisticada para o título */
   margin-bottom: 20px; /* Maior espaço abaixo do título */
   text-align: center;
   font-weight: 700; /* Peso de fonte mais forte para destacar */
