@@ -92,7 +92,7 @@
     padding: 20px;
     border-radius: 10px;
     text-align:center;
-    max-width: 1100px;
+    max-width: 900px;
   }
 
   .info h1 {
@@ -102,10 +102,15 @@
     font-weight: bold;
   }
   
-    .info p {
-      font-size: 20px;
-      color: #ffffff;
-    }
+  .info p {
+    font-size: 20px;
+    color: #ffffff;
+    line-height: 1.8; /* Alinhamento vertical do parágrafo */
+    line-height: 1.6; /* Alinhamento vertical do parágrafo */
+    margin-bottom: 20px; /* Maior espaço entre as linhas de texto */
+
+    
+  }
 
   .info h3 {
     font-size: 20px;
