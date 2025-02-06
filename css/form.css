@@ -1,8 +1,10 @@
 /* === Estilo para formulários === */
+
 form {
   width: 100%; 
   max-width: 800px;
   margin: 20px auto;
+  margin-bottom: 30px;
   padding: 20px;
   background-color: #fff;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -16,7 +18,6 @@ form {
   transform: scale(0.8); /* Inicialmente o formulário está com zoom out */
   transition: transform 1s ease, opacity 1s ease;
 }
-
 
 form.zoom-in {
   opacity: 1;
@@ -39,7 +40,11 @@ form h3 {
 form label {
   font-size: 14px;
   color: #333;
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
+
 
 form input,
 form textarea,
@@ -68,15 +73,22 @@ form button {
   color: white;
   font-weight: bold;
   cursor: pointer;
-  padding: 10px;
+  padding: 12px 20px;
   border-radius: 6px;
   border: none;
+  font-size: 16px;
+
   transition: background-color 0.3s ease-in-out;
 }
 
 form button:hover {
   background-color: #00B6FF;
 }
+
+
+
+
+
 
 /* Estilo para os checkboxes */
 .checkbox-group {
