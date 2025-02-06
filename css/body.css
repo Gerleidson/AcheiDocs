@@ -63,7 +63,6 @@ main .content {
   background-image: url(/img/a.avif);
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  background-position: center;
   display: flex;
   justify-content: center;
   align-items: center;
