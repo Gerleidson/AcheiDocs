@@ -67,6 +67,7 @@
   display:grid;
   justify-content: center;
   align-items: center;
+  min-height: 70vh;
   position: relative;
   gap: 20px; /* Aumentei um pouco o espaço entre os elementos */
   }
