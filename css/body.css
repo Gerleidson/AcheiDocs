@@ -92,7 +92,7 @@
   .info {
     padding: 20px;
     border-radius: 10px;
-    text-align: center;
+    text-align:center;
     max-width: 500px;
   }
 
@@ -114,6 +114,56 @@
     color: #ffffff;
     font-weight: bold;
   }
+
+/* Estilo para a seção de importância de cadastro */
+.importancia-cadastro {
+  background-color: #f9f9f9; /* Um fundo suave para dar um contraste mais suave */
+  padding: 30px 20px; /* Mais espaçamento para tornar o conteúdo mais arejado */
+  border-radius: 12px; /* Cantos mais arredondados para um visual mais moderno */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Sombra mais intensa para dar profundidade */
+  margin-bottom: 40px; /* Mais espaço entre as seções */
+  max-width: 800px; /* Limita o tamanho da seção em telas maiores */
+  margin: 0 auto; /* Centraliza a seção */
+}
+
+.importancia-cadastro h2 {
+  font-size: 2.4rem; /* Tamanho de fonte maior para dar mais destaque */
+  color: #2c3e50; /* Cor mais forte e sofisticada para o título */
+  margin-bottom: 20px; /* Maior espaço abaixo do título */
+  text-align: center;
+  font-weight: 700; /* Peso de fonte mais forte para destacar */
+}
+
+.importancia-cadastro p {
+  font-size: 1.15rem; /* Leve aumento no tamanho da fonte para maior legibilidade */
+  color: #7f8c8d; /* Cor mais suave para o texto */
+  line-height: 1.8; /* Aumento na altura da linha para maior legibilidade */
+  margin-bottom: 20px; /* Espaçamento maior entre parágrafos */
+  text-align: center;
+  font-family: 'Roboto', sans-serif; /* Fonte mais limpa e moderna */
+}
+
+.importancia-cadastro p:last-child {
+  margin-bottom: 0; /* Remove o espaço extra no último parágrafo */
+}
+
+/* Adicionando responsividade */
+@media (max-width: 768px) {
+  .importancia-cadastro {
+    padding: 20px 15px; /* Ajuste de padding para telas menores */
+    margin-bottom: 30px; /* Menos espaço entre seções em dispositivos menores */
+  }
+
+  .importancia-cadastro h2 {
+    font-size: 2rem; /* Menor tamanho de fonte em telas menores */
+  }
+
+  .importancia-cadastro p {
+    font-size: 1rem; /* Ajuste no tamanho da fonte em telas pequenas */
+  }
+}
+
+
 
   /* === Estilos do contador === */
   .contador-container {

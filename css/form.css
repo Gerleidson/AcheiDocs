@@ -19,6 +19,9 @@ form {
   transition: transform 1s ease, opacity 1s ease;
 }
 
+
+
+
 form.zoom-in {
   opacity: 1;
   transform: scale(1); /* Zoom completo */
@@ -44,7 +47,6 @@ form label {
   font-weight: bold;
   margin-bottom: 5px;
 }
-
 
 form input,
 form textarea,
@@ -77,18 +79,12 @@ form button {
   border-radius: 6px;
   border: none;
   font-size: 16px;
-
   transition: background-color 0.3s ease-in-out;
 }
 
 form button:hover {
   background-color: #00B6FF;
 }
-
-
-
-
-
 
 /* Estilo para os checkboxes */
 .checkbox-group {
