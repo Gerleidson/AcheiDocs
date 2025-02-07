@@ -1,5 +1,5 @@
 /* === Reset de estilos padrão === */
-body, h1, h2, h3, p, ul, li, form, button, input, select, section,main{
+body, h1, h2, h3, p, ul, li, form, button, input, select, section, main{
     margin: 0;
     padding: 0;
     box-sizing: border-box;

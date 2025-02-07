@@ -1,6 +1,6 @@
 /* Estilos para a seção de FAQ */
 .faq-section {
-    margin: 40px auto;
+    margin: 10px auto; /* Diminua a margem */
     padding: 30px;
     background-color: #ffffff;
     border-radius: 12px;
@@ -31,8 +31,9 @@
 }
 
 .faq-answer {
-    max-width: 600px;
+    max-width: 900px;
     padding: 15px;
+    text-align: justify;
     background-color: #f9f9f9;
     display: none;
     border-radius: 8px;

@@ -10,10 +10,8 @@
   flex-direction: column;
   margin: 0 auto;
   padding: 0;
-  background-size: cover;
-  background-size: cover;
   background-color: #f4f7fa;
-  height: 100vh; /* Garante que a altura ocupe toda a tela */
+
   } 
 
   /* pagina de politica de privatidade */
@@ -59,15 +57,13 @@
   /* === Estilos principais === */
   .principal {
   padding: 0;
-  margin-top: 70px;
-  width: 100%;
+  margin-top: 60px;
   max-width: 100%;
   background-image: url(/img/a.avif);
   background-size: 100% 100%;
   display:grid;
   justify-content: center;
   align-items: center;
-  min-height: 70vh;
   position: relative;
   gap: 20px; /* Aumentei um pouco o espaço entre os elementos */
   }
@@ -108,8 +104,6 @@
     line-height: 1.8; /* Alinhamento vertical do parágrafo */
     line-height: 1.6; /* Alinhamento vertical do parágrafo */
     margin-bottom: 20px; /* Maior espaço entre as linhas de texto */
-
-    
   }
 
   .info h3 {
@@ -118,25 +112,25 @@
   }
 
   /* Estilo para a seção de importância de cadastro */
-  .importancia-cadastro {
+  .importancia {
   background-color: #f9f9f9; /* Um fundo suave para dar um contraste mais suave */
   padding: 30px 20px; /* Mais espaçamento para tornar o conteúdo mais arejado */
   border-radius: 12px; /* Cantos mais arredondados para um visual mais moderno */
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Sombra mais intensa para dar profundidade */
-  margin-bottom: 40px; /* Mais espaço entre as seções */
   max-width: 800px; /* Limita o tamanho da seção em telas maiores */
   margin: 0 auto; /* Centraliza a seção */
+  margin-top: 20px;
   }
 
-  .importancia-cadastro h2 {
-  font-size: 2.4rem; /* Tamanho de fonte maior para dar mais destaque */
+  .importancia h2 {
+  font-size: 1.6rem; /* Tamanho de fonte maior para dar mais destaque */
   color: #000000; /* Cor mais forte e sofisticada para o título */
   margin-bottom: 20px; /* Maior espaço abaixo do título */
   text-align: center;
   font-weight: 700; /* Peso de fonte mais forte para destacar */
   }
 
-  .importancia-cadastro p:last-child {
+  .importancia p:last-child {
   margin-bottom: 0; /* Remove o espaço extra no último parágrafo */
   }
 

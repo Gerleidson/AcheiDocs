@@ -16,9 +16,9 @@ document.getElementById('form-cadastro').addEventListener('submit', function (ev
 
     // Coleta os dados do formulário
     const nome = document.getElementById('nome').value;
-    const documento = document.getElementById('documento').value; // Agora é um select
+    const documento = document.getElementById('documento').value;
     const cidade = document.getElementById('cidade').value;
-    const estado = document.getElementById('estado').value; // Estado como sigla
+    const estado = document.getElementById('estado').value;
     const telefone = document.getElementById('telefone').value;
     const tipo = document.querySelector('input[name="tipo"]:checked') ? document.querySelector('input[name="tipo"]:checked').value : '';
 
