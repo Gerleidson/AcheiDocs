@@ -2,12 +2,13 @@
 header {
   background-color: #343a40;
   width: 100%;
-  padding: 0 auto;
+  padding: 0;
   position: fixed;
   top: 0;
   left: 0;
   margin: 0;
   z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para destacar o cabeçalho */
 }
 
 .navbar {
@@ -17,32 +18,29 @@ header {
   background-color: #000000;
   padding: 10px 20px;
   color: white;
-  }
- 
+}
 
 /* Efeito de brilho no texto */
 .logo {
-  font-size: 2em; /* Tamanho do texto */
-  font-weight: bold; /* Deixar o texto em negrito */
-  color:rgb(255, 255, 255); /* Cor do texto */
+  font-size: 2em;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
   position: relative;
   display: inline-block;
-  animation: glow 1.5s ease-in-out infinite; /* Animação de brilho contínuo */
+  animation: glow 1.5s ease-in-out infinite;
 }
 
-/* Animação do brilho no texto */
 @keyframes glow {
   0% {
-      text-shadow: 0 0 5px rgba(0, 123, 181, 0.7), 0 0 10px rgba(0, 123, 181, 0.5), 0 0 15px rgba(0, 123, 181, 0.3);
+      text-shadow: 0 0 8px rgba(0, 123, 181, 0.7), 0 0 15px rgba(0, 123, 181, 0.5);
   }
   50% {
-      text-shadow: 0 0 10px rgba(0, 123, 181, 1), 0 0 20px rgba(0, 123, 181, 0.7), 0 0 30px rgba(0, 123, 181, 0.5);
+      text-shadow: 0 0 20px rgba(0, 123, 181, 1), 0 0 30px rgba(0, 123, 181, 0.7);
   }
   100% {
-      text-shadow: 0 0 5px rgba(0, 123, 181, 0.7), 0 0 10px rgba(0, 123, 181, 0.5), 0 0 15px rgba(0, 123, 181, 0.3);
+      text-shadow: 0 0 8px rgba(0, 123, 181, 0.7), 0 0 15px rgba(0, 123, 181, 0.5);
   }
 }
-
 
 /* Estilos para o menu */
 .menu {
@@ -67,12 +65,10 @@ header {
   text-decoration: none;
   color: #ffffff;
   font-size: 16px;
-  position: relative;
-  display: inline-block;
-  padding: 8px 15px; /* Aumentando o padding para dar mais espaço e tornar o link mais parecido com um botão */
-  border: 2px solid transparent; /* Inicialmente, a borda é invisível */
-  border-radius: 5px; /* Arredondando as bordas */
-  transition: all 0.3s ease; /* Transições suaves para todos os efeitos */
+  padding: 8px 15px;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  transition: all 0.3s ease;
 }
 
 /* Efeito de hover com underline animado */
@@ -83,12 +79,12 @@ header {
   left: 0;
   width: 0;
   height: 2px;
-  background-color: #00B6FF; /* Cor da linha animada */
+  background-color: #00B6FF;
   transition: width 0.3s ease;
 }
 
 .nav-links a:hover {
-  color: #00B6FF; /* Cor do texto ao passar o mouse */
+  color: #00B6FF;
 }
 
 .nav-links a:hover::after {
@@ -103,15 +99,7 @@ header {
   margin-left: 50px;
 }
 
-.container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  padding: 10px 20px;
-}
-
-/* === Estilo para o menu horizontal === */
+/* Estilo para o menu horizontal */
 .menu-horizontal {
   background-color: #00B6FF;
   padding: 10px 0;
@@ -157,17 +145,17 @@ header {
 .btn-voltar {
   display: inline-flex;
   align-items: center;
-  background-color: transparent; /* Remover o fundo */
-  color: #fff; /* Cor do texto do link */
-  padding: 0; /* Remover o padding */
-  border: none; /* Remover bordas */
-  font-size: 16px; /* Tamanho da fonte do link */
-  text-decoration: none; /* Remover sublinhado */
-  transition: color 0.3s ease; /* Efeito suave ao passar o mouse */
+  background-color: transparent;
+  color: #fff;
+  padding: 0;
+  border: none;
+  font-size: 16px;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 .btn-voltar:hover {
-  color: #00B6FF; /* Cor do texto ao passar o mouse (efeito de link) */
+  color: #00B6FF;
 }
 
 /* Estilos do ícone de voltar */
@@ -178,4 +166,3 @@ header {
 .bi-arrow-left {
   font-size: 1.2em;
 }
-

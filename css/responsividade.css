@@ -114,3 +114,91 @@
     flex-direction: column;
   }
 }
+
+/* Responsividade: ajuste para telas menores */
+@media screen and (max-width: 768px) {
+  .faq-section {
+    padding: 15px; /* Diminui o padding em telas menores */
+  }
+
+  .faq-title {
+    font-size: 22px; /* Ajusta o tamanho do título para telas pequenas */
+  }
+
+  .faq-question {
+    font-size: 16px; /* Reduz o tamanho das perguntas para melhorar a legibilidade */
+  }
+
+  .faq-answer {
+    font-size: 14px; /* Ajuste do tamanho da fonte das respostas */
+  }
+}
+
+/* Estilos Responsivos */
+@media (max-width: 768px) {
+  form, #form-cadastro, .feedback-container {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .checkbox-group {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+
+  .form-row div {
+    width: 100%;
+  }
+}
+
+
+/* === Responsividade (para telas pequenas) === */
+@media (max-width: 768px) {
+  /* Menu e logo ficam em colunas */
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Ajuste para a exibição do menu hamburguer */
+  .hamburger {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links li {
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-links a {
+    padding: 15px 0;
+    border-top: 1px solid #fff;
+    width: 100%;
+  }
+
+  .nav-links a:hover {
+    background-color: #333;
+    color: #00B6FF;
+  }
+
+  .menu {
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

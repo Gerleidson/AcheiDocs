@@ -35,6 +35,7 @@ form h3 {
   text-align: center;
   font-weight: bold;
 }
+
 form p {
   font-size: 16px;
   color: #000000;
@@ -55,12 +56,12 @@ form button,
 form select {
   width: 100%;
   margin-bottom: 12px;
-  padding: 10px;
+  padding: 12px;  /* Aumentei o padding para dar mais espaçamento */
   box-sizing: border-box;
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 14px;
-  transition: border-color 0.3s ease-in-out;
+  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease;
 }
 
 form button {
@@ -79,30 +80,27 @@ form button:hover {
   background-color: #00B6FF;
 }
 
-
-/* Estilo para o formulário com efeito de luz ao redor da borda */
 form:focus-within {
-  animation: border-light 1.5s infinite; /* Animação infinita de luz ao redor */
-  border-color: transparent; /* A borda fica invisível enquanto o efeito ocorre */
+  animation: border-light 1.5s infinite;
+  border-color: transparent;
 }
 
-/* Definindo o comportamento da animação */
 @keyframes border-light {
   0% {
       border: 2px solid #007BB5;
-      box-shadow: 0 0 5px rgba(0, 123, 181, 0.6); /* Luz inicial */
+      box-shadow: 0 0 5px rgba(0, 123, 181, 0.6);
   }
   25% {
-      box-shadow: 0 4px 15px rgba(0, 123, 181, 0.8); /* Luz começando a se espalhar */
+      box-shadow: 0 4px 15px rgba(0, 123, 181, 0.8);
   }
   50% {
-      box-shadow: 0 0 15px rgba(0, 123, 181, 0.8), 0 0 15px rgba(0, 123, 181, 0.6); /* Luz ao redor da borda */
+      box-shadow: 0 0 15px rgba(0, 123, 181, 0.8), 0 0 15px rgba(0, 123, 181, 0.6);
   }
   75% {
-      box-shadow: 0 4px 25px rgba(0, 123, 181, 0.6), 0 0 30px rgba(0, 123, 181, 0.4); /* Efeito mais intenso */
+      box-shadow: 0 4px 25px rgba(0, 123, 181, 0.6), 0 0 30px rgba(0, 123, 181, 0.4);
   }
   100% {
-      box-shadow: 0 0 40px rgba(0, 123, 181, 0.4); /* Luz mais suave até a transição */
+      box-shadow: 0 0 40px rgba(0, 123, 181, 0.4);
   }
 }
 
@@ -165,10 +163,6 @@ input[type="radio"] {
 .form-row input, .form-row select {
     width: 100%;
 }
-
-
-
-
 
 /* Estilos para a seção de Feedback */
 .feedback-container {

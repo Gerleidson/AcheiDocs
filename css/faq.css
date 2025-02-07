@@ -1,21 +1,23 @@
-/* Estilos para a seção de FAQ */
+/*=== Estilos para a seção de FAQ ===*/
 .faq-section {
-    margin: 10px auto; /* Diminua a margem */
-    padding: 30px;
+    padding: 20px;
+    margin: 20px auto; /* Ajuste da margem para aumentar o espaçamento */
     background-color: #ffffff;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     max-width: 900px;
     font-family: 'Roboto', sans-serif;
-}
-
-.faq-title {
+    box-sizing: border-box; /* Inclui o padding dentro das dimensões */
+  }
+  
+  .faq-title {
     font-size: 24px;
     margin-bottom: 20px;
     text-align: center;
-}
-
-.faq-question {
+    font-weight: 600; /* Destaca o título */
+  }
+  
+  .faq-question {
     background-color: #001b48;
     color: #fff;
     padding: 18px 20px;
@@ -27,11 +29,24 @@
     border-radius: 8px;
     margin-bottom: 12px;
     font-weight: 500;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.faq-answer {
-    max-width: 900px;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  }
+  
+  /* Estilo para o hover e foco da questão */
+  .faq-question:hover {
+    background-color: #00B6FF;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Suaviza a transição ao passar o mouse */
+  }
+  
+  .faq-question:focus {
+    outline: none;
+    background-color: #0092D1;
+    box-shadow: 0 0 5px 2px #00B6FF; /* Adiciona um contorno suave no foco */
+  }
+  
+  .faq-answer {
+    max-width: 100%;
     padding: 15px;
     text-align: justify;
     background-color: #f9f9f9;
@@ -41,14 +56,4 @@
     color: #333;
     font-size: 16px;
     line-height: 1.6;
-}
-
-.faq-question:hover {
-    background-color: #00B6FF;
-    transform: translateY(-2px);
-}
-
-.faq-question:focus {
-    outline: none;
-    background-color: #0092D1;
-}
+  }
