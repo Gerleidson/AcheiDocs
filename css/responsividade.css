@@ -114,3 +114,23 @@
     flex-direction: column;
   }
 }
+
+/* === Responsividade para telas pequenas === */
+@media (max-width: 600px) {
+  .popup-content {
+      width: 90%; /* Aumenta a largura do popup em telas pequenas */
+      padding: 15px; /* Reduz o padding para caber mais conteúdo */
+  }
+
+  .popup-content h2 {
+      font-size: 20px; /* Ajusta o tamanho do título para telas menores */
+  }
+
+  .popup-content p {
+      font-size: 0.9rem; /* Ajusta o tamanho do texto */
+  }
+
+  .popup ul li {
+      font-size: 14px; /* Ajusta o tamanho dos itens da lista */
+  }
+}
