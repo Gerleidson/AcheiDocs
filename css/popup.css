@@ -56,6 +56,7 @@
     cursor: pointer;
     margin-top: 20px;
     font-size: 16px;
+    text-align: center;
   }
   
   .close-btn:hover {

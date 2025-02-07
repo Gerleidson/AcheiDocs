@@ -51,16 +51,16 @@
     padding: 15px;
   }
   
-  .importancia-cadastro {
+  .importancia {
     padding: 20px 15px; /* Ajuste de padding para telas menores */
     margin-bottom: 30px; /* Menos espaço entre seções em dispositivos menores */
   }
 
-  .importancia-cadastro h2 {
+  .importancia h2 {
     font-size: 2rem; /* Menor tamanho de fonte em telas menores */
   }
 
-  .importancia-cadastro p {
+  .importancia p {
     font-size: 1rem; /* Ajuste no tamanho da fonte em telas pequenas */
   }
 
