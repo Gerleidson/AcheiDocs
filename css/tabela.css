@@ -42,6 +42,7 @@
 
 /* Responsividade para telas menores */
 .table-responsive {
+  display: none; /* para exibir a tabela apague */
   overflow-x: auto;
   width: 90%;
   max-width: 800px; /* Ajusta o tamanho máximo */
