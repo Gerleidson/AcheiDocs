@@ -92,38 +92,48 @@ function buscarCadastroPorNome() {
             const dados = snapshot.val();
             let resultadosHTML = ''; // Variável para armazenar os resultados encontrados
 
+            // Função auxiliar para limpar espaços extras
+            function limparTexto(texto) {
+                return texto.trim().toUpperCase(); // Remove espaços e converte para maiúsculas
+            }
+
             // Verificando se algum item corresponde ao nome, estado e cidade
             for (const id in dados) {
                 const item = dados[id];
                 if (
-                    item.nome.toUpperCase() === nomeBusca.toUpperCase() &&
-                    item.estado.toUpperCase() === estadoBusca.toUpperCase() &&
-                    item.cidade.toUpperCase() === cidadeBusca.toUpperCase()
+                    limparTexto(item.nome) === limparTexto(nomeBusca) &&
+                    limparTexto(item.estado) === limparTexto(estadoBusca) &&
+                    limparTexto(item.cidade) === limparTexto(cidadeBusca)
                 ) {
                     encontrado = true;
-                    // Formata os dados para exibição
-                    resultadosHTML += `
-                        <div class="resultado">
-                            <h2>${item.nome}</h2>
-                            <p><strong>Estado:</strong> ${item.estado}</p>
-                            <p><strong>Cidade:</strong> ${item.cidade}</p>
-                            <p><strong>Telefone:</strong> ${item.telefone}</p>
-                            <p><strong>Documento Encontrado:</strong> ${item.documento}</p>
-                        </div>
-                    `;
+                    // Exibe os dados encontrados diretamente no modal
+                    exibirPopup({
+                        nome: item.nome,
+                        documento: item.documento,
+                        telefone: item.telefone,
+                        cidade: item.cidade,
+                        estado: item.estado,
+                        tipo: item.tipo
+                    });
+                    break; // Se encontrado, não continua buscando
                 }
             }
 
-            if (encontrado) {
-                // Exibe os resultados encontrados
-                document.getElementById('resultados').innerHTML = resultadosHTML;
-            } else {
+            if (!encontrado) {
                 // Exibe a mensagem de nenhum documento encontrado
-                exibirPopup({ nome: "Erro", documento: "Nenhum documento encontrado", telefone: "Dados fornecidos não correspondem." });
+                exibirPopup({
+                    nome: "Erro",
+                    documento: "Nenhum documento encontrado",
+                    telefone: "Dados fornecidos não correspondem."
+                });
             }
         } else {
-            // Exibe o popup com a mensagem de banco de dados vazio
-            exibirPopup({ nome: "Erro", documento: "Não há registros no banco de dados", telefone: "Nenhum dado encontrado." });
+            // Exibe a mensagem de banco de dados vazio
+            exibirPopup({
+                nome: "Erro",
+                documento: "Não há registros no banco de dados",
+                telefone: "Nenhum dado encontrado."
+            });
         }
     }).catch((error) => {
         console.error("Erro ao acessar o banco de dados: ", error);
@@ -134,36 +144,33 @@ function buscarCadastroPorNome() {
     document.querySelector('form').reset();
 }
 
-
+// Função para exibir popup
 function exibirPopup(dados) {
     const modal = document.getElementById('modal');
     const modalText = document.getElementById('modal-text');
     const fechar = document.getElementById('fechar');
 
-    if (dados) {
-        if (dados.nome === "Erro") {
-            // Se for um erro, apenas exibe a mensagem de erro
-            modalText.innerHTML = `
-                ${dados.documento}<br>
-            `;
-        } else {
-            // Caso contrário, exibe os dados encontrados
-            modalText.innerHTML = `
-                <strong>Nome:</strong> ${dados.nome}<br>
-                <strong>Documento:</strong> ${dados.documento}<br>
-                <strong>Telefone:</strong> ${dados.telefone}<br>
-                <strong>Cidade:</strong> ${dados.cidade}<br>
-                <strong>Estado:</strong> ${dados.estado}<br>
-                <strong>Status:</strong> ${dados.tipo}
-            `;
-        }
-        
-        // Exibir o modal
-        modal.style.display = "block";
+    // Verificar se os dados contêm erro ou se são dados encontrados
+    if (dados.nome === "Erro") {
+        // Se for um erro, exibe uma mensagem de erro
+        modalText.innerHTML = `
+            <strong>Erro:</strong> ${dados.documento}<br>
+            <strong>Detalhes:</strong> ${dados.telefone}
+        `;
     } else {
-        modalText.innerHTML = "Nenhum dado encontrado.";
-        modal.style.display = "block";
+        // Caso contrário, exibe os dados encontrados
+        modalText.innerHTML = `
+            <strong>Nome:</strong> ${dados.nome}<br>
+            <strong>Documento:</strong> ${dados.documento}<br>
+            <strong>Telefone:</strong> ${dados.telefone}<br>
+            <strong>Cidade:</strong> ${dados.cidade}<br>
+            <strong>Estado:</strong> ${dados.estado}<br>
+            <strong>Status:</strong> ${dados.tipo}
+        `;
     }
+
+    // Exibir o modal
+    modal.style.display = "block";
 
     // Fechar o modal ao clicar no botão de fechar (X)
     fechar.onclick = function() {
