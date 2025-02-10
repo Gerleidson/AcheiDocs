@@ -135,6 +135,7 @@ function buscarCadastroPorNome() {
 
 
 
+
 // Função para exibir o pop-up com o resultado da busca ou mensagem de erro
 function exibirPopup(dados) {
     if (dados) {
