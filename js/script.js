@@ -69,8 +69,13 @@ function buscarCadastroPorNome() {
     const cidadeBusca = document.getElementById('cidade').value.trim();
 
     // Verificar se todos os campos obrigatórios estão preenchidos
-    if (nomeBusca === "" || estadoBusca === "" || cidadeBusca === "") {
-        alert("Por favor, preencha todos os campos.");
+    let camposPendentes = [];
+    if (nomeBusca === "") camposPendentes.push("Nome");
+    if (estadoBusca === "") camposPendentes.push("Estado");
+    if (cidadeBusca === "") camposPendentes.push("Cidade");
+
+    if (camposPendentes.length > 0) {
+        alert("Por favor, preencha os seguintes campos: " + camposPendentes.join(", "));
         return;
     }
 
@@ -91,17 +96,17 @@ function buscarCadastroPorNome() {
                     item.cidade.toUpperCase() === cidadeBusca.toUpperCase()
                 ) {
                     encontrado = true;
-                    exibirPopup(item); // Exibe o pop-up com as informações do cadastro
+                    exibirPopup(item); // Exibe os dados encontrados
                     break;
                 }
             }
 
             if (!encontrado) {
-                alert("Nenhum documento encontrado com os dados fornecidos."); // Notificação de não encontrado
+                alert("Nenhum documento encontrado com os dados fornecidos."); // Alerta caso não haja registros
                 exibirPopup(null); // Exibe pop-up informando que não encontrou o item
             }
         } else {
-            alert("Não há registros no banco de dados."); // Notificação caso não haja dados no banco
+            alert("Não há registros no banco de dados."); // Alerta caso não haja dados no banco
             exibirPopup(null); // Exibe pop-up informando que não há registros
         }
     }).catch((error) => {
@@ -113,6 +118,7 @@ function buscarCadastroPorNome() {
     // Limpa o formulário de busca após executar
     document.querySelector('form').reset();
 }
+
 
 
 
