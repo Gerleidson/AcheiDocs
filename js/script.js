@@ -46,20 +46,12 @@ document.getElementById('form-cadastro').addEventListener('submit', function (ev
    const telefoneInput = document.getElementById('telefone');
 
    telefoneInput.addEventListener('input', function(event) {
-    setTimeout(() => {
-        let telefone = telefoneInput.value.replace(/\D/g, ''); // Remove caracteres não numéricos
-    
-        if (telefone.length <= 2) {
-            telefone = `(${telefone}`;
-        } else if (telefone.length <= 7) {
-            telefone = `(${telefone.slice(0, 2)}) ${telefone.slice(2)}`;
-        } else {
-            telefone = `(${telefone.slice(0, 2)}) ${telefone.slice(2, 7)}-${telefone.slice(7, 11)}`;
-        }
-    
-        telefoneInput.value = telefone;
-    }, 50); // Pequeno delay para evitar erros de input rápido
+    let telefone = telefoneInput.value.replace(/\D/g, '');
+    if (telefone.length > 11) telefone = telefone.slice(0, 11);
+
+    telefoneInput.value = telefone.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1) $2-$3");
 });
+
 
    
 
@@ -151,21 +143,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Função para exibir mensagens no modal
 function exibirModal(titulo, mensagem) {
-    console.log("Abrindo modal:", titulo, mensagem); // Para debug
+    console.log("Abrindo modal:", titulo, mensagem);
 
     const modal = document.getElementById("modal");
     const modalTitulo = document.getElementById("modal-titulo");
     const modalMensagem = document.getElementById("modal-mensagem");
 
-    modalTitulo.innerHTML = titulo;
-    modalMensagem.innerHTML = mensagem;
-    modal.style.display = "block";
+    if (modal) { 
+        modalTitulo.innerHTML = titulo;
+        modalMensagem.innerHTML = mensagem;
+        modal.style.display = "flex"; // Verifique se o modal tem "display: none" no CSS
+    } else {
+        console.error("Elemento modal não encontrado.");
+    }
 }
 
-// Fecha o modal quando clicar no botão fechar
-document.getElementById("modal-fechar").addEventListener("click", function () {
-    document.getElementById("modal").style.display = "none";
-});
 
 
 
