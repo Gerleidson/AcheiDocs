@@ -106,41 +106,41 @@ function buscarCadastroPorNome() {
         if (snapshot.exists()) {
             let encontrado = false;
             const dados = snapshot.val();
+            console.log("Dados recebidos do Firebase:", dados); // Log para verificar os dados recebidos
 
             // Verificando se algum item corresponde ao nome, estado e cidade
             for (const id in dados) {
                 const item = dados[id];
+                console.log("Verificando item:", item); // Log para verificar cada item
+
+                // Comparação ignorando maiúsculas e minúsculas
                 if (
                     item.nome.toUpperCase() === nomeBusca.value.toUpperCase() &&
                     item.estado.toUpperCase() === estadoBusca.value.toUpperCase() &&
                     item.cidade.toUpperCase() === cidadeBusca.value.toUpperCase()
                 ) {
                     encontrado = true;
+                    console.log("Item encontrado:", item); // Log para verificar o item encontrado
                     exibirPopup(item); // Exibe os dados encontrados
                     break;
                 }
             }
 
             if (!encontrado) {
-                alert("Nenhum documento encontrado com os dados fornecidos."); // Alerta caso não haja registros
+                alert("Nenhum documento encontrado com os dados fornecidos.");
                 exibirPopup(null); // Exibe pop-up informando que não encontrou o item
             }
         } else {
-            alert("Não há registros no banco de dados."); // Alerta caso não haja dados no banco
+            alert("Não há registros no banco de dados.");
             exibirPopup(null); // Exibe pop-up informando que não há registros
         }
+    }).catch((error) => {
+        console.error("Erro ao buscar dados no Firebase:", error); // Log para erro de Firebase
     })
 
     // Limpa o formulário de busca após executar
     document.querySelector('form').reset();
 }
-
-
-
-
-
-
-
 
 
 
