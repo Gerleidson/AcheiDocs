@@ -64,16 +64,20 @@ document.getElementById('form-cadastro').addEventListener('submit', function (ev
    
 // Função para buscar o cadastro por nome
 function buscarCadastroPorNome(event) {
-    // Impede que o formulário seja enviado (evitando redirecionamento)
-    event.preventDefault();
+    event.preventDefault(); // Impede o redirecionamento do formulário
 
-    // Captura os valores dos campos
+    // Captura os valores dos campos e remove espaços extras
     const nomeBusca = document.getElementById('nome-busca').value.trim();
     const estadoBusca = document.getElementById('estado-busca').value.trim();
     const cidadeBusca = document.getElementById('cidade-busca').value.trim();
 
-    if (nomeBusca === "" || estadoBusca === "" || cidadeBusca === "") {
-        alert("Por favor, preencha todos os campos.");
+    // Verifica se algum campo está vazio e informa qual precisa ser preenchido
+    if (!nomeBusca || !estadoBusca || !cidadeBusca) {
+        let mensagem = "Por favor, preencha os seguintes campos:\n";
+        if (!nomeBusca) mensagem += "- Nome\n";
+        if (!estadoBusca) mensagem += "- Estado\n";
+        if (!cidadeBusca) mensagem += "- Cidade\n";
+        alert(mensagem);
         return;
     }
 
@@ -85,33 +89,35 @@ function buscarCadastroPorNome(event) {
             let encontrado = false;
             const dados = snapshot.val();
 
-            // Verificando se algum item corresponde ao nome, estado e cidade
+            // Percorre os cadastros para verificar se há correspondência
             for (const id in dados) {
                 const cadastro = dados[id];
                 if (
-                    cadastro.nome.toUpperCase() === nomeBusca.toUpperCase() &&
-                    cadastro.estado.toUpperCase() === estadoBusca.toUpperCase() &&
-                    cadastro.cidade.toUpperCase() === cidadeBusca.toUpperCase()
+                    cadastro.nome?.toUpperCase() === nomeBusca.toUpperCase() &&
+                    cadastro.estado?.toUpperCase() === estadoBusca.toUpperCase() &&
+                    cadastro.cidade?.toUpperCase() === cidadeBusca.toUpperCase()
                 ) {
                     encontrado = true;
-                    exibirPopup(cadastro); // Exibe o pop-up com as informações do cadastro
+                    exibirPopup(cadastro); // Exibe o pop-up com os dados encontrados
                     break;
                 }
             }
 
             if (!encontrado) {
-                exibirPopup(null); // Exibe pop-up informando que não encontrou o item
+                exibirPopup("Nenhum registro encontrado para os critérios informados.");
             }
         } else {
-            exibirPopup(null); // Exibe pop-up informando que não há registros
+            exibirPopup("Nenhum registro encontrado no banco de dados.");
         }
-        // Limpa o formulário de busca após executar a busca
-        document.getElementById('form-busca').reset();  // Reseta o formulário
+
+        // Limpa o formulário após a busca
+        document.getElementById('form-busca').reset();
     }).catch((error) => {
         console.error("Erro ao buscar os dados:", error);
-        exibirPopup(null); // Exibe pop-up de erro
+        exibirPopup("Ocorreu um erro ao buscar os dados. Tente novamente.");
     });
 }
+
 
 // Adiciona o listener de submit ao formulário
 document.getElementById('form-busca').addEventListener('submit', buscarCadastroPorNome);
