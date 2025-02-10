@@ -131,7 +131,8 @@ function buscarCadastroPorNome() {
 function exibirPopup(dados) {
     const modal = document.getElementById('modal');
     const modalText = document.getElementById('modal-text');
-    const closeBtn = document.getElementById('close-btn');
+    const fechar = document.getElementById('fechar');
+
 
     if (dados) {
         // Montar o conteúdo do modal com os dados encontrados
@@ -152,7 +153,7 @@ function exibirPopup(dados) {
     }
 
     // Fechar o modal ao clicar no botão de fechar (X)
-    closeBtn.onclick = function() {
+    fechar.onclick = function() {
         modal.style.display = "none";
     }
 
