@@ -63,10 +63,17 @@ document.getElementById('form-cadastro').addEventListener('submit', function (ev
 
    
 // Função para buscar o cadastro por nome
-function buscarCadastroPorNome() {
+function buscarCadastroPorNome(event) {
+    // Impede que o formulário seja enviado (evitando redirecionamento)
+    event.preventDefault();
+
+    // Captura os valores dos campos
     const nomeBusca = document.getElementById('nome-busca').value.trim();
-    if (nomeBusca === "") {
-        alert("Por favor, insira um nome para buscar.");
+    const estadoBusca = document.getElementById('estado-busca').value.trim();
+    const cidadeBusca = document.getElementById('cidade-busca').value.trim();
+
+    if (nomeBusca === "" || estadoBusca === "" || cidadeBusca === "") {
+        alert("Por favor, preencha todos os campos.");
         return;
     }
 
@@ -78,11 +85,16 @@ function buscarCadastroPorNome() {
             let encontrado = false;
             const dados = snapshot.val();
 
-            // Verificando se algum item corresponde ao nome
+            // Verificando se algum item corresponde ao nome, estado e cidade
             for (const id in dados) {
-                if (dados[id].nome.toUpperCase() === nomeBusca.toUpperCase()) {
+                const cadastro = dados[id];
+                if (
+                    cadastro.nome.toUpperCase() === nomeBusca.toUpperCase() &&
+                    cadastro.estado.toUpperCase() === estadoBusca.toUpperCase() &&
+                    cadastro.cidade.toUpperCase() === cidadeBusca.toUpperCase()
+                ) {
                     encontrado = true;
-                    exibirPopup(dados[id]); // Exibe o pop-up com as informações do cadastro
+                    exibirPopup(cadastro); // Exibe o pop-up com as informações do cadastro
                     break;
                 }
             }
@@ -97,10 +109,10 @@ function buscarCadastroPorNome() {
         console.error("Erro ao buscar os dados:", error);
         exibirPopup(null); // Exibe pop-up de erro
     });
-
-    // Limpa o formulário de busca após executar
-    document.getElementById('form-busca').reset();
 }
+
+// Adiciona o listener de submit ao formulário
+document.getElementById('form-busca').addEventListener('submit', buscarCadastroPorNome);
 
 
 // Função para exibir o pop-up com o resultado da busca ou mensagem de erro
