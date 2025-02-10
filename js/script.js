@@ -78,7 +78,8 @@ function buscarCadastroPorNome() {
     if (cidadeBusca === "") camposPendentes.push("Cidade");
 
     if (camposPendentes.length > 0) {
-        alert("Por favor, preencha os seguintes campos: " + camposPendentes.join(", "));
+        // Exibe o popup com a mensagem de campos obrigatórios
+        exibirPopup({ nome: "Erro", documento: "Campos obrigatórios", telefone: camposPendentes.join(", ") });
         return;
     }
 
@@ -105,12 +106,12 @@ function buscarCadastroPorNome() {
             }
 
             if (!encontrado) {
-                alert("Nenhum documento encontrado com os dados fornecidos."); // Alerta caso não haja registros
-                exibirPopup(null); // Exibe pop-up informando que não encontrou o item
+                // Exibe o popup com a mensagem de nenhum documento encontrado
+                exibirPopup({ nome: "Erro", documento: "Nenhum documento encontrado", telefone: "Dados fornecidos não correspondem." });
             }
         } else {
-            alert("Não há registros no banco de dados."); // Alerta caso não haja dados no banco
-            exibirPopup(null); // Exibe pop-up informando que não há registros
+            // Exibe o popup com a mensagem de banco de dados vazio
+            exibirPopup({ nome: "Erro", documento: "Não há registros no banco de dados", telefone: "Nenhum dado encontrado." });
         }
     })
 
@@ -118,32 +119,29 @@ function buscarCadastroPorNome() {
     document.querySelector('form').reset();
 }
 
-
-
-
-
-
-
-
-
-
-
 function exibirPopup(dados) {
     const modal = document.getElementById('modal');
     const modalText = document.getElementById('modal-text');
     const fechar = document.getElementById('fechar');
 
-
     if (dados) {
-        // Montar o conteúdo do modal com os dados encontrados
-        modalText.innerHTML = `
-            <strong>Nome:</strong> ${dados.nome}<br>
-            <strong>Documento:</strong> ${dados.documento}<br>
-            <strong>Telefone:</strong> ${dados.telefone}<br>
-            <strong>Cidade:</strong> ${dados.cidade}<br>
-            <strong>Estado:</strong> ${dados.estado}<br>
-            <strong>Status:</strong> ${dados.tipo}
-        `;
+        if (dados.nome === "Erro") {
+            // Se for um erro, apenas exibe a mensagem de erro
+            modalText.innerHTML = `
+                <strong>Erro:</strong> ${dados.documento}<br>
+                <strong>Detalhes:</strong> ${dados.telefone}
+            `;
+        } else {
+            // Caso contrário, exibe os dados encontrados
+            modalText.innerHTML = `
+                <strong>Nome:</strong> ${dados.nome}<br>
+                <strong>Documento:</strong> ${dados.documento}<br>
+                <strong>Telefone:</strong> ${dados.telefone}<br>
+                <strong>Cidade:</strong> ${dados.cidade}<br>
+                <strong>Estado:</strong> ${dados.estado}<br>
+                <strong>Status:</strong> ${dados.tipo}
+            `;
+        }
         
         // Exibir o modal
         modal.style.display = "block";
@@ -164,6 +162,7 @@ function exibirPopup(dados) {
         }
     }
 }
+
 
 
 
