@@ -139,7 +139,7 @@ main .content {
 
 /* O botão de fechar (X) */
 .fechar {
-  color: #aaa;
+  color: #ff0000;
   float: right;
   font-size: 28px;
   font-weight: bold;

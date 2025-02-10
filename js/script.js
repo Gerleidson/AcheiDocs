@@ -128,8 +128,7 @@ function exibirPopup(dados) {
         if (dados.nome === "Erro") {
             // Se for um erro, apenas exibe a mensagem de erro
             modalText.innerHTML = `
-                <strong>Erro:</strong> ${dados.documento}<br>
-                <strong>Detalhes:</strong> ${dados.telefone}
+                ${dados.documento}<br>
             `;
         } else {
             // Caso contrário, exibe os dados encontrados
