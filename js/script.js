@@ -117,10 +117,10 @@ function exibirPopup(dados) {
             Status: ${dados.tipo}
         `);
     } else {
-        // Caso contrário, mostra uma mensagem dizendo que não foi encontrado
-        alert(`Nenhum registro encontrado para o nome "${nomeBusca}".`);
+        alert("Nenhum registro encontrado.");
     }
 }
+
 
 
 // Função para exibir os documentos na tabela
