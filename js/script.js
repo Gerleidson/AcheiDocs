@@ -68,14 +68,13 @@ function buscarCadastroPorNome() {
     const estadoBusca = document.getElementById('estado');
     const cidadeBusca = document.getElementById('cidade');
 
-    // Verificar se todos os campos obrigatórios estão preenchidos
-    let camposPendentes = [];
-    
-    // Resetando a borda vermelha antes de começar
+    // Resetando bordas vermelhas antes de começar
     nomeBusca.style.border = '';
     estadoBusca.style.border = '';
     cidadeBusca.style.border = '';
 
+    // Verificar se todos os campos obrigatórios estão preenchidos
+    let camposPendentes = [];
     if (nomeBusca.value.trim() === "") {
         camposPendentes.push("Nome");
         nomeBusca.style.border = '2px solid red'; // Adiciona borda vermelha no campo nome
@@ -124,11 +123,16 @@ function buscarCadastroPorNome() {
             alert("Não há registros no banco de dados."); // Alerta caso não haja dados no banco
             exibirPopup(null); // Exibe pop-up informando que não há registros
         }
+    }).catch((error) => {
+        console.error("Erro ao buscar os dados:", error);
+        alert("Ocorreu um erro ao buscar os dados."); // Notificação de erro
+        exibirPopup(null); // Exibe pop-up de erro
     })
-
+    
     // Limpa o formulário de busca após executar
     document.querySelector('form').reset();
 }
+
 
 
 
