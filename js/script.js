@@ -67,32 +67,15 @@ document.getElementById('form-cadastro').addEventListener('submit', function (ev
 
 // Função para buscar o cadastro por nome
 function buscarCadastroPorNome() {
-    const nomeBusca = document.getElementById('nome-busca');
-    const estadoBusca = document.getElementById('estado');
-    const cidadeBusca = document.getElementById('cidade');
+    const nomeBusca = document.getElementById('nome-busca').value.trim();
+    const estadoBusca = document.getElementById('estado').value.trim();
+    const cidadeBusca = document.getElementById('cidade').value.trim();
 
     // Verificar se todos os campos obrigatórios estão preenchidos
     let camposPendentes = [];
-    if (nomeBusca.value.trim() === "") {
-        camposPendentes.push("Nome");
-        nomeBusca.style.border = "2px solid red"; // Adiciona borda vermelha no campo vazio
-    } else {
-        nomeBusca.style.border = ""; // Remove borda vermelha se o campo estiver preenchido
-    }
-
-    if (estadoBusca.value.trim() === "") {
-        camposPendentes.push("Estado");
-        estadoBusca.style.border = "2px solid red"; // Adiciona borda vermelha no campo vazio
-    } else {
-        estadoBusca.style.border = ""; // Remove borda vermelha se o campo estiver preenchido
-    }
-
-    if (cidadeBusca.value.trim() === "") {
-        camposPendentes.push("Cidade");
-        cidadeBusca.style.border = "2px solid red"; // Adiciona borda vermelha no campo vazio
-    } else {
-        cidadeBusca.style.border = ""; // Remove borda vermelha se o campo estiver preenchido
-    }
+    if (nomeBusca === "") camposPendentes.push("Nome");
+    if (estadoBusca === "") camposPendentes.push("Estado");
+    if (cidadeBusca === "") camposPendentes.push("Cidade");
 
     if (camposPendentes.length > 0) {
         alert("Por favor, preencha os seguintes campos: " + camposPendentes.join(", "));
@@ -106,36 +89,29 @@ function buscarCadastroPorNome() {
         if (snapshot.exists()) {
             let encontrado = false;
             const dados = snapshot.val();
-            console.log("Dados recebidos do Firebase:", dados); // Log para verificar os dados recebidos
 
             // Verificando se algum item corresponde ao nome, estado e cidade
             for (const id in dados) {
                 const item = dados[id];
-                console.log("Verificando item:", item); // Log para verificar cada item
-
-                // Comparação ignorando maiúsculas e minúsculas
                 if (
-                    item.nome.toUpperCase() === nomeBusca.value.toUpperCase() &&
-                    item.estado.toUpperCase() === estadoBusca.value.toUpperCase() &&
-                    item.cidade.toUpperCase() === cidadeBusca.value.toUpperCase()
+                    item.nome.toUpperCase() === nomeBusca.toUpperCase() &&
+                    item.estado.toUpperCase() === estadoBusca.toUpperCase() &&
+                    item.cidade.toUpperCase() === cidadeBusca.toUpperCase()
                 ) {
                     encontrado = true;
-                    console.log("Item encontrado:", item); // Log para verificar o item encontrado
                     exibirPopup(item); // Exibe os dados encontrados
                     break;
                 }
             }
 
             if (!encontrado) {
-                alert("Nenhum documento encontrado com os dados fornecidos.");
+                alert("Nenhum documento encontrado com os dados fornecidos."); // Alerta caso não haja registros
                 exibirPopup(null); // Exibe pop-up informando que não encontrou o item
             }
         } else {
-            alert("Não há registros no banco de dados.");
+            alert("Não há registros no banco de dados."); // Alerta caso não haja dados no banco
             exibirPopup(null); // Exibe pop-up informando que não há registros
         }
-    }).catch((error) => {
-        console.error("Erro ao buscar dados no Firebase:", error); // Log para erro de Firebase
     })
 
     // Limpa o formulário de busca após executar
@@ -146,15 +122,30 @@ function buscarCadastroPorNome() {
 
 
 
+
+
+
+
+
+
 // Função para exibir o pop-up com o resultado da busca ou mensagem de erro
-function exibirPopup(dado) {
-    if (dado) {
-        alert("Dados encontrados: \nNome: " + dado.nome + "\nEstado: " + dado.estado + "\nCidade: " + dado.cidade);
+function exibirPopup(dados) {
+    if (dados) {
+        alert(`
+            Resultado Encontrado:
+            
+            Nome: ${dados.nome}
+            Documento: ${dados.documento}
+            Telefone: ${dados.telefone}
+            Cidade: ${dados.cidade}
+            Estado: ${dados.estado}
+            Status: ${dados.tipo}
+        `);
     } else {
-        alert("Nenhum dado encontrado.");
+        // Caso contrário, mostra uma mensagem dizendo que não foi encontrado
+        alert(`Nenhum registro encontrado para o nome "${nomeBusca}".`);
     }
 }
-
 
 
 // Função para exibir os documentos na tabela
