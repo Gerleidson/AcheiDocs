@@ -64,15 +64,30 @@ document.getElementById('form-cadastro').addEventListener('submit', function (ev
    
 // Função para buscar o cadastro por nome
 function buscarCadastroPorNome() {
-    const nomeBusca = document.getElementById('nome-busca').value.trim();
-    const estadoBusca = document.getElementById('estado').value.trim();
-    const cidadeBusca = document.getElementById('cidade').value.trim();
+    const nomeBusca = document.getElementById('nome-busca');
+    const estadoBusca = document.getElementById('estado');
+    const cidadeBusca = document.getElementById('cidade');
 
     // Verificar se todos os campos obrigatórios estão preenchidos
     let camposPendentes = [];
-    if (nomeBusca === "") camposPendentes.push("Nome");
-    if (estadoBusca === "") camposPendentes.push("Estado");
-    if (cidadeBusca === "") camposPendentes.push("Cidade");
+    
+    // Resetando a borda vermelha antes de começar
+    nomeBusca.style.border = '';
+    estadoBusca.style.border = '';
+    cidadeBusca.style.border = '';
+
+    if (nomeBusca.value.trim() === "") {
+        camposPendentes.push("Nome");
+        nomeBusca.style.border = '2px solid red'; // Adiciona borda vermelha no campo nome
+    }
+    if (estadoBusca.value.trim() === "") {
+        camposPendentes.push("Estado");
+        estadoBusca.style.border = '2px solid red'; // Adiciona borda vermelha no campo estado
+    }
+    if (cidadeBusca.value.trim() === "") {
+        camposPendentes.push("Cidade");
+        cidadeBusca.style.border = '2px solid red'; // Adiciona borda vermelha no campo cidade
+    }
 
     if (camposPendentes.length > 0) {
         alert("Por favor, preencha os seguintes campos: " + camposPendentes.join(", "));
@@ -91,9 +106,9 @@ function buscarCadastroPorNome() {
             for (const id in dados) {
                 const item = dados[id];
                 if (
-                    item.nome.toUpperCase() === nomeBusca.toUpperCase() &&
-                    item.estado.toUpperCase() === estadoBusca.toUpperCase() &&
-                    item.cidade.toUpperCase() === cidadeBusca.toUpperCase()
+                    item.nome.toUpperCase() === nomeBusca.value.toUpperCase() &&
+                    item.estado.toUpperCase() === estadoBusca.value.toUpperCase() &&
+                    item.cidade.toUpperCase() === cidadeBusca.value.toUpperCase()
                 ) {
                     encontrado = true;
                     exibirPopup(item); // Exibe os dados encontrados
@@ -109,11 +124,16 @@ function buscarCadastroPorNome() {
             alert("Não há registros no banco de dados."); // Alerta caso não haja dados no banco
             exibirPopup(null); // Exibe pop-up informando que não há registros
         }
-    })
-    
+    }).catch((error) => {
+        console.error("Erro ao buscar os dados:", error);
+        alert("Ocorreu um erro ao buscar os dados."); // Notificação de erro
+        exibirPopup(null); // Exibe pop-up de erro
+    });
+
     // Limpa o formulário de busca após executar
     document.querySelector('form').reset();
 }
+
 
 
 
