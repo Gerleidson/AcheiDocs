@@ -138,15 +138,15 @@ main .content {
 }
 
 /* O botão de fechar (X) */
-.close-btn {
+.fechar {
   color: #aaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
 }
 
-.close-btn:hover,
-.close-btn:focus {
+.fechar:hover,
+.fechar:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;
