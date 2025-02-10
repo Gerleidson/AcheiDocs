@@ -105,6 +105,8 @@ function buscarCadastroPorNome(event) {
         } else {
             exibirPopup(null); // Exibe pop-up informando que não há registros
         }
+        // Limpa o formulário de busca após executar a busca
+        document.getElementById('form-busca').reset();  // Reseta o formulário
     }).catch((error) => {
         console.error("Erro ao buscar os dados:", error);
         exibirPopup(null); // Exibe pop-up de erro
