@@ -65,8 +65,12 @@ document.getElementById('form-cadastro').addEventListener('submit', function (ev
 // Função para buscar o cadastro por nome
 function buscarCadastroPorNome() {
     const nomeBusca = document.getElementById('nome-busca').value.trim();
-    if (nomeBusca === "") {
-        alert("Por favor, insira um nome para buscar.");
+    const estadoBusca = document.getElementById('estado').value.trim();
+    const cidadeBusca = document.getElementById('cidade').value.trim();
+
+    // Verificar se todos os campos obrigatórios estão preenchidos
+    if (nomeBusca === "" || estadoBusca === "" || cidadeBusca === "") {
+        alert("Por favor, preencha todos os campos.");
         return;
     }
 
@@ -78,11 +82,16 @@ function buscarCadastroPorNome() {
             let encontrado = false;
             const dados = snapshot.val();
 
-            // Verificando se algum item corresponde ao nome
+            // Verificando se algum item corresponde ao nome, estado e cidade
             for (const id in dados) {
-                if (dados[id].nome.toUpperCase() === nomeBusca.toUpperCase()) {
+                const item = dados[id];
+                if (
+                    item.nome.toUpperCase() === nomeBusca.toUpperCase() &&
+                    item.estado.toUpperCase() === estadoBusca.toUpperCase() &&
+                    item.cidade.toUpperCase() === cidadeBusca.toUpperCase()
+                ) {
                     encontrado = true;
-                    exibirPopup(dados[id]); // Exibe o pop-up com as informações do cadastro
+                    exibirPopup(item); // Exibe o pop-up com as informações do cadastro
                     break;
                 }
             }
@@ -99,8 +108,9 @@ function buscarCadastroPorNome() {
     });
 
     // Limpa o formulário de busca após executar
-    document.getElementById('form-busca').reset();
+    document.querySelector('form').reset();
 }
+
 
 
 // Função para exibir o pop-up com o resultado da busca ou mensagem de erro
