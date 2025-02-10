@@ -124,11 +124,7 @@ function buscarCadastroPorNome() {
             alert("Não há registros no banco de dados."); // Alerta caso não haja dados no banco
             exibirPopup(null); // Exibe pop-up informando que não há registros
         }
-    }).catch((error) => {
-        console.error("Erro ao buscar os dados:", error);
-        alert("Ocorreu um erro ao buscar os dados."); // Notificação de erro
-        exibirPopup(null); // Exibe pop-up de erro
-    });
+    })
 
     // Limpa o formulário de busca após executar
     document.querySelector('form').reset();
