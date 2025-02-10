@@ -125,15 +125,13 @@ function buscarCadastroPorNome() {
             // Exibe o popup com a mensagem de banco de dados vazio
             exibirPopup({ nome: "Erro", documento: "Não há registros no banco de dados", telefone: "Nenhum dado encontrado." });
         }
-    })
+    }).catch((error) => {
+        console.error("Erro ao acessar o banco de dados: ", error);
+        exibirPopup({ nome: "Erro", documento: "Erro ao acessar os dados", telefone: error.message });
+    });
 
     // Limpa o formulário de busca após executar
     document.querySelector('form').reset();
-}
-
-// Função para exibir popup (presumida no código anterior)
-function exibirPopup(dados) {
-    alert(`Nome: ${dados.nome}\nDocumento: ${dados.documento}\nTelefone: ${dados.telefone}`);
 }
 
 
