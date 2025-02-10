@@ -97,19 +97,23 @@ function buscarCadastroPorNome() {
             }
 
             if (!encontrado) {
+                alert("Nenhum documento encontrado com os dados fornecidos."); // Notificação de não encontrado
                 exibirPopup(null); // Exibe pop-up informando que não encontrou o item
             }
         } else {
+            alert("Não há registros no banco de dados."); // Notificação caso não haja dados no banco
             exibirPopup(null); // Exibe pop-up informando que não há registros
         }
     }).catch((error) => {
         console.error("Erro ao buscar os dados:", error);
+        alert("Ocorreu um erro ao buscar os dados."); // Notificação de erro
         exibirPopup(null); // Exibe pop-up de erro
     });
 
     // Limpa o formulário de busca após executar
     document.querySelector('form').reset();
 }
+
 
 
 
