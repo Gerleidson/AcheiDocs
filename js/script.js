@@ -81,29 +81,6 @@ function buscarCadastroPorNome() {
         alert("Por favor, preencha os seguintes campos: " + camposPendentes.join(", "));
         return;
     }
-    
-     // Resetando a borda vermelha antes de começar
-     nomeBusca.style.border = '';
-     estadoBusca.style.border = '';
-     cidadeBusca.style.border = '';
- 
-     if (nomeBusca.value.trim() === "") {
-         camposPendentes.push("Nome");
-         nomeBusca.style.border = '2px solid red'; // Adiciona borda vermelha no campo nome
-     }
-     if (estadoBusca.value.trim() === "") {
-         camposPendentes.push("Estado");
-         estadoBusca.style.border = '2px solid red'; // Adiciona borda vermelha no campo estado
-     }
-     if (cidadeBusca.value.trim() === "") {
-         camposPendentes.push("Cidade");
-         cidadeBusca.style.border = '2px solid red'; // Adiciona borda vermelha no campo cidade
-     }
- 
-     if (camposPendentes.length > 0) {
-         alert("Por favor, preencha os seguintes campos: " + camposPendentes.join(", "));
-         return;
-     }
 
     // Referência ao banco de dados do Firebase
     const dbRef = ref(db, "documentos/");
