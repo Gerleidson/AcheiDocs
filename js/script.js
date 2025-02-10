@@ -74,8 +74,8 @@ function buscarCadastroPorNome() {
     // Verificar se todos os campos obrigatórios estão preenchidos
     let camposPendentes = [];
     if (nomeBusca === "") camposPendentes.push("Nome");
-    if (estadoBusca === "") camposPendentes.push("Estados");
-    if (cidadeBusca === "") camposPendentes.push("Cidades");
+    if (estadoBusca === "") camposPendentes.push("Estado");
+    if (cidadeBusca === "") camposPendentes.push("Cidade");
 
     if (camposPendentes.length > 0) {
         // Exibe o popup com a mensagem de campos obrigatórios
@@ -90,6 +90,7 @@ function buscarCadastroPorNome() {
         if (snapshot.exists()) {
             let encontrado = false;
             const dados = snapshot.val();
+            let resultadosHTML = ''; // Variável para armazenar os resultados encontrados
 
             // Verificando se algum item corresponde ao nome, estado e cidade
             for (const id in dados) {
@@ -100,13 +101,24 @@ function buscarCadastroPorNome() {
                     item.cidade.toUpperCase() === cidadeBusca.toUpperCase()
                 ) {
                     encontrado = true;
-                    exibirPopup(item); // Exibe os dados encontrados
-                    break;
+                    // Formata os dados para exibição
+                    resultadosHTML += `
+                        <div class="resultado">
+                            <h2>${item.nome}</h2>
+                            <p><strong>Estado:</strong> ${item.estado}</p>
+                            <p><strong>Cidade:</strong> ${item.cidade}</p>
+                            <p><strong>Telefone:</strong> ${item.telefone}</p>
+                            <p><strong>Documento Encontrado:</strong> ${item.documento}</p>
+                        </div>
+                    `;
                 }
             }
 
-            if (!encontrado) {
-                // Exibe o popup com a mensagem de nenhum documento encontrado
+            if (encontrado) {
+                // Exibe os resultados encontrados
+                document.getElementById('resultados').innerHTML = resultadosHTML;
+            } else {
+                // Exibe a mensagem de nenhum documento encontrado
                 exibirPopup({ nome: "Erro", documento: "Nenhum documento encontrado", telefone: "Dados fornecidos não correspondem." });
             }
         } else {
@@ -118,6 +130,12 @@ function buscarCadastroPorNome() {
     // Limpa o formulário de busca após executar
     document.querySelector('form').reset();
 }
+
+// Função para exibir popup (presumida no código anterior)
+function exibirPopup(dados) {
+    alert(`Nome: ${dados.nome}\nDocumento: ${dados.documento}\nTelefone: ${dados.telefone}`);
+}
+
 
 function exibirPopup(dados) {
     const modal = document.getElementById('modal');
