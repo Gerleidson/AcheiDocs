@@ -147,23 +147,14 @@ function buscarCadastroPorNome() {
 
 
 // Função para exibir o pop-up com o resultado da busca ou mensagem de erro
-function exibirPopup(dados) {
-    if (dados) {
-        alert(`
-            Resultado Encontrado:
-            
-            Nome: ${dados.nome}
-            Documento: ${dados.documento}
-            Telefone: ${dados.telefone}
-            Cidade: ${dados.cidade}
-            Estado: ${dados.estado}
-            Status: ${dados.tipo}
-        `);
+function exibirPopup(dado) {
+    if (dado) {
+        alert("Dados encontrados: \nNome: " + dado.nome + "\nEstado: " + dado.estado + "\nCidade: " + dado.cidade);
     } else {
-        // Caso contrário, mostra uma mensagem dizendo que não foi encontrado
-        alert(`Nenhum registro encontrado para o nome "${nomeBusca}".`);
+        alert("Nenhum dado encontrado.");
     }
 }
+
 
 
 // Função para exibir os documentos na tabela
