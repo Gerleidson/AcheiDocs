@@ -128,24 +128,42 @@ function buscarCadastroPorNome() {
 
 
 
-// Função para exibir o pop-up com o resultado da busca ou mensagem de erro
 function exibirPopup(dados) {
+    const modal = document.getElementById('modal');
+    const modalText = document.getElementById('modal-text');
+    const closeBtn = document.getElementById('close-btn');
+
     if (dados) {
-        alert(`
-            Resultado Encontrado:
-            
-            Nome: ${dados.nome}
-            Documento: ${dados.documento}
-            Telefone: ${dados.telefone}
-            Cidade: ${dados.cidade}
-            Estado: ${dados.estado}
-            Status: ${dados.tipo}
-        `);
+        // Montar o conteúdo do modal com os dados encontrados
+        modalText.innerHTML = `
+            <strong>Nome:</strong> ${dados.nome}<br>
+            <strong>Documento:</strong> ${dados.documento}<br>
+            <strong>Telefone:</strong> ${dados.telefone}<br>
+            <strong>Cidade:</strong> ${dados.cidade}<br>
+            <strong>Estado:</strong> ${dados.estado}<br>
+            <strong>Status:</strong> ${dados.tipo}
+        `;
+        
+        // Exibir o modal
+        modal.style.display = "block";
     } else {
-        // Caso contrário, mostra uma mensagem dizendo que não foi encontrado
-        alert(`Nenhum registro encontrado para o nome "${nomeBusca}".`);
+        modalText.innerHTML = "Nenhum dado encontrado.";
+        modal.style.display = "block";
+    }
+
+    // Fechar o modal ao clicar no botão de fechar (X)
+    closeBtn.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // Fechar o modal se o usuário clicar fora da janela do modal
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
     }
 }
+
 
 
 // Função para exibir os documentos na tabela
