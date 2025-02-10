@@ -62,24 +62,11 @@ document.getElementById('form-cadastro').addEventListener('submit', function (ev
 });
 
    
-
-
-
 // Função para buscar o cadastro por nome
 function buscarCadastroPorNome() {
     const nomeBusca = document.getElementById('nome-busca').value.trim();
-    const estadoBusca = document.getElementById('estados').value.trim();
-    const cidadeBusca = document.getElementById('cidades').value.trim();
-
-    // Verificar se todos os campos obrigatórios estão preenchidos
-    let camposPendentes = [];
-    if (nomeBusca === "") camposPendentes.push("Nome");
-    if (estadoBusca === "") camposPendentes.push("Estado");
-    if (cidadeBusca === "") camposPendentes.push("Cidade");
-
-    if (camposPendentes.length > 0) {
-        // Exibe o popup com a mensagem de campos obrigatórios
-        exibirPopup({ nome: "Erro", documento: "Campos obrigatórios", telefone: camposPendentes.join(", ") });
+    if (nomeBusca === "") {
+        alert("Por favor, insira um nome para buscar.");
         return;
     }
 
@@ -90,102 +77,50 @@ function buscarCadastroPorNome() {
         if (snapshot.exists()) {
             let encontrado = false;
             const dados = snapshot.val();
-            let resultadosHTML = ''; // Variável para armazenar os resultados encontrados
 
-            // Função auxiliar para limpar espaços extras
-            function limparTexto(texto) {
-                return texto.trim().toUpperCase(); // Remove espaços e converte para maiúsculas
-            }
-
-            // Verificando se algum item corresponde ao nome, estado e cidade
+            // Verificando se algum item corresponde ao nome
             for (const id in dados) {
-                const item = dados[id];
-                if (
-                    limparTexto(item.nome) === limparTexto(nomeBusca) &&
-                    limparTexto(item.estado) === limparTexto(estadoBusca) &&
-                    limparTexto(item.cidade) === limparTexto(cidadeBusca)
-                ) {
+                if (dados[id].nome.toUpperCase() === nomeBusca.toUpperCase()) {
                     encontrado = true;
-                    // Exibe os dados encontrados diretamente no modal
-                    exibirPopup({
-                        nome: item.nome,
-                        documento: item.documento,
-                        telefone: item.telefone,
-                        cidade: item.cidade,
-                        estado: item.estado,
-                        tipo: item.tipo
-                    });
-                    break; // Se encontrado, não continua buscando
+                    exibirPopup(dados[id]); // Exibe o pop-up com as informações do cadastro
+                    break;
                 }
             }
 
             if (!encontrado) {
-                // Exibe a mensagem de nenhum documento encontrado
-                exibirPopup({
-                    nome: "Erro",
-                    documento: "Nenhum documento encontrado",
-                    telefone: "Dados fornecidos não correspondem."
-                });
+                exibirPopup(null); // Exibe pop-up informando que não encontrou o item
             }
         } else {
-            // Exibe a mensagem de banco de dados vazio
-            exibirPopup({
-                nome: "Erro",
-                documento: "Não há registros no banco de dados",
-                telefone: "Nenhum dado encontrado."
-            });
+            exibirPopup(null); // Exibe pop-up informando que não há registros
         }
     }).catch((error) => {
-        console.error("Erro ao acessar o banco de dados: ", error);
-        exibirPopup({ nome: "Erro", documento: "Erro ao acessar os dados", telefone: error.message });
+        console.error("Erro ao buscar os dados:", error);
+        exibirPopup(null); // Exibe pop-up de erro
     });
 
     // Limpa o formulário de busca após executar
-    document.querySelector('form').reset();
+    document.getElementById('form-busca').reset();
 }
 
-// Função para exibir popup
+
+// Função para exibir o pop-up com o resultado da busca ou mensagem de erro
 function exibirPopup(dados) {
-    const modal = document.getElementById('modal');
-    const modalText = document.getElementById('modal-text');
-    const fechar = document.getElementById('fechar');
-
-    // Verificar se os dados contêm erro ou se são dados encontrados
-    if (dados.nome === "Erro") {
-        // Se for um erro, exibe uma mensagem de erro
-        modalText.innerHTML = `
-            <strong>Erro:</strong> ${dados.documento}<br>
-            <strong>Detalhes:</strong> ${dados.telefone}
-        `;
+    if (dados) {
+        alert(`
+            Resultado Encontrado:
+            
+            Nome: ${dados.nome}
+            Documento: ${dados.documento}
+            Telefone: ${dados.telefone}
+            Cidade: ${dados.cidade}
+            Estado: ${dados.estado}
+            Status: ${dados.tipo}
+        `);
     } else {
-        // Caso contrário, exibe os dados encontrados
-        modalText.innerHTML = `
-            <strong>Nome:</strong> ${dados.nome}<br>
-            <strong>Documento:</strong> ${dados.documento}<br>
-            <strong>Telefone:</strong> ${dados.telefone}<br>
-            <strong>Cidade:</strong> ${dados.cidade}<br>
-            <strong>Estado:</strong> ${dados.estado}<br>
-            <strong>Status:</strong> ${dados.tipo}
-        `;
-    }
-
-    // Exibir o modal
-    modal.style.display = "block";
-
-    // Fechar o modal ao clicar no botão de fechar (X)
-    fechar.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // Fechar o modal se o usuário clicar fora da janela do modal
-    window.onclick = function(event) {
-        if (event.target === modal) {
-            modal.style.display = "none";
-        }
+        // Caso contrário, mostra uma mensagem dizendo que não foi encontrado
+        alert(`Nenhum registro encontrado para o nome "${nomeBusca}".`);
     }
 }
-
-
 
 
 // Função para exibir os documentos na tabela
