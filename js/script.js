@@ -68,14 +68,14 @@ document.getElementById('form-cadastro').addEventListener('submit', function (ev
 // Função para buscar o cadastro por nome
 function buscarCadastroPorNome() {
     const nomeBusca = document.getElementById('nome-busca').value.trim();
-    const estadoBusca = document.getElementById('estado').value.trim();
-    const cidadeBusca = document.getElementById('cidade').value.trim();
+    const estadoBusca = document.getElementById('estados').value.trim();
+    const cidadeBusca = document.getElementById('cidades').value.trim();
 
     // Verificar se todos os campos obrigatórios estão preenchidos
     let camposPendentes = [];
     if (nomeBusca === "") camposPendentes.push("Nome");
-    if (estadoBusca === "") camposPendentes.push("Estado");
-    if (cidadeBusca === "") camposPendentes.push("Cidade");
+    if (estadoBusca === "") camposPendentes.push("Estados");
+    if (cidadeBusca === "") camposPendentes.push("Cidades");
 
     if (camposPendentes.length > 0) {
         // Exibe o popup com a mensagem de campos obrigatórios
