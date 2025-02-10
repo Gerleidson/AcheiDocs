@@ -98,25 +98,26 @@ function buscarCadastroPorNome(event) {
                     cadastro.cidade?.toUpperCase() === cidadeBusca.toUpperCase()
                 ) {
                     encontrado = true;
-                    exibirPopup(cadastro); // Exibe o pop-up com os dados encontrados
+                    exibirPopup(cadastro); // Exibe os dados encontrados
                     break;
                 }
             }
 
             if (!encontrado) {
-                exibirPopup("Nenhum registro encontrado para os critérios informados.");
+                alert("Nenhum registro encontrado.");
             }
         } else {
-            exibirPopup("Nenhum registro encontrado no banco de dados.");
+            alert("Nenhum registro encontrado.");
         }
 
         // Limpa o formulário após a busca
         document.getElementById('form-busca').reset();
     }).catch((error) => {
         console.error("Erro ao buscar os dados:", error);
-        exibirPopup("Ocorreu um erro ao buscar os dados. Tente novamente.");
+        alert("Ocorreu um erro ao buscar os dados. Tente novamente.");
     });
 }
+
 
 
 // Adiciona o listener de submit ao formulário
