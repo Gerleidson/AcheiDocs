@@ -67,15 +67,32 @@ document.getElementById('form-cadastro').addEventListener('submit', function (ev
 
 // Função para buscar o cadastro por nome
 function buscarCadastroPorNome() {
-    const nomeBusca = document.getElementById('nome-busca').value.trim();
-    const estadoBusca = document.getElementById('estado').value.trim();
-    const cidadeBusca = document.getElementById('cidade').value.trim();
+    const nomeBusca = document.getElementById('nome-busca');
+    const estadoBusca = document.getElementById('estado');
+    const cidadeBusca = document.getElementById('cidade');
 
     // Verificar se todos os campos obrigatórios estão preenchidos
     let camposPendentes = [];
-    if (nomeBusca === "") camposPendentes.push("Nome");
-    if (estadoBusca === "") camposPendentes.push("Estado");
-    if (cidadeBusca === "") camposPendentes.push("Cidade");
+    if (nomeBusca.value.trim() === "") {
+        camposPendentes.push("Nome");
+        nomeBusca.style.border = "2px solid red"; // Adiciona borda vermelha no campo vazio
+    } else {
+        nomeBusca.style.border = ""; // Remove borda vermelha se o campo estiver preenchido
+    }
+
+    if (estadoBusca.value.trim() === "") {
+        camposPendentes.push("Estado");
+        estadoBusca.style.border = "2px solid red"; // Adiciona borda vermelha no campo vazio
+    } else {
+        estadoBusca.style.border = ""; // Remove borda vermelha se o campo estiver preenchido
+    }
+
+    if (cidadeBusca.value.trim() === "") {
+        camposPendentes.push("Cidade");
+        cidadeBusca.style.border = "2px solid red"; // Adiciona borda vermelha no campo vazio
+    } else {
+        cidadeBusca.style.border = ""; // Remove borda vermelha se o campo estiver preenchido
+    }
 
     if (camposPendentes.length > 0) {
         alert("Por favor, preencha os seguintes campos: " + camposPendentes.join(", "));
@@ -94,9 +111,9 @@ function buscarCadastroPorNome() {
             for (const id in dados) {
                 const item = dados[id];
                 if (
-                    item.nome.toUpperCase() === nomeBusca.toUpperCase() &&
-                    item.estado.toUpperCase() === estadoBusca.toUpperCase() &&
-                    item.cidade.toUpperCase() === cidadeBusca.toUpperCase()
+                    item.nome.toUpperCase() === nomeBusca.value.toUpperCase() &&
+                    item.estado.toUpperCase() === estadoBusca.value.toUpperCase() &&
+                    item.cidade.toUpperCase() === cidadeBusca.value.toUpperCase()
                 ) {
                     encontrado = true;
                     exibirPopup(item); // Exibe os dados encontrados
@@ -117,6 +134,7 @@ function buscarCadastroPorNome() {
     // Limpa o formulário de busca após executar
     document.querySelector('form').reset();
 }
+
 
 
 
