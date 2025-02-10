@@ -46,46 +46,34 @@ document.getElementById('form-cadastro').addEventListener('submit', function (ev
    const telefoneInput = document.getElementById('telefone');
 
    telefoneInput.addEventListener('input', function(event) {
-    let telefone = telefoneInput.value.replace(/\D/g, '');
-    if (telefone.length > 11) telefone = telefone.slice(0, 11);
-
-    telefoneInput.value = telefone.replace(/^(\d{2})(\d{5})(\d{4})$/, "($1) $2-$3");
+    setTimeout(() => {
+        let telefone = telefoneInput.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+    
+        if (telefone.length <= 2) {
+            telefone = `(${telefone}`;
+        } else if (telefone.length <= 7) {
+            telefone = `(${telefone.slice(0, 2)}) ${telefone.slice(2)}`;
+        } else {
+            telefone = `(${telefone.slice(0, 2)}) ${telefone.slice(2, 7)}-${telefone.slice(7, 11)}`;
+        }
+    
+        telefoneInput.value = telefone;
+    }, 50); // Pequeno delay para evitar erros de input rápido
 });
 
-
    
-
-
 // Função para buscar o cadastro por nome
 function buscarCadastroPorNome(event) {
-    event.preventDefault(); // Impede o envio do formulário
+    // Impede que o formulário seja enviado (evitando redirecionamento)
+    event.preventDefault();
 
     // Captura os valores dos campos
-    const nomeBusca = document.getElementById('nome-busca');
-    const estadoBusca = document.getElementById('estado-busca');
-    const cidadeBusca = document.getElementById('cidade-busca');
+    const nomeBusca = document.getElementById('nome-busca').value.trim();
+    const estadoBusca = document.getElementById('estado-busca').value.trim();
+    const cidadeBusca = document.getElementById('cidade-busca').value.trim();
 
-    // Remove bordas vermelhas antes de validar novamente
-    [nomeBusca, estadoBusca, cidadeBusca].forEach(campo => campo.classList.remove('campo-invalido'));
-
-    // Verifica se algum campo está vazio
-    let camposFaltando = [];
-    if (!nomeBusca.value.trim()) {
-        camposFaltando.push("Nome");
-        nomeBusca.classList.add('campo-invalido'); // Adiciona borda vermelha
-    }
-    if (!estadoBusca.value.trim()) {
-        camposFaltando.push("Estado");
-        estadoBusca.classList.add('campo-invalido');
-    }
-    if (!cidadeBusca.value.trim()) {
-        camposFaltando.push("Cidade");
-        cidadeBusca.classList.add('campo-invalido');
-    }
-
-    // Se faltar algum campo, exibe o modal e para a busca
-    if (camposFaltando.length > 0) {
-        exibirModal("Erro", `Os seguintes campos precisam ser preenchidos: ${camposFaltando.join(", ")}`);
+    if (nomeBusca === "" || estadoBusca === "" || cidadeBusca === "") {
+        alert("Por favor, preencha todos os campos.");
         return;
     }
 
@@ -97,74 +85,56 @@ function buscarCadastroPorNome(event) {
             let encontrado = false;
             const dados = snapshot.val();
 
-            // Verifica se há correspondência nos registros
+            // Verificando se algum item corresponde ao nome, estado e cidade
             for (const id in dados) {
                 const cadastro = dados[id];
                 if (
-                    cadastro.nome.toUpperCase() === nomeBusca.value.trim().toUpperCase() &&
-                    cadastro.estado.toUpperCase() === estadoBusca.value.trim().toUpperCase() &&
-                    cadastro.cidade.toUpperCase() === cidadeBusca.value.trim().toUpperCase()
+                    cadastro.nome.toUpperCase() === nomeBusca.toUpperCase() &&
+                    cadastro.estado.toUpperCase() === estadoBusca.toUpperCase() &&
+                    cadastro.cidade.toUpperCase() === cidadeBusca.toUpperCase()
                 ) {
                     encontrado = true;
-                    exibirModal("Resultado Encontrado", `
-                        Nome: ${cadastro.nome} <br>
-                        Documento: ${cadastro.documento} <br>
-                        Telefone: ${cadastro.telefone} <br>
-                        Cidade: ${cadastro.cidade} <br>
-                        Estado: ${cadastro.estado} <br>
-                        Status: ${cadastro.tipo}
-                    `);
+                    exibirPopup(cadastro); // Exibe o pop-up com as informações do cadastro
                     break;
                 }
             }
 
             if (!encontrado) {
-                exibirModal("Não Encontrado", "Nenhum registro corresponde à busca.");
+                exibirPopup(null); // Exibe pop-up informando que não encontrou o item
             }
         } else {
-            exibirModal("Não Encontrado", "Nenhum registro foi encontrado no banco de dados.");
+            exibirPopup(null); // Exibe pop-up informando que não há registros
         }
-
-        // Limpa o formulário de busca após a execução
-        document.getElementById('form-busca').reset();
+        // Limpa o formulário de busca após executar a busca
+        document.getElementById('form-busca').reset();  // Reseta o formulário
     }).catch((error) => {
         console.error("Erro ao buscar os dados:", error);
-        exibirModal("Erro", "Ocorreu um erro ao buscar os dados. Tente novamente.");
+        exibirPopup(null); // Exibe pop-up de erro
     });
 }
 
-// Adiciona o evento de busca ao formulário
+// Adiciona o listener de submit ao formulário
 document.getElementById('form-busca').addEventListener('submit', buscarCadastroPorNome);
 
-// Função para exibir mensagens em um modal
-document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("modal").style.display = "none";
-});
 
-// Função para exibir mensagens no modal
-function exibirModal(titulo, mensagem) {
-    console.log("Abrindo modal:", titulo, mensagem);
-
-    const modal = document.getElementById("modal");
-    const modalTitulo = document.getElementById("modal-titulo");
-    const modalMensagem = document.getElementById("modal-mensagem");
-
-    if (modal) { 
-        modalTitulo.innerHTML = titulo;
-        modalMensagem.innerHTML = mensagem;
-        modal.style.display = "flex"; // Verifique se o modal tem "display: none" no CSS
+// Função para exibir o pop-up com o resultado da busca ou mensagem de erro
+function exibirPopup(dados) {
+    if (dados) {
+        alert(`
+            Resultado Encontrado:
+            
+            Nome: ${dados.nome}
+            Documento: ${dados.documento}
+            Telefone: ${dados.telefone}
+            Cidade: ${dados.cidade}
+            Estado: ${dados.estado}
+            Status: ${dados.tipo}
+        `);
     } else {
-        console.error("Elemento modal não encontrado.");
+        // Caso contrário, mostra uma mensagem dizendo que não foi encontrado
+        alert(`Nenhum registro encontrado para o nome "${nomeBusca}".`);
     }
 }
-
-
-
-
-
-
-
-
 
 
 // Função para exibir os documentos na tabela
