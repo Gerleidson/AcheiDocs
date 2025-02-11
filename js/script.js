@@ -11,20 +11,21 @@ const telefoneRegex = /^\(?\d{2}\)?\s?\d{5}-\d{4}$/;
 
 
 // Função para salvar os dados do formulário no Firebase
+// Formulário 2: Função de cadastro
 document.getElementById("form-cadastro").addEventListener("submit", function(event) {
     event.preventDefault();
-    
+
     const nome = document.getElementById("nome").value.trim();
     const documento = document.getElementById("documento").value.trim();
     const telefone = document.getElementById("telefone").value.trim();
-    const cidade = document.getElementById("nova-cidade").value.trim();
-    const estado = document.getElementById("novo-estado").value.trim();
-    
+    const cidade = document.getElementById("cidade").value.trim();
+    const estado = document.getElementById("estado").value.trim();
+
     if (!nome || !documento || !telefone || !cidade || !estado) {
         alert("Preencha todos os campos antes de cadastrar.");
         return;
     }
-    
+
     const novoDoc = {
         nome,
         documento,
@@ -34,7 +35,8 @@ document.getElementById("form-cadastro").addEventListener("submit", function(eve
         status: "pendente"
     };
 
-    database.ref("documentos").push(novoDoc)
+    const dbRef = ref(db, "documentos");
+    push(dbRef, novoDoc)
         .then(() => {
             alert("Cadastro realizado com sucesso!");
             document.getElementById("form-cadastro").reset();
@@ -45,13 +47,13 @@ document.getElementById("form-cadastro").addEventListener("submit", function(eve
         });
 });
 
-   // Validações
-   const telefoneInput = document.getElementById('telefone');
 
-   telefoneInput.addEventListener('input', function(event) {
+// Função para formatar o telefone (mascara)
+const telefoneInput = document.getElementById('telefone');
+telefoneInput.addEventListener('input', function(event) {
     setTimeout(() => {
         let telefone = telefoneInput.value.replace(/\D/g, ''); // Remove caracteres não numéricos
-    
+
         if (telefone.length <= 2) {
             telefone = `(${telefone}`;
         } else if (telefone.length <= 7) {
@@ -59,13 +61,12 @@ document.getElementById("form-cadastro").addEventListener("submit", function(eve
         } else {
             telefone = `(${telefone.slice(0, 2)}) ${telefone.slice(2, 7)}-${telefone.slice(7, 11)}`;
         }
-    
+
         telefoneInput.value = telefone;
     }, 50); // Pequeno delay para evitar erros de input rápido
 });
 
    
-// Função para buscar o cadastro
 // Função para buscar documentos
 function buscarCadastroPorNome(event) {
     event.preventDefault();
@@ -113,63 +114,64 @@ function buscarCadastroPorNome(event) {
 
 
 
-// Adiciona o listener de submit ao formulário
+// Formulário 1: Função de busca 
 document.getElementById("form-busca").addEventListener("submit", function(event) {
     event.preventDefault();
-    
-    const valorBuscado = document.getElementById("buscar-documento").value.trim();
-    if (!valorBuscado) {
-        alert("Por favor, insira um documento para buscar.");
+
+    const nomeBusca = document.getElementById('nome-busca').value.trim();
+    const estadoBusca = document.getElementById('estado-busca').value.trim();
+    const cidadeBusca = document.getElementById('cidade-busca').value.trim();
+
+    if (!nomeBusca || !estadoBusca || !cidadeBusca) {
+        alert("Por favor, preencha todos os campos de busca.");
         return;
     }
 
-    const dbRef = database.ref("documentos");
-    dbRef.orderByChild("documento").equalTo(valorBuscado).once("value")
-        .then(snapshot => {
-            const resultadoBusca = document.getElementById("resultado-busca");
-            resultadoBusca.innerHTML = "";
+    const dbRef = ref(db, "documentos/");
 
-            if (snapshot.exists()) {
-                snapshot.forEach(childSnapshot => {
-                    const doc = childSnapshot.val();
-                    resultadoBusca.innerHTML += `
-                        <div>
-                            <p><strong>Nome:</strong> ${doc.nome}</p>
-                            <p><strong>Documento:</strong> ${doc.documento}</p>
-                            <p><strong>Telefone:</strong> ${doc.telefone}</p>
-                            <p><strong>Cidade:</strong> ${doc.cidade}, ${doc.estado}</p>
-                            <p><strong>Status:</strong> ${doc.status}</p>
-                        </div>
-                        <hr>
-                    `;
-                });
-            } else {
-                alert("Nenhum documento encontrado.");
+    get(dbRef).then((snapshot) => {
+        if (snapshot.exists()) {
+            let encontrado = false;
+            const dados = snapshot.val();
+
+            for (const id in dados) {
+                const cadastro = dados[id];
+                // Busca exata (em caixa alta)
+                if (
+                    cadastro.nome?.toUpperCase() === nomeBusca.toUpperCase() &&
+                    cadastro.estado?.toUpperCase() === estadoBusca.toUpperCase() &&
+                    cadastro.cidade?.toUpperCase() === cidadeBusca.toUpperCase()
+                ) {
+                    encontrado = true;
+                    exibirPopup(cadastro); // Exibe os dados encontrados
+                    break;
+                }
             }
-        })
-        .catch(error => {
-            console.error("Erro ao buscar documento:", error);
-            alert("Erro ao buscar documento. Tente novamente.");
-        });
+
+            if (!encontrado) {
+                alert("Nenhum registro encontrado.");
+            }
+        } else {
+            alert("Nenhum registro encontrado.");
+        }
+    }).catch((error) => {
+        console.error("Erro ao buscar dados:", error);
+        alert("Erro ao buscar os dados. Tente novamente.");
+    });
 });
 
-// Função para exibir o pop-up com o resultado da busca ou mensagem de erro
+// Função de exibição do resultado da busca
 function exibirPopup(dados) {
-    if (dados) {
-        alert(`
-            Resultado Encontrado:
-            
-            Nome: ${dados.nome}
-            Documento: ${dados.documento}
-            Telefone: ${dados.telefone}
-            Cidade: ${dados.cidade}
-            Estado: ${dados.estado}
-            Status: ${dados.tipo}
-        `);
-    } else {
-        // Caso contrário, mostra uma mensagem dizendo que não foi encontrado
-        alert(`Nenhum registro encontrado para o nome "${nomeBusca}".`);
-    }
+    alert(`
+        Resultado Encontrado:
+
+        Nome: ${dados.nome}
+        Documento: ${dados.documento}
+        Telefone: ${dados.telefone}
+        Cidade: ${dados.cidade}
+        Estado: ${dados.estado}
+        Status: ${dados.status}
+    `);
 }
 
 
