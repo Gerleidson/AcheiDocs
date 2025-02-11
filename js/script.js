@@ -62,7 +62,7 @@ document.getElementById('form-cadastro').addEventListener('submit', function (ev
 });
 
    
-// Função para buscar o cadastro por nome
+// Função para buscar o cadastro
 function buscarCadastroPorNome(event) {
     event.preventDefault(); // Impede o redirecionamento do formulário
 
@@ -370,20 +370,47 @@ faqQuestions.forEach(question => {
 
 
 
+
 // URLs da API do IBGE
 const urlEstados = "https://servicodados.ibge.gov.br/api/v1/localidades/estados";
 const urlCidades = (uf) => `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}/municipios`;
 
 // Selecionando todos os formulários na página
 document.querySelectorAll("form").forEach(formulario => {
-    // Seleciona os campos de estado e cidade dentro de cada formulário
-    const estadoSelect = formulario.querySelector(".estado");
-    const cidadeSelect = formulario.querySelector(".cidade");
+    formulario.addEventListener('submit', function (event) {
+        event.preventDefault(); // Impede o envio do formulário tradicional
+        
+        const nome = formulario.querySelector('.nome').value;
+        const documento = formulario.querySelector('.documento').value;
+        const cidade = formulario.querySelector('.cidade').value;
+        const estado = formulario.querySelector('.estado').value;
+        const telefone = formulario.querySelector('.telefone').value;
+        const tipo = formulario.querySelector('input[name="tipo"]:checked') ? formulario.querySelector('input[name="tipo"]:checked').value : '';
+
+        // Verifica se todos os campos obrigatórios foram preenchidos
+        if (!nome || !documento || !cidade || !estado || !telefone || !tipo) {
+            alert("Por favor, preencha todos os campos.");
+            return;
+        }
+
+        // Validação do telefone
+        if (!telefoneRegex.test(telefone)) {
+            alert("Por favor, insira um telefone válido no formato (XX) XXXXX-XXXX.");
+            return;
+        }
+        
+        // Chama a função para salvar no Firebase
+        salvarDados(nome, documento, cidade, estado, telefone, tipo);
+        
+        // Limpa o formulário após enviar
+        formulario.reset();
+    });
 
     // Carregar Estados do IBGE
     fetch(urlEstados)
         .then(res => res.json())
         .then(estados => {
+            const estadoSelect = formulario.querySelector('.estado');
             estadoSelect.innerHTML = '<option value="">Selecione o estado</option>';
             estados.sort((a, b) => a.nome.localeCompare(b.nome)); // Ordenar por nome
             estados.forEach(estado => {
@@ -396,8 +423,9 @@ document.querySelectorAll("form").forEach(formulario => {
         });
 
     // Evento de mudança no Estado
-    estadoSelect.addEventListener("change", function () {
+    formulario.querySelector('.estado').addEventListener("change", function () {
         const uf = this.value;
+        const cidadeSelect = formulario.querySelector('.cidade');
         if (!uf) {
             cidadeSelect.innerHTML = '<option value="">Selecione um estado primeiro</option>';
             cidadeSelect.disabled = true;
