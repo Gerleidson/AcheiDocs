@@ -366,3 +366,57 @@ faqQuestions.forEach(question => {
         }
     });
 });
+
+
+
+
+// URLs da API do IBGE
+const urlEstados = "https://servicodados.ibge.gov.br/api/v1/localidades/estados";
+const urlCidades = (uf) => `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}/municipios`;
+
+// Selecionando todos os formulários na página
+document.querySelectorAll("form").forEach(formulario => {
+    // Seleciona os campos de estado e cidade dentro de cada formulário
+    const estadoSelect = formulario.querySelector(".estado");
+    const cidadeSelect = formulario.querySelector(".cidade");
+
+    // Carregar Estados do IBGE
+    fetch(urlEstados)
+        .then(res => res.json())
+        .then(estados => {
+            estadoSelect.innerHTML = '<option value="">Selecione o estado</option>';
+            estados.sort((a, b) => a.nome.localeCompare(b.nome)); // Ordenar por nome
+            estados.forEach(estado => {
+                estadoSelect.innerHTML += `<option value="${estado.sigla}">${estado.nome}</option>`;
+            });
+        })
+        .catch(error => {
+            console.error("Erro ao carregar estados:", error);
+            estadoSelect.innerHTML = '<option value="">Erro ao carregar</option>';
+        });
+
+    // Evento de mudança no Estado
+    estadoSelect.addEventListener("change", function () {
+        const uf = this.value;
+        if (!uf) {
+            cidadeSelect.innerHTML = '<option value="">Selecione um estado primeiro</option>';
+            cidadeSelect.disabled = true;
+            return;
+        }
+
+        // Buscar cidades do estado selecionado
+        fetch(urlCidades(uf))
+            .then(res => res.json())
+            .then(cidades => {
+                cidadeSelect.innerHTML = '<option value="">Selecione a cidade</option>';
+                cidades.forEach(cidade => {
+                    cidadeSelect.innerHTML += `<option value="${cidade.nome}">${cidade.nome}</option>`;
+                });
+                cidadeSelect.disabled = false;
+            })
+            .catch(error => {
+                console.error("Erro ao carregar cidades:", error);
+                cidadeSelect.innerHTML = '<option value="">Erro ao carregar</option>';
+            });
+    });
+});
