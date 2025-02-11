@@ -1,5 +1,5 @@
 import { salvarDados } from './firebase.js'; 
-import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js"; 
+import { getDatabase, ref, get, push } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js"; 
 
 // Inicializando o Firebase corretamente com o db importado
 const db = getDatabase();
@@ -10,7 +10,6 @@ let paginaAtual = 1; // Página inicial
 const telefoneRegex = /^\(?\d{2}\)?\s?\d{5}-\d{4}$/; 
 
 
-// Função para salvar os dados do formulário no Firebase
 // Formulário 2: Função de cadastro
 document.getElementById("form-cadastro").addEventListener("submit", function(event) {
     event.preventDefault();
@@ -67,51 +66,6 @@ telefoneInput.addEventListener('input', function(event) {
 });
 
    
-// Função para buscar documentos
-function buscarCadastroPorNome(event) {
-    event.preventDefault();
-
-    const nomeBusca = document.getElementById('nome-busca').value.trim();
-    const estadoBusca = document.getElementById('estado-busca').value.trim();
-    const cidadeBusca = document.getElementById('cidade-busca').value.trim();
-
-    if (!nomeBusca || !estadoBusca || !cidadeBusca) {
-        alert("Por favor, preencha todos os campos de busca.");
-        return;
-    }
-
-    const dbRef = ref(db, "documentos/");
-
-    get(dbRef).then((snapshot) => {
-        if (snapshot.exists()) {
-            let encontrado = false;
-            const dados = snapshot.val();
-
-            for (const id in dados) {
-                const cadastro = dados[id];
-                if (
-                    cadastro.nome?.toUpperCase() === nomeBusca.toUpperCase() &&
-                    cadastro.estado?.toUpperCase() === estadoBusca.toUpperCase() &&
-                    cadastro.cidade?.toUpperCase() === cidadeBusca.toUpperCase()
-                ) {
-                    encontrado = true;
-                    exibirPopup(cadastro); // Exibe os dados encontrados
-                    break;
-                }
-            }
-
-            if (!encontrado) {
-                alert("Nenhum registro encontrado.");
-            }
-        } else {
-            alert("Nenhum registro encontrado.");
-        }
-    }).catch((error) => {
-        console.error("Erro ao buscar dados:", error);
-        alert("Erro ao buscar os dados. Tente novamente.");
-    });
-}
-
 
 
 // Formulário 1: Função de busca 
@@ -299,7 +253,6 @@ doacaoLink.addEventListener("click", (event) => {
     
 });
 
-
 // Fechar o popup
 closeBtn.addEventListener("click", () => {
     popup.style.display = "none";
@@ -317,8 +270,9 @@ pixCopy.addEventListener("click", () => {
     });
 });
 
+
+// Código do hamburguer: Adiciona o evento de clique no ícone
 document.addEventListener('DOMContentLoaded', function () {
-    // Código do hamburguer: Adiciona o evento de clique no ícone
     document.getElementById('hamburger-icon').addEventListener('click', function() {
         const navLinks = document.getElementById('nav-links');
         navLinks.classList.toggle('active'); // Alterna a classe 'active' para exibir/ocultar o menu
