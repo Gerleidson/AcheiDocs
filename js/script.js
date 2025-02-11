@@ -66,10 +66,8 @@ telefoneInput.addEventListener('input', function(event) {
 });
 
    
-
-
-// Formulário 1: Função de busca 
-document.getElementById("form-busca").addEventListener("submit", function(event) {
+// Função para buscar documentos
+function buscarCadastroPorNome(event) {
     event.preventDefault();
 
     const nomeBusca = document.getElementById('nome-busca').value.trim();
@@ -90,7 +88,6 @@ document.getElementById("form-busca").addEventListener("submit", function(event)
 
             for (const id in dados) {
                 const cadastro = dados[id];
-                // Busca exata (em caixa alta)
                 if (
                     cadastro.nome?.toUpperCase() === nomeBusca.toUpperCase() &&
                     cadastro.estado?.toUpperCase() === estadoBusca.toUpperCase() &&
@@ -112,7 +109,8 @@ document.getElementById("form-busca").addEventListener("submit", function(event)
         console.error("Erro ao buscar dados:", error);
         alert("Erro ao buscar os dados. Tente novamente.");
     });
-});
+}
+
 
 // Função de exibição do resultado da busca
 function exibirPopup(dados) {
