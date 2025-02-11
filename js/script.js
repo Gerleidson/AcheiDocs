@@ -11,35 +11,38 @@ const telefoneRegex = /^\(?\d{2}\)?\s?\d{5}-\d{4}$/;
 
 
 // Função para salvar os dados do formulário no Firebase
-document.getElementById('form-cadastro').addEventListener('submit', function (event) {
-    event.preventDefault(); // Impede o envio do formulário tradicional
-
-    // Coleta os dados do formulário
-    const nome = document.getElementById('nome').value;
-    const documento = document.getElementById('documento').value;
-    const cidade = document.getElementById('cidade').value;
-    const estado = document.getElementById('estado').value;
-    const telefone = document.getElementById('telefone').value;
-    const tipo = document.querySelector('input[name="tipo"]:checked') ? document.querySelector('input[name="tipo"]:checked').value : '';
-
-
-    // Verifica se todos os campos obrigatórios foram preenchidos
-    if (!nome || !documento || !cidade || !estado || !telefone || !tipo) {
-        alert("Por favor, preencha todos os campos.");
-        return;
-    }
-
-    // Validação do telefone
-    if (!telefoneRegex.test(telefone)) {
-        alert("Por favor, insira um telefone válido no formato (XX) XXXXX-XXXX.");
+document.getElementById("form-cadastro").addEventListener("submit", function(event) {
+    event.preventDefault();
+    
+    const nome = document.getElementById("nome").value.trim();
+    const documento = document.getElementById("documento").value.trim();
+    const telefone = document.getElementById("telefone").value.trim();
+    const cidade = document.getElementById("nova-cidade").value.trim();
+    const estado = document.getElementById("novo-estado").value.trim();
+    
+    if (!nome || !documento || !telefone || !cidade || !estado) {
+        alert("Preencha todos os campos antes de cadastrar.");
         return;
     }
     
-    // Chama a função para salvar no Firebase
-    salvarDados(nome, documento, cidade, estado, telefone, tipo);
-    
-    // Limpa o formulário após enviar
-    document.getElementById('form-cadastro').reset();
+    const novoDoc = {
+        nome,
+        documento,
+        telefone,
+        cidade,
+        estado,
+        status: "pendente"
+    };
+
+    database.ref("documentos").push(novoDoc)
+        .then(() => {
+            alert("Cadastro realizado com sucesso!");
+            document.getElementById("form-cadastro").reset();
+        })
+        .catch(error => {
+            console.error("Erro ao salvar documento:", error);
+            alert("Erro ao cadastrar documento. Tente novamente.");
+        });
 });
 
    // Validações
@@ -63,25 +66,19 @@ document.getElementById('form-cadastro').addEventListener('submit', function (ev
 
    
 // Função para buscar o cadastro
+// Função para buscar documentos
 function buscarCadastroPorNome(event) {
-    event.preventDefault(); // Impede o redirecionamento do formulário
+    event.preventDefault();
 
-    // Captura os valores dos campos e remove espaços extras
     const nomeBusca = document.getElementById('nome-busca').value.trim();
     const estadoBusca = document.getElementById('estado-busca').value.trim();
     const cidadeBusca = document.getElementById('cidade-busca').value.trim();
 
-    // Verifica se algum campo está vazio e informa qual precisa ser preenchido
     if (!nomeBusca || !estadoBusca || !cidadeBusca) {
-        let mensagem = "Por favor, preencha os seguintes campos:\n";
-        if (!nomeBusca) mensagem += "- Nome\n";
-        if (!estadoBusca) mensagem += "- Estado\n";
-        if (!cidadeBusca) mensagem += "- Cidade\n";
-        alert(mensagem);
+        alert("Por favor, preencha todos os campos de busca.");
         return;
     }
 
-    // Referência ao banco de dados do Firebase
     const dbRef = ref(db, "documentos/");
 
     get(dbRef).then((snapshot) => {
@@ -89,7 +86,6 @@ function buscarCadastroPorNome(event) {
             let encontrado = false;
             const dados = snapshot.val();
 
-            // Percorre os cadastros para verificar se há correspondência
             for (const id in dados) {
                 const cadastro = dados[id];
                 if (
@@ -109,20 +105,53 @@ function buscarCadastroPorNome(event) {
         } else {
             alert("Nenhum registro encontrado.");
         }
-
-        // Limpa o formulário após a busca
-        document.getElementById('form-busca').reset();
     }).catch((error) => {
-        console.error("Erro ao buscar os dados:", error);
-        alert("Ocorreu um erro ao buscar os dados. Tente novamente.");
+        console.error("Erro ao buscar dados:", error);
+        alert("Erro ao buscar os dados. Tente novamente.");
     });
 }
 
 
 
 // Adiciona o listener de submit ao formulário
-document.getElementById('form-busca').addEventListener('submit', buscarCadastroPorNome);
+document.getElementById("form-busca").addEventListener("submit", function(event) {
+    event.preventDefault();
+    
+    const valorBuscado = document.getElementById("buscar-documento").value.trim();
+    if (!valorBuscado) {
+        alert("Por favor, insira um documento para buscar.");
+        return;
+    }
 
+    const dbRef = database.ref("documentos");
+    dbRef.orderByChild("documento").equalTo(valorBuscado).once("value")
+        .then(snapshot => {
+            const resultadoBusca = document.getElementById("resultado-busca");
+            resultadoBusca.innerHTML = "";
+
+            if (snapshot.exists()) {
+                snapshot.forEach(childSnapshot => {
+                    const doc = childSnapshot.val();
+                    resultadoBusca.innerHTML += `
+                        <div>
+                            <p><strong>Nome:</strong> ${doc.nome}</p>
+                            <p><strong>Documento:</strong> ${doc.documento}</p>
+                            <p><strong>Telefone:</strong> ${doc.telefone}</p>
+                            <p><strong>Cidade:</strong> ${doc.cidade}, ${doc.estado}</p>
+                            <p><strong>Status:</strong> ${doc.status}</p>
+                        </div>
+                        <hr>
+                    `;
+                });
+            } else {
+                alert("Nenhum documento encontrado.");
+            }
+        })
+        .catch(error => {
+            console.error("Erro ao buscar documento:", error);
+            alert("Erro ao buscar documento. Tente novamente.");
+        });
+});
 
 // Função para exibir o pop-up com o resultado da busca ou mensagem de erro
 function exibirPopup(dados) {
