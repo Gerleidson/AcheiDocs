@@ -124,13 +124,6 @@ function buscarCadastroPorNome(event) {
     });
 }
 
-
-
-
-// Adiciona o listener de submit ao formulário
-document.getElementById('form-busca').addEventListener('submit', buscarCadastroPorNome);
-
-
 // Função para exibir o pop-up com o resultado da busca ou mensagem de erro
 function exibirPopup(dados) {
     alert(`
@@ -146,6 +139,11 @@ function exibirPopup(dados) {
     `);
 }
 
+
+// Adiciona o listener de submit ao formulário
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("form-busca").addEventListener("submit", buscarCadastroPorNome);
+});
 
 
 
