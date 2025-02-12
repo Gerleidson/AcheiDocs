@@ -67,24 +67,18 @@ document.getElementById("form-cadastro").addEventListener("submit", function (ev
     }, 50); // Pequeno delay para evitar erros de input rápido
 });
 
+
    
 // Função para buscar o cadastro por nome
 function buscarCadastroPorNome(event) {
-    event.preventDefault(); // Impede o redirecionamento do formulário
-    const nomeBusca = document.getElementById("nome-busca").value;
-const estadoBusca = document.getElementById("estado-busca").value;
-const cidadeBusca = document.getElementById("cidade-busca").value;
+    event.preventDefault(); // Impede o recarregamento da página
 
+    // Pegando os valores dos campos corretamente
+    const nomeBusca = document.getElementById("nome-busca").value.trim();
+    const estadoBusca = document.getElementById("estado-busca").value.trim();
+    const cidadeBusca = document.getElementById("cidade-busca").value.trim();
 
-    // Captura os valores dos campos e remove espaços extras
-    if (
-        cadastro.nome?.trim().toUpperCase() === nomeBusca.trim().toUpperCase() &&
-        cadastro.estado?.trim().toUpperCase() === estadoBusca.trim().toUpperCase() &&
-        cadastro.cidade?.trim().toUpperCase() === cidadeBusca.trim().toUpperCase()
-    )
-    
-
-    // Verifica se algum campo está vazio e informa qual precisa ser preenchido
+    // Verifica se algum campo está vazio
     if (!nomeBusca || !estadoBusca || !cidadeBusca) {
         let mensagem = "Por favor, preencha os seguintes campos:\n";
         if (!nomeBusca) mensagem += "- Nome\n";
@@ -102,16 +96,16 @@ const cidadeBusca = document.getElementById("cidade-busca").value;
             let encontrado = false;
             const dados = snapshot.val();
 
-            // Percorre os cadastros para verificar se há correspondência
             for (const id in dados) {
                 const cadastro = dados[id];
+
                 if (
-                    cadastro.nome?.toUpperCase() === nomeBusca.toUpperCase() &&
-                    cadastro.estado?.toUpperCase() === estadoBusca.toUpperCase() &&
-                    cadastro.cidade?.toUpperCase() === cidadeBusca.toUpperCase()
+                    cadastro.nome?.trim().toUpperCase() === nomeBusca.toUpperCase() &&
+                    cadastro.estado?.trim().toUpperCase() === estadoBusca.toUpperCase() &&
+                    cadastro.cidade?.trim().toUpperCase() === cidadeBusca.toUpperCase()
                 ) {
                     encontrado = true;
-                    exibirPopup(cadastro); // Exibe os dados encontrados
+                    exibirPopup(cadastro);
                     break;
                 }
             }
@@ -123,13 +117,13 @@ const cidadeBusca = document.getElementById("cidade-busca").value;
             alert("Nenhum registro encontrado.");
         }
 
-        // Limpa o formulário após a busca
-        document.getElementById('form-busca').reset();
+        document.getElementById("form-busca").reset();
     }).catch((error) => {
         console.error("Erro ao buscar os dados:", error);
         alert("Ocorreu um erro ao buscar os dados. Tente novamente.");
     });
 }
+
 
 
 
