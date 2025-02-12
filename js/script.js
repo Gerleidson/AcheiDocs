@@ -135,7 +135,6 @@ function exibirPopup(dados) {
         Cidade: ${dados.cidade}
         Estado: ${dados.estado}
         Tipo: ${dados.tipo}
-        Status: ${dados.status}  // Correção aqui
     `);
 }
 
