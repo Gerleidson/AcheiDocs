@@ -20,7 +20,7 @@ document.getElementById("form-cadastro").addEventListener("submit", function (ev
     const telefone = document.getElementById("telefone").value;
     const estado = document.getElementById("estado-cadastro").value;
     const cidade = document.getElementById("cidade-cadastro").value;
-    const tipo = document.querySelector('input[name="tipo"]:checked')?.value || "Não especificado"; // Verifica se está selecionado
+    const tipo = document.querySelector('input[name="tipo"]:checked'); // Verificando o tipo selecionado
 
     // Verifica se os campos obrigatórios estão preenchidos
     if (!nome || !documento || !telefone || !estado || !cidade) {
