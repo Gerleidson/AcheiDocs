@@ -105,41 +105,16 @@
                 <p>Confira se seu nome está na lista de objetos e documentos encontrados. Se estiver, entre em contato com o responsável através do telefone cadastrado.</p>
                 
                 <!-- Campo para selecionar o Estado -->
-                <label for="estado">Estado:</label>
-                    <select id="estado-busca" name="estado" required>
-                        <option value="">Selecione o estado</option>
-                        <option value="AC">AC</option>
-                        <option value="AL">AL</option>
-                        <option value="AP">AP</option>
-                        <option value="AM">AM</option>
-                        <option value="BA">BA</option>
-                        <option value="CE">CE</option>
-                        <option value="DF">DF</option>
-                        <option value="ES">ES</option>
-                        <option value="GO">GO</option>
-                        <option value="MA">MA</option>
-                        <option value="MT">MT</option>
-                        <option value="MS">MS</option>
-                        <option value="MG">MG</option>
-                        <option value="PA">PA</option>
-                        <option value="PB">PB</option>
-                        <option value="PR">PR</option>
-                        <option value="PE">PE</option>
-                        <option value="PI">PI</option>
-                        <option value="RJ">RJ</option>
-                        <option value="RN">RN</option>
-                        <option value="RS">RS</option>
-                        <option value="RO">RO</option>
-                        <option value="RR">RR</option>
-                        <option value="SC">SC</option>
-                        <option value="SP">SP</option>
-                        <option value="SE">SE</option>
-                        <option value="TO">TO</option>                            
-                    </select>
-        
-                <!-- Campo para digitar a Cidade -->
-                <label for="cidade">Cidade:</label>
-                <input type="text" id="cidade-busca" name="cidade" placeholder="Digite a cidade" required>
+                <label for="estado-busca">Estado:</label>
+                <select id="estado-busca" class="select-estado" name="estado" data-target="cidade-busca" required>
+                    <option value="">Selecione o estado</option>
+                </select>
+            
+                <!-- Campo para selecionar a Cidade -->
+                <label for="cidade-busca">Cidade:</label>
+                <select id="cidade-busca" class="select-cidade" name="cidade" required disabled>
+                    <option value="">Selecione a cidade</option>
+                </select>
                 
                 <!-- Campo para digitar o nome completo -->
                 <label for="nome-busca">Nome Completo:</label>
@@ -147,6 +122,7 @@
                 
                 <button type="submit">Buscar</button>
             </form>
+            
             
         </section>   
 
@@ -171,10 +147,10 @@
                     Documento Perdido
                 </label>
             </div>
-
+        
             <label for="nome">Nome:</label>
             <input type="text" id="nome" name="nome" placeholder="Digite nome completo" required>
-
+        
             <div class="form-row">
                 <div>
                     <label for="documento">Documento:</label>
@@ -195,49 +171,26 @@
                     <input type="tel" id="telefone" name="telefone" placeholder="(XX) XXXXX-XXXX" maxlength="15" pattern="\(\d{2}\) \d{5}-\d{4}" required>
                 </div>
             </div>
-
+        
             <div class="form-row">
                 <div>
-                    <label for="cidade">Cidade:</label>
-                    <input type="text" id="cidade" name="cidade" placeholder="Digite sua cidade" required>
+                    <label for="estado-cadastro">Estado:</label>
+                    <select id="estado-cadastro" class="select-estado" name="estado" data-target="cidade-cadastro" required>
+                        <option value="">Selecione o estado</option>
+                    </select>
                 </div>
                 <div>
-                    <label for="estado">Estado:</label>
-                    <select id="estado" name="estado" required>
-                        <option value="">Selecione o estado</option>
-                        <option value="AC">AC</option>
-                        <option value="AL">AL</option>
-                        <option value="AP">AP</option>
-                        <option value="AM">AM</option>
-                        <option value="BA">BA</option>
-                        <option value="CE">CE</option>
-                        <option value="DF">DF</option>
-                        <option value="ES">ES</option>
-                        <option value="GO">GO</option>
-                        <option value="MA">MA</option>
-                        <option value="MT">MT</option>
-                        <option value="MS">MS</option>
-                        <option value="MG">MG</option>
-                        <option value="PA">PA</option>
-                        <option value="PB">PB</option>
-                        <option value="PR">PR</option>
-                        <option value="PE">PE</option>
-                        <option value="PI">PI</option>
-                        <option value="RJ">RJ</option>
-                        <option value="RN">RN</option>
-                        <option value="RS">RS</option>
-                        <option value="RO">RO</option>
-                        <option value="RR">RR</option>
-                        <option value="SC">SC</option>
-                        <option value="SP">SP</option>
-                        <option value="SE">SE</option>
-                        <option value="TO">TO</option>                            
+                    <label for="cidade-cadastro">Cidade:</label>
+                    <select id="cidade-cadastro" class="select-cidade" name="cidade" required disabled>
+                        <option value="">Selecione a cidade</option>
                     </select>
                 </div>
             </div>
-
+        
             <button type="submit">Cadastrar</button>
         </form>
+        
+
     </section>
 
     <section class="table-responsive">

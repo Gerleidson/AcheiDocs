@@ -1,5 +1,5 @@
 import { salvarDados } from './firebase.js'; 
-import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js"; 
+import { getDatabase, ref, get, push } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js"; 
 
 // Inicializando o Firebase corretamente com o db importado
 const db = getDatabase();
@@ -11,35 +11,41 @@ const telefoneRegex = /^\(?\d{2}\)?\s?\d{5}-\d{4}$/;
 
 
 // Função para salvar os dados do formulário no Firebase
-document.getElementById('form-cadastro').addEventListener('submit', function (event) {
-    event.preventDefault(); // Impede o envio do formulário tradicional
+document.getElementById("form-cadastro").addEventListener("submit", function (event) {
+    event.preventDefault(); // Evita que a página recarregue ao enviar o formulário
 
-    // Coleta os dados do formulário
-    const nome = document.getElementById('nome').value;
-    const documento = document.getElementById('documento').value;
-    const cidade = document.getElementById('cidade').value;
-    const estado = document.getElementById('estado').value;
-    const telefone = document.getElementById('telefone').value;
-    const tipo = document.querySelector('input[name="tipo"]:checked') ? document.querySelector('input[name="tipo"]:checked').value : '';
+    // Capturar os dados do formulário
+    const nome = document.getElementById("nome").value;
+    const documento = document.getElementById("documento").value;
+    const telefone = document.getElementById("telefone").value;
+    const estado = document.getElementById("estado-cadastro").value;
+    const cidade = document.getElementById("cidade-cadastro").value;
+    const tipo = document.querySelector('input[name="tipo"]:checked')?.value || "Não especificado"; // Verifica se está selecionado
 
-
-    // Verifica se todos os campos obrigatórios foram preenchidos
-    if (!nome || !documento || !cidade || !estado || !telefone || !tipo) {
-        alert("Por favor, preencha todos os campos.");
+    // Verifica se os campos obrigatórios estão preenchidos
+    if (!nome || !documento || !telefone || !estado || !cidade) {
+        alert("Por favor, preencha todos os campos obrigatórios.");
         return;
     }
 
-    // Validação do telefone
-    if (!telefoneRegex.test(telefone)) {
-        alert("Por favor, insira um telefone válido no formato (XX) XXXXX-XXXX.");
-        return;
-    }
-    
-    // Chama a função para salvar no Firebase
-    salvarDados(nome, documento, cidade, estado, telefone, tipo);
-    
-    // Limpa o formulário após enviar
-    document.getElementById('form-cadastro').reset();
+    // Enviar os dados para o Firebase Realtime Database
+    const novoCadastroRef = ref(db, "documentos");
+    push(novoCadastroRef, {
+        nome,
+        documento,
+        telefone,
+        estado,
+        cidade,
+        tipo,
+        status: "pendente"
+    })
+    .then(() => {
+        alert("Documento cadastrado com sucesso!");
+        document.getElementById("form-cadastro").reset(); // Limpa o formulário
+    })
+    .catch(error => {
+        alert("Erro ao cadastrar. Tente novamente.");
+    });
 });
 
    // Validações
@@ -65,11 +71,18 @@ document.getElementById('form-cadastro').addEventListener('submit', function (ev
 // Função para buscar o cadastro por nome
 function buscarCadastroPorNome(event) {
     event.preventDefault(); // Impede o redirecionamento do formulário
+    const nomeBusca = document.getElementById("nome-busca").value;
+const estadoBusca = document.getElementById("estado-busca").value;
+const cidadeBusca = document.getElementById("cidade-busca").value;
+
 
     // Captura os valores dos campos e remove espaços extras
-    const nomeBusca = document.getElementById('nome-busca').value.trim();
-    const estadoBusca = document.getElementById('estado-busca').value.trim();
-    const cidadeBusca = document.getElementById('cidade-busca').value.trim();
+    if (
+        cadastro.nome?.trim().toUpperCase() === nomeBusca.trim().toUpperCase() &&
+        cadastro.estado?.trim().toUpperCase() === estadoBusca.trim().toUpperCase() &&
+        cadastro.cidade?.trim().toUpperCase() === cidadeBusca.trim().toUpperCase()
+    )
+    
 
     // Verifica se algum campo está vazio e informa qual precisa ser preenchido
     if (!nomeBusca || !estadoBusca || !cidadeBusca) {
@@ -126,22 +139,20 @@ document.getElementById('form-busca').addEventListener('submit', buscarCadastroP
 
 // Função para exibir o pop-up com o resultado da busca ou mensagem de erro
 function exibirPopup(dados) {
-    if (dados) {
-        alert(`
-            Resultado Encontrado:
-            
-            Nome: ${dados.nome}
-            Documento: ${dados.documento}
-            Telefone: ${dados.telefone}
-            Cidade: ${dados.cidade}
-            Estado: ${dados.estado}
-            Status: ${dados.tipo}
-        `);
-    } else {
-        // Caso contrário, mostra uma mensagem dizendo que não foi encontrado
-        alert(`Nenhum registro encontrado para o nome "${nomeBusca}".`);
-    }
+    alert(`
+        Resultado Encontrado:
+        
+        Nome: ${dados.nome}
+        Documento: ${dados.documento}
+        Telefone: ${dados.telefone}
+        Cidade: ${dados.cidade}
+        Estado: ${dados.estado}
+        Tipo: ${dados.tipo}
+        Status: ${dados.status}  // Correção aqui
+    `);
 }
+
+
 
 
 // Função para exibir os documentos na tabela
@@ -377,3 +388,59 @@ faqQuestions.forEach(question => {
 
 
 
+    // URLs da API do IBGE
+const urlEstados = "https://servicodados.ibge.gov.br/api/v1/localidades/estados";
+const urlCidades = (uf) => `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}/municipios`;
+
+// Selecionando os elementos de Estado e Cidade dos dois formulários
+const estadoSelects = document.querySelectorAll(".select-estado");
+const cidadeSelects = document.querySelectorAll(".select-cidade");
+
+// Função para carregar os estados
+function carregarEstados() {
+    fetch(urlEstados)
+        .then(res => res.json())
+        .then(estados => {
+            estados.sort((a, b) => a.nome.localeCompare(b.nome)); // Ordenar por nome
+            
+            estadoSelects.forEach(select => {
+                select.innerHTML = '<option value="">Selecione o estado</option>';
+                estados.forEach(estado => {
+                    select.innerHTML += `<option value="${estado.sigla}">${estado.nome}</option>`;
+                });
+            });
+        })
+        .catch(error => console.error("Erro ao carregar estados:", error));
+}
+
+// Função para carregar as cidades com base no estado selecionado
+function carregarCidades(event) {
+    const uf = event.target.value;
+    const cidadeSelect = event.target.dataset.target; // Pega o ID do campo cidade correspondente
+    const cidadeElement = document.getElementById(cidadeSelect);
+
+    if (!uf) {
+        cidadeElement.innerHTML = '<option value="">Selecione um estado primeiro</option>';
+        cidadeElement.disabled = true;
+        return;
+    }
+
+    fetch(urlCidades(uf))
+        .then(res => res.json())
+        .then(cidades => {
+            cidadeElement.innerHTML = '<option value="">Selecione a cidade</option>';
+            cidades.forEach(cidade => {
+                cidadeElement.innerHTML += `<option value="${cidade.nome}">${cidade.nome}</option>`;
+            });
+            cidadeElement.disabled = false;
+        })
+        .catch(error => console.error("Erro ao carregar cidades:", error));
+}
+
+// Adicionar evento de mudança para cada select de estado
+estadoSelects.forEach(select => {
+    select.addEventListener("change", carregarCidades);
+});
+
+// Carregar os estados ao iniciar
+carregarEstados();
