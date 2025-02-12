@@ -28,6 +28,12 @@ form.zoom-out {
   transform: scale(0.8); /* Reduz o tamanho do formulário */
 }
 
+form h1 {
+  margin-bottom: 15px;
+  color: #000000;
+  text-align: center;
+  font-weight: bold;
+} 
 form h3 {
   font-size: 1.2em;
   margin-bottom: 15px;
@@ -40,6 +46,7 @@ form p {
   font-size: 16px;
   color: #000000;
   margin-bottom: 15px;
+  text-align: center;
 }
 
 form label {
@@ -163,6 +170,8 @@ input[type="radio"] {
 .form-row input, .form-row select {
     width: 100%;
 }
+
+
 
 /* Estilos para a seção de Feedback */
 .feedback-container {

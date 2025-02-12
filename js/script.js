@@ -44,7 +44,7 @@ document.getElementById("form-cadastro").addEventListener("submit", function (ev
     })
     .then(() => {
         alert("Documento cadastrado com sucesso!");
-        document.getElementById("form-cadastro").reset(); // Limpa o formulário
+        document.getElementById("form-cadastro").reset();
     })
     .catch(error => {
         alert("Erro ao cadastrar. Tente novamente.");
