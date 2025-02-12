@@ -48,10 +48,10 @@ document.getElementById("form-cadastro").addEventListener("submit", function (ev
     });
 });
 
-   // Validações
-   const telefoneInput = document.getElementById('telefone');
+// Validações
+const telefoneInput = document.getElementById('telefone');
 
-   telefoneInput.addEventListener('input', function(event) {
+telefoneInput.addEventListener('input', function(event) {
     setTimeout(() => {
         let telefone = telefoneInput.value.replace(/\D/g, ''); // Remove caracteres não numéricos
     
@@ -68,7 +68,6 @@ document.getElementById("form-cadastro").addEventListener("submit", function (ev
 });
 
 
-   
 // Função para buscar o cadastro por nome
 function buscarCadastroPorNome(event) {
     event.preventDefault(); // Impede o recarregamento da página
@@ -138,7 +137,6 @@ function exibirPopup(dados) {
     `);
 }
 
-
 // Adiciona o listener de submit ao formulário
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("form-busca").addEventListener("submit", buscarCadastroPorNome);
@@ -146,7 +144,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-// Função para exibir os documentos na tabela
+/* Função para exibir os documentos na tabela
 function exibirDocumentosNaTabela(documentos) {
     const tabela = document.querySelector('#tabela tbody');
     tabela.innerHTML = '';  // Limpar tabela antes de adicionar novos dados
@@ -245,7 +243,7 @@ function exibirTotalCadastros() {
             contador.textContent = "Total de Cadastros: 0";
         }
     });
-}
+}  */
 
 
 // Tornar a função globalmente acessível
@@ -269,7 +267,6 @@ doacaoLink.addEventListener("click", (event) => {
     const cidadeRecebedor = "Camaçari"; // Cidade do recebedor
     
 });
-
 
 // Fechar o popup
 closeBtn.addEventListener("click", () => {
@@ -295,7 +292,6 @@ document.addEventListener('DOMContentLoaded', function () {
         navLinks.classList.toggle('active'); // Alterna a classe 'active' para exibir/ocultar o menu
     });
 });
-
 
 // Obtendo os elementos do popup e botão de fechamento
 const dicasLink = document.getElementById('dicas-link');
@@ -370,16 +366,7 @@ faqQuestions.forEach(question => {
 });
 
 
-
-
-
-
-
-
-
-
-
-    // URLs da API do IBGE
+// URLs da API do IBGE
 const urlEstados = "https://servicodados.ibge.gov.br/api/v1/localidades/estados";
 const urlCidades = (uf) => `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}/municipios`;
 
