@@ -1,5 +1,5 @@
 import { salvarDados } from './firebase.js'; 
-import { getDatabase, ref, get, push } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js"; 
+import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-database.js"; 
 
 // Inicializando o Firebase corretamente com o db importado
 const db = getDatabase();
@@ -10,49 +10,45 @@ let paginaAtual = 1; // Página inicial
 const telefoneRegex = /^\(?\d{2}\)?\s?\d{5}-\d{4}$/; 
 
 
-// Formulário 2: Função de cadastro
-document.getElementById("form-cadastro").addEventListener("submit", function(event) {
-    event.preventDefault();
+// Função para salvar os dados do formulário no Firebase
+document.getElementById('form-cadastro').addEventListener('submit', function (event) {
+    event.preventDefault(); // Impede o envio do formulário tradicional
 
-    const nome = document.getElementById("nome").value.trim();
-    const documento = document.getElementById("documento").value.trim();
-    const telefone = document.getElementById("telefone").value.trim();
-    const cidade = document.getElementById("cidade").value.trim();
-    const estado = document.getElementById("estado").value.trim();
+    // Coleta os dados do formulário
+    const nome = document.getElementById('nome').value;
+    const documento = document.getElementById('documento').value;
+    const cidade = document.getElementById('cidade').value;
+    const estado = document.getElementById('estado').value;
+    const telefone = document.getElementById('telefone').value;
+    const tipo = document.querySelector('input[name="tipo"]:checked') ? document.querySelector('input[name="tipo"]:checked').value : '';
 
-    if (!nome || !documento || !telefone || !cidade || !estado) {
-        alert("Preencha todos os campos antes de cadastrar.");
+
+    // Verifica se todos os campos obrigatórios foram preenchidos
+    if (!nome || !documento || !cidade || !estado || !telefone || !tipo) {
+        alert("Por favor, preencha todos os campos.");
         return;
     }
 
-    const novoDoc = {
-        nome,
-        documento,
-        telefone,
-        cidade,
-        estado,
-        status: "pendente"
-    };
-
-    const dbRef = ref(db, "documentos");
-    push(dbRef, novoDoc)
-        .then(() => {
-            alert("Cadastro realizado com sucesso!");
-            document.getElementById("form-cadastro").reset();
-        })
-        .catch(error => {
-            console.error("Erro ao salvar documento:", error);
-            alert("Erro ao cadastrar documento. Tente novamente.");
-        });
+    // Validação do telefone
+    if (!telefoneRegex.test(telefone)) {
+        alert("Por favor, insira um telefone válido no formato (XX) XXXXX-XXXX.");
+        return;
+    }
+    
+    // Chama a função para salvar no Firebase
+    salvarDados(nome, documento, cidade, estado, telefone, tipo);
+    
+    // Limpa o formulário após enviar
+    document.getElementById('form-cadastro').reset();
 });
 
+   // Validações
+   const telefoneInput = document.getElementById('telefone');
 
-// Função para formatar o telefone (mascara)
-const telefoneInput = document.getElementById('telefone');
-telefoneInput.addEventListener('input', function(event) {
+   telefoneInput.addEventListener('input', function(event) {
     setTimeout(() => {
         let telefone = telefoneInput.value.replace(/\D/g, ''); // Remove caracteres não numéricos
-
+    
         if (telefone.length <= 2) {
             telefone = `(${telefone}`;
         } else if (telefone.length <= 7) {
@@ -60,25 +56,32 @@ telefoneInput.addEventListener('input', function(event) {
         } else {
             telefone = `(${telefone.slice(0, 2)}) ${telefone.slice(2, 7)}-${telefone.slice(7, 11)}`;
         }
-
+    
         telefoneInput.value = telefone;
     }, 50); // Pequeno delay para evitar erros de input rápido
 });
 
    
-// Função para buscar documentos
+// Função para buscar o cadastro por nome
 function buscarCadastroPorNome(event) {
-    event.preventDefault();
+    event.preventDefault(); // Impede o redirecionamento do formulário
 
+    // Captura os valores dos campos e remove espaços extras
     const nomeBusca = document.getElementById('nome-busca').value.trim();
     const estadoBusca = document.getElementById('estado-busca').value.trim();
     const cidadeBusca = document.getElementById('cidade-busca').value.trim();
 
+    // Verifica se algum campo está vazio e informa qual precisa ser preenchido
     if (!nomeBusca || !estadoBusca || !cidadeBusca) {
-        alert("Por favor, preencha todos os campos de busca.");
+        let mensagem = "Por favor, preencha os seguintes campos:\n";
+        if (!nomeBusca) mensagem += "- Nome\n";
+        if (!estadoBusca) mensagem += "- Estado\n";
+        if (!cidadeBusca) mensagem += "- Cidade\n";
+        alert(mensagem);
         return;
     }
 
+    // Referência ao banco de dados do Firebase
     const dbRef = ref(db, "documentos/");
 
     get(dbRef).then((snapshot) => {
@@ -86,6 +89,7 @@ function buscarCadastroPorNome(event) {
             let encontrado = false;
             const dados = snapshot.val();
 
+            // Percorre os cadastros para verificar se há correspondência
             for (const id in dados) {
                 const cadastro = dados[id];
                 if (
@@ -105,25 +109,38 @@ function buscarCadastroPorNome(event) {
         } else {
             alert("Nenhum registro encontrado.");
         }
+
+        // Limpa o formulário após a busca
+        document.getElementById('form-busca').reset();
     }).catch((error) => {
-        console.error("Erro ao buscar dados:", error);
-        alert("Erro ao buscar os dados. Tente novamente.");
+        console.error("Erro ao buscar os dados:", error);
+        alert("Ocorreu um erro ao buscar os dados. Tente novamente.");
     });
 }
 
 
-// Função de exibição do resultado da busca
-function exibirPopup(dados) {
-    alert(`
-        Resultado Encontrado:
 
-        Nome: ${dados.nome}
-        Documento: ${dados.documento}
-        Telefone: ${dados.telefone}
-        Cidade: ${dados.cidade}
-        Estado: ${dados.estado}
-        Status: ${dados.status}
-    `);
+// Adiciona o listener de submit ao formulário
+document.getElementById('form-busca').addEventListener('submit', buscarCadastroPorNome);
+
+
+// Função para exibir o pop-up com o resultado da busca ou mensagem de erro
+function exibirPopup(dados) {
+    if (dados) {
+        alert(`
+            Resultado Encontrado:
+            
+            Nome: ${dados.nome}
+            Documento: ${dados.documento}
+            Telefone: ${dados.telefone}
+            Cidade: ${dados.cidade}
+            Estado: ${dados.estado}
+            Status: ${dados.tipo}
+        `);
+    } else {
+        // Caso contrário, mostra uma mensagem dizendo que não foi encontrado
+        alert(`Nenhum registro encontrado para o nome "${nomeBusca}".`);
+    }
 }
 
 
@@ -251,6 +268,7 @@ doacaoLink.addEventListener("click", (event) => {
     
 });
 
+
 // Fechar o popup
 closeBtn.addEventListener("click", () => {
     popup.style.display = "none";
@@ -268,9 +286,8 @@ pixCopy.addEventListener("click", () => {
     });
 });
 
-
-// Código do hamburguer: Adiciona o evento de clique no ícone
 document.addEventListener('DOMContentLoaded', function () {
+    // Código do hamburguer: Adiciona o evento de clique no ícone
     document.getElementById('hamburger-icon').addEventListener('click', function() {
         const navLinks = document.getElementById('nav-links');
         navLinks.classList.toggle('active'); // Alterna a classe 'active' para exibir/ocultar o menu
@@ -347,87 +364,5 @@ faqQuestions.forEach(question => {
         } else {
             answer.style.display = 'block';
         }
-    });
-});
-
-
-
-
-
-// URLs da API do IBGE
-const urlEstados = "https://servicodados.ibge.gov.br/api/v1/localidades/estados";
-const urlCidades = (uf) => `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${uf}/municipios`;
-
-// Selecionando todos os formulários na página
-document.querySelectorAll("form").forEach(formulario => {
-    formulario.addEventListener('submit', function (event) {
-        event.preventDefault(); // Impede o envio do formulário tradicional
-        
-        const nome = formulario.querySelector('.nome').value;
-        const documento = formulario.querySelector('.documento').value;
-        const cidade = formulario.querySelector('.cidade').value;
-        const estado = formulario.querySelector('.estado').value;
-        const telefone = formulario.querySelector('.telefone').value;
-        const tipo = formulario.querySelector('input[name="tipo"]:checked') ? formulario.querySelector('input[name="tipo"]:checked').value : '';
-
-        // Verifica se todos os campos obrigatórios foram preenchidos
-        if (!nome || !documento || !cidade || !estado || !telefone || !tipo) {
-            alert("Por favor, preencha todos os campos.");
-            return;
-        }
-
-        // Validação do telefone
-        if (!telefoneRegex.test(telefone)) {
-            alert("Por favor, insira um telefone válido no formato (XX) XXXXX-XXXX.");
-            return;
-        }
-        
-        // Chama a função para salvar no Firebase
-        salvarDados(nome, documento, cidade, estado, telefone, tipo);
-        
-        // Limpa o formulário após enviar
-        formulario.reset();
-    });
-
-    // Carregar Estados do IBGE
-    fetch(urlEstados)
-        .then(res => res.json())
-        .then(estados => {
-            const estadoSelect = formulario.querySelector('.estado');
-            estadoSelect.innerHTML = '<option value="">Selecione o estado</option>';
-            estados.sort((a, b) => a.nome.localeCompare(b.nome)); // Ordenar por nome
-            estados.forEach(estado => {
-                estadoSelect.innerHTML += `<option value="${estado.sigla}">${estado.nome}</option>`;
-            });
-        })
-        .catch(error => {
-            console.error("Erro ao carregar estados:", error);
-            estadoSelect.innerHTML = '<option value="">Erro ao carregar</option>';
-        });
-
-    // Evento de mudança no Estado
-    formulario.querySelector('.estado').addEventListener("change", function () {
-        const uf = this.value;
-        const cidadeSelect = formulario.querySelector('.cidade');
-        if (!uf) {
-            cidadeSelect.innerHTML = '<option value="">Selecione um estado primeiro</option>';
-            cidadeSelect.disabled = true;
-            return;
-        }
-
-        // Buscar cidades do estado selecionado
-        fetch(urlCidades(uf))
-            .then(res => res.json())
-            .then(cidades => {
-                cidadeSelect.innerHTML = '<option value="">Selecione a cidade</option>';
-                cidades.forEach(cidade => {
-                    cidadeSelect.innerHTML += `<option value="${cidade.nome}">${cidade.nome}</option>`;
-                });
-                cidadeSelect.disabled = false;
-            })
-            .catch(error => {
-                console.error("Erro ao carregar cidades:", error);
-                cidadeSelect.innerHTML = '<option value="">Erro ao carregar</option>';
-            });
     });
 });
