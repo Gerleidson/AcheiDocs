@@ -39,7 +39,8 @@ document.getElementById("form-cadastro").addEventListener("submit", function (ev
         telefone,
         estado,
         cidade,
-        tipo: tipoValor,
+        tipo: tipoValor, // Incluindo o valor do tipo
+        status: "tipo"
     })
     .then(() => {
         alert("Documento cadastrado com sucesso!");
@@ -135,7 +136,7 @@ function exibirPopup(dados) {
         Telefone: ${dados.telefone}
         Cidade: ${dados.cidade}
         Estado: ${dados.estado}
-        Tipo: ${dados.tipo}
+        Status: ${dados.tipo}
     `);
 }
 
