@@ -288,8 +288,8 @@ pixCopy.addEventListener("click", () => {
     });
 });
 
+// Código do hamburguer: Adiciona o evento de clique no ícone
 document.addEventListener('DOMContentLoaded', function () {
-    // Código do hamburguer: Adiciona o evento de clique no ícone
     document.getElementById('hamburger-icon').addEventListener('click', function() {
         const navLinks = document.getElementById('nav-links');
         navLinks.classList.toggle('active'); // Alterna a classe 'active' para exibir/ocultar o menu
@@ -350,7 +350,6 @@ function checkFormVisibility() {
 // Chama a função quando a página carrega e quando o usuário rola a página
 window.addEventListener('scroll', checkFormVisibility);
 window.addEventListener('load', checkFormVisibility);
-
 
 // Obtendo todos os botões de perguntas
 const faqQuestions = document.querySelectorAll('.faq-question');
