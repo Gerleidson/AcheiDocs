@@ -20,13 +20,16 @@ document.getElementById("form-cadastro").addEventListener("submit", function (ev
     const telefone = document.getElementById("telefone").value;
     const estado = document.getElementById("estado-cadastro").value;
     const cidade = document.getElementById("cidade-cadastro").value;
-    const situação = document.querySelector('input[name="tipo"]:checked')?.value || "Não especificado"; // Verifica se está selecionado
+    const tipo = document.querySelector('input[name="tipo"]:checked');
 
     // Verifica se os campos obrigatórios estão preenchidos
-    if (!nome || !documento || !telefone || !estado || !cidade) {
+    if (!nome || !documento || !telefone || !estado || !cidade || !tipo) {
         alert("Por favor, preencha todos os campos obrigatórios.");
         return;
     }
+
+    // Obtendo o valor do tipo selecionado
+    const tipoValor = tipo.value;
 
     // Enviar os dados para o Firebase Realtime Database
     const novoCadastroRef = ref(db, "documentos");
@@ -36,7 +39,7 @@ document.getElementById("form-cadastro").addEventListener("submit", function (ev
         telefone,
         estado,
         cidade,
-        situação,
+        tipo: tipoValor,
     })
     .then(() => {
         alert("Documento cadastrado com sucesso!");
