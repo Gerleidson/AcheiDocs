@@ -107,25 +107,33 @@
             <form action="/encontrar" id="form-busca" method="get">
                 <h1 id="localizar-documento"><i class="fas fa-search"></i> Encontre seu documento pelo nome</h1>
                 <p>Confira se seu nome está na lista de objetos e documentos encontrados. Se estiver, entre em contato com o responsável através do telefone cadastrado.</p>
-                
-                <!-- Campo para selecionar o Estado -->
-                <label for="estado-busca">Estado:</label>
-                <select id="estado-busca" class="select-estado" name="estado" data-target="cidade-busca" required>
-                    <option value="">Selecione o estado</option>
-                </select>
             
-                <!-- Campo para selecionar a Cidade -->
-                <label for="cidade-busca">Cidade:</label>
-                <select id="cidade-busca" class="select-cidade" name="cidade" required disabled>
-                    <option value="">Selecione a cidade</option>
-                </select>
-                
+                <!-- Div que agrupa Estado e Cidade lado a lado -->
+                <div class="campo-lado-a-lado">
+                    <div>
+                        <!-- Campo para selecionar o Estado -->
+                        <label for="estado-busca">Estado:</label>
+                        <select id="estado-busca" class="select-estado" name="estado" data-target="cidade-busca" required>
+                            <option value="">Selecione o estado</option>
+                        </select>
+                    </div>
+            
+                    <div>
+                        <!-- Campo para selecionar a Cidade -->
+                        <label for="cidade-busca">Cidade:</label>
+                        <select id="cidade-busca" class="select-cidade" name="cidade" required disabled>
+                            <option value="">Selecione a cidade</option>
+                        </select>
+                    </div>
+                </div>
+            
                 <!-- Campo para digitar o nome completo -->
                 <label for="nome-busca">Nome Completo:</label>
                 <input type="text" id="nome-busca" name="nome-busca" placeholder="Digite nome completo" required>
-                
+            
                 <button type="submit">Buscar</button>
             </form>
+            
                
         </section>   
 
