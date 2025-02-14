@@ -350,22 +350,22 @@ function checkFormVisibility() {
 // Chama a função quando a página carrega e quando o usuário rola a página
 window.addEventListener('scroll', checkFormVisibility);
 window.addEventListener('load', checkFormVisibility);
+// Seleciona todos os itens de FAQ
+const faqItems = document.querySelectorAll('.faq-question');
 
-// Obtendo todos os botões de perguntas
-const faqQuestions = document.querySelectorAll('.faq-question');
+faqItems.forEach(item => {
+    item.addEventListener('click', () => {
+        const answer = item.nextElementSibling; // Encontra a resposta abaixo da pergunta
+        const icon = item.querySelector('i'); // Seleciona o ícone da pergunta
 
-// Adicionando evento de clique para cada pergunta
-faqQuestions.forEach(question => {
-    question.addEventListener('click', function() {
-        // Alterna a exibição da resposta
-        const answer = this.nextElementSibling;
-        if (answer.style.display === 'block') {
-            answer.style.display = 'none';
-        } else {
-            answer.style.display = 'block';
-        }
+        // Alterna a classe 'show' para a resposta
+        answer.classList.toggle('show');
+
+        // Rotaciona o ícone
+        icon.classList.toggle('rotate');
     });
 });
+
 
 
 // URLs da API do IBGE

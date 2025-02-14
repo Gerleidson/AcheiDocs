@@ -1,59 +1,79 @@
-/*=== Estilos para a seção de FAQ ===*/
+/* Estilo */
 .faq-section {
-    padding: 20px;
-    margin: 20px auto; /* Ajuste da margem para aumentar o espaçamento */
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    max-width: 900px;
-    font-family: 'Roboto', sans-serif;
-    box-sizing: border-box; /* Inclui o padding dentro das dimensões */
-  }
-  
-  .faq-title {
-    font-size: 24px;
-    margin-bottom: 20px;
+  padding: 70px 0;
+}
+
+.faq-section .container {
+  max-width: 900px;
+  width: 100%;
+  padding: 0 15px;
+}
+
+.faq-title {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
     text-align: center;
-    font-weight: 600; /* Destaca o título */
-  }
-  
-  .faq-question {
-    background-color: #001b48;
-    color: #fff;
-    padding: 18px 20px;
-    width: 100%;
-    border: none;
+    color: #000;
+}
+
+.faq-item {
+    width: 100%; /* Garante que o item ocupe toda a largura disponível */
+    margin-bottom: 20px;
+    box-sizing: border-box; /* Garante que o padding não quebre a largura do elemento */
+}
+
+.faq-question {
+    width: 100%; /* Garante que a pergunta ocupe toda a largura disponível */
     text-align: left;
-    cursor: pointer;
-    font-size: 18px;
-    border-radius: 8px;
-    margin-bottom: 12px;
-    font-weight: 500;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-  }
-  
-  /* Estilo para o hover e foco da questão */
-  .faq-question:hover {
-    background-color: #00B6FF;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Suaviza a transição ao passar o mouse */
-  }
-  
-  .faq-question:focus {
-    outline: none;
-    background-color: #0092D1;
-    box-shadow: 0 0 5px 2px #00B6FF; /* Adiciona um contorno suave no foco */
-  }
-  
-  .faq-answer {
-    max-width: 100%;
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
     padding: 15px;
-    text-align: justify;
-    background-color: #f9f9f9;
-    display: none;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    color: #333;
-    font-size: 16px;
-    line-height: 1.6;
-  }
+    font-size: 1.1rem;
+    color: #007bff;
+    cursor: pointer;
+    border-radius: 5px;
+    box-sizing: border-box; /* Impede que o padding quebre a largura total */
+    transition: background-color 0.3s ease;
+    min-height: 60px; /* Garantir que a altura mínima não mude */
+}
+
+.faq-answer {
+    width: 100%; /* Garante que a resposta ocupe toda a largura disponível */
+    padding: 15px;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    border-top: none;
+    font-size: 1rem;
+    display: none; /* Inicialmente oculta a resposta */
+    box-sizing: border-box; /* Garante que o padding não quebre a largura total */
+}
+
+/* Hover na pergunta */
+.faq-question:hover {
+    background-color: #e9ecef;
+}
+
+/* Resposta visível */
+.faq-answer.show {
+    display: block; /* Exibe a resposta quando a classe 'show' for aplicada */
+}
+
+/* Transições para o ícone */
+.faq-question i {
+    transition: transform 0.3s ease; /* Transição suave para a rotação do ícone */
+}
+
+.faq-question i.rotate {
+    transform: rotate(180deg); /* Rotaciona o ícone quando expandido */
+}
+
+/* Animando a altura da resposta para uma transição suave */
+.faq-answer {
+    max-height: 0; /* Inicialmente oculto com altura 0 */
+    overflow: hidden; /* Garante que o conteúdo seja cortado */
+    transition: max-height 0.3s ease-out; /* Transição suave para a expansão */
+}
+
+.faq-answer.show {
+    max-height: 500px; /* Define um valor máximo para a altura da resposta */
+}
