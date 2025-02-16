@@ -1,0 +1,84 @@
+
+/* === Estilos do formulário de busca === */
+#form-busca {
+    background: rgba(255, 255, 255, 0.0); /* Fundo branco semi-transparente */
+    padding: 20px;
+    border-radius: 20px;
+    backdrop-filter: blur(5px); /* Efeito de desfoque no fundo */
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+  }
+
+
+  
+  
+  /* Títulos e parágrafos */
+  #form-busca h1 {
+    font-size: 1.5em;
+    color: #ffffff;
+    text-align: center;
+  }
+  
+  #form-busca p {
+    font-size: 1em;
+    color: #ffffff;
+    text-align: center;
+  }
+  
+  /* Labels */
+  #form-busca label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #ffffff;
+  }
+  
+  /* Campos de entrada e seleção */
+  #form-busca input, 
+  #form-busca select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    font-size: 1em;
+  }
+  
+  /* Ajuste para campos Estado e Cidade ficarem lado a lado com os labels em cima */
+  #form-busca .campo-lado-a-lado {
+    display: flex;
+    gap: 20px;
+  }
+  
+  #form-busca .campo-lado-a-lado > div {
+    flex: 1;
+  }
+  
+  /* Garante que cada select (Estado e Cidade) tenha largura de 100% dentro de seu bloco */
+  #form-busca .campo-lado-a-lado select {
+    width: 100%; /* Ajuste para que ambos os campos fiquem lado a lado */
+  }
+  
+  /* Botão de envio */
+  #form-busca button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 15px;
+    background: #001b48;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  #form-busca button:hover {
+    background: #0056b3;
+  }
+  
+  
+  
+  
