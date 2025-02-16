@@ -1,13 +1,20 @@
 /* === Responsividade geral para telas menores que 768px === */
 @media screen and (max-width: 768px) {
-  /* Ajustes gerais para o formulário */
+  /* Ajuste de layout geral para manter imagens acima do formulário */
+  #article1 .cadastro {
+    display: flex;
+    flex-direction: column-reverse; /* Inverte a ordem dos elementos para exibir as imagens acima */
+    gap: 20px; /* Espaço entre a imagem e o formulário */
+    margin: 0 auto;
+    padding: 20px; /* Ajuste de padding ao redor */
+  }
+
   #form-cadastro,
   input[type="text"], 
   input[type="tel"], 
   select, 
   button {
     width: 100%;
-    max-width: 900px;
     font-size: 0.9rem;
     padding: 8px;
     text-align: left;
@@ -86,7 +93,7 @@
   .nav-links {
     display: none;
     flex-direction: column;
-    width: auto;
+    width: 100%;
     background-color: #333;
     position: absolute;
     top: 100px;
