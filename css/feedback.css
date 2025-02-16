@@ -1,0 +1,167 @@
+/* === Estilos para a seção de Feedback === */
+.feedback {
+    display: flex;
+    align-items: center; /* Alinha verticalmente o conteúdo */
+    justify-content: center; /* Centraliza o conteúdo */
+    padding: 20px;
+    gap: 60px; /* Adiciona um pequeno espaço entre o formulário e a imagem */
+    flex-wrap: wrap; /* Permite que os itens se reorganizem em telas menores */
+  }
+  
+  /* Seção de Feedback */
+  .feedback-section {
+    width: 50%; /* Define que a seção do formulário ocupará 60% do espaço */
+  }
+  
+  /* Contêiner do Formulário */
+  .feedback-container {
+    margin: 0 auto;
+    flex: 1; /* O formulário ocupa o restante do espaço disponível */
+  }
+  
+  /* Estilo do Formulário */
+  #feedback-form {
+    background-color: #fff; /* Fundo claro para o formulário */
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 900px; /* Ajuste para que o formulário fique centralizado */
+    opacity: 0; /* Começa invisível */
+    transform: translateX(50px); /* Começa deslocado para a direita */
+    transition: opacity 1s, transform 1s;
+  }
+  
+  /* Títulos e Parágrafos dentro do Formulário */
+  #feedback-form h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+  
+  #feedback-form p {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  /* Linhas do Formulário */
+  .form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 15px;
+  }
+  
+  /* Estilos para os campos do Formulário */
+  .form-group label {
+    font-weight: bold;
+  }
+  
+  .form-group input, .form-comment textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+  }
+  
+  .form-comment textarea {
+    resize: vertical; /* Permite que o textarea seja redimensionado apenas verticalmente */
+  }
+  
+  /* Botão de Enviar */
+  .btn-submit {
+    display: inline-block;
+    background-color: #001b48; /* Cor do botão */
+    color: white;
+    padding: 12px 20px;
+    border-radius: 4px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .btn-submit:hover {
+    background-color: #007BFF; /* Cor do botão ao passar o mouse */
+  }
+  
+  /* Estilos para a Imagem */
+  .feedback-img {
+    height: auto;
+    display: block;
+    margin-left: 10px; /* Reduz o espaço entre a imagem e o formulário */
+    border-radius: 15px; /* Arredondamento dos cantos */
+    opacity: 0; /* Começa invisível */
+    transform: translateX(-50px); /* Começa deslocada para a esquerda */
+    transition: opacity 1s, transform 1s;
+    max-width: 100%; /* A imagem ocupa toda a largura disponível */
+    margin-top: 10px; /* Ajusta o espaço entre a imagem e o formulário */
+  }
+  
+  /* Animação de Fade In para a Imagem */
+  @keyframes fadeInLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  /* Animação de Fade In para o Formulário */
+  @keyframes fadeInRight {
+    0% {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  /* Animação de Fade Out para a Imagem */
+  @keyframes fadeOutLeft {
+    0% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+  }
+  
+  /* Animação de Fade Out para o Formulário */
+  @keyframes fadeOutRight {
+    0% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+  }
+  
+  /* Estilos para a Imagem (aplicando fade-in inicialmente) */
+  .feedback-img.fade-in-left {
+    animation: fadeInLeft 2s forwards;
+  }
+  
+  /* Estilos para o Formulário (aplicando fade-in inicialmente) */
+  #feedback-form.fade-in-right {
+    animation: fadeInRight 2s forwards;
+  }
+  
+  /* Animação de Fade Out para a Imagem */
+  .feedback-img.fade-out-left {
+    animation: fadeOutLeft 1s forwards;
+  }
+  
+  /* Animação de Fade Out para o Formulário */
+  #feedback-form.fade-out-right {
+    animation: fadeOutRight 1s forwards;
+  }
+  
