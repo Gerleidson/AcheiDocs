@@ -2,7 +2,7 @@
 
 form {
   width: 100%; 
-  max-width: 800px;
+  max-width: 900px;
   margin: 20px auto;
   margin-bottom: 30px;
   padding: 20px;
@@ -94,7 +94,7 @@ form button:hover {
   border-radius: 20px;
   backdrop-filter: blur(5px); /* Efeito de desfoque no fundo */
   width: 100%;
-  max-width: 800px;
+  max-width: 900px;
   display: flex;
   flex-direction: column;
 }
@@ -170,7 +170,7 @@ form button:hover {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
-  max-width: 800px;
+  max-width: 900px;
   width: 100%;
 }
 
@@ -239,12 +239,10 @@ input[type="radio"] {
 /* Seção de Feedback */
 .feedback-section {
   width: 50%; /* Define que a seção do formulário ocupará 60% do espaço */
-
 }
 
 /* Contêiner do Formulário */
 .feedback-container {
-  max-width: 900px;
   margin: 0 auto;
   flex: 1; /* O formulário ocupa o restante do espaço disponível */
 }
@@ -255,8 +253,11 @@ input[type="radio"] {
   padding: 20px;
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 100%;
+  width: 80%;
   max-width: 900px; /* Ajuste para que o formulário fique centralizado */
+  opacity: 0; /* Começa invisível */
+  transform: translateX(50px); /* Começa deslocado para a direita */
+  transition: opacity 1s, transform 1s; /* Transições suaves */
 }
 
 /* Títulos e Parágrafos dentro do Formulário */
@@ -313,21 +314,49 @@ input[type="radio"] {
 
 /* Estilos para a Imagem */
 .feedback-img {
-  max-width: 45%; /* Limita a largura da imagem */
   height: auto;
   display: block;
   margin-left: 10px; /* Reduz o espaço entre a imagem e o formulário */
   border-radius: 15px; /* Arredondamento dos cantos */
   opacity: 0; /* Começa invisível */
-  transform: translateY(-50px); /* Começa um pouco acima */
+  transform: translateX(-50px); /* Começa deslocada para a esquerda */
   transition: opacity 1s, transform 1s; /* Transições suaves */
   max-width: 100%; /* A imagem ocupa toda a largura disponível */
   margin-top: 10px; /* Ajusta o espaço entre a imagem e o formulário */
 }
 
-/* Animação de Bounce */
-.bounce {
+/* Animação de Fade In para a Imagem */
+.feedback-img.fade-in-left {
   opacity: 1; /* Torna visível */
-  transform: translateY(0); /* Vai para a posição original */
+  transform: translateX(0); /* Vai para a posição original */
 }
 
+/* Animação de Fade In para o Formulário */
+#feedback-form.fade-in-right {
+  opacity: 1; /* Torna visível */
+  transform: translateX(0); /* Vai para a posição original */
+}
+
+/* Animação de Fade Out para a Imagem */
+@keyframes fadeOutLeft {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+}
+
+/* Animação de Fade Out para o Formulário */
+@keyframes fadeOutRight {
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+}

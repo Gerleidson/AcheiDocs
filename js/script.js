@@ -146,7 +146,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-
 /* Função para exibir os documentos na tabela
 function exibirDocumentosNaTabela(documentos) {
     const tabela = document.querySelector('#tabela tbody');
@@ -427,21 +426,31 @@ carregarEstados();
 
 
 
-// Seleciona a imagem
-const image = document.querySelector('.feedback-img');
-
-// Função para verificar se a imagem entrou na tela
-const observer = new IntersectionObserver((entries, observer) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      // Quando a imagem entrar na tela, aplica a classe de animação
-      entry.target.classList.add('bounce');
-      observer.unobserve(entry.target); // Para de observar a imagem após a animação
+window.addEventListener('scroll', () => {
+    const img = document.querySelector('.feedback-img');
+    const form = document.querySelector('#feedback-form');
+    
+    const imgPosition = img.getBoundingClientRect().top;
+    const formPosition = form.getBoundingClientRect().top;
+    
+    const windowHeight = window.innerHeight;
+    
+    // Quando a imagem ou formulário entra na tela, aplicamos a animação de fade-in
+    if (imgPosition < windowHeight && imgPosition > 0) {
+      img.classList.add('fade-in-left');
+      img.classList.remove('fade-out-left');
+    } else {
+      img.classList.add('fade-out-left');
+      img.classList.remove('fade-in-left');
+    }
+  
+    // Quando o formulário entra na tela, aplicamos a animação de fade-in
+    if (formPosition < windowHeight && formPosition > 0) {
+      form.classList.add('fade-in-right');
+      form.classList.remove('fade-out-right');
+    } else {
+      form.classList.add('fade-out-right');
+      form.classList.remove('fade-in-right');
     }
   });
-}, {
-  threshold: 0.5 // A animação é acionada quando 50% da imagem está visível na tela
-});
-
-// Inicia a observação da imagem
-observer.observe(image);
+  

@@ -31,7 +31,6 @@ body {
   justify-content: center;
   align-items: center;
   position: relative;
-  gap: 20px;
 }
 
 .principal::before {
@@ -80,8 +79,7 @@ body {
 .importancia {
   padding: 30px 20px;
   border-radius: 12px;
-
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
   margin-top: 20px;
 }
