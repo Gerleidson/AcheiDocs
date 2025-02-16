@@ -275,6 +275,13 @@ closeBtn.addEventListener("click", () => {
     popup.style.display = "none";
 });
 
+// Fechar o popup clicando fora do conteúdo
+popup.addEventListener('click', function(e) {
+    if (e.target === popup) {
+        popup.style.display = 'none';
+    }
+});
+
 // Tornar o PIX clicável e copiar para a área de transferência
 pixCopy.addEventListener("click", () => {
     const pix = "27.201.781/0001-39"; // Substitua com sua chave PIX

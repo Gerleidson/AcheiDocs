@@ -2,7 +2,7 @@
 .faq-section {
     max-width: 1100px;
     border-radius: 8px;
-    margin: 100px auto 0;
+    margin: 10px auto 0;
     padding: 30px;
 }
 
@@ -10,7 +10,6 @@
     max-width: 900px;
     width: 100%;
     padding: 0 15px;
-
 }
 
 /* Títulos */
@@ -24,7 +23,7 @@
 /* Itens do FAQ */
 .faq-item {
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     box-sizing: border-box;
 }
 

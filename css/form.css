@@ -1,5 +1,4 @@
 /* === Estilo para formulários === */
-
 form {
   width: 100%; 
   max-width: 900px;
@@ -25,65 +24,6 @@ form.zoom-in {
 form.zoom-out {
   opacity: 0;
   transform: scale(0.8); /* Reduz o tamanho do formulário */
-}
-
-form h1 {
-  margin-bottom: 15px;
-  color: #000000;
-  text-align: center;
-  font-weight: bold;
-} 
-form h3 {
-  font-size: 1.2em;
-  margin-bottom: 15px;
-  color: #000000;
-  text-align: center;
-  font-weight: bold;
-}
-
-form p {
-  font-size: 16px;
-  color: #000000;
-  margin-bottom: 15px;
-  text-align: center;
-}
-
-form label {
-  font-size: 14px;
-  color: #333;
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-form input,
-form textarea,
-form button,
-form select {
-  width: 100%;
-  margin-bottom: 12px;
-  padding: 12px;  /* Aumentei o padding para dar mais espaçamento */
-  box-sizing: border-box;
-  border: 1px solid #ccc; /* Borda mais sutil */
-  border-radius: 6px;
-  font-size: 14px;
-  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease;
-}
-
-form button {
-  background-color: #001b48;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  padding: 12px 20px;
-  border-radius: 6px;
-  border: none;
-  font-size: 16px;
-  transition: background-color 0.3s ease-in-out;
-}
-
-form button:hover {
-  background-color: #007BFF;
 }
 
 
@@ -165,7 +105,6 @@ form button:hover {
 }
 
 /* === Estilos do formulário de cadastro === */
-
 #form-cadastro {
   display: flex;
   flex-direction: column;
@@ -179,6 +118,28 @@ form button:hover {
   color: #000000;
   margin-bottom: 20px;
   text-align: center;
+}
+
+form label {
+  font-size: 14px;
+  color: #333;
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+form input,
+form textarea,
+form button,
+form select {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;  /* Aumentei o padding para dar mais espaçamento */
+  box-sizing: border-box;
+  border: 1px solid #ccc; /* Borda mais sutil */
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease;
 }
 
 input[type="radio"] {
@@ -207,7 +168,6 @@ input[type="radio"] {
   height: 18px;
   margin: 0;
   cursor: pointer;
-  accent-color: #00B6FF;
 }
 
 /* Ajuste para cidade e estado ficarem lado a lado */
@@ -224,6 +184,23 @@ input[type="radio"] {
 .form-row input, .form-row select {
     width: 100%;
 }
+
+form button { 
+  background-color: #001b48;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 12px 20px;
+  border-radius: 6px;
+  border: none;
+  font-size: 16px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+form button:hover {
+  background-color: #0056b3;
+}
+
 
 
 /* === Estilos para a seção de Feedback === */
@@ -243,18 +220,17 @@ input[type="radio"] {
 
 /* Contêiner do Formulário */
 .feedback-container {
-  margin: 0 auto;
+  margin: 70px auto;
   flex: 1; /* O formulário ocupa o restante do espaço disponível */
 }
 
 /* Estilo do Formulário */
 #feedback-form {
   background-color: #fff; /* Fundo claro para o formulário */
-  padding: 20px;
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 80%;
-  max-width: 900px; /* Ajuste para que o formulário fique centralizado */
+  width: 90%;
+  max-width: 500px; /* Ajuste para que o formulário fique centralizado */
   opacity: 0; /* Começa invisível */
   transform: translateX(50px); /* Começa deslocado para a direita */
   transition: opacity 1s, transform 1s; /* Transições suaves */
@@ -264,11 +240,16 @@ input[type="radio"] {
 #feedback-form h3 {
   font-size: 24px;
   margin-bottom: 15px;
+  color: #000000;
+  text-align: center;
+  font-weight: bold;
 }
 
 #feedback-form p {
   font-size: 16px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+  color: #000000;
 }
 
 /* Linhas do Formulário */
@@ -309,7 +290,7 @@ input[type="radio"] {
 }
 
 .btn-submit:hover {
-  background-color: #007BFF; /* Cor do botão ao passar o mouse */
+  background-color: #0056b3; /* Cor do botão ao passar o mouse */
 }
 
 /* Estilos para a Imagem */
