@@ -227,23 +227,26 @@ input[type="radio"] {
 
 
 /* === Estilos para a seção de Feedback === */
-#article3.feedback {
+.feedback {
   display: flex;
   align-items: center; /* Alinha verticalmente o conteúdo */
   justify-content: center; /* Centraliza o conteúdo */
   padding: 20px;
-  gap: 10px; /* Adiciona um pequeno espaço entre o formulário e a imagem */
+  gap: 15px; /* Adiciona um pequeno espaço entre o formulário e a imagem */
+  flex-wrap: wrap; /* Permite que os itens se reorganizem em telas menores */
 }
 
 /* Seção de Feedback */
 .feedback-section {
   width: 50%; /* Define que a seção do formulário ocupará 60% do espaço */
+
 }
 
 /* Contêiner do Formulário */
 .feedback-container {
-  max-width: 600px;
+  max-width: 900px;
   margin: 0 auto;
+  flex: 1; /* O formulário ocupa o restante do espaço disponível */
 }
 
 /* Estilo do Formulário */
@@ -252,6 +255,8 @@ input[type="radio"] {
   padding: 20px;
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 900px; /* Ajuste para que o formulário fique centralizado */
 }
 
 /* Títulos e Parágrafos dentro do Formulário */
@@ -316,6 +321,8 @@ input[type="radio"] {
   opacity: 0; /* Começa invisível */
   transform: translateY(-50px); /* Começa um pouco acima */
   transition: opacity 1s, transform 1s; /* Transições suaves */
+  max-width: 100%; /* A imagem ocupa toda a largura disponível */
+  margin-top: 10px; /* Ajusta o espaço entre a imagem e o formulário */
 }
 
 /* Animação de Bounce */
@@ -323,3 +330,4 @@ input[type="radio"] {
   opacity: 1; /* Torna visível */
   transform: translateY(0); /* Vai para a posição original */
 }
+

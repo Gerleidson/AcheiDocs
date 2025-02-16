@@ -177,3 +177,40 @@
     font-size: 0.9rem;
   }
 }
+
+
+/* === Estilos para telas menores === */
+@media (max-width: 768px) {
+  /* Ajustando a largura da seção do feedback */
+  .feedback-section {
+    width: 100%; /* A seção ocupa toda a largura da tela */
+  }
+
+  /* Ajustando o tamanho do formulário */
+  #feedback-form {
+    width: 100%;
+    max-width: 100%; /* Remover a largura máxima, para que ocupe toda a tela */
+  }
+
+  /* Ajustando a largura das imagens */
+  .feedback-img {
+    max-width: 100%; /* A imagem ocupa toda a largura disponível */
+    margin-left: 0; /* Remove o espaço entre o formulário e a imagem */
+    margin-top: 20px; /* Ajusta o espaço entre o formulário e a imagem */
+  }
+
+  /* Ajustando a largura do campo de entrada para garantir que eles fiquem responsivos */
+  .form-row {
+    flex-direction: column; /* Organiza os campos em uma coluna */
+    gap: 10px; /* Reduz o espaço entre os campos */
+  }
+
+  .form-group input, .form-comment textarea {
+    width: 100%;
+  }
+
+  /* Ajustando o botão */
+  .btn-submit {
+    width: 100%; /* O botão ocupa toda a largura disponível */
+  }
+}

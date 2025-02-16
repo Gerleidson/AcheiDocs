@@ -234,44 +234,44 @@
     </section>
     </article>
 
-<!-- Seção de Feedback -->
-<article id="article3" class="feedback">
-    <section id="feedback" class="feedback-section">
-        <div class="feedback-container">
+    <!-- Seção de Feedback -->
+    <article id="article3" class="feedback">
+        <!-- Imagem de Feedback -->
+        <img src="/img/feedback.png" alt="feedback" class="feedback-img">
+
+        <section id="feedback" class="feedback-section">
+            <div class="feedback-container">
+                
+                <!-- Formulário de Feedback -->
+                <form id="feedback-form">
+                    <h3><i class="fas fa-comment-dots"></i> Deixe seu Feedback</h3>
+                    <p>Gostou do site? Tem alguma sugestão ou crítica? Fique à vontade para nos enviar seu comentário!</p>
+
+                    <!-- Linha com Nome e E-mail -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nome-feedback">Nome:</label>
+                            <input type="text" id="nome-feedback" name="nome-feedback" placeholder="Digite seu nome" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email-feedback">E-mail:</label>
+                            <input type="email" id="email-feedback" name="email-feedback" placeholder="Digite seu e-mail" required>
+                        </div>
+                    </div>
             
-            <!-- Formulário de Feedback -->
-            <form id="feedback-form">
-                <h3><i class="fas fa-comment-dots"></i> Deixe seu Feedback</h3>
-                <p>Gostou do site? Tem alguma sugestão ou crítica? Fique à vontade para nos enviar seu comentário!</p>
-
-                <!-- Linha com Nome e E-mail -->
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="nome-feedback">Nome:</label>
-                        <input type="text" id="nome-feedback" name="nome-feedback" placeholder="Digite seu nome" required>
+                    <!-- Linha com Comentário -->
+                    <div class="form-row">
+                        <div class="form-comment">
+                            <label for="comentario">Comentário:</label>
+                            <textarea id="comentario" name="comentario" rows="4" placeholder="Escreva seu comentário ou sugestão..." required></textarea>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="email-feedback">E-mail:</label>
-                        <input type="email" id="email-feedback" name="email-feedback" placeholder="Digite seu e-mail" required>
-                    </div>
-                </div>
-        
-                <!-- Linha com Comentário -->
-                <div class="form-row">
-                    <div class="form-comment">
-                        <label for="comentario">Comentário:</label>
-                        <textarea id="comentario" name="comentario" rows="4" placeholder="Escreva seu comentário ou sugestão..." required></textarea>
-                    </div>
-                </div>
-        
-                <button type="submit" class="btn-submit">Enviar Feedback</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Imagem de Feedback -->
-    <img src="/img/feedback.png" alt="feedback" class="feedback-img">
-</article>
+            
+                    <button type="submit" class="btn-submit">Enviar Feedback</button>
+                </form>
+            </div>
+        </section>
+    </article>
 
 
     <!--  Seção FAQ -->
