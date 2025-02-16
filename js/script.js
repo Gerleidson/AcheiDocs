@@ -424,3 +424,24 @@ estadoSelects.forEach(select => {
 
 // Carregar os estados ao iniciar
 carregarEstados();
+
+
+
+// Seleciona a imagem
+const image = document.querySelector('.feedback-img');
+
+// Função para verificar se a imagem entrou na tela
+const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      // Quando a imagem entrar na tela, aplica a classe de animação
+      entry.target.classList.add('bounce');
+      observer.unobserve(entry.target); // Para de observar a imagem após a animação
+    }
+  });
+}, {
+  threshold: 0.5 // A animação é acionada quando 50% da imagem está visível na tela
+});
+
+// Inicia a observação da imagem
+observer.observe(image);

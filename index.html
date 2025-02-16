@@ -24,6 +24,9 @@
     <!-- Carregamento assíncrono do jQuery e do script -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <!-- Google Adsense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4783178432397762"
     crossorigin="anonymous"></script>
@@ -137,70 +140,72 @@
     </main>
 
     <!-- Seção Cadastro-->
-    <section>
-        <section class="importancia">
-            <h2>Por que cadastrar?</h2>
-            <p>O cadastro no AcheiDocs é uma forma simples e eficaz de registrar um documento ou objeto, você torna a busca mais eficiente para todos os usuários, além de poder ser encontrado rapidamente caso algo seu seja perdido.</p>
+    <article id="article1" class="cadastro">
+        <section>
+            <section class="importancia">
+                <h2>Por que cadastrar?</h2>
+                <p>O cadastro no AcheiDocs é uma forma simples e eficaz de registrar um documento ou objeto, você torna a busca mais eficiente para todos os usuários, além de poder ser encontrado rapidamente caso algo seu seja perdido.</p>
+            </section>
+            
+            <form id="form-cadastro" method="POST">
+                <h3><i class="fas fa-file-alt"></i> Cadastrar documento</h3>
+                <div class="checkbox-group">
+                    <label for="achado">
+                        <input type="radio" id="achado" name="tipo" value="Achado">
+                        Documento Achado
+                    </label>
+                    <label for="perdido">
+                        <input type="radio" id="perdido" name="tipo" value="Perdido">
+                        Documento Perdido
+                    </label>
+                </div>
+            
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" placeholder="Digite nome completo" required>
+            
+                <div class="form-row">
+                    <div>
+                        <label for="documento">Documento:</label>
+                        <select id="documento" name="documento" required>
+                            <option value="">Selecione um documento</option>
+                            <option value="RG">RG</option>
+                            <option value="CPF">CPF</option>
+                            <option value="CTPS">CTPS</option>
+                            <option value="CNH">CNH</option>
+                            <option value="Passaporte">Passaporte</option>
+                            <option value="Título de eleitor">Título de eleitor</option>
+                            <option value="Certidão">Certidão</option>
+                            <option value="Outros">Outros</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="telefone">Telefone:</label>
+                        <input type="tel" id="telefone" name="telefone" placeholder="(XX) XXXXX-XXXX" maxlength="15" pattern="\(\d{2}\) \d{5}-\d{4}" required>
+                    </div>
+                </div>
+            
+                <div class="form-row">
+                    <div>
+                        <label for="estado-cadastro">Estado:</label>
+                        <select id="estado-cadastro" class="select-estado" name="estado" data-target="cidade-cadastro" required>
+                            <option value="">Selecione o estado</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="cidade-cadastro">Cidade:</label>
+                        <select id="cidade-cadastro" class="select-cidade" name="cidade" required disabled>
+                            <option value="">Selecione a cidade</option>
+                        </select>
+                    </div>
+                </div>
+            
+                <button type="submit">Cadastrar</button>
+            </form>
         </section>
-        
-        <form id="form-cadastro" method="POST">
-            <h3><i class="fas fa-file-alt"></i> Cadastrar documento</h3>
-            <div class="checkbox-group">
-                <label for="achado">
-                    <input type="radio" id="achado" name="tipo" value="Achado">
-                    Documento Achado
-                </label>
-                <label for="perdido">
-                    <input type="radio" id="perdido" name="tipo" value="Perdido">
-                    Documento Perdido
-                </label>
-            </div>
-        
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" placeholder="Digite nome completo" required>
-        
-            <div class="form-row">
-                <div>
-                    <label for="documento">Documento:</label>
-                    <select id="documento" name="documento" required>
-                        <option value="">Selecione um documento</option>
-                        <option value="RG">RG</option>
-                        <option value="CPF">CPF</option>
-                        <option value="CTPS">CTPS</option>
-                        <option value="CNH">CNH</option>
-                        <option value="Passaporte">Passaporte</option>
-                        <option value="Título de eleitor">Título de eleitor</option>
-                        <option value="Certidão">Certidão</option>
-                        <option value="Outros">Outros</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="telefone">Telefone:</label>
-                    <input type="tel" id="telefone" name="telefone" placeholder="(XX) XXXXX-XXXX" maxlength="15" pattern="\(\d{2}\) \d{5}-\d{4}" required>
-                </div>
-            </div>
-        
-            <div class="form-row">
-                <div>
-                    <label for="estado-cadastro">Estado:</label>
-                    <select id="estado-cadastro" class="select-estado" name="estado" data-target="cidade-cadastro" required>
-                        <option value="">Selecione o estado</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="cidade-cadastro">Cidade:</label>
-                    <select id="cidade-cadastro" class="select-cidade" name="cidade" required disabled>
-                        <option value="">Selecione a cidade</option>
-                    </select>
-                </div>
-            </div>
-        
-            <button type="submit">Cadastrar</button>
-        </form>
-        
-    </section>
+    </article>
 
     <!-- Seção da tabela-->
+    <article id="article2" class="tabela">
     <section class="table-responsive">
         <section class="contador-container">
             <h2>Itens cadastrados</h2>
@@ -227,8 +232,10 @@
             <button id="next">Próxima</button>
         </div>
     </section>
+    </article>
 
-    <!-- Seção de Feedback -->
+<!-- Seção de Feedback -->
+<article id="article3" class="feedback">
     <section id="feedback" class="feedback-section">
         <div class="feedback-container">
             
@@ -236,50 +243,214 @@
             <form id="feedback-form">
                 <h3><i class="fas fa-comment-dots"></i> Deixe seu Feedback</h3>
                 <p>Gostou do site? Tem alguma sugestão ou crítica? Fique à vontade para nos enviar seu comentário!</p>
-            <!-- Linha com Nome e E-mail -->
-            <div class="form-row">
-            <div class="form-group">
-                <label for="nome-feedback">Nome:</label>
-                <input type="text" id="nome-feedback" name="nome-feedback" placeholder="Digite seu nome" required>
-            </div>
-            <div class="form-group">
-                <label for="email-feedback">E-mail:</label>
-                <input type="email" id="email-feedback" name="email-feedback" placeholder="Digite seu e-mail" required>
-            </div>
-            </div>
-    
-            <!-- Linha com Comentário -->
-            <div class="form-row">
-            <div class="form-comment">
-                <label for="comentario">Comentário:</label>
-                <textarea id="comentario" name="comentario" rows="4" placeholder="Escreva seu comentário ou sugestão..." required></textarea>
-            </div>
-            </div>
-    
-            <button type="submit" class="btn-submit">Enviar Feedback</button>
-        </form>
+
+                <!-- Linha com Nome e E-mail -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nome-feedback">Nome:</label>
+                        <input type="text" id="nome-feedback" name="nome-feedback" placeholder="Digite seu nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email-feedback">E-mail:</label>
+                        <input type="email" id="email-feedback" name="email-feedback" placeholder="Digite seu e-mail" required>
+                    </div>
+                </div>
+        
+                <!-- Linha com Comentário -->
+                <div class="form-row">
+                    <div class="form-comment">
+                        <label for="comentario">Comentário:</label>
+                        <textarea id="comentario" name="comentario" rows="4" placeholder="Escreva seu comentário ou sugestão..." required></textarea>
+                    </div>
+                </div>
+        
+                <button type="submit" class="btn-submit">Enviar Feedback</button>
+            </form>
         </div>
     </section>
+
+    <!-- Imagem de Feedback -->
+    <img src="/img/feedback.png" alt="feedback" class="feedback-img">
+</article>
+
+
+    <!--  Seção FAQ -->
+
+    <div class="container">
+        <!-- Seção FAQ -->
+        <section id="faq" class="faq-section">
+            <h2 class="faq-title"><i class="fas fa-comments"></i> Perguntas Frequentes (FAQ)</h2>
+
+            <div class="accordion" id="faqAccordion">
+
+                <div class="faq-item">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                1. O que é o AcheiDocs?
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                O AcheiDocs é uma plataforma online para ajudar as pessoas a encontrar e devolver itens perdidos, especialmente documentos como RG, CPF, Passaporte e outros. Conectamos quem encontrou um item com quem o perdeu, tornando o processo de devolução mais fácil e seguro.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                2. Como posso registrar um documento perdido ou encontrado?
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Para registrar um documento perdido ou encontrado, basta acessar a seção de cadastro em nosso site e preencher o formulário com as informações necessárias, como o tipo de documento, nome, telefone e cidade. Se você encontrou um item, selecione a opção "Documento Encontrado" e insira os dados relacionados ao item.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                3. Como posso localizar um documento perdido?
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Para localizar um documento perdido, acesse a seção de busca, onde você poderá procurar pelo nome completo do dono. Se encontrar o item, entre em contato com a pessoa através do telefone fornecido para combinar a devolução.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFour">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                4. O que faço se encontrar um documento, mas não sei como devolvê-lo?
+                            </button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Se você encontrar um documento, recomendamos que você registre o item no site para facilitar a devolução. Além disso, você pode entrar em contato com as autoridades locais (como uma delegacia) para garantir que a devolução seja feita de maneira segura.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFive">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                5. Como o site garante a segurança dos meus dados?
+                            </button>
+                        </h2>
+                        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                O AcheiDocs leva a segurança dos seus dados a sério. Utilizamos criptografia e práticas recomendadas para proteger as informações que você compartilha conosco. Apenas informações essenciais são coletadas, e elas não são compartilhadas com terceiros sem o seu consentimento.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingSix">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                6. Quanto tempo o meu registro ficará disponível no site?
+                            </button>
+                        </h2>
+                        <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Os registros de documentos perdidos ou encontrados ficam disponíveis no site por 120 dias a partir da data de registro. Após esse período, os registros são automaticamente removidos.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingEight">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                                7. O site cobra alguma taxa para utilizar os serviços?
+                            </button>
+                        </h2>
+                        <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Não. O AcheiDocs oferece seus serviços de forma gratuita, tanto para quem encontra quanto para quem perde um item. Nosso objetivo é facilitar a devolução de documentos e objetos de forma segura e prática.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingNine">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                                8. Como posso contribuir para ajudar o site a se manter?
+                            </button>
+                        </h2>
+                        <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Se você deseja apoiar o AcheiDocs, você pode fazer uma doação através dos dados bancários fornecidos no nosso site. Sua contribuição é muito importante para mantermos o site funcionando e continuar ajudando a comunidade.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTen">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                                9. Posso confiar nas pessoas que encontraram meus documentos?
+                            </button>
+                        </h2>
+                        <div id="collapseTen" class="accordion-collapse collapse" aria-labelledby="headingTen" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                O AcheiDocs tem como objetivo conectar as pessoas de maneira segura, mas sempre recomendamos que você tome precauções ao realizar a devolução ou entrega do item. Recomendamos encontros em locais públicos ou de confiança, como delegacias ou centros comerciais.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingEleven">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
+                                10. Como posso entrar em contato com a equipe do AcheiDocs?
+                            </button>
+                        </h2>
+                        <div id="collapseEleven" class="accordion-collapse collapse" aria-labelledby="headingEleven" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Você pode entrar em contato conosco através do nosso formulário de contato no site, ou enviar um  e-mail: <a href="mailto:computech.camacari@gmail.com">computech.camacari@gmail.com</a>. Nossa equipe está disponível para ajudar com qualquer dúvida ou problema que você possa ter.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div> <!-- Accordion -->
+        </section> <!-- Seção FAQ -->
+    </div>
     
     <!--  Footer-->
     <footer class="footer text-white text-center py-1">
         <div class="container">
-            <p class="mb-0">&copy; 2024 AcheiDocs - Todos os Direitos Reservados.</p>
-            
             <!-- Links adicionais do footer -->
             <ul class="list-unstyled d-flex justify-content-center mt-3">
                 <li class="mx-3">
                     <a href="#" id="dicas-link" class="text-white">Dicas de Segurança</a>
                 </li>
                 <li class="mx-3">
-                    <a href="faq.html" class="text-white">Perguntas Frequentes</a>
-                </li>
-                <li class="mx-3">
                     <a href="politica.html" class="text-white">Política de Privacidade</a>
                 </li>
- 
             </ul>
         </div>
+        <p class="mb-0">&copy; 2024 AcheiDocs - Todos os Direitos Reservados.</p>
     </footer>
     
     <!-- anuncio -->
@@ -296,6 +467,11 @@
     <!-- Incluindo os scripts -->
     <script type="module" src="js/script.js"></script>
     <script type="module" src="js/firebase.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.js"></script>
+
 
 </body>
+
 </html>

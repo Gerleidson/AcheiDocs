@@ -1,3 +1,4 @@
+/* === Responsividade geral para telas menores que 768px === */
 @media screen and (max-width: 768px) {
   /* Ajustes gerais para o formulário */
   #form-cadastro,
@@ -9,7 +10,6 @@
     max-width: 900px;
     font-size: 0.9rem;
     padding: 8px;
-    align-items: left;
     text-align: left;
   }
 
@@ -52,16 +52,16 @@
   }
   
   .importancia {
-    padding: 20px 15px; /* Ajuste de padding para telas menores */
-    margin-bottom: 30px; /* Menos espaço entre seções em dispositivos menores */
+    padding: 20px 15px;
+    margin-bottom: 30px;
   }
 
   .importancia h2 {
-    font-size: 2rem; /* Menor tamanho de fonte em telas menores */
+    font-size: 2rem;
   }
 
   .importancia p {
-    font-size: 1rem; /* Ajuste no tamanho da fonte em telas pequenas */
+    font-size: 1rem;
   }
 
   /* Responsividade tabela */
@@ -96,12 +96,12 @@
     transition: all 0.3s ease-in-out;
   }
 
-  .hamburger {
-    display: block;
-  }
-
   .nav-links.active {
     display: flex;
+  }
+
+  .hamburger {
+    display: block;
   }
 
   /* Ajustes no menu em telas pequenas */
@@ -113,24 +113,67 @@
   .menu-horizontal ul {
     flex-direction: column;
   }
+
+  /* Responsividade do footer */
+  .footer .container {
+    text-align: center;
+  }
+
+  .footer ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer ul li {
+    margin: 8px 0;
+  }
+
+  /* Responsividade da seção de FAQ */
+  .faq-section {
+    padding: 20px;
+  }
+
+  .faq-title {
+    font-size: 1.8rem;
+  }
+
+  .faq-question {
+    font-size: 1rem;
+  }
+
+  .faq-answer {
+    font-size: 0.95rem;
+  }
 }
 
-/* === Responsividade para telas pequenas === */
+/* === Responsividade para telas menores que 600px === */
 @media (max-width: 600px) {
   .popup-content {
-      width: 90%; /* Aumenta a largura do popup em telas pequenas */
-      padding: 15px; /* Reduz o padding para caber mais conteúdo */
+    width: 90%;
+    padding: 15px;
   }
 
   .popup-content h2 {
-      font-size: 20px; /* Ajusta o tamanho do título para telas menores */
+    font-size: 20px;
   }
 
   .popup-content p {
-      font-size: 0.9rem; /* Ajusta o tamanho do texto */
+    font-size: 0.9rem;
   }
 
   .popup ul li {
-      font-size: 14px; /* Ajusta o tamanho dos itens da lista */
+    font-size: 14px;
+  }
+}
+
+/* === Responsividade para telas menores que 480px === */
+@media (max-width: 480px) {
+  .faq-title {
+    font-size: 1.5rem;
+  }
+
+  .faq-question,
+  .faq-answer {
+    font-size: 0.9rem;
   }
 }
