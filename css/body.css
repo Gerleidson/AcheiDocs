@@ -75,31 +75,6 @@ body {
   color: #fff;
 }
 
-/*=== Estilo para a seção de importância de cadastro ===*/
-.importancia {
-  padding: 30px 20px;
-  border-radius: 12px;
-  max-width: 900px;
-  margin: 0 auto;
-  margin-top: 20px;
-}
-
-.importancia h2 {
-  font-size: 1.6rem;
-  color: #000;
-  margin-bottom: 20px;
-  text-align: center;
-  font-weight: 700;
-}
-
-.importancia p:last-child {
-  margin-bottom: 0;
-}
-
-.feedback{
-  background-color: #333333;
-  margin-top: 100px;
-}
 
 /*=== Estilos do contador ===*/
 .contador-container {

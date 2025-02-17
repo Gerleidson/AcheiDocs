@@ -7,6 +7,9 @@
   padding: 20px;
   gap: 15px; /* Adiciona um pequeno espaço entre o formulário e a imagem */
   flex-wrap: wrap; /* Permite que os itens se reorganizem em telas menores */
+  background-color: #333333;
+  margin-top: 100px;
+
 }
 
 /* Seção de Feedback */
@@ -16,17 +19,18 @@
 
 /* Contêiner do Formulário */
 .feedback-container {
-  margin: 70px auto;
+  margin: 0 20px; /* Ajusta a margem para ter espaçamento de 20px à direita e à esquerda */
   flex: 1; /* O formulário ocupa o restante do espaço disponível */
 }
+
 
 /* Estilo do Formulário */
 #feedback-form {
   background-color: #fff; /* Fundo claro para o formulário */
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 90%;
-  max-width: 500px; /* Ajuste para que o formulário fique centralizado */
+  width: 100%;
+  max-width: 600px; /* Ajuste para que o formulário fique centralizado */
   opacity: 0; /* Começa invisível */
   transform: translateX(50px); /* Começa deslocado para a direita */
   transition: opacity 1s, transform 1s; /* Transições suaves */
@@ -93,13 +97,12 @@
 .feedback-img {
   height: auto;
   display: block;
-  margin-left: 10px; /* Reduz o espaço entre a imagem e o formulário */
+  margin: 0 auto; /* Reduz o espaço entre a imagem e o formulrio */
   border-radius: 15px; /* Arredondamento dos cantos */
   opacity: 0; /* Começa invisível */
   transform: translateX(-50px); /* Começa deslocada para a esquerda */
   transition: opacity 1s, transform 1s; /* Transições suaves */
   max-width: 100%; /* A imagem ocupa toda a largura disponível */
-  margin-top: 10px; /* Ajusta o espaço entre a imagem e o formulário */
 }
 
 /* Animação de Fade In para a Imagem */

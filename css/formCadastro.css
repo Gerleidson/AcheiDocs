@@ -1,8 +1,30 @@
+/*=== Estilo para a seção de importância de cadastro ===*/
+.importancia {
+  padding: 30px 20px;
+  border-radius: 12px;
+  max-width: 900px;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.importancia h2 {
+  font-size: 1.6rem;
+  color: #000;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.importancia p:last-child {
+  margin-bottom: 0;
+}
+
 /* === Estilos do formulário de cadastro === */
 #article1 .cadastro {
   display: flex;
   justify-content: center; /* Centraliza os elementos horizontalmente */
   align-items: center; /* Centraliza verticalmente */
+  
 }
 
 #form-cadastro {
@@ -10,6 +32,7 @@
   flex-direction: column;
   max-width: 600px;
   width: 100%;
+  margin: 0 20px;  /* Ajusta o espaço à esquerda e à direita */
 }
 
 #form-cadastro h3 {
