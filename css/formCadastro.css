@@ -3,7 +3,6 @@
   display: flex;
   justify-content: center; /* Centraliza os elementos horizontalmente */
   align-items: center; /* Centraliza verticalmente */
-  padding: 10px 100px ; /* Ajuste de padding para dar mais espaço ao redor */
 }
 
 #form-cadastro {
@@ -101,43 +100,108 @@ form button:hover {
   background-color: #0056b3;
 }
 
-/* Animação para as imagens */
-.img-fluid {
-  opacity: 0; /* Inicia invisível */
-  transition: transform 0.5s ease-in-out, opacity 1s ease-in-out; /* Agora a opacidade também muda */
-  transform: scale(1); /* Inicia no tamanho normal */
+.zoom-in {
+  transform: scale(1.1);
+  opacity: 1;
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
 }
 
-/* Efeito de zoom quando a imagem entra na tela (com o wow.js) */
-.wow.zoomIn {
-  animation: zoomIn 1s ease-in-out forwards; /* Adicionando 'forwards' para garantir que a animação persista após o fim */
+.zoom-out {
+  transform: scale(0.9);
+  opacity: 0.5;
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
 }
 
-/* Animação de zoomIn */
-@keyframes zoomIn {
-  0% {
-    transform: scale(0.8); /* Começa com uma escala de 80% */
-    opacity: 0; /* Fica invisível */
+
+/* Animações de Zoom */
+@keyframes zoomInTop {
+  from {
+      transform: scale(0.5) translateY(-50px);
+      opacity: 0;
   }
-  100% {
-    transform: scale(1); /* Finaliza no tamanho normal */
-    opacity: 1; /* Imagem se torna visível */
+  to {
+      transform: scale(1) translateY(0);
+      opacity: 1;
   }
 }
 
-/* Definindo animações com delay diferentes para as imagens */
-.col-6 img:nth-child(1) {
-  animation-delay: 0.1s; /* Primeira imagem aparece com 0.1s de delay */
+@keyframes zoomOutBottom {
+  from {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+  }
+  to {
+      transform: scale(0.5) translateY(50px);
+      opacity: 0;
+  }
 }
 
-.col-6 img:nth-child(2) {
-  animation-delay: 0.3s; /* Segunda imagem aparece com 0.3s de delay */
+/* Animações de Fade */
+@keyframes fadeInLeft {
+  from {
+      opacity: 0;
+      transform: translateX(-50px);
+  }
+  to {
+      opacity: 1;
+      transform: translateX(0);
+  }
 }
 
-.col-6 img:nth-child(3) {
-  animation-delay: 0.5s; /* Terceira imagem aparece com 0.5s de delay */
+@keyframes fadeInRight {
+  from {
+      opacity: 0;
+      transform: translateX(50px);
+  }
+  to {
+      opacity: 1;
+      transform: translateX(0);
+  }
 }
 
-.col-6 img:nth-child(4) {
-  animation-delay: 0.7s; /* Quarta imagem aparece com 0.7s de delay */
+@keyframes fadeOutLeft {
+  from {
+      opacity: 1;
+      transform: translateX(0);
+  }
+  to {
+      opacity: 0;
+      transform: translateX(-50px);
+  }
+}
+
+@keyframes fadeOutRight {
+  from {
+      opacity: 1;
+      transform: translateX(0);
+  }
+  to {
+      opacity: 0;
+      transform: translateX(50px);
+  }
+}
+
+/* Definindo as classes de animação */
+.zoom-in-top {
+  animation: zoomInTop 1s ease-out forwards;
+}
+
+.zoom-out-bottom {
+  animation: zoomOutBottom 1s ease-in forwards;
+}
+
+.fade-in-left {
+  animation: fadeInLeft 1s ease-out forwards;
+}
+
+.fade-in-right {
+  animation: fadeInRight 1s ease-out forwards;
+}
+
+.fade-out-left {
+  animation: fadeOutLeft 1s ease-in forwards;
+}
+
+.fade-out-right {
+  animation: fadeOutRight 1s ease-in forwards;
 }

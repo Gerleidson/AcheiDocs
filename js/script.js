@@ -325,8 +325,6 @@ popupDicas.addEventListener('click', function(e) {
     }
 });
 
-// Função para os efeitos zoom in e zoom out
-let lastScrollTop = 0; // Armazena a posição da rolagem anterior
 
 // Função que verifica a visibilidade e a direção da rolagem
 function checkFormVisibility() {
@@ -461,3 +459,50 @@ window.addEventListener('scroll', () => {
     }
   });
   
+
+
+
+
+
+ // Variável para armazenar a última posição da rolagem
+let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+// Função para verificar a visibilidade e aplicar as animações
+function checkVisibility() {
+    const elementos = document.querySelectorAll('.img-fluid, #form-cadastro'); // Selecione as imagens e o formulário
+    const windowHeight = window.innerHeight; // Altura da janela
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop; // Posição atual da rolagem
+
+    // Itera sobre todos os elementos selecionados
+    elementos.forEach(elemento => {
+        const elementPosition = elemento.getBoundingClientRect().top + scrollTop; // Posição do elemento
+        const elementHeight = elemento.offsetHeight; // Altura do elemento
+        const elementVisible = (elementPosition < scrollTop + windowHeight) && (elementPosition + elementHeight > scrollTop);
+
+        // Se o elemento está visível na tela
+        if (elementVisible) {
+            if (!elemento.classList.contains('fade-in') && !elemento.classList.contains('zoom-in-top')) {
+                elemento.classList.add('fade-in');  // Aplica animação de fade-in
+                elemento.classList.add('zoom-in-top'); // Aplica animação de zoom-in
+                elemento.classList.remove('fade-out'); // Remove animação de fade-out (se houver)
+                elemento.classList.remove('zoom-out-bottom'); // Remove animação de zoom-out (se houver)
+            }
+        } else {
+            if (!elemento.classList.contains('fade-out') && !elemento.classList.contains('zoom-out-bottom')) {
+                elemento.classList.add('fade-out');  // Aplica animação de fade-out
+                elemento.classList.add('zoom-out-bottom'); // Aplica animação de zoom-out
+                elemento.classList.remove('fade-in'); // Remove animação de fade-in (se houver)
+                elemento.classList.remove('zoom-in-top'); // Remove animação de zoom-in (se houver)
+            }
+        }
+    });
+
+    // Atualiza a posição da rolagem para a próxima comparação
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+}
+
+// Chama a função quando o usuário rolar a página
+window.addEventListener('scroll', checkVisibility);
+
+// Chama a função quando a página for carregada
+window.addEventListener('load', checkVisibility);
