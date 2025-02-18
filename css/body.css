@@ -14,8 +14,6 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 0 auto;
-  padding: 0;
   background-color: #f4f7fa;
 }
 
@@ -74,7 +72,6 @@ body {
   color: #fff;
 }
 
-
 /*=== Estilos do contador ===*/
 .contador-container {
   font-size: 16px;
@@ -82,5 +79,4 @@ body {
   color: #000;
   text-align: center;
 }
-
 

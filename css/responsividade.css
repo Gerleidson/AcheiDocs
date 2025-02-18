@@ -94,7 +94,7 @@
     display: none;
     flex-direction: column;
     width: 100%;
-    background-color: #333;
+    background-color: #0F1729;
     position: absolute;
     top: 100px;
     right: 0;
@@ -119,20 +119,6 @@
 
   .menu-horizontal ul {
     flex-direction: column;
-  }
-
-  /* Responsividade do footer */
-  .footer .container {
-    text-align: center;
-  }
-
-  .footer ul {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .footer ul li {
-    margin: 8px 0;
   }
 
   /* Responsividade da seção de FAQ */

@@ -459,11 +459,7 @@ window.addEventListener('scroll', () => {
     }
   });
   
-
-
-
-
-
+  
  // Variável para armazenar a última posição da rolagem
 let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
