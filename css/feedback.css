@@ -8,7 +8,6 @@
   flex-wrap: wrap; /* Permite que os itens se reorganizem em telas menores */
   background-color: #333333;
   margin-top: 100px;
-
 }
 
 /* Seção de Feedback */
@@ -21,7 +20,6 @@
   margin: 0 20px; /* Ajusta a margem para ter espaçamento de 20px à direita e à esquerda */
   flex: 1; /* O formulário ocupa o restante do espaço disponível */
 }
-
 
 /* Estilo do Formulário */
 #feedback-form {
@@ -100,7 +98,7 @@
   border-radius: 15px; /* Arredondamento dos cantos */
   opacity: 0; /* Começa invisível */
   transform: translateX(-50px); /* Começa deslocada para a esquerda */
-  transition: opacity 1s, transform 1s; /* Transições suaves */
+  transition: opacity 3s, transform 3s; /* Alterado para durar 3 segundos */
   max-width: 100%; /* A imagem ocupa toda a largura disponível */
 }
 
@@ -138,4 +136,13 @@
     opacity: 0;
     transform: translateX(50px);
   }
+}
+
+/* Adicionando o Fade-Out mais demorado */
+.fade-out-left {
+  animation: fadeOutLeft 3s ease-out; /* Fade out para imagem com duração de 3 segundos */
+}
+
+.fade-out-right {
+  animation: fadeOutRight 3s ease-out; /* Fade out para o formulário com duração de 3 segundos */
 }

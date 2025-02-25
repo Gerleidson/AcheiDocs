@@ -431,6 +431,7 @@ carregarEstados();
 
 
 //scroll feedback
+// Scroll feedback
 window.addEventListener('scroll', () => {
     const img = document.querySelector('.feedback-img');
     const form = document.querySelector('#feedback-form');
@@ -440,8 +441,8 @@ window.addEventListener('scroll', () => {
     
     const windowHeight = window.innerHeight;
     
-    // Quando a imagem ou formulário entra na tela, aplicamos a animação de fade-in
-    if (imgPosition < windowHeight && imgPosition > 0.8) {
+    // Quando a imagem entra na tela, aplicamos a animação de fade-in
+    if (imgPosition < windowHeight && imgPosition > -img.offsetHeight) {
       img.classList.add('fade-in-left');
       img.classList.remove('fade-out-left');
     } else {
@@ -450,7 +451,7 @@ window.addEventListener('scroll', () => {
     }
   
     // Quando o formulário entra na tela, aplicamos a animação de fade-in
-    if (formPosition < windowHeight && formPosition > 0.8) {
+    if (formPosition < windowHeight && formPosition > -form.offsetHeight) {
       form.classList.add('fade-in-right');
       form.classList.remove('fade-out-right');
     } else {
