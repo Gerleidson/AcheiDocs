@@ -503,3 +503,4 @@ window.addEventListener('scroll', checkVisibility);
 
 // Chama a função quando a página for carregada
 window.addEventListener('load', checkVisibility);
+
