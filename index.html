@@ -118,7 +118,7 @@
                 </div>
 
                 <div class="input-container">
-                    <input type="text" id="nome-busca" name="nome-busca" placeholder=" " required>
+                    <input type="text" id="nome-busca" name="nome-busca" placeholder=" Nome " required>
                     <label for="nome-busca">Nome Completo:</label>
                 </div>
 
@@ -157,7 +157,7 @@
                     <div class="form-row">
                         <div class="input-container">
                             <select id="documento" name="documento" required>
-                                <option value="" selected>Selecione um documento</option>
+                                <option value="" selected>" "</option>
                                 <option value="RG">RG</option>
                                 <option value="CPF">CPF</option>
                                 <option value="CTPS">CTPS</option>
@@ -167,7 +167,7 @@
                                 <option value="Certidão">Certidão</option>
                                 <option value="Outros">Outros</option>
                             </select>
-                            <label for="documento">Documento:</label>
+                            <label for="documento">Selecione um documento:</label>
                         </div>
                         <div class="input-container">
                             <input type="tel" id="telefone" name="telefone" placeholder=" " maxlength="15" pattern="\(\d{2}\) \d{5}-\d{4}" required>
@@ -178,15 +178,15 @@
                     <div class="form-row">
                         <div class="input-container">
                             <select id="estado-cadastro" class="select-estado" name="estado" data-target="cidade-cadastro" required>
-                                <option value="" selected>Selecione o estado</option>
+                                <option value="" selected>" "</option>
                             </select>
-                            <label for="estado-cadastro">Estado:</label>
+                            <label for="estado-cadastro">Selecione o estado:</label>
                         </div>
                         <div class="input-container">
                             <select id="cidade-cadastro" class="select-cidade" name="cidade" required disabled>
-                                <option value="" selected>Selecione a cidade</option>
+                                <option value="" selected>" "</option>
                             </select>
-                            <label for="cidade-cadastro">Cidade:</label>
+                            <label for="cidade-cadastro">Selecione a cidade:</label>
                         </div>
                     </div>
 
