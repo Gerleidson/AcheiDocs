@@ -19,17 +19,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-
-    <!-- Carregamento assíncrono do jQuery e do script -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Google Adsense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4783178432397762"
     crossorigin="anonymous"></script>
-
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -56,10 +49,9 @@
                 <li><a href="#" id="doacao-link"><i class="fa fa-hand-holding-usd"></i> Faça uma Doação</a></li>
                 <li><a href="#" id="dicas-link"><i class="fas fa-shield-alt"></i> Dicas de Segurança</a></li>
                 <li><a href="politica.html"><i class="fa fa-user-secret"></i> Política de Privacidade</a></li>
-                
             </ul>
             <div class="hamburger" id="hamburger-icon">
-                &#9776; <!-- Ícone de menu hamburguer -->
+                &#9776;
             </div>
         </nav>
     </header>
@@ -87,7 +79,7 @@
             <h2>Dicas de Segurança para Entrega e Recebimento de Documentos</h2>
             <ul>
                 <li><strong>Verifique a autenticidade:</strong> Ao receber ou entregar documentos, sempre confirme a autenticidade da pessoa envolvida.</li>
-                <li><strong>Seja Rápido ao Registrar:</strong> Quanto mais rápido você registrar um item perdido, maiores são as chances de recuperá-lo. Além disso, se você encontrar um documento, registre-o imediatamente para que o proprietário possa ser contatado o mais rápido possível.</li>
+                <li><strong>Seja Rápido ao Registrar:</strong> Quanto mais rápido você registrar um item perdido, maiores são as chances de recuperá-lo. Além disso, se você encontrar um documento, registre-o imediatamente para que o proprietário possa ser contatado.</li>
                 <li><strong>Marque um local seguro para entrega:</strong> Combine a entrega ou recebimento em locais públicos, movimentados e, preferencialmente, com câmeras de segurança.</li>
                 <li><strong>Deixe os documentos em um local seguro ou órgão público:</strong> Se você não deseja devolver os documentos pessoalmente, pode deixá-los em um local seguro, como uma delegacia e informe a pessoa sobre o local para que ela possa retirá-los com segurança.</li>
                 <li><strong>Verifique Regularmente:</strong>Caso não tenha encontrado seu documento imediatamente, continue verificando a nossa plataforma. Às vezes, pode levar alguns dias ou semanas até que o item seja registrado.</li>
@@ -99,45 +91,40 @@
     <!-- Seção buscar documento -->
     <main class="principal" id="principal">
         <section class="info" id="info">   
-                <h1>Perdeu algum documento? Nós Podemos Ajudar!</h1>
-                <p>Aqui no nosso site, você pode registrar o documento perdido ou achado e fazer parte de uma rede coletiva. Oferecemos um serviço simples, seguro, rápido e gratuito para ajudar você a encontrar ou devolver documentos perdidos.</p>
-                <p>O cadastro será mantido por 120 dias a partir da data de registro.</p>
+            <h1>Perdeu algum documento? Nós Podemos Ajudar!</h1>
+            <p>Aqui no nosso site, você pode registrar o documento perdido ou achado e fazer parte de uma rede coletiva. Oferecemos um serviço simples, seguro, rápido e gratuito para ajudar você a encontrar ou devolver documentos perdidos.</p>
+            <p>O cadastro será mantido por 120 dias a partir da data de registro.</p>
         </section>
 
         <section>
-
             <form action="/encontrar" id="form-busca" method="get">
                 <h1 id="localizar-documento"><i class="fas fa-search"></i> Encontre seu documento pelo nome</h1>
                 <p>Confira se seu nome está na lista de objetos e documentos encontrados. Se estiver, entre em contato com o responsável através do telefone cadastrado.</p>
-            
-                <!-- Div que agrupa Estado e Cidade lado a lado -->
+
                 <div class="campo-lado-a-lado">
                     <div>
-                        <!-- Campo para selecionar o Estado -->
                         <label for="estado-busca">Estado:</label>
                         <select id="estado-busca" class="select-estado" name="estado" data-target="cidade-busca" required>
                             <option value="">Selecione o estado</option>
                         </select>
                     </div>
-            
+
                     <div>
-                        <!-- Campo para selecionar a Cidade -->
                         <label for="cidade-busca">Cidade:</label>
                         <select id="cidade-busca" class="select-cidade" name="cidade" required disabled>
                             <option value="">Selecione a cidade</option>
                         </select>
                     </div>
                 </div>
-            
-                <!-- Campo para digitar o nome completo -->
-                <label for="nome-busca">Nome Completo:</label>
-                <input type="text" id="nome-busca" name="nome-busca" placeholder="Digite nome completo" required>
-            
+
+                <div class="input-container">
+                    <input type="text" id="nome-busca" name="nome-busca" placeholder=" " required>
+                    <label for="nome-busca">Nome Completo:</label>
+                </div>
+
                 <button type="submit">Buscar</button>
             </form>
-               
-        </section>   
-
+        </section>
     </main>
 
     <!-- Seção Cadastro-->
@@ -147,9 +134,8 @@
                 <h2>Por que cadastrar?</h2>
                 <p>O cadastro no AcheiDocs é uma forma simples e eficaz de registrar um documento ou objeto, você torna a busca mais eficiente para todos os usuários, além de poder ser encontrado rapidamente caso algo seu seja perdido.</p>
             </section>
-            
+
             <div class="cadastro">
-                <!-- Formulário -->
                 <form id="form-cadastro" method="POST" class="animacao-form">
                     <h3><i class="fas fa-file-alt"></i> Cadastrar documento</h3>
                     <div class="checkbox-group">
@@ -162,15 +148,16 @@
                             Documento Perdido
                         </label>
                     </div>
-                
-                    <label for="nome">Nome:</label>
-                    <input type="text" id="nome" name="nome" placeholder="Digite nome completo" required>
-                
+
+                    <div class="input-container">
+                        <input type="text" id="nome" name="nome" placeholder=" " required>
+                        <label for="nome">Nome:</label>
+                    </div>
+
                     <div class="form-row">
-                        <div>
-                            <label for="documento">Documento:</label>
+                        <div class="input-container">
                             <select id="documento" name="documento" required>
-                                <option value="">Selecione um documento</option>
+                                <option value="" selected>Selecione um documento</option>
                                 <option value="RG">RG</option>
                                 <option value="CPF">CPF</option>
                                 <option value="CTPS">CTPS</option>
@@ -180,32 +167,32 @@
                                 <option value="Certidão">Certidão</option>
                                 <option value="Outros">Outros</option>
                             </select>
+                            <label for="documento">Documento:</label>
                         </div>
-                        <div>
+                        <div class="input-container">
+                            <input type="tel" id="telefone" name="telefone" placeholder=" " maxlength="15" pattern="\(\d{2}\) \d{5}-\d{4}" required>
                             <label for="telefone">Telefone:</label>
-                            <input type="tel" id="telefone" name="telefone" placeholder="(XX) XXXXX-XXXX" maxlength="15" pattern="\(\d{2}\) \d{5}-\d{4}" required>
                         </div>
                     </div>
-                
+
                     <div class="form-row">
-                        <div>
-                            <label for="estado-cadastro">Estado:</label>
+                        <div class="input-container">
                             <select id="estado-cadastro" class="select-estado" name="estado" data-target="cidade-cadastro" required>
-                                <option value="">Selecione o estado</option>
+                                <option value="" selected>Selecione o estado</option>
                             </select>
+                            <label for="estado-cadastro">Estado:</label>
                         </div>
-                        <div>
-                            <label for="cidade-cadastro">Cidade:</label>
+                        <div class="input-container">
                             <select id="cidade-cadastro" class="select-cidade" name="cidade" required disabled>
-                                <option value="">Selecione a cidade</option>
+                                <option value="" selected>Selecione a cidade</option>
                             </select>
+                            <label for="cidade-cadastro">Cidade:</label>
                         </div>
                     </div>
-                
+
                     <button type="submit">Cadastrar</button>
                 </form>
 
-                <!-- Bloco de Imagens à direita -->
                 <div class="col-lg-6">
                     <div class="row g-3">
                         <div class="col-6 text-end">
@@ -258,37 +245,32 @@
 
     <!-- Seção de Feedback -->
     <article id="article3" class="feedback">
-        <!-- Imagem de Feedback -->
         <img src="/img/feedback.avif" alt="feedback" class="feedback-img">
 
         <section id="feedback" class="feedback-section">
             <div class="feedback-container">
-                
-                <!-- Formulário de Feedback -->
                 <form id="feedback-form">
                     <h3><i class="fas fa-comment-dots"></i> Deixe seu Feedback</h3>
                     <p>Gostou do site? Tem alguma sugestão ou crítica? Fique à vontade para nos enviar seu comentário!</p>
 
-                    <!-- Linha com Nome e E-mail -->
                     <div class="form-row">
-                        <div class="form-group">
+                        <div class="form-group input-container">
+                            <input type="text" id="nome-feedback" name="nome-feedback" placeholder=" " required>
                             <label for="nome-feedback">Nome:</label>
-                            <input type="text" id="nome-feedback" name="nome-feedback" placeholder="Digite seu nome" required>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group input-container">
+                            <input type="email" id="email-feedback" name="email-feedback" placeholder=" " required>
                             <label for="email-feedback">E-mail:</label>
-                            <input type="email" id="email-feedback" name="email-feedback" placeholder="Digite seu e-mail" required>
                         </div>
                     </div>
-            
-                    <!-- Linha com Comentário -->
+
                     <div class="form-row">
-                        <div class="form-comment">
+                        <div class="form-comment input-container">
+                            <textarea id="comentario" name="comentario" rows="4" placeholder=" " required></textarea>
                             <label for="comentario">Comentário:</label>
-                            <textarea id="comentario" name="comentario" rows="4" placeholder="Escreva seu comentário ou sugestão..." required></textarea>
                         </div>
                     </div>
-            
+
                     <button type="submit" class="btn-submit">Enviar Feedback</button>
                 </form>
             </div>
@@ -473,20 +455,20 @@
         <i class="fas fa-arrow-up"></i>
     </button>
     -->
-        
-    <!--Footer-->
+
     <footer class="footer">
         <p class="mb-0">&copy; 2024 AcheiDocs - Todos os Direitos Reservados.</p>
     </footer>
- 
-    
-    <!-- Incluindo os scripts -->
+
     <script type="module" src="js/script.js"></script>
     <script type="module" src="js/firebase.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.js"></script>
-
 </body>
 
 </html>
+
+
+
+        
